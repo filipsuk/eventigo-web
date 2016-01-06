@@ -1,0 +1,61 @@
+body {
+  font-family: 'Open Sans', sans-serif;
+}
+@media only screen and (max-width: 320px) {
+  body {
+    font-size: 200%;
+  }
+}
+#container {
+  width: 70%;
+  margin: 5em auto;
+}
+ul#tags {
+  list-style-type: none;
+  margin: 0 0 2em;
+  padding: 0;
+  text-align: center;
+}
+ul#tags li {
+  display: inline-block;
+  margin-right: 1.5em;
+}
+ul#tags li input {
+  margin-right: 1em;
+}
+ul#tags li input:hover,
+ul#tags li label:hover {
+  cursor: pointer;
+}
+#events-list {
+  margin: 0 auto;
+}
+#events-list div.event-box {
+  width: 48%;
+  border: 1px solid #e6e6e6;
+  display: inline-block;
+  text-align: left;
+  margin-bottom: 2%;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  margin-right: 1%;
+}
+#events-list div.event-box .event-image {
+  width: 20%;
+  height: 20%;
+  padding: 2%;
+  display: inline-block;
+  border-right: 1px solid #e6e6e6;
+}
+#events-list div.event-box .event-image img {
+  width: 100%;
+  vertical-align: middle;
+}
+#events-list div.event-box .event-text {
+  display: inline-block;
+  vertical-align: top;
+  padding: 2%;
+  width: 70%;
+}
+#events-list div.event-box .event-text p {
+  margin: 0;
+}

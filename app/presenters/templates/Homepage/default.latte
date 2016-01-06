@@ -1,0 +1,31 @@
+{layout '../@layout.latte'}
+
+{**
+ * @param array $tags
+ * @param array $events
+ *}
+
+{block content}
+<ul id="tags">
+	<li n:foreach="$tags as $tag">
+		<label class="tag" data-tag="{$tag[code]}">
+			<input type="checkbox" /> {$tag[name]}
+		</label>
+	</li>
+</ul>
+
+<div id="events-list">
+	<div n:foreach="$events as $event"
+		 id="event-{$event[id]}"
+		 class="event-box {join(' ', $event[tags])}"
+		 data-rates="{json_encode($event[rates])}">
+		<div class="event-image">
+			<img src="img/octopus.png">
+		</div>
+		<div class="event-text">
+			<div><strong>{$event[name]}</strong></div>
+			<p>{$event[description]}</p>
+		</div>
+	</div>
+</div>
+{/block}
