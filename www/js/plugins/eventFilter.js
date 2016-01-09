@@ -19,7 +19,7 @@
      */
     function filter() {
         var tags = getCheckedTags(),
-            tagsClasses = tags.prefix('.'),
+            tagsClasses = tags.prefix('.tag-'),
             events = $('#events-list');
 
         if (tagsClasses.length) {

@@ -1,0 +1,4 @@
+services:
+	router: App\RouterFactory::createRouter
+	- App\Model\EventModel
+	- App\Model\TagModel

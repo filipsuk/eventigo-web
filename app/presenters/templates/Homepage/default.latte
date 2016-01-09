@@ -3,29 +3,34 @@
 {**
  * @param array $tags
  * @param array $events
+ * @param EventModel $eventModel
+ * @param int $eventsMaxCount
  *}
 
 {block content}
 <ul id="tags">
 	<li n:foreach="$tags as $tag">
-		<label class="tag" data-tag="{$tag[code]}">
-			<input type="checkbox" /> {$tag[name]}
+		<label class="tag" data-tag="{$tag->code}">
+			<input type="checkbox" /> {$tag->name}
 		</label>
 	</li>
 </ul>
-
 <div id="events-list">
 	<div n:foreach="$events as $event"
-		 id="event-{$event[id]}"
-		 class="event-box {join(' ', $event[tags])}"
-		 data-rates="{json_encode($event[rates])}">
+		 id="event-{$event->id}"
+		 class="event-box {join(' ', $eventModel->getEventTags($event))}"
+		 data-rates="{json_encode($eventModel->getRates($event))}">
+
 		<div class="event-image">
-			<img src="img/octopus.png">
+			<img src="{$event->image}">
 		</div>
+
 		<div class="event-text">
-			<div><strong>{$event[name]}</strong></div>
-			<p>{$event[description]}</p>
+			<div><strong>{$event->name}</strong></div>
+			<p>{$event->description}</p>
 		</div>
+
+		{? if ($iterator->getCounter() == $eventsMaxCount) break }
 	</div>
 </div>
 {/block}
