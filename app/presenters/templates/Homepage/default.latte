@@ -1,23 +1,15 @@
 {layout '../@layout.latte'}
 
 {**
- * @param array $tags
  * @param array $events
  * @param EventModel $eventModel
  * @param int $eventsMaxCount
  *}
 
 {block content}
-<div id="subscription">
-	{control subscription}
-</div>
-<ul id="tags">
-	<li n:foreach="$tags as $tag">
-		<label class="tag" data-tag="{$tag->code}">
-			<input type="checkbox" /> {$tag->name}
-		</label>
-	</li>
-</ul>
+
+{control subscriptionTags}
+
 <div id="events-list">
 	<div n:foreach="$events as $event"
 		 id="event-{$event->id}"
@@ -36,4 +28,5 @@
 		{? if ($iterator->getCounter() == $eventsMaxCount) break }
 	</div>
 </div>
+
 {/block}

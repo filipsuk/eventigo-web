@@ -3,3 +3,4 @@ services:
 	- App\Model\EventModel
 	- App\Model\TagModel
 	- App\Model\UserModel
+	- App\Model\UserTagModel

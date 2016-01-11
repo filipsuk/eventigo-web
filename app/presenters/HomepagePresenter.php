@@ -2,7 +2,7 @@
 
 namespace App\Presenters;
 
-use App\Components\Subscription\ISubscriptionFactory;
+use App\Components\SubscriptionTags\ISubscriptionTagsFactory;
 use App\Model\EventModel;
 use App\Model\TagModel;
 
@@ -15,8 +15,8 @@ class HomepagePresenter extends BasePresenter
 	/** @var TagModel @inject */
 	public $tagModel;
 
-	/** @var ISubscriptionFactory @inject */
-	public $subscription;
+	/** @var ISubscriptionTagsFactory @inject */
+	public $subscriptionTags;
 
 
 	public function renderDefault()
@@ -36,9 +36,9 @@ class HomepagePresenter extends BasePresenter
 	}
 
 
-	public function createComponentSubscription()
+	public function createComponentSubscriptionTags()
 	{
-		$control = $this->subscription->create();
+		$control = $this->subscriptionTags->create();
 		$control->onExists[] = function (string $email) {
 			$this->flashMessage($this->translator->translate('front.subscription.message.emailExists', ['email' => $email]));
 			$this->redirect('this');

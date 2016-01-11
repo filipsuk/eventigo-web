@@ -3,9 +3,11 @@
 namespace App\Components\Subscription;
 
 use App\Components\BaseControl;
+use App\Model\Exceptions\Subscription\EmailExistsException;
 use App\Model\UserModel;
 use Kdyby\Translation\Translator;
 use Nette\Application\UI\Form;
+use Nette\Database\Table\IRow;
 
 
 class Subscription extends BaseControl
@@ -44,17 +46,30 @@ class Subscription extends BaseControl
 	}
 
 
-	public function processForm(Form $form)
+	/**
+	 * @throws EmailExistsException
+	 */
+	public function processForm(Form $form) : IRow
 	{
 		$values = $form->getValues();
 
 		if ($this->userModel->emailExists($values->email)) {
-			$this->onExists($values->email);
+			if ($this->reflection->name == __CLASS__) {
+				$this->onExists($values->email);
+			} else {
+				throw new EmailExistsException;
+			}
+
 		} else {
-			$this->userModel->insert([
+			$user = $this->userModel->insert([
 				'email' => $values->email,
 			]);
-			$this->onSuccess($values->email);
+
+			if ($this->reflection->name == __CLASS__) {
+				$this->onSuccess($values->email);
+			}
 		}
+
+		return $user;
 	}
 }

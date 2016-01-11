@@ -1,2 +1,3 @@
 services:
 	- App\Components\Subscription\ISubscriptionFactory
+	- App\Components\SubscriptionTags\ISubscriptionTagsFactory
