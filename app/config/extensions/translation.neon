@@ -1,0 +1,6 @@
+extensions:
+    translation: Kdyby\Translation\DI\TranslationExtension
+
+translation:
+    default: cs
+    fallback: [cs_CZ, cs]

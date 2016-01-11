@@ -27,6 +27,21 @@ ul#tags li input:hover,
 ul#tags li label:hover {
   cursor: pointer;
 }
+#subscription {
+  text-align: center;
+  margin-bottom: 2em;
+}
+#subscription input[type=text] {
+  padding: 1.1em 2em;
+  width: 15em;
+}
+#subscription input[type=submit] {
+  -webkit-appearance: button;
+  padding: 1.2em 1.5em;
+  background: none;
+  border: 1px solid #c9c9c9;
+  border-radius: 3px;
+}
 #events-list {
   margin: 0 auto;
 }

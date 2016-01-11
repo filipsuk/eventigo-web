@@ -1,5 +1,7 @@
 includes:
 	- services.neon
+	- factories.neon
+	- extensions/translation.neon
 
 parameters:
 
