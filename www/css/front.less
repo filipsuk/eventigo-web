@@ -1,6 +1,8 @@
+@bodyBackground: #F9F9F9;
+
 body {
   font-family: 'Open Sans', sans-serif;
-  background-color: #F9F9F9;
+  background-color: @bodyBackground;
 }
 
 @media only screen and (max-width: 320px) {
@@ -52,6 +54,7 @@ ul#tags {
   left: 0;
   display: block;
   width: 100%;
+  background-color: @bodyBackground;
   input[type=email] {
     padding: .8em 2em;
     width: 15em;

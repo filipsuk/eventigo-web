@@ -48,6 +48,7 @@ ul#tags li label:hover {
   left: 0;
   display: block;
   width: 100%;
+  background-color: #F9F9F9;
 }
 #subscription input[type=email] {
   padding: .8em 2em;
