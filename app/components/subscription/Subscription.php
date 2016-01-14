@@ -36,6 +36,7 @@ class Subscription extends BaseControl
 
 		$form->addText('email', NULL, NULL, 254)
 			->setAttribute('placeholder', 'email.placeholder')
+			->setAttribute('type', 'email')
 			->setRequired('email.required')
 			->addRule(Form::EMAIL, 'email.validation');
 		$form->addSubmit('subscribe', 'subscribe.label');

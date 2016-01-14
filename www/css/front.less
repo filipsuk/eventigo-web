@@ -1,5 +1,6 @@
 body {
   font-family: 'Open Sans', sans-serif;
+  background-color: #F9F9F9;
 }
 
 @media only screen and (max-width: 320px) {
@@ -7,20 +8,34 @@ body {
 }
 
 #container {
-  width: 70%;
-  margin: 5em auto;
+  width: 80%;
+  margin: 0 auto 5em;
+  h1 {
+    font-weight: 300;
+    font-style: italic;
+    font-size: 1.6em;
+    margin: 1em 0 1em 0;
+    text-align: center;
+  }
+}
+
+#frm-subscriptionTags-form {
+  display: inline-block;
+  width: 19%;
+  vertical-align: top;
 }
 
 ul#tags {
   list-style-type: none;
-  margin: 2em 0 2em;
-  padding: 0;
-  text-align: center;
+  margin: 0;
+  padding: 2em 0;
+
   li {
-    display: inline-block;
     margin-right: 1.5em;
+    margin-bottom: 0.3em;
+    font-size: 1.2em;
     input {
-      margin-right: 1em;
+      margin-right: .3em;
     }
     input:hover,
     label:hover {
@@ -31,15 +46,20 @@ ul#tags {
 
 #subscription {
   text-align: center;
-  margin-bottom: 2em;
-  input[type=text] {
-    padding: 1.1em 2em;
+  padding: 1em 0;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  input[type=email] {
+    padding: .8em 2em;
     width: 15em;
   }
   input[type=submit] {
     -webkit-appearance: button;
-    padding: 1.2em 1.5em;
-    background: none;
+    padding: .8em 1.5em;
+    background-color: #fff;
     border: 1px solid #c9c9c9;
     border-radius: 3px;
   }
@@ -52,6 +72,8 @@ ul#tags {
 
 #events-list {
   margin: 0 auto;
+  display: inline-block;
+  width: 80%;
 
   div.event-box {
     width: @eventWidth;
@@ -61,6 +83,7 @@ ul#tags {
     margin-bottom: @eventPadding;
     box-shadow: 0 2px 6px rgba(0,0,0,0.05);
     margin-right: @eventPadding / 2;
+    background-color: #fff;
 
     .event-image {
       width: @eventHeight;
