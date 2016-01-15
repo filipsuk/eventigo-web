@@ -5,8 +5,7 @@ Installation
 ------------
 `
 $ composer install
-`
-
+`  
 `
 $ bower install
 `  
