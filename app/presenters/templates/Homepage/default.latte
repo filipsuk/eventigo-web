@@ -13,22 +13,43 @@
 {control subscriptionTags}
 
 <div id="events-list">
-	<div n:foreach="$events as $event"
-		 id="event-{$event->id}"
-		 class="event-box {join(' ', $eventModel->getEventTags($event))}"
-		 data-rates="{json_encode($eventModel->getRates($event))}">
+	{foreach $events as $event}
+		<a n:tag-if="$event->origin_url" href="{$event->origin_url}">
+			{* Titles *}
+			<div n:if="$events->drawThisWeekTitle()">
+				{_front.events.thisWeek.title}
+			</div>
+			<div n:if="$events->drawThisMonthTitle()">
+				{_front.events.thisMonth.title}
+			</div>
+			<div n:if="$events->drawNextMonthTitle()">
+				{_front.events.nextMonth.title}
+			</div>
+			<div n:if="$events->drawUpcomingTitle()">
+				{_front.events.upcoming.title}
+			</div>
 
-		<div class="event-image">
-			<img src="{$event->image}">
-		</div>
+			{* Events *}
+			<div
+				 id="event-{$event->id}"
+				 class="event-box {join(' ', $eventModel->getEventTags($event))}"
+				 data-rates="{json_encode($eventModel->getRates($event))}">
 
-		<div class="event-text">
-			<div><strong>{$event->name}</strong></div>
-			<p>{$event->description}</p>
-		</div>
+				<div class="event-image">
+					<img src="{$event->image}">
+				</div>
 
-		{? if ($iterator->getCounter() == $eventsMaxCount) break }
-	</div>
+				<div class="event-text">
+					<div><strong>{$event->name}</strong></div>
+					<p>{$event->description}</p>
+					<br />
+					<p>{$event->start, $event->end |datetime|noescape}</p>
+				</div>
+
+				{? if ($iterator->getCounter() == $eventsMaxCount) break }
+			</div>
+		</a>
+	{/foreach}
 </div>
 
 {/block}

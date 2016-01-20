@@ -3,6 +3,7 @@
 namespace App\Model;
 
 use Nette\Database\Table\IRow;
+use Nette\Utils\DateTime;
 
 
 class EventModel extends BaseModel
@@ -33,5 +34,20 @@ class EventModel extends BaseModel
 		}
 
 		return $rates;
+	}
+
+
+	public function getAllWithDates(DateTime $dateTime) : array
+	{
+		return $this->getAll()
+			->select('*')
+			->select('TIMESTAMPDIFF(HOUR, ?, start) AS hours', $dateTime)
+			->select('DATEDIFF(start, ?) - 1 AS days', $dateTime)
+			->select('WEEKOFYEAR(start) = WEEKOFYEAR(?) AS thisWeek', $dateTime)
+			->select('MONTH(start) = MONTH(?) AS thisMonth', $dateTime)
+			->select('MONTH(start) = MONTH(?) AS nextMonth', $dateTime->modifyClone('+1 MONTH'))
+			->where('end >= ?', $dateTime)
+			->order('start')
+			->fetchAll();
 	}
 }

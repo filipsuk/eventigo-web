@@ -5,3 +5,7 @@ subscription.form.subscribe.label: Chci posílat výběr akcí
 subscription.message.emailExists: "Nesmírně náš těsí tvůj zájem o naše služby. Email \"%email%\" byl již dříve přidán, ale zřejmě se nemůžeš dočkat pravidelného přehledu akcí, tak jsme ti rovnou poslali jeden čerstvý"
 subscription.message.success: Děkujeme za zájem. Na email "%email%" ti budou od teď bude pravidelně chodit přehled akcí
 homepage.header.title: Každý týden výběr akcí přesně pro tebe
+events.thisWeek.title: Tento týden
+events.thisMonth.title: Tento měsíc
+events.nextMonth.title: Příští měsíc
+events.upcoming.title: Další akce
