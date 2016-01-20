@@ -51,8 +51,12 @@ class Iterator implements \Iterator
 	}
 
 
-	protected function last() : IRow
+	protected function last()
 	{
-		return $this->data[$this->index - 1];
+		if ($this->index) {
+			return $this->data[$this->index - 1];
+		} else {
+			return $this->current();
+		}
 	}
 }

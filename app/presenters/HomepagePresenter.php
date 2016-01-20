@@ -21,9 +21,9 @@ class HomepagePresenter extends BasePresenter
 	public $subscriptionTags;
 
 
-	public function renderDefault()
+	public function renderDefault(array $tags)
 	{
-		$events = $this->eventModel->getAllWithDates(new DateTime);
+		$events = $this->eventModel->getAllWithDates($tags, new DateTime);
 		$this->template->events = new EventsIterator($events);
 		$this->template->eventModel = $this->eventModel;
 		$this->template->tags = $this->tagModel->getAll();
@@ -34,8 +34,6 @@ class HomepagePresenter extends BasePresenter
 			$allTags[] = $tag->code;
 		}
 		$this->template->allTags = $allTags;
-
-		$this->template->eventsMaxCount = 10;
 	}
 
 

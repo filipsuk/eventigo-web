@@ -10,6 +10,9 @@ class EventModel extends BaseModel
 {
 	const TABLE_NAME = 'events';
 
+	/** Number of events per list */
+	const EVENTS_LIMIT = 10;
+
 
 	public function getEventTags(IRow $event) : array
 	{
@@ -37,17 +40,23 @@ class EventModel extends BaseModel
 	}
 
 
-	public function getAllWithDates(DateTime $dateTime) : array
+	public function getAllWithDates(array $tags, DateTime $dateTime) : array
 	{
-		return $this->getAll()
+		$selection = $this->getAll()
 			->select('*')
 			->select('TIMESTAMPDIFF(HOUR, ?, start) AS hours', $dateTime)
 			->select('DATEDIFF(start, ?) - 1 AS days', $dateTime)
 			->select('WEEKOFYEAR(start) = WEEKOFYEAR(?) AS thisWeek', $dateTime)
 			->select('MONTH(start) = MONTH(?) AS thisMonth', $dateTime)
 			->select('MONTH(start) = MONTH(?) AS nextMonth', $dateTime->modifyClone('+1 MONTH'))
-			->where('end >= ?', $dateTime)
-			->order('start')
+			->where('end >= ?', $dateTime);
+
+		if ($tags) {
+			$selection->where(':events_tags.tag_id', $tags);
+		}
+
+		return $selection->order('start')
+			->limit(self::EVENTS_LIMIT)
 			->fetchAll();
 	}
 }
