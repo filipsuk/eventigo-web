@@ -32,15 +32,20 @@
 
 	<meta name="viewport" content="width=device-width">
 
+	{* Bootstrap *}
+	<link type="text/css" rel="stylesheet" href="libs/bootstrap-theme-bootswatch-flatly/css/bootstrap.css">
+
 	{* Styles *}
 	<link type="text/css" rel="stylesheet" href="libs/normalize-css/normalize.css">
 	<link type="text/css" rel="stylesheet" href="css/front.css">
-	<link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400,700' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,700' rel='stylesheet' type='text/css'>
 
 	{block head}{/block}
 </head>
 
 <body>
+
+	{block header}{/block}
 
 	<div id="container">
 		<div n:foreach="$flashes as $flash" n:class="flash, $flash->type">{$flash->message}</div>
@@ -51,6 +56,7 @@
 	<script src="//nette.github.io/resources/js/netteForms.min.js"></script>
 	<script type="text/javascript" src="libs/jquery/dist/jquery.min.js"></script>
 	<script type="text/javascript" src="js/lib.js"></script>
+	<script type="text/javascript" src="libs/bootstrap/dist/js/bootstrap.min.js"></script>
 	<script type="text/javascript">
 		var allTags = {$allTags};
 	</script>

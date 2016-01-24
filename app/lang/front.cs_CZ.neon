@@ -1,7 +1,11 @@
+homepage.header.logo: eventigo
+homepage.header.title: Každý týden výběr akcí přesně pro tebe
+homepage.header.mainTitle: "Eventy, které tě zajímají"
+homepage.header.subTitle: "Email každý týden s výběrem akcí přesně pro tebe"
+homepage.header.button: To chci vyzkoušet
 subscription.form.email.placeholder: zadej.emailovou@adresu.cz
 subscription.form.email.validation: Email je špatně. Zadej správně svou emailovou adresu
 subscription.form.email.required: Zadej svou emailovou adresu
 subscription.form.subscribe.label: Chci posílat výběr akcí
 subscription.message.emailExists: "Nesmírně náš těsí tvůj zájem o naše služby. Email \"%email%\" byl již dříve přidán, ale zřejmě se nemůžeš dočkat pravidelného přehledu akcí, tak jsme ti rovnou poslali jeden čerstvý"
 subscription.message.success: Děkujeme za zájem. Na email "%email%" ti budou od teď bude pravidelně chodit přehled akcí
-homepage.header.title: Každý týden výběr akcí přesně pro tebe
