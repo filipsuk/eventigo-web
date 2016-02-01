@@ -4,6 +4,7 @@ namespace App\Components;
 
 use Kdyby\Translation\Translator;
 use Nette\Application\UI\Control;
+use Nette\Utils\DateTime;
 
 
 abstract class BaseControl extends Control
@@ -26,6 +27,14 @@ abstract class BaseControl extends Control
 			$template->setFile($file);
 		}
 
+		$template->addFilter('datetime', function (DateTime $a, DateTime $b = null) {
+			$result = $a->format('j. n. ');
+			if ($b && $a != $b) {
+				$result .= '&nbsp;&ndash;&nbsp;' . $b->format('j. n. ');
+			}
+			return $result . $b->format('Y');
+		});
+
 		return $template;
 	}
 
@@ -43,7 +52,7 @@ abstract class BaseControl extends Control
 	}
 
 
-	function render()
+	public function render()
 	{
 		$this->template->render();
 	}

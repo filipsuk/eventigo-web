@@ -40,8 +40,15 @@ class EventModel extends BaseModel
 	}
 
 
-	public function getAllWithDates(array $tags, DateTime $dateTime) : array
+	public function getAllWithDates(array $tagsIds, DateTime $dateTime) : array
 	{
+		$eventsTags = $this->database->table('events_tags')
+			->select('DISTINCT(event_id)')
+			->where('tag_id', $tagsIds)
+			->order('rate DESC')
+			->limit(EventModel::EVENTS_LIMIT)
+			->fetchAssoc('[]=event_id');
+
 		$selection = $this->getAll()
 			->select('*')
 			->select('TIMESTAMPDIFF(HOUR, ?, start) AS hours', $dateTime)
@@ -51,12 +58,12 @@ class EventModel extends BaseModel
 			->select('MONTH(start) = MONTH(?) AS nextMonth', $dateTime->modifyClone('+1 MONTH'))
 			->where('end >= ?', $dateTime);
 
-		if ($tags) {
-			$selection->where(':events_tags.tag_id', $tags);
+		if ($tagsIds) {
+			$selection->where('id', $eventsTags);
 		}
 
 		return $selection->order('start')
 			->limit(self::EVENTS_LIMIT)
-			->fetchAll();
+			->fetchPairs('id');
 	}
 }

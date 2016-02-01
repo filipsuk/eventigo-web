@@ -1,0 +1,34 @@
+{snippet events-list}
+    <div id="events-list">
+        {foreach $events as $event}
+            {* Titles *}
+            <div n:if="$events->drawThisWeekTitle()">
+                {_front.events.thisWeek.title}
+            </div>
+            <div n:if="$events->drawThisMonthTitle()">
+                {_front.events.thisMonth.title}
+            </div>
+            <div n:if="$events->drawNextMonthTitle()">
+                {_front.events.nextMonth.title}
+            </div>
+            <div n:if="$events->drawUpcomingTitle()">
+                {_front.events.upcoming.title}
+            </div>
+
+            {* Events *}
+            <a n:tag-if="$event->origin_url" href="{$event->origin_url}">
+                <div class="event-box">
+                    <div class="event-image">
+                        <img src="{$event->image}">
+                    </div>
+                    <div class="event-text">
+                        <div><strong>{$event->name}</strong></div>
+                        <p>{$event->description}</p>
+                        <br />
+                        <p>{$event->start, $event->end |datetime|noescape}</p>
+                    </div>
+                </div>
+            </a>
+        {/foreach}
+    </div>
+{/snippet}

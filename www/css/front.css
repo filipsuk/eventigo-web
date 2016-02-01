@@ -61,7 +61,7 @@ ul#tags li label:hover {
   border: 1px solid #c9c9c9;
   border-radius: 3px;
 }
-#events-list {
+#snippet-eventsList-events-list {
   margin: 0 auto;
   display: inline-block;
   width: 80%;

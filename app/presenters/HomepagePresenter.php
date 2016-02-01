@@ -2,11 +2,12 @@
 
 namespace App\Presenters;
 
+use App\Components\EventsList\EventsListFactory;
 use App\Components\SubscriptionTags\ISubscriptionTagsFactory;
-use App\Model\EventsIterator;
 use App\Model\EventModel;
 use App\Model\TagModel;
 use Nette\Utils\DateTime;
+use Nette\Utils\Html;
 
 
 class HomepagePresenter extends BasePresenter
@@ -20,11 +21,20 @@ class HomepagePresenter extends BasePresenter
 	/** @var ISubscriptionTagsFactory @inject */
 	public $subscriptionTags;
 
+	/** @var EventsListFactory @inject */
+	public $eventsListFactory;
 
+
+	/**
+	 * @param string[] $tags
+	 */
 	public function renderDefault(array $tags)
 	{
-		$events = $this->eventModel->getAllWithDates($tags, new DateTime);
-		$this->template->events = new EventsIterator($events);
+		if (!$tags) {
+			$section = $this->getSession('subscriptionTags');
+			$tags = $section->tags;
+		}
+
 		$this->template->eventModel = $this->eventModel;
 		$this->template->tags = $this->tagModel->getAll();
 
@@ -34,20 +44,47 @@ class HomepagePresenter extends BasePresenter
 			$allTags[] = $tag->code;
 		}
 		$this->template->allTags = $allTags;
+
+		$this['subscriptionTags']['form']->setDefaults(['tags' => $tags]);
 	}
 
 
 	public function createComponentSubscriptionTags()
 	{
 		$control = $this->subscriptionTags->create();
-		$control->onExists[] = function (string $email) {
-			$this->flashMessage($this->translator->translate('front.subscription.message.emailExists', ['email' => $email]));
-			$this->redirect('this');
+
+		$control->onEmailExists[] = function (string $email) {
+			$this['eventsList']->redrawControl();
+
+			$this->flashMessage($this->translator->translate('front.subscription.message.emailExists',
+				['email' => Html::el('strong')->setText($email)]));
+			$this->redrawControl('flash-messages');
 		};
+
 		$control->onSuccess[] = function (string $email) {
-			$this->flashMessage($this->translator->translate('front.subscription.message.success', ['email' => $email]));
-			$this->redirect('this');
+			$this['eventsList']->redrawControl();
+
+			$this->flashMessage($this->translator->translate('front.subscription.message.success',
+				['email' => Html::el('strong')->setText($email)]));
+			$this->redrawControl('flash-messages');
 		};
+
+		$control->onChange[] = function () {
+			$this['eventsList']->redrawControl();
+			$this->redrawControl('flash-messages');
+		};
+
 		return $control;
+	}
+
+
+	public function createComponentEventsList()
+	{
+		$section = $this->getSession('subscriptionTags');
+		$tags = $section->tags;
+
+		$tagsIds = $this->tagModel->getAll()->where('code', $tags)->fetchPairs(null, 'id');
+		$events = $this->eventModel->getAllWithDates($tagsIds, new DateTime);
+		return $this->eventsListFactory->create($events);
 	}
 }
