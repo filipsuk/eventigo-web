@@ -36,10 +36,9 @@ class NewsletterPresenter extends BasePresenter
 	/**
 	 * @param string $hash
 	 */
-	public function actionDefault($email, $hash)
+	public function actionDefault($hash)
 	{
 		$this->userNewsletter = $this->userNewsletterModel->getAll()->where([
-			'user.email' => $email,
 			'hash' => $hash,
 		])->fetch();
 	}
