@@ -1,0 +1,12 @@
+extensions:
+    console: Kdyby\Console\DI\ConsoleExtension
+
+console:
+	url: http://eventigo.cz
+	commands:
+		- App\Console\CreateNewslettersCommand
+
+services:
+	newsletterCommand:
+		class: App\Console\CreateNewslettersCommand
+		tags: [kdyby.console.command]

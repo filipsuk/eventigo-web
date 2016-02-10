@@ -2,6 +2,7 @@ includes:
 	- services.neon
 	- factories.neon
 	- extensions/translation.neon
+	- extensions/console.neon
 
 parameters:
 
