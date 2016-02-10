@@ -40,7 +40,7 @@ class EventModel extends BaseModel
 	}
 
 
-	public function getAllWithDates(array $tagsIds, DateTime $dateTime) : array
+	public function getAllWithDates(array $tagsIds, DateTime $from, DateTime $to = NULL) : array
 	{
 		$eventsTags = $this->database->table('events_tags')
 			->select('DISTINCT(event_id)')
@@ -51,12 +51,16 @@ class EventModel extends BaseModel
 
 		$selection = $this->getAll()
 			->select('*')
-			->select('TIMESTAMPDIFF(HOUR, ?, start) AS hours', $dateTime)
-			->select('DATEDIFF(start, ?) - 1 AS days', $dateTime)
-			->select('WEEKOFYEAR(start) = WEEKOFYEAR(?) AS thisWeek', $dateTime)
-			->select('MONTH(start) = MONTH(?) AS thisMonth', $dateTime)
-			->select('MONTH(start) = MONTH(?) AS nextMonth', $dateTime->modifyClone('+1 MONTH'))
-			->where('end >= ?', $dateTime);
+			->select('TIMESTAMPDIFF(HOUR, ?, start) AS hours', $from)
+			->select('DATEDIFF(start, ?) - 1 AS days', $from)
+			->select('WEEKOFYEAR(start) = WEEKOFYEAR(?) AS thisWeek', $from)
+			->select('MONTH(start) = MONTH(?) AS thisMonth', $from)
+			->select('MONTH(start) = MONTH(?) AS nextMonth', $from->modifyClone('+1 MONTH'))
+			->where('end >= ?', $from);
+
+		if ($to) {
+			$selection->where('created <= ?', $to);
+		}
 
 		if ($tagsIds) {
 			$selection->where('id', $eventsTags);

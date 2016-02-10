@@ -96,3 +96,8 @@ ul#tags li label:hover {
 #events-list div.event-box .event-text p {
   margin: 0;
 }
+@media only screen and (max-width: 640px) {
+  #events-list div.event-box {
+    width: 100%;
+  }
+}

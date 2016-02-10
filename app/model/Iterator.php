@@ -49,14 +49,4 @@ class Iterator implements \Iterator
 	{
 		$this->index = 0;
 	}
-
-
-	protected function last()
-	{
-		if ($this->index) {
-			return $this->data[$this->index - 1];
-		} else {
-			return $this->current();
-		}
-	}
 }
