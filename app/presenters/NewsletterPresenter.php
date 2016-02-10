@@ -47,11 +47,14 @@ class NewsletterPresenter extends BasePresenter
 
 	public function createComponentNewsletter()
 	{
-		$tagsCodes = Json::decode($this->userNewsletter->variables, Json::FORCE_ARRAY);
-		$tagsIds = $this->tagModel->getAll()
-			->where(['code' => $tagsCodes])
-			->fetchPairs(NULL, 'id');
-
+		if ($this->userNewsletter->variables) {
+			$tagsCodes = Json::decode($this->userNewsletter->variables, Json::FORCE_ARRAY);
+			$tagsIds = $this->tagModel->getAll()
+				->where(['code' => $tagsCodes])
+				->fetchPairs(NULL, 'id');
+		} else {
+			$tagsIds = $this->userNewsletter->user->related('users_tags')->fetchPairs(NULL, 'tag_id');
+		}
 
 		$from = $this->userNewsletter->sent ?: new DateTime;
 		$to = $this->userNewsletter->sent;
