@@ -32,6 +32,9 @@
 
 	<meta name="viewport" content="width=device-width">
 
+	{* Bootstrap *}
+	<link type="text/css" rel="stylesheet" href="libs/bootstrap-theme-bootswatch-flatly/css/bootstrap.css">
+
 	{* Styles *}
 	<link type="text/css" rel="stylesheet" href="/libs/normalize-css/normalize.css">
 	<link type="text/css" rel="stylesheet" href="/css/front.css">
@@ -41,6 +44,8 @@
 </head>
 
 <body>
+
+	{block header}{/block}
 
 	<div id="container">
 		{snippet flash-messages}
@@ -57,6 +62,7 @@
 	<script type="text/javascript" src="/libs/jquery/dist/jquery.min.js"></script>
 	<script type="text/javascript" src="/libs/nette.ajax.js/nette.ajax.js"></script>
 	<script type="text/javascript" src="/js/lib.js"></script>
+	<script type="text/javascript" src="libs/bootstrap/dist/js/bootstrap.min.js"></script>
 	<!--script type="text/javascript" src="/js/plugins/eventFilter.js"></script-->
 	<script type="text/javascript" src="/js/main.js"></script>
 	{block scripts}{/block}

@@ -6,16 +6,34 @@
  * @param int $eventsMaxCount
  *}
 
-{block content}
+{block header}
+	<header>
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<h1 class="logo">{_front.homepage.header.logo}</h1>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-12 text-center">
+					<h2>{_front.homepage.header.mainTitle}</h2>
+					<h3>{_front.homepage.header.subTitle}</h3>
+					<a href="#" class="btn btn-success">{_front.homepage.header.button}</a>
+				</div>
+			</div>
+		</div>
 
-<h1>{_front.homepage.header.title}</h1>
-
-{control subscriptionTags}
-
-{control eventsList}
-
+	</header>
 {/block}
 
+{block content}
+<div class="row">
+	<div class="col-lg-12">
+		{control subscriptionTags}
+        {control eventsList}
+    </div>
+</div>
+{/block}
 
 {block scripts}
     <script type="text/javascript">

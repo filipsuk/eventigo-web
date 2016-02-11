@@ -1,6 +1,6 @@
 body {
-  font-family: 'Open Sans', sans-serif;
-  background-color: #F9F9F9;
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
+  background-color: #f9f9f9;
 }
 @media only screen and (max-width: 320px) {
   body {
@@ -17,6 +17,44 @@ body {
   font-size: 1.6em;
   margin: 1em 0 1em 0;
   text-align: center;
+}
+h1,
+h2,
+h3,
+h4 {
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 300;
+  -webkit-font-smoothing: antialiased;
+}
+header {
+  background-color: #098aff;
+  color: #FFF;
+  padding-bottom: 70px;
+  margin-bottom: 70px;
+}
+header h1.logo {
+  font-weight: 400;
+}
+header h2 {
+  font-size: 3em;
+  margin: 30px;
+}
+header h3 {
+  font-size: 2em;
+}
+header p {
+  font-weight: 300;
+  font-size: 1.5em;
+}
+header .btn,
+header .btn:active,
+header .btn:focus {
+  background-color: #0dd100;
+  margin-top: 30px;
+  border-width: 0;
+}
+header .btn:hover {
+  background-color: #0cbd00;
 }
 #frm-subscriptionTags-form {
   display: inline-block;
@@ -48,7 +86,7 @@ ul#tags li label:hover {
   left: 0;
   display: block;
   width: 100%;
-  background-color: #F9F9F9;
+  background-color: #f9f9f9;
 }
 #subscription input[type=email] {
   padding: .8em 2em;
