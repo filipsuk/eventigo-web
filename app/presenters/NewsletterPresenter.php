@@ -55,8 +55,14 @@ class NewsletterPresenter extends BasePresenter
 			$tagsIds = $this->userNewsletter->user->related('users_tags')->fetchPairs(NULL, 'tag_id');
 		}
 
-		$from = $this->userNewsletter->sent ?: new DateTime;
-		$to = $this->userNewsletter->sent;
+		$previousUserNewsletter = $this->userNewsletterModel->getAll()
+			->where('user_id', $this->userNewsletter->user_id)
+			->where('hash <> ?', $this->userNewsletter->hash)
+			->order('sent DESC')->fetch();
+
+		$from = $previousUserNewsletter->sent ?? NULL;
+		$to = $this->userNewsletter->sent ?: NULL;
+
 		$events = $this->eventModel->getAllWithDates($tagsIds, $from, $to);
 		return $this->newsletterFactory->create($events);
 	}

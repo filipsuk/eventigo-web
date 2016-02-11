@@ -40,29 +40,37 @@ class EventModel extends BaseModel
 	}
 
 
-	public function getAllWithDates(array $tagsIds, DateTime $from, DateTime $to = NULL) : array
+	public function getAllWithDates(array $tagsIds, DateTime $from = NULL, DateTime $to = NULL) : array
 	{
-		$eventsTags = $this->database->table('events_tags')
-			->select('DISTINCT(event_id)')
-			->where('tag_id', $tagsIds)
-			->order('rate DESC')
-			->limit(EventModel::EVENTS_LIMIT)
-			->fetchAssoc('[]=event_id');
-
+		$calculateFrom = $from ?: new DateTime;
 		$selection = $this->getAll()
 			->select('*')
-			->select('TIMESTAMPDIFF(HOUR, ?, start) AS hours', $from)
-			->select('DATEDIFF(start, ?) - 1 AS days', $from)
-			->select('WEEKOFYEAR(start) = WEEKOFYEAR(?) AS thisWeek', $from)
-			->select('MONTH(start) = MONTH(?) AS thisMonth', $from)
-			->select('MONTH(start) = MONTH(?) AS nextMonth', $from->modifyClone('+1 MONTH'))
-			->where('end >= ?', $from);
-
+			->select('TIMESTAMPDIFF(HOUR, ?, start) AS hours', $calculateFrom)
+			->select('DATEDIFF(start, ?) - 1 AS days', $calculateFrom)
+			->select('WEEKOFYEAR(start) = WEEKOFYEAR(?) AS thisWeek', $calculateFrom)
+			->select('MONTH(start) = MONTH(?) AS thisMonth', $calculateFrom)
+			->select('MONTH(start) = MONTH(?) AS nextMonth', $calculateFrom->modifyClone('+1 MONTH'));
+		if ($from) {
+			$selection->where('end >= ?', $from);
+		}
 		if ($to) {
-			$selection->where('created <= ?', $to);
+			$selection->where('end <= ?', $to);
+		}
+		if ($from && $to) {
+			$selection->where('created BETWEEN ? AND ?', $from, $to);
+		} elseif ($from) {
+			$selection->where('created <= ?', $from);
 		}
 
+		// Filter events by tags
 		if ($tagsIds) {
+			$eventsTags = $this->database->table('events_tags')
+				->select('DISTINCT(event_id)')
+				->where('tag_id', $tagsIds)
+				->order('rate DESC')
+				->limit(EventModel::EVENTS_LIMIT)
+				->fetchAssoc('[]=event_id');
+
 			$selection->where('id', $eventsTags);
 		}
 
