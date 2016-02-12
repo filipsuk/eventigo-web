@@ -5,6 +5,8 @@ namespace App\Components\Newsletter;
 use App\Components\BaseControl;
 use App\Components\EventsList\EventsListFactory;
 use Kdyby\Translation\Translator;
+use Latte\Loaders\StringLoader;
+use Nette\Database\Table\ActiveRow;
 
 
 class Newsletter extends BaseControl
@@ -15,20 +17,36 @@ class Newsletter extends BaseControl
 	/** @var \App\Components\EventsList\EventsListFactory */
 	private $eventsListFactory;
 
+	/** @var \Nette\Database\Table\ActiveRow */
+	private $newsletter;
+
 
 	public function __construct(Translator $translator,
 								EventsListFactory $eventsListFactory,
-	                            array $events)
+								ActiveRow $newsletter,
+								array $events)
 	{
 		parent::__construct($translator);
 		$this->events = $events;
 		$this->eventsListFactory = $eventsListFactory;
+		$this->newsletter = $newsletter;
 	}
 
 
 	public function render()
 	{
-		$this->template->render();
+		$layout = $this->newsletter->newsletter_layout->layout;
+		$content = $this->newsletter->newsletter_content->content;
+
+		$contentTemplate = $this->createTemplate();
+		$contentString = $contentTemplate->getLatte()
+			->setLoader(new StringLoader())
+			->renderToString($content, ['_control' => $this]);
+
+		$template = $this->createTemplate();
+		$template->getLatte()
+			->setLoader(new StringLoader())
+			->render($layout, ['content' => $contentString]);
 	}
 
 

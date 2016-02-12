@@ -64,6 +64,6 @@ class NewsletterPresenter extends BasePresenter
 		$to = $this->userNewsletter->sent ?: NULL;
 
 		$events = $this->eventModel->getAllWithDates($tagsIds, $from, $to);
-		return $this->newsletterFactory->create($events);
+		return $this->newsletterFactory->create($this->userNewsletter->newsletter, $events);
 	}
 }
