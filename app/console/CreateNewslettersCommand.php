@@ -37,7 +37,7 @@ class CreateNewslettersCommand extends Command
 			$userNewsletterModel->createNewsletter($user->id, $newsletterId);
 		}
 
-		$output->writeLn('Newsletters created');
+		$output->writeLn('Newsletters have been created');
 		return 0;
 	}
 }
