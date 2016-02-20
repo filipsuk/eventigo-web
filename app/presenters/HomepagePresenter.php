@@ -3,8 +3,10 @@
 namespace App\Presenters;
 
 use App\Components\SubscriptionTags\ISubscriptionTagsFactory;
+use App\Model\EventsIterator;
 use App\Model\EventModel;
 use App\Model\TagModel;
+use Nette\Utils\DateTime;
 
 
 class HomepagePresenter extends BasePresenter
@@ -21,7 +23,8 @@ class HomepagePresenter extends BasePresenter
 
 	public function renderDefault()
 	{
-		$this->template->events = $this->eventModel->getAll()->fetchAll();
+		$events = $this->eventModel->getAllWithDates(new DateTime);
+		$this->template->events = new EventsIterator($events);
 		$this->template->eventModel = $this->eventModel;
 		$this->template->tags = $this->tagModel->getAll();
 
