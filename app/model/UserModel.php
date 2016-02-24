@@ -17,7 +17,7 @@ class UserModel extends BaseModel
 	 * @throws EmailExistsException
 	 * @throws \PDOException
 	 */
-	public function subscribe(string $email)
+	public function subscribe($email)
 	{
 		if ($email) {
 			if ($this->emailExists($email)) {
@@ -35,7 +35,11 @@ class UserModel extends BaseModel
 	}
 
 
-	public function emailExists(string $email) : bool
+	/**
+	 * @param string $email
+	 * @return bool
+	 */
+	public function emailExists($email)
 	{
 		return (bool)$this->getAll()
 			->where('email', $email)

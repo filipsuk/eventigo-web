@@ -33,13 +33,13 @@ class Iterator implements \Iterator
 	}
 
 
-	public function key() : int
+	public function key()
 	{
 		return $this->index;
 	}
 
 
-	public function valid() : bool
+	public function valid()
 	{
 		return array_key_exists($this->index, $this->data);
 	}

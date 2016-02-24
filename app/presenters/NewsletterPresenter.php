@@ -60,7 +60,7 @@ class NewsletterPresenter extends BasePresenter
 			->where('hash <> ?', $this->userNewsletter->hash)
 			->order('sent DESC')->fetch();
 
-		$from = $previousUserNewsletter->sent ?? NULL;
+		$from = isset($previousUserNewsletter->sent) ? $previousUserNewsletter->sent : NULL;
 		$to = $this->userNewsletter->sent ?: NULL;
 
 		$events = $this->eventModel->getAllWithDates($tagsIds, $from, $to);

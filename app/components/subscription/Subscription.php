@@ -31,7 +31,7 @@ class Subscription extends BaseControl
 	}
 
 
-	public function createComponentForm() : Form
+	public function createComponentForm()
 	{
 		$form = new Form;
 		$form->setTranslator($this->translator->domain('front.subscription.form'));
@@ -62,11 +62,12 @@ class Subscription extends BaseControl
 
 
 	/**
+	 * @param string $email
 	 * @return IRow|null
 	 * @throws EmailExistsException
 	 * @throws \PDOException
 	 */
-	protected function subscribe(string $email)
+	protected function subscribe($email)
 	{
 		try {
 			$user = $this->userModel->subscribe($email);

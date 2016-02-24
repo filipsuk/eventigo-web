@@ -14,7 +14,10 @@ class EventsIterator extends Iterator
 	private $upcoming = FALSE;
 
 
-	public function drawThisWeekTitle() : bool
+	/**
+	 * @return bool
+	 */
+	public function drawThisWeekTitle()
 	{
 		if (!$this->thisWeek && $this->current()->thisWeek) {
 			return $this->thisWeek = TRUE;
@@ -24,7 +27,10 @@ class EventsIterator extends Iterator
 	}
 
 
-	public function drawThisMonthTitle() : bool
+	/**
+	 * @return bool
+	 */
+	public function drawThisMonthTitle()
 	{
 		if (!$this->thisMonth && $this->current()->thisMonth && !$this->current()->thisWeek) {
 			return $this->thisMonth = TRUE;
@@ -34,7 +40,10 @@ class EventsIterator extends Iterator
 	}
 
 
-	public function drawNextMonthTitle() : bool
+	/**
+	 * @return bool
+	 */
+	public function drawNextMonthTitle()
 	{
 		if (!$this->nextMonth && $this->current()->nextMonth && !$this->current()->thisWeek && !$this->current()->thisMonth) {
 			return $this->nextMonth = TRUE;
@@ -44,7 +53,10 @@ class EventsIterator extends Iterator
 	}
 
 
-	public function drawUpcomingTitle() : bool
+	/**
+	 * @return bool
+	 */
+	public function drawUpcomingTitle()
 	{
 		if (!$this->upcoming && !$this->current()->thisWeek && !$this->current()->thisMonth && !$this->current()->nextMonth) {
 			return $this->upcoming = TRUE;

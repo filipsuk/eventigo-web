@@ -14,7 +14,11 @@ class EventModel extends BaseModel
 	const EVENTS_LIMIT = 10;
 
 
-	public function getEventTags(IRow $event) : array
+	/**
+	 * @param \Nette\Database\Table\IRow $event
+	 * @return string[]
+	 */
+	public function getEventTags(IRow $event)
 	{
 		$eventTags = [];
 
@@ -26,7 +30,11 @@ class EventModel extends BaseModel
 	}
 
 
-	public function getRates(IRow $event) : array
+	/**
+	 * @param \Nette\Database\Table\IRow $event
+	 * @return array
+	 */
+	public function getRates(IRow $event)
 	{
 		$rates = [
 			'event' => $event->rate,
@@ -40,7 +48,13 @@ class EventModel extends BaseModel
 	}
 
 
-	public function getAllWithDates(array $tagsIds, DateTime $from = NULL, DateTime $to = NULL) : array
+	/**
+	 * @param int[] $tagsIds
+	 * @param \Nette\Utils\DateTime|NULL $from
+	 * @param \Nette\Utils\DateTime|NULL $to
+	 * @return array
+	 */
+	public function getAllWithDates(array $tagsIds, DateTime $from = NULL, DateTime $to = NULL)
 	{
 		$calculateFrom = $from ?: new DateTime;
 		$selection = $this->getAll()

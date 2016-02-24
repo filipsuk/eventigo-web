@@ -12,7 +12,12 @@ class UserNewsletterModel extends BaseModel
 	const TABLE_NAME = 'users_newsletters';
 
 
-	public function createNewsletter(int $userId, int $newsletterId)
+	/**
+	 * @param int $userId
+	 * @param int $newsletterId
+	 * @return bool|int|\Nette\Database\Table\IRow
+	 */
+	public function createNewsletter($userId, $newsletterId)
 	{
 		return $this->insert([
 			'user_id' => $userId,
@@ -22,7 +27,10 @@ class UserNewsletterModel extends BaseModel
 	}
 
 
-	private function generateUniqueHash() : string
+	/**
+	 * @return string
+	 */
+	private function generateUniqueHash()
 	{
 		do {
 			$hash = Random::generate(32);
