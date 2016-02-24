@@ -9,6 +9,7 @@ use App\Model\UserTagModel;
 use App\Model\UserModel;
 use Kdyby\Translation\Translator;
 use Nette\Application\UI\Form;
+use Nette\Database\Table\Selection;
 
 
 class SubscriptionTags extends Subscription
@@ -22,6 +23,9 @@ class SubscriptionTags extends Subscription
 	/** @var array */
 	public $onChange = [];
 
+	/** @var Selection */
+	private $tags;
+
 
 	public function __construct(Translator $translator, UserModel $userModel, TagModel $tagModel, UserTagModel $userTagModel)
 	{
@@ -31,12 +35,21 @@ class SubscriptionTags extends Subscription
 	}
 
 
+	public function render()
+	{
+		$this->template->tags = $this->tags->fetchPairs('code');
+		parent::render();
+	}
+
+
 	public function createComponentForm() : Form
 	{
 		$form = parent::createComponentForm();
 
-		$tags = $this->tagModel->getAll()->fetchPairs('code', 'name');
-		$form->addCheckboxList('tags')->setItems($tags)->setTranslator(NULL);
+		$this->tags = $this->tagModel->getAllByMostEvents();
+		$form->addCheckboxList('tags')
+			->setItems($this->tags->fetchPairs('code', 'name'))
+			->setTranslator(NULL);
 
 		return $form;
 	}
