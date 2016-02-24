@@ -53,7 +53,7 @@ class HomepagePresenter extends BasePresenter
 	{
 		$control = $this->subscriptionTags->create();
 
-		$control->onEmailExists[] = function (string $email) {
+		$control->onEmailExists[] = function ($email) {
 			$this['eventsList']->redrawControl();
 
 			$this->flashMessage($this->translator->translate('front.subscription.message.emailExists',
@@ -61,7 +61,7 @@ class HomepagePresenter extends BasePresenter
 			$this->redrawControl('flash-messages');
 		};
 
-		$control->onSuccess[] = function (string $email) {
+		$control->onSuccess[] = function ($email) {
 			$this['eventsList']->redrawControl();
 
 			$this->flashMessage($this->translator->translate('front.subscription.message.success',
