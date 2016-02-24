@@ -47,7 +47,7 @@ abstract class BaseControl extends Control
 	protected function getTemplateDefaultFile()
 	{
 		$refl = $this->getReflection();
-		$file = dirname($refl->getFileName()) . '/' . lcfirst($refl->getShortName()) . '.latte';
+		$file = dirname($refl->getFileName()) . '/' . $refl->getShortName() . '.latte';
 		return file_exists($file) ? $file : NULL;
 	}
 
