@@ -1,11 +1,9 @@
 includes:
 	- services.neon
 	- factories.neon
+	- parameters.neon
 	- extensions/translation.neon
 	- extensions/console.neon
-
-parameters:
-
 
 php:
 	date.timezone: Europe/Prague
