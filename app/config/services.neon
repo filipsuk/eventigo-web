@@ -4,3 +4,4 @@ services:
 	- App\Model\TagModel
 	- App\Model\UserModel
 	- App\Model\UserTagModel
+	- App\Model\UserNewsletterModel

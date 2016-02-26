@@ -8,5 +8,5 @@ interface ISubscriptionTagsFactory
 	/**
 	 * @return SubscriptionTags
 	 */
-	function create();
+	public function create();
 }

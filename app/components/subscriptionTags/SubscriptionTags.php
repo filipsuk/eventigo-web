@@ -9,7 +9,7 @@ use App\Model\UserTagModel;
 use App\Model\UserModel;
 use Kdyby\Translation\Translator;
 use Nette\Application\UI\Form;
-use Nette\Database\Table\IRow;
+use Nette\Database\Table\Selection;
 
 
 class SubscriptionTags extends Subscription
@@ -20,6 +20,12 @@ class SubscriptionTags extends Subscription
 	/** @var UserTagModel */
 	private $userTagModel;
 
+	/** @var array */
+	public $onChange = [];
+
+	/** @var Selection */
+	private $tags;
+
 
 	public function __construct(Translator $translator, UserModel $userModel, TagModel $tagModel, UserTagModel $userTagModel)
 	{
@@ -29,24 +35,39 @@ class SubscriptionTags extends Subscription
 	}
 
 
-	public function createComponentForm() : Form
+	public function render()
+	{
+		$this->template->tags = $this->tags->fetchPairs('code');
+		parent::render();
+	}
+
+
+	public function createComponentForm()
 	{
 		$form = parent::createComponentForm();
 
-		$tags = $this->tagModel->getAll()->fetchAssoc('code=name');
-		$form->addCheckboxList('tags')->setItems($tags)->setTranslator(NULL);
+		$this->tags = $this->tagModel->getAllByMostEvents();
+		$form->addCheckboxList('tags')
+			->setItems($this->tags->fetchPairs('code', 'name'))
+			->setTranslator(NULL);
 
 		return $form;
 	}
 
 
-	public function processForm(Form $form) : IRow
+	/**
+	 * @throws EmailExistsException
+	 */
+	public function processForm(Form $form)
 	{
 		$values = $form->getValues();
+		$httpData = $form->getHttpData();
 
-		try {
-			// Store user's email
-			$user = parent::processForm($form);
+		if (array_key_exists('subscribe', $httpData)) {
+			$user = $this->subscribe($values->email);
+			if (!$user) {
+				return;
+			}
 
 			// Store user's selected tags
 			$tags = $this->tagModel->getAll()->where('code IN (?)', $values->tags)->fetchAll();
@@ -57,10 +78,13 @@ class SubscriptionTags extends Subscription
 				]);
 			}
 
-			$this->onSuccess($values->email);
+			$this->onSuccess($user->email);
 
-		} catch (EmailExistsException $e) {
-			$this->onExists($values->email);
+		} else {
+			// Store tags to session
+			$section = $this->presenter->getSession('subscriptionTags');
+			$section->tags = $values->tags;
+			$this->onChange();
 		}
 	}
 }

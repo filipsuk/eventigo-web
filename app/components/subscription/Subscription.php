@@ -8,6 +8,8 @@ use App\Model\UserModel;
 use Kdyby\Translation\Translator;
 use Nette\Application\UI\Form;
 use Nette\Database\Table\IRow;
+use Nette\Forms\Controls\SubmitButton;
+use Nette\Utils\ArrayHash;
 
 
 class Subscription extends BaseControl
@@ -16,7 +18,7 @@ class Subscription extends BaseControl
 	private $userModel;
 
 	/** @var array */
-	public $onExists = [];
+	public $onEmailExists = [];
 
 	/** @var array */
 	public $onSuccess = [];
@@ -29,7 +31,7 @@ class Subscription extends BaseControl
 	}
 
 
-	public function createComponentForm() : Form
+	public function createComponentForm()
 	{
 		$form = new Form;
 		$form->setTranslator($this->translator->domain('front.subscription.form'));
@@ -37,8 +39,9 @@ class Subscription extends BaseControl
 		$form->addText('email', NULL, NULL, 254)
 			->setAttribute('placeholder', 'email.placeholder')
 			->setAttribute('type', 'email')
-			->setRequired('email.required')
-			->addRule(Form::EMAIL, 'email.validation');
+			->addCondition(Form::FILLED)
+				->addRule(Form::EMAIL, 'email.validation');
+
 		$form->addSubmit('subscribe', 'subscribe.label');
 
 		$form->onSuccess[] = [$this, 'processForm'];
@@ -50,27 +53,33 @@ class Subscription extends BaseControl
 	/**
 	 * @throws EmailExistsException
 	 */
-	public function processForm(Form $form) : IRow
+	public function processForm(Form $form)
 	{
 		$values = $form->getValues();
+		$user = $this->subscribe($values->email);
+		$this->onSuccess($user->email);
+	}
 
-		if ($this->userModel->emailExists($values->email)) {
-			if ($this->reflection->name == __CLASS__) {
-				$this->onExists($values->email);
+
+	/**
+	 * @param string $email
+	 * @return IRow|null
+	 * @throws EmailExistsException
+	 * @throws \PDOException
+	 */
+	protected function subscribe($email)
+	{
+		try {
+			$user = $this->userModel->subscribe($email);
+
+			if ($this->reflection->name === __CLASS__) {
+				$this->onSuccess($user->email);
 			} else {
-				throw new EmailExistsException;
+				return $user;
 			}
 
-		} else {
-			$user = $this->userModel->insert([
-				'email' => $values->email,
-			]);
-
-			if ($this->reflection->name == __CLASS__) {
-				$this->onSuccess($values->email);
-			}
+		} catch (EmailExistsException $e) {
+			$this->onEmailExists($email);
 		}
-
-		return $user;
 	}
 }

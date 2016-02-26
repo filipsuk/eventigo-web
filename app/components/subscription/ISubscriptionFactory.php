@@ -8,5 +8,5 @@ interface ISubscriptionFactory
 	/**
 	 * @return Subscription
 	 */
-	function create();
+	public function create();
 }

@@ -2,6 +2,7 @@ includes:
 	- services.neon
 	- factories.neon
 	- extensions/translation.neon
+	- extensions/console.neon
 
 parameters:
 
@@ -17,5 +18,5 @@ application:
 
 
 session:
-	expiration: 14 days
+	expiration: 365 days
 

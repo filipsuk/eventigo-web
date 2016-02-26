@@ -1,3 +1,5 @@
 services:
 	- App\Components\Subscription\ISubscriptionFactory
 	- App\Components\SubscriptionTags\ISubscriptionTagsFactory
+	- App\Components\EventsList\EventsListFactory
+	- App\Components\Newsletter\NewsletterFactory

@@ -10,7 +10,7 @@ use Nette\Database\Table\Selection;
 abstract class BaseModel
 {
 	/** @var Context */
-	private $database;
+	protected $database;
 
 	const TABLE_NAME = '';
 
@@ -21,7 +21,10 @@ abstract class BaseModel
 	}
 
 
-	public function getAll() : Selection
+	/**
+	 * @return \Nette\Database\Table\Selection
+	 */
+	public function getAll()
 	{
 		return $this->database->table($this::TABLE_NAME);
 	}
@@ -44,7 +47,7 @@ abstract class BaseModel
 	 * @param  array|\Traversable ($column => $value)
 	 * @return int number of affected rows
 	 */
-	public function update($data) : int
+	public function update($data)
 	{
 		return $this->getAll()->update($data);
 	}

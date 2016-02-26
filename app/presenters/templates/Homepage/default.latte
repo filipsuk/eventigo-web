@@ -6,7 +6,6 @@
  * @param int $eventsMaxCount
  *}
 
-
 {block header}
 	<header>
 		<div class="container">
@@ -20,7 +19,7 @@
 					<h2>{_front.homepage.header.mainTitle}</h2>
 					<img src="/img/eventigo-header.png" alt="{_front.homepage.header.mainTitle}" height="419"/>
 					<h3>{_front.homepage.header.subTitle}</h3>
-					<a href="#" class="btn btn-success">{_front.homepage.header.button}</a>
+					<a href="#events-list" class="btn btn-success">{_front.homepage.header.button}</a>
 				</div>
 			</div>
 		</div>
@@ -31,49 +30,14 @@
 {block content}
 <div class="row">
 	<div class="col-lg-12">
-
 		{control subscriptionTags}
-
-		<div id="events-list">
-			{foreach $events as $event}
-				<a n:tag-if="$event->origin_url" href="{$event->origin_url}">
-					{* Titles *}
-					<div n:if="$events->drawThisWeekTitle()">
-						{_front.events.thisWeek.title}
-					</div>
-					<div n:if="$events->drawThisMonthTitle()">
-						{_front.events.thisMonth.title}
-					</div>
-					<div n:if="$events->drawNextMonthTitle()">
-						{_front.events.nextMonth.title}
-					</div>
-					<div n:if="$events->drawUpcomingTitle()">
-						{_front.events.upcoming.title}
-					</div>
-
-					{* Events *}
-					<div
-						 id="event-{$event->id}"
-						 class="event-box {join(' ', $eventModel->getEventTags($event))}"
-						 data-rates="{json_encode($eventModel->getRates($event))}">
-
-						<div class="event-image">
-							<img src="{$event->image}">
-						</div>
-
-						<div class="event-text">
-							<div><strong>{$event->name}</strong></div>
-							<p>{$event->description}</p>
-							<br />
-							<p>{$event->start, $event->end |datetime|noescape}</p>
-						</div>
-
-						{? if ($iterator->getCounter() == $eventsMaxCount) break }
-					</div>
-				</a>
-			{/foreach}
-		</div>
-	</div>
+        {control eventsList}
+    </div>
 </div>
+{/block}
 
+{block scripts}
+    <script type="text/javascript">
+        var allTags = {$allTags};
+    </script>
 {/block}

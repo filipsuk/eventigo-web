@@ -1,4 +1,4 @@
-{form form}
+{form form, class => ajax}
     <div id="subscription">
         {input email}
         {input subscribe}
@@ -6,7 +6,7 @@
     <ul id="tags">
         <li n:foreach="$form[tags]->items as $key => $label">
             <label n:name="tags:$key" class="tag" data-tag="{$key}">
-                <input n:name="tags:$key"> {$label}
+                <input n:name="tags:$key"> {$label} ({$tags[$key]->eventsCount})
             </label>
         </li>
     </ul>
