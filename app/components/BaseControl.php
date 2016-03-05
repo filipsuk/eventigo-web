@@ -28,11 +28,23 @@ abstract class BaseControl extends Control
 		}
 
 		$template->addFilter('datetime', function (DateTime $a, DateTime $b = null) {
-			$result = $a->format('j. n. ');
-			if ($b && $a != $b) {
-				$result .= '&nbsp;&ndash;&nbsp;' . $b->format('j. n. ');
+			// Set locale to get translated day name
+			setlocale(LC_TIME, ($this->translator->getLocale() === 'cs') ? 'cs_CZ' : null);
+			$aDayName = mb_convert_case(strftime('%A ', $a->getTimestamp()), MB_CASE_TITLE, 'UTF-8');
+
+			// Two day event
+			if ($b && ($a->format('dmy') !== $b->format('dmy'))) {
+				$result = $aDayName . $a->format('j. n. ') . '&nbsp;&ndash;&nbsp;' . $b->format('j. n. Y');
 			}
-			return $result . $b->format('Y');
+			// One day event
+			else {
+				$result = $aDayName . $a->format('j. n. Y');
+				// Add Hour:minute time if its not 00:00
+				if ((int)$a->format('G') > 0) {
+					$result .= $a->format(' G:i');
+				}
+			}
+			return $result;
 		});
 
 		return $template;
