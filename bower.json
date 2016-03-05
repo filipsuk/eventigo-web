@@ -4,7 +4,8 @@
   "dependencies": {
     "jquery": "~2.1.4",
     "normalize-css": "~3.0.3",
-    "bootstrap-theme-bootswatch-flatly": "~1.0.2"
+    "bootstrap-theme-bootswatch-flatly": "~1.0.2",
+    "nette.ajax.js": "~2.0"
   },
   "private": true
 }

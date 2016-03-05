@@ -17,18 +17,6 @@ body {
   body { font-size: 200%; }
 }
 
-#container {
-  width: 80%;
-  margin: 0 auto 5em;
-  h1 {
-    font-weight: 300;
-    font-style: italic;
-    font-size: 1.6em;
-    margin: 1em 0 1em 0;
-    text-align: center;
-  }
-}
-
 h1,h2,h3,h4{
   font-family: @headingFont;
   font-weight: 300;
@@ -39,7 +27,7 @@ header {
   background-color: @headerBackground;
   color: #FFF;
   padding-bottom: 70px;
-  margin-bottom: 70px;
+  margin-bottom: 50px;
 
   h1.logo {
     font-weight: 400;
@@ -66,12 +54,6 @@ header {
   .btn:hover {
     background-color: @headerButtonColorHover;
   }
-}
-
-#frm-subscriptionTags-form {
-  display: inline-block;
-  width: 19%;
-  vertical-align: top;
 }
 
 ul#tags {
@@ -115,54 +97,33 @@ ul#tags {
   }
 }
 
-
-#snippet-eventsList-events-list {
-  margin: 0 auto;
-  display: inline-block;
-  width: 80%;
-}
-
 @eventWidth: 48%;
 @eventHeight: 20%;
 @eventPadding: 2%;
 @eventBorder: 1px solid #e6e6e6;
 
 #events-list {
+
+  div.events-list-title {
+    font-size: 1.2em;
+    margin: 15px 0 10px;
+    text-align: center;
+  }
+
   div.event-box {
-    width: @eventWidth;
-    border: @eventBorder;
-    display: inline-block;
-    text-align: left;
-    margin-bottom: @eventPadding;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-    margin-right: @eventPadding / 2;
     background-color: #fff;
+    padding: 15px;
+    margin: 7px 0;
+    border-radius: 4px;
 
     .event-image {
-      width: 100%;
-      height: 15rem;
-      padding: @eventPadding;
-      display: inline-block;
-      border-right: @eventBorder;
-
       img {
-        width: auto;
-        vertical-align: middle;
-        height: 100%;
-        margin: 0 auto;
-        display: block;
+        height: 12rem;
       }
     }
 
     .event-text {
-      display: inline-block;
-      vertical-align: top;
-      padding: @eventPadding;
-      width: 100 - @eventHeight - 4 * @eventPadding - 2px;
 
-      p {
-        margin: 0;
-      }
     }
   }
 }

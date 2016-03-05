@@ -1,34 +1,42 @@
 {snippet events-list}
     <div id="events-list">
-        {foreach $events as $event}
-            {* Titles *}
-            <div n:if="$events->drawThisWeekTitle()">
-                {_front.events.thisWeek.title}
-            </div>
-            <div n:if="$events->drawThisMonthTitle()">
-                {_front.events.thisMonth.title}
-            </div>
-            <div n:if="$events->drawNextMonthTitle()">
-                {_front.events.nextMonth.title}
-            </div>
-            <div n:if="$events->drawUpcomingTitle()">
-                {_front.events.upcoming.title}
-            </div>
+        <div class="row">
+            {foreach $events as $event}
+                {* Titles *}
+                <div n:if="$events->drawThisWeekTitle()" class="events-list-title col-lg-12">
+                    {_front.events.thisWeek.title}
+                </div>
+                <div n:if="$events->drawThisMonthTitle()" class="events-list-title col-lg-12">
+                    {_front.events.thisMonth.title}
+                </div>
+                <div n:if="$events->drawNextMonthTitle()" class="events-list-title col-lg-12">
+                    {_front.events.nextMonth.title}
+                </div>
+                <div n:if="$events->drawUpcomingTitle()" class="events-list-title col-lg-12">
+                    {_front.events.upcoming.title}
+                </div>
 
-            {* Events *}
-            <a n:tag-if="$event->origin_url" href="{$event->origin_url}">
-                <div class="event-box">
-                    <div class="event-image">
-                        <img src="{$event->image}">
-                    </div>
-                    <div class="event-text">
-                        <div><strong>{$event->name}</strong></div>
-                        <p>{$event->description}</p>
-                        <br />
-                        <p>{$event->start, $event->end |datetime|noescape}</p>
+                {* Events *}
+                <div class="col-lg-12">
+                    <div class="event-box">
+                        <div class="row">
+                            <div class="event-image col-lg-3">
+                                <a n:tag-if="$event->origin_url" href="{$event->origin_url}">
+                                    <img src="{$event->image}">
+                                </a>
+                            </div>
+
+                            <div class="event-text col-lg-9">
+                                <div><strong>{$event->name}</strong></div>
+                                <p>{$event->description}</p>
+                                <span>{$event->start, $event->end |datetime|noescape}</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </a>
-        {/foreach}
+
+            {/foreach}
+        </div>
+
     </div>
 {/snippet}
