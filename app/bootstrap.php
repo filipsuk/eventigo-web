@@ -4,7 +4,7 @@ require __DIR__ . '/../vendor/autoload.php';
 
 $configurator = new Nette\Configurator;
 
-$configurator->setDebugMode(in_array($_SERVER['HTTP_HOST'], ['kuba.eventigo.cz', 'filip.eventigo.cz']));
+$configurator->setDebugMode(in_array($_SERVER['HTTP_HOST'], ['kuba.eventigo.cz', 'filip.eventigo.cz', 'eventigo.local']));
 $configurator->enableDebugger(__DIR__ . '/../log');
 
 $configurator->setTempDirectory(__DIR__ . '/../temp');

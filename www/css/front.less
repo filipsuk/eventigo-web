@@ -11,6 +11,7 @@
 body {
   font-family: @baseFont;
   background-color: @bodyBackground;
+  color: @primaryTextColor;
 }
 
 @media only screen and (max-width: 320px) {
@@ -81,7 +82,7 @@ ul#tags {
   position: fixed;
   bottom: 0;
   left: 0;
-  display: block;
+  display: none; // TODO: block
   width: 100%;
   background-color: @bodyBackground;
   input[type=email] {
@@ -100,9 +101,11 @@ ul#tags {
 @eventWidth: 48%;
 @eventHeight: 20%;
 @eventPadding: 2%;
-@eventBorder: 1px solid #e6e6e6;
+@eventBorder: 1px solid #E4E4E4;
 
-#events-list {
+.events-list {
+
+  margin-bottom: 100px;
 
   div.events-list-title {
     font-size: 1.2em;
@@ -112,18 +115,36 @@ ul#tags {
 
   div.event-box {
     background-color: #fff;
-    padding: 15px;
     margin: 7px 0;
-    border-radius: 4px;
+    height: 230px;
+    border-bottom: @eventBorder;
 
     .event-image {
+      height: 130px;
+      overflow: hidden;
       img {
-        height: 12rem;
+        width: 100%;
+        height: auto;
       }
     }
 
     .event-text {
-
+      padding: 10px;
+      .event-text-date {
+        font-weight: 300;
+        font-style: italic;
+        color: @secondaryTextColor;
+        font-size: 14px;
+      }
+      .event-text-name {
+        font-weight: 600;
+        margin-bottom: 5px;
+        font-size: 16px;
+      }
+      .event-text-desc {
+        font-size: 12px;
+        color: @secondaryTextColor;
+      }
     }
   }
 }
