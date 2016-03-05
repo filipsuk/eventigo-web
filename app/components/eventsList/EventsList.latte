@@ -27,7 +27,11 @@
 
                         <div class="event-text">
                             <div class="event-text-date">{$event->start, $event->end |datetime|noescape}</div>
-                            <div class="event-text-name">{$event->name}</div>
+                            <div class="event-text-name">
+                                <a n:tag-if="$event->origin_url" href="{$event->origin_url}">
+                                    {$event->name}
+                                </a>
+                            </div>
                             <div class="event-text-desc">
                                 {foreach $event->related('events_tags') as $tag}
                                     <span>#{$tag->tag->code}</span>
