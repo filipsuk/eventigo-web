@@ -22,7 +22,7 @@ h4 {
 }
 header {
   background-color: #2196f3;
-  color: #FFF;
+  color: #ffffff;
   padding-bottom: 4.6rem;
   margin-bottom: 3.3rem;
 }
@@ -56,10 +56,13 @@ header img {
   max-width: 100%;
   height: auto;
 }
+.tags-header {
+  font-size: 1.5rem;
+}
 ul#tags {
   list-style-type: none;
   margin: 0;
-  padding: 2em 0;
+  padding: 1.4rem 0;
 }
 ul#tags li {
   margin-right: 1.5em;

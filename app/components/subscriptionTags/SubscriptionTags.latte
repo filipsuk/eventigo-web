@@ -3,6 +3,9 @@
         {input email}
         {input subscribe}
     </div>
+    <div class="tags-header">
+        {_front.homepage.tags.header}
+    </div>
     <ul id="tags">
         <li n:foreach="$form[tags]->items as $key => $label">
             <label n:name="tags:$key" class="tag" data-tag="{$key}">
