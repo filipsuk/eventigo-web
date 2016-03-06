@@ -132,6 +132,17 @@ ul#tags li label:hover {
 #events-list div.event-box .event-text a:hover {
   text-decoration: none;
 }
+footer {
+  text-align: center;
+  padding: 20px;
+  background-color: #3e464c;
+  color: #99979c;
+  font-size: 13px;
+}
+footer .heart {
+  color: #A24444;
+  font-size: 14px;
+}
 @media only screen and (max-width: 640px) {
   #events-list div.event-box {
     width: 100%;

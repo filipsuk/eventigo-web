@@ -47,7 +47,7 @@
 
 	{block header}{/block}
 
-	<div class="container">
+	<div class="main container">
 		{snippet flash-messages}
 		<div n:if="isset($flashes)"
 			 n:foreach="$flashes as $flash"
@@ -57,6 +57,12 @@
 		{/snippet}
 		{include content}
 	</div>
+
+	{block footer}
+		<footer>
+			{_front.footer.text |noescape}
+		</footer>
+	{/block}
 
 	<script type="text/javascript" src="/libs/nette-forms/src/assets/netteForms.js"></script>
 	<script type="text/javascript" src="/libs/jquery/dist/jquery.min.js"></script>
