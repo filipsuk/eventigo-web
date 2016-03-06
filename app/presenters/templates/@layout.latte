@@ -45,19 +45,23 @@
 
 <body>
 
-	{block header}{/block}
+	<section>
+		{block header}{/block}
+	</section>
 
-	<div class="container flash-messages">
-		{snippet flash-messages}
-		<div n:if="isset($flashes)"
-			 n:foreach="$flashes as $flash"
-			 n:class="flash, $flash->type">
-			{$flash->message|noescape}
+	<section id="main">
+		<div class="container flash-messages">
+			{snippet flash-messages}
+			<div n:if="isset($flashes)"
+				 n:foreach="$flashes as $flash"
+				 n:class="flash, $flash->type">
+				{$flash->message|noescape}
+			</div>
+			{/snippet}
 		</div>
-		{/snippet}
-	</div>
 
-	{include content}
+		{include content}
+	</section>
 
 	{block footer}
 		<footer>

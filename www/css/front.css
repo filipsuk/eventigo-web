@@ -24,7 +24,6 @@ header {
   background-color: #2196f3;
   color: #ffffff;
   padding-bottom: 4.6rem;
-  margin-bottom: 3.3rem;
 }
 header h1.logo {
   font-weight: 400;
@@ -83,12 +82,17 @@ ul#tags li input:hover,
 ul#tags li label:hover {
   cursor: pointer;
 }
+section#main {
+  padding-top: 3.3rem;
+  position: relative;
+}
 #subscription {
   text-align: center;
   padding: 1rem 0;
   width: 100%;
 }
 #subscription input[type=email] {
+  font-size: 1rem;
   padding: 0.64rem 1rem;
   width: 16rem;
   margin-right: 0.5rem;
@@ -105,52 +109,68 @@ ul#tags li label:hover {
 }
 .subscription-box {
   background-color: #f1f1f1;
+  position: absolute;
+  top: 350px;
+  width: 100%;
+}
+.subscription-box.fixed {
+  position: fixed;
+  bottom: 0px;
+  top: initial;
+}
+.subscription-box.fixed-down {
+  top: inherit;
+  bottom: 0;
+  position: absolute;
 }
 #events-list {
-  margin-bottom: 100px;
+  margin-bottom: 120px;
 }
-#events-list div.events-list-title {
+#events-list .events-list-title {
   font-size: 1.2rem;
   margin: 1rem 0 0.6rem;
   text-align: center;
   color: #727272;
 }
-#events-list div.event-box {
+#events-list .events-list-title:not(:first-child) {
+  margin-top: 1.2rem;
+}
+#events-list .event-box {
   background-color: #fff;
   margin: 0.5rem 0;
   height: 15.3rem;
   border-bottom: 1px solid #e4e4e4;
 }
-#events-list div.event-box .event-image {
+#events-list .event-box .event-image {
   height: 130px;
   overflow: hidden;
 }
-#events-list div.event-box .event-image img {
+#events-list .event-box .event-image img {
   width: 100%;
   height: auto;
 }
-#events-list div.event-box .event-text {
+#events-list .event-box .event-text {
   padding: 0.6rem 0.8rem;
 }
-#events-list div.event-box .event-text .event-text-date {
+#events-list .event-box .event-text .event-text-date {
   font-weight: 300;
   font-style: italic;
   color: #727272;
   font-size: 0.9rem;
 }
-#events-list div.event-box .event-text .event-text-name {
+#events-list .event-box .event-text .event-text-name {
   font-weight: 600;
   margin-bottom: 0.3rem;
   font-size: 1.1rem;
 }
-#events-list div.event-box .event-text .event-text-desc {
+#events-list .event-box .event-text .event-text-desc {
   font-size: 0.8rem;
   color: #727272;
 }
-#events-list div.event-box .event-text a {
+#events-list .event-box .event-text a {
   color: inherit;
 }
-#events-list div.event-box .event-text a:hover {
+#events-list .event-box .event-text a:hover {
   text-decoration: none;
 }
 footer {
@@ -170,10 +190,35 @@ footer .heart {
   }
 }
 @media only screen and (max-width: 320px) {
+  header {
+    padding-bottom: 3rem;
+  }
   header h2 {
     font-size: 2rem;
   }
   header h3 {
     font-size: 1.7rem;
+  }
+  section#main {
+    padding-top: 2rem;
+  }
+  .tags-header {
+    text-align: center;
+    margin-bottom: 0.6rem;
+  }
+  ul#tags {
+    padding: 0.5rem;
+  }
+  #subscription {
+    padding: 0.6rem 0;
+  }
+  #subscription input:first-child {
+    margin-bottom: 0.5rem;
+  }
+  #tracy-debug-bar {
+    display: none;
+  }
+  footer {
+    display: none;
   }
 }

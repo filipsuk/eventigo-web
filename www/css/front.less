@@ -32,7 +32,6 @@ header {
   background-color: @headerBackground;
   color: @textPrimaryColor;
   padding-bottom: 4.6rem;
-  margin-bottom: 3.3rem;
 
   h1.logo {
     font-weight: 400;
@@ -99,11 +98,17 @@ ul#tags {
   }
 }
 
+section#main {
+  padding-top: 3.3rem;
+  position: relative;
+}
+
 #subscription {
   text-align: center;
   padding: 1rem 0;
   width: 100%;
   input[type=email] {
+    font-size: 1rem;
     padding: 0.64rem 1rem;
     width: 16rem;
     margin-right: 0.5rem;
@@ -122,6 +127,20 @@ ul#tags {
 
 .subscription-box {
   background-color: darken(@bodyBackground, 3%);
+  position: absolute;
+  top: 350px;
+  width: 100%;
+
+  &.fixed{
+    position: fixed;
+    bottom: 0px;
+    top: initial;
+  }
+  &.fixed-down {
+    top: inherit;
+    bottom: 0;
+    position: absolute;
+  }
 }
 
 @eventWidth: 48%;
@@ -131,16 +150,19 @@ ul#tags {
 
 #events-list {
 
-  margin-bottom: 100px;
+  margin-bottom: 120px;
 
-  div.events-list-title {
+  .events-list-title {
     font-size: 1.2rem;
     margin: 1rem 0 0.6rem;
     text-align: center;
     color: @secondaryTextColor;
   }
+  .events-list-title:not(:first-child) {
+    margin-top: 1.2rem;
+  }
 
-  div.event-box {
+  .event-box {
     background-color: #fff;
     margin: 0.5rem 0;
     height: 15.3rem;
@@ -202,7 +224,37 @@ footer {
 // iPhone 5/5S
 @media only screen and (max-width: 320px) {
   header{
+    padding-bottom: 3rem;
     h2 { font-size: 2rem; }
     h3 { font-size: 1.7rem; }
+  }
+
+  section#main {
+    padding-top: 2rem;
+  }
+
+  .tags-header {
+    text-align: center;
+    margin-bottom: 0.6rem;
+  }
+
+  ul#tags {
+    padding: 0.5rem;
+  }
+
+  #subscription {
+    padding: 0.6rem 0;
+
+    input:first-child {
+      margin-bottom: 0.5rem;
+    }
+  }
+
+  #tracy-debug-bar {
+    display: none;
+  }
+
+  footer {
+    display: none;
   }
 }
