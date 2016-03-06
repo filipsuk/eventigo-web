@@ -20,7 +20,7 @@
                 <div class="col-lg-4">
                     <div class="event-box">
                         <div class="event-image">
-                            <a n:tag-if="$event->origin_url" href="{$event->origin_url}">
+                            <a n:tag-if="$event->origin_url" target="_blank" href="{$event->origin_url}">
                                 <img src="{$event->image}">
                             </a>
                         </div>
@@ -28,7 +28,7 @@
                         <div class="event-text">
                             <div class="event-text-date">{$event->start, $event->end |datetime|noescape}</div>
                             <div class="event-text-name">
-                                <a n:tag-if="$event->origin_url" href="{$event->origin_url}">
+                                <a n:tag-if="$event->origin_url" target="_blank" href="{$event->origin_url}">
                                     {$event->name}
                                 </a>
                             </div>

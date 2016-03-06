@@ -8,6 +8,10 @@
 @headerButtonColor: @accentColor;
 @headerButtonColorHover: darken(@headerButtonColor, 4%);
 
+html {
+  font-size: 15px;
+}
+
 body {
   font-family: @baseFont;
   background-color: @bodyBackground;
@@ -27,19 +31,20 @@ h1,h2,h3,h4{
 header {
   background-color: @headerBackground;
   color: #FFF;
-  padding-bottom: 70px;
-  margin-bottom: 50px;
+  padding-bottom: 4.6rem;
+  margin-bottom: 3.3rem;
 
   h1.logo {
     font-weight: 400;
+    font-size: 2rem;
   }
 
   h2 {
-    font-size: 3em;
-    margin: 20px;
+    font-size: 3rem;
+    margin: 1.2rem;
   }
   h3 {
-    font-size: 2em;
+    font-size: 2rem;
   }
 
   p {
@@ -49,11 +54,17 @@ header {
 
   .btn, .btn:active, .btn:focus {
     background-color: @headerButtonColor;
-    margin-top: 30px;
+    margin-top: 2rem;
     border-width: 0;
+    font-size: 1rem;
   }
   .btn:hover {
     background-color: @headerButtonColorHover;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
   }
 }
 
@@ -65,9 +76,13 @@ ul#tags {
   li {
     margin-right: 1.5em;
     margin-bottom: 0.3em;
-    font-size: 1.2em;
+    font-size: 1.1rem;
     input {
       margin-right: .3em;
+    }
+    label {
+      font-weight: 400;
+      margin: 0;
     }
     input:hover,
     label:hover {
@@ -108,16 +123,16 @@ ul#tags {
   margin-bottom: 100px;
 
   div.events-list-title {
-    font-size: 1.2em;
-    margin: 15px 0 10px;
+    font-size: 1.2rem;
+    margin: 1rem 0 0.6rem;
     text-align: center;
     color: @secondaryTextColor;
   }
 
   div.event-box {
     background-color: #fff;
-    margin: 7px 0;
-    height: 230px;
+    margin: 0.5rem 0;
+    height: 15.3rem;
     border-bottom: @eventBorder;
 
     .event-image {
@@ -130,20 +145,20 @@ ul#tags {
     }
 
     .event-text {
-      padding: 10px;
+      padding: 0.6rem 0.8rem;
       .event-text-date {
         font-weight: 300;
         font-style: italic;
         color: @secondaryTextColor;
-        font-size: 14px;
+        font-size: 0.9rem;
       }
       .event-text-name {
         font-weight: 600;
-        margin-bottom: 5px;
-        font-size: 16px;
+        margin-bottom: 0.3rem;
+        font-size: 1.1rem;
       }
       .event-text-desc {
-        font-size: 12px;
+        font-size: 0.8rem;
         color: @secondaryTextColor;
       }
       a {color: inherit}
@@ -154,14 +169,14 @@ ul#tags {
 
 footer {
   text-align: center;
-  padding: 20px;
+  padding: 1.5rem;
   background-color: @footerBgColor;
   color: @footerColor;
-  font-size: 13px;
+  font-size: 0.8rem;
 
   .heart {
     color: #A24444;
-    font-size: 14px;
+    font-size: 1rem;
   }
 }
 
@@ -170,5 +185,13 @@ footer {
     div.event-box {
       width: 100%;
     }
+  }
+}
+
+// iPhone 5/5S
+@media only screen and (max-width: 320px) {
+  header{
+    h2 { font-size: 2rem; }
+    h3 { font-size: 1.7rem; }
   }
 }
