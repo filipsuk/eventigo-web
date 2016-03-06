@@ -14,3 +14,10 @@ events.thisMonth.title: Tento měsíc
 events.nextMonth.title: Příští měsíc
 events.upcoming.title: Další akce
 newsletter.header.title: Výběr nadcházejících akcí
+datetime.monday: Pondělí
+datetime.tuesday: Úterý
+datetime.wednesday: Středa
+datetime.thursday: Čtvrtek
+datetime.friday: Pátek
+datetime.saturday: Sobota
+datetime.sunday: Neděle
