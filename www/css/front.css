@@ -56,6 +56,9 @@ header img {
   max-width: 100%;
   height: auto;
 }
+.flash-messages .flash {
+  margin-bottom: 2rem;
+}
 .tags-header {
   font-size: 1.5rem;
 }
@@ -82,24 +85,26 @@ ul#tags li label:hover {
 }
 #subscription {
   text-align: center;
-  padding: 1em 0;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  display: none;
+  padding: 1rem 0;
   width: 100%;
-  background-color: #f9f9f9;
 }
 #subscription input[type=email] {
-  padding: .8em 2em;
-  width: 15em;
+  padding: 0.64rem 1rem;
+  width: 16rem;
+  margin-right: 0.5rem;
+  border: 1px solid #D0D0D0;
 }
-#subscription input[type=submit] {
-  -webkit-appearance: button;
-  padding: .8em 1.5em;
-  background-color: #fff;
-  border: 1px solid #c9c9c9;
-  border-radius: 3px;
+#subscription .btn {
+  background-color: #8bc34a;
+  border-width: 0;
+  font-size: 1rem;
+  vertical-align: top;
+}
+#subscription .btn:hover {
+  background-color: #81bb3e;
+}
+.subscription-box {
+  background-color: #f1f1f1;
 }
 #events-list {
   margin-bottom: 100px;

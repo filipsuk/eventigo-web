@@ -68,6 +68,10 @@ header {
   }
 }
 
+.flash-messages .flash {
+  margin-bottom: 2rem;
+}
+
 .tags-header {
   font-size: 1.5rem;
 }
@@ -97,24 +101,27 @@ ul#tags {
 
 #subscription {
   text-align: center;
-  padding: 1em 0;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  display: none; // TODO: block
+  padding: 1rem 0;
   width: 100%;
-  background-color: @bodyBackground;
   input[type=email] {
-    padding: .8em 2em;
-    width: 15em;
+    padding: 0.64rem 1rem;
+    width: 16rem;
+    margin-right: 0.5rem;
+    border: 1px solid #D0D0D0;
   }
-  input[type=submit] {
-    -webkit-appearance: button;
-    padding: .8em 1.5em;
-    background-color: #fff;
-    border: 1px solid #c9c9c9;
-    border-radius: 3px;
+  .btn {
+    background-color: @accentColor;
+    border-width: 0;
+    font-size: 1rem;
+    vertical-align: top;
   }
+  .btn:hover {
+    background-color: darken(@accentColor, 4%);
+  }
+}
+
+.subscription-box {
+  background-color: darken(@bodyBackground, 3%);
 }
 
 @eventWidth: 48%;

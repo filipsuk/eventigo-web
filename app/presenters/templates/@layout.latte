@@ -47,7 +47,7 @@
 
 	{block header}{/block}
 
-	<div class="main container">
+	<div class="container flash-messages">
 		{snippet flash-messages}
 		<div n:if="isset($flashes)"
 			 n:foreach="$flashes as $flash"
@@ -55,8 +55,9 @@
 			{$flash->message|noescape}
 		</div>
 		{/snippet}
-		{include content}
 	</div>
+
+	{include content}
 
 	{block footer}
 		<footer>

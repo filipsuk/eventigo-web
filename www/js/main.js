@@ -5,4 +5,8 @@ $(function () {
     $('#tags input[type=checkbox]').on('change', function() {
         $(this).closest('form').submit();
     });
+
+    // Move email subscription
+    $('#subscription').appendTo('.subscription-box');
+    $('.subscription-box input').attr('form', $('form').attr('id'));
 });
