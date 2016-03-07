@@ -44,4 +44,14 @@ $(function () {
             }
         }
     });
+
+    // When user wants to subscribe with empty email, focus on text input
+    $('input[name=subscribe]').click(function(e) {
+        var mail = $('#frm-subscriptionTags-form-email');
+        if (mail.val().length < 5) {
+            mail.focus();
+            e.preventDefault(); // Prevent form submission
+        }
+    });
+
 });
