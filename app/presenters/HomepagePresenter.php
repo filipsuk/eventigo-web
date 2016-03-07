@@ -87,4 +87,54 @@ class HomepagePresenter extends BasePresenter
 		$events = $this->eventModel->getAllWithDates($tagsIds, new DateTime);
 		return $this->eventsListFactory->create($events);
 	}
+
+
+	public function handleFollowTag($tagCode)
+	{
+		$tag = $this->tagModel->getAll()->where(['code' => $tagCode]);
+		$section = $this->presenter->getSession('subscriptionTags');
+
+		// Follow tag
+		if ($this->user->id) {
+			$this->userTagModel->insert([
+				'user_id' => $this->user->id,
+				'tag_id' => $tag->id,
+			]);
+		} else {
+			$section->tags[] = $tagCode;
+		}
+
+		// Refresh data
+		$tagsIds = $this->tagModel->getAll()->where('code', $section->tags)->fetchPairs(null, 'id');
+		$this->events = $this->eventModel->getAllWithDates($tagsIds, new DateTime);
+		$this->followedTags = $section->tags;
+
+		$this['eventsList']->redrawControl();
+	}
+
+
+	public function handleUnfollowTag($tagCode)
+	{
+		$tag = $this->tagModel->getAll()->where(['code' => $tagCode]);
+		$section = $this->presenter->getSession('subscriptionTags');
+
+		// Unfollow tag
+		if ($this->user->id) {
+			$this->userTagModel->delete([
+				'user_id' => $this->user->id,
+				'tag_id' => $tag->id,
+			]);
+		} else {
+			if (($index = array_search($tagCode, $section->tags)) !== FALSE) {
+				unset($section->tags[$index]);
+			}
+		}
+
+		// Refresh data
+		$tagsIds = $this->tagModel->getAll()->where('code', $section->tags)->fetchPairs(null, 'id');
+		$this->events = $this->eventModel->getAllWithDates($tagsIds, new DateTime);
+		$this->followedTags = $section->tags;
+
+		$this['eventsList']->redrawControl();
+	}
 }
