@@ -1,7 +1,7 @@
 services:
 	router: App\RouterFactory::createRouter
-	- App\Model\EventModel
-	- App\Model\TagModel
-	- App\Model\UserModel
-	- App\Model\UserTagModel
-	- App\Model\UserNewsletterModel
+	- App\Modules\Core\Model\EventModel
+	- App\Modules\Core\Model\TagModel
+	- App\Modules\Core\Model\UserModel
+	- App\Modules\Core\Model\UserTagModel
+	- App\Modules\Core\Model\UserNewsletterModel

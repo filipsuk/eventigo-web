@@ -16,8 +16,14 @@ class RouterFactory
 	public static function createRouter()
 	{
 		$router = new RouteList;
-		$router[] = new Route('newsletter/<hash>', 'Newsletter:default');
-		$router[] = new Route('<presenter>/<action>[/<id>]', 'Homepage:default');
+
+		// Nesletter
+		$newsletterRouter = new RouteList('Newsletter');
+		$newsletterRouter[] = new Route('newsletter/<hash>', 'Newsletter:default');
+		$router[] = $newsletterRouter;
+
+		// Front
+		$router[] = new Route('<presenter>/<action>[/<id>]', 'Front:Homepage:default');
 		return $router;
 	}
 
