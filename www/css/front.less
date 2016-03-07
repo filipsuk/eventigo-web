@@ -72,7 +72,7 @@ header {
 }
 
 .tags-header {
-  font-size: 1.5rem;
+  font-size: 1.4rem;
 }
 
 ul#tags {
@@ -123,6 +123,11 @@ section#main {
   .btn:hover {
     background-color: darken(@accentColor, 4%);
   }
+  .subscription-label {
+    font-size: 1.3rem;
+    vertical-align: middle;
+    margin-right: 0.5rem;
+  }
 }
 
 .subscription-box {
@@ -147,6 +152,11 @@ section#main {
 @eventHeight: 20%;
 @eventPadding: 2%;
 @eventBorder: 1px solid #E4E4E4;
+
+.events-list-header {
+  font-size: 1.4rem;
+  text-align: center;
+}
 
 #events-list {
 
@@ -211,6 +221,11 @@ footer {
     color: #A24444;
     font-size: 1rem;
   }
+}
+
+// Helper classes
+.accent-color {
+  color: @accentColor;
 }
 
 @media only screen and (max-width: 640px) {

@@ -59,7 +59,7 @@ header img {
   margin-bottom: 2rem;
 }
 .tags-header {
-  font-size: 1.5rem;
+  font-size: 1.4rem;
 }
 ul#tags {
   list-style-type: none;
@@ -107,6 +107,11 @@ section#main {
 #subscription .btn:hover {
   background-color: #81bb3e;
 }
+#subscription .subscription-label {
+  font-size: 1.3rem;
+  vertical-align: middle;
+  margin-right: 0.5rem;
+}
 .subscription-box {
   background-color: #f1f1f1;
   position: absolute;
@@ -122,6 +127,10 @@ section#main {
   top: inherit;
   bottom: 0;
   position: absolute;
+}
+.events-list-header {
+  font-size: 1.4rem;
+  text-align: center;
 }
 #events-list {
   margin-bottom: 120px;
@@ -183,6 +192,9 @@ footer {
 footer .heart {
   color: #A24444;
   font-size: 1rem;
+}
+.accent-color {
+  color: #8bc34a;
 }
 @media only screen and (max-width: 640px) {
   #events-list div.event-box {
