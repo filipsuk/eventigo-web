@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Console;
+namespace App\Modules\Newsletter\Console;
 
-use App\Model\UserModel;
-use App\Model\UserNewsletterModel;
+use App\Modules\Core\Model\UserModel;
+use App\Modules\Core\Model\UserNewsletterModel;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
