@@ -1,0 +1,25 @@
+#main {
+  margin: 0 auto 3rem;
+  width: 50%;
+  display: block;
+}
+#main form th.th-label {
+  padding: 0.6rem 1rem 1rem 1rem;
+  text-align: right;
+}
+#main form td.td-control input,
+#main form td.td-control textarea {
+  width: 100%;
+}
+#main form td.td-control textarea {
+  border: 1px solid #ccc;
+}
+#main form td.td-control .select2-container--default .select2-selection--single {
+  border: 1px solid #ccc;
+}
+#main form fieldset {
+  border: none;
+  display: inline-block;
+  width: 49%;
+  vertical-align: top;
+}

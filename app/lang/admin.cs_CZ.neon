@@ -1,0 +1,22 @@
+dashboard.events.link: Eventy
+eventForm.event: Akce
+eventForm.name: Název
+eventForm.name.required: Zadej název akce
+eventForm.description: Popis
+eventForm.description.required: Zadej popis akce
+eventForm.originUrl: Odkaz
+eventForm.start: Od
+eventForm.start.required: Zadej začátek akce
+eventForm.end: Do
+eventForm.image: Obrázek
+eventForm.rate: Velikost akce
+eventForm.rate.prompt: Vyber velikost akce
+eventForm.rate.required: Vyber velikost akce
+eventForm.tags: Tagy
+eventForm.tag: Tag
+eventForm.tag.prompt: Vyber tag
+eventForm.tag.rate: Hodnocení
+eventForm.tag.rate.prompt: Vyber velikost tagu
+eventForm.tag.rate.required: Vyber velikost tagu
+eventForm.save: Uložit
+eventForm.success: Akce byla uložena

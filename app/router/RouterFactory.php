@@ -17,6 +17,11 @@ class RouterFactory
 	{
 		$router = new RouteList;
 
+		// Admin
+		$adminRouter = new RouteList('Admin');
+		$adminRouter[] = new Route('admin/<presenter>/<action>[/<id>]', 'Dashboard:default');
+		$router[] = $adminRouter;
+
 		// Nesletter
 		$newsletterRouter = new RouteList('Newsletter');
 		$newsletterRouter[] = new Route('newsletter/<hash>', 'Newsletter:default');

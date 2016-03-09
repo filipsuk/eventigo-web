@@ -5,3 +5,5 @@ services:
 	- App\Modules\Core\Model\UserModel
 	- App\Modules\Core\Model\UserTagModel
 	- App\Modules\Core\Model\UserNewsletterModel
+	- App\Modules\Core\Model\EventTagModel
+	- App\Modules\Admin\Model\EventService

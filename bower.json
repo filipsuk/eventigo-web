@@ -4,8 +4,10 @@
   "dependencies": {
     "jquery": "~2.1.4",
     "normalize-css": "~3.0.3",
-    "bootstrap-theme-bootswatch-flatly": "~1.0.2",
-    "nette.ajax.js": "~2.0"
+    "bootswatch": "~3.3.6",
+    "nette.ajax.js": "~2.0",
+    "select2": "~4.0",
+    "eonasdan-bootstrap-datetimepicker": "~4.17.37"
   },
   "private": true
 }

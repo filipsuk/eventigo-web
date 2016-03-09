@@ -1,0 +1,32 @@
+@inputBorder: #ccc;
+
+#main {
+	margin: 0 auto 3rem;
+	width: 50%;
+	display: block;
+
+	form {
+		th.th-label {
+			padding: 0.6rem 1rem 1rem 1rem;
+			text-align: right;
+		}
+		td.td-control {
+			input, textarea {
+				width: 100%;
+			}
+			textarea {
+				border: 1px solid @inputBorder;
+			}
+			.select2-container--default .select2-selection--single {
+				border: 1px solid @inputBorder;
+			}
+		}
+
+		fieldset {
+			border: none;
+			display: inline-block;
+			width: 49%;
+			vertical-align: top;
+		}
+	}
+}
