@@ -18,7 +18,10 @@ class EventForm extends BaseControl
 	private $eventService;
 
 	/** @var array */
-	public $onSuccess = [];
+	public $onCreate = [];
+
+	/** @var array */
+	public $onUpdate = [];
 
 
 	public function __construct(Translator $translator,
@@ -83,6 +86,8 @@ class EventForm extends BaseControl
 				->setRequired($this->translator->translate('tag.rate.required'));
 		}
 
+		$form->addHidden('id');
+
 		$form->addSubmit('save', 'save')
 			->setAttribute('class', 'btn btn-success');
 		$form->onSubmit[] = [$this, 'processForm'];
@@ -94,7 +99,12 @@ class EventForm extends BaseControl
 	public function processForm(Form $form)
 	{
 		$values = $form->getValues();
-		$this->eventService->addEvent($values);
-		$this->onSuccess();
+		if (!$values->id) {
+			$this->eventService->createEvent($values);
+			$this->onCreate();
+		} else {
+			$this->eventService->updateEvent($values);
+			$this->onUpdate();
+		}
 	}
 }
