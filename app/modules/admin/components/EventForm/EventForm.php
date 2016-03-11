@@ -4,9 +4,9 @@ namespace App\Modules\Admin\Components\EventForm;
 
 use App\Modules\Admin\Model\EventService;
 use App\Modules\Core\Components\BaseControl;
+use App\Modules\Core\Components\Form\Form;
 use App\Modules\Core\Model\TagModel;
 use Kdyby\Translation\Translator;
-use Nette\Application\UI\Form;
 
 
 class EventForm extends BaseControl
@@ -43,10 +43,6 @@ class EventForm extends BaseControl
 	{
 		$form = new Form;
 		$form->setTranslator($this->translator->domain('admin.eventForm'));
-
-		$renderer = $form->getRenderer();
-		$renderer->wrappers['label']['container'] = 'th class="th-label"';
-		$renderer->wrappers['control']['container'] = 'td class="td-control"';
 
 		// Event
 		$form->addGroup();

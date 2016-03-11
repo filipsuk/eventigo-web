@@ -3,7 +3,7 @@
 namespace App\Modules\Admin\Components;
 
 use App\Modules\Core\Components\BaseControl;
-use Nette\Application\UI\Form;
+use App\Modules\Core\Components\Form\Form;
 use Nette\Security\AuthenticationException;
 
 
@@ -26,10 +26,6 @@ class SignInForm extends BaseControl
 	{
 		$form = new Form;
 		$form->setTranslator($this->translator->domain('admin.signInForm'));
-
-		$renderer = $form->getRenderer();
-		$renderer->wrappers['label']['container'] = 'th class="th-label"';
-		$renderer->wrappers['control']['container'] = 'td class="td-control"';
 
 		$form->addText('email', 'email')
 			->setAttribute('placeholder', 'email.placeholder')
