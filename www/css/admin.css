@@ -4,7 +4,7 @@
   display: block;
 }
 #main form th.th-label {
-  padding: 0.6rem 1rem 1rem 1rem;
+  padding: 0.6rem 1rem 1rem 0rem;
   text-align: right;
 }
 #main form td.td-control input,
@@ -22,4 +22,7 @@
   display: inline-block;
   width: 49%;
   vertical-align: top;
+}
+#frm-signInForm-form table {
+  margin: auto;
 }

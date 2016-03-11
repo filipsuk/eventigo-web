@@ -16,6 +16,16 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter
 	public $translator;
 
 
+	protected function startup()
+	{
+		parent::startup();
+
+		if (!$this->getUser()->isLoggedIn() && !$this->getUser()->isInRole('admin')) {
+			$this->redirect('Sign:in');
+		}
+	}
+
+
 	protected function createTemplate()
 	{
 		$template = parent::createTemplate();
