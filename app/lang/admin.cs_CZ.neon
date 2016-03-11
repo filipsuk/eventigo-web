@@ -21,11 +21,11 @@ eventForm.tag.rate.required: Vyber velikost tagu
 eventForm.save: Uložit
 eventForm.success: Akce byla uložena
 signInForm.email: Email
-signInForm.email.placeholder: email@eventigo.cz
+signInForm.email.placeholder: Email
 signInForm.email.required: Zadej email
 signInForm.incorrectLogIn: Uživatel s tímto emailem a heslem nebyl nalezen
 signInForm.password: Heslo
-signInForm.password.placeholder: ********
+signInForm.password.placeholder: Heslo
 signInForm.password.required: Zadej heslo
 signInForm.signIn: Přihlásit
 
