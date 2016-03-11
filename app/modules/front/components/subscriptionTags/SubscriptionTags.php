@@ -2,12 +2,12 @@
 
 namespace App\Modules\Front\Components\SubscriptionTags;
 
-use App\Model\Exceptions\Subscription\EmailExistsException;
 use App\Modules\Core\Components\Form\Form;
 use App\Modules\Core\Model\TagModel;
 use App\Modules\Core\Model\UserModel;
 use App\Modules\Core\Model\UserTagModel;
 use App\Modules\Front\Components\Subscription\Subscription;
+use App\Modules\Front\Model\Exceptions\Subscription\EmailExistsException;
 use Kdyby\Translation\Translator;
 use Nette\Database\Table\Selection;
 
