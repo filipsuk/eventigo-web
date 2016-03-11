@@ -4,3 +4,4 @@ services:
 	- App\Modules\Front\Components\EventsList\EventsListFactory
 	- App\Modules\Newsletter\Components\Newsletter\NewsletterFactory
 	- App\Modules\Admin\Components\EventForm\EventFormFactory
+	- App\Modules\Admin\Components\SignInFormFactory
