@@ -7,3 +7,4 @@ services:
 	- App\Modules\Core\Model\UserNewsletterModel
 	- App\Modules\Core\Model\EventTagModel
 	- App\Modules\Admin\Model\EventService
+	- App\Modules\Admin\Model\Authenticator
