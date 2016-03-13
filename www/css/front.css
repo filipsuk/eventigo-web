@@ -25,6 +25,7 @@ header {
   background-size: cover;
   color: #ffffff;
   padding-bottom: 4.6rem;
+  min-height: 100vh;
 }
 header h1.logo {
   font-weight: 400;
@@ -55,6 +56,11 @@ header .btn:hover {
 header img {
   max-width: 100%;
   height: auto;
+}
+header .header-box {
+  min-height: 85vh;
+  display: flex;
+  align-items: center;
 }
 .flash-messages .flash {
   margin-bottom: 2rem;
