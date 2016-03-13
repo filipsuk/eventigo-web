@@ -71,8 +71,11 @@ header {
   margin-bottom: 2rem;
 }
 
-.tags-header {
-  font-size: 1.4rem;
+.tags-box {
+
+  .tags-header {
+    font-size: 1.4rem;
+  }
 }
 
 ul#tags {
@@ -88,7 +91,8 @@ ul#tags {
       margin-right: .3em;
     }
     label {
-      font-weight: 400;
+      font-size: 1.2rem;
+      font-weight: bold;
       margin: 0;
     }
     input:hover,
@@ -226,6 +230,9 @@ footer {
 // Helper classes
 .accent-color {
   color: @accentColor;
+}
+.bold {
+  font-weight: bold;
 }
 
 @media only screen and (max-width: 640px) {

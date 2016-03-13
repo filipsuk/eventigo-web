@@ -58,7 +58,7 @@ header img {
 .flash-messages .flash {
   margin-bottom: 2rem;
 }
-.tags-header {
+.tags-box .tags-header {
   font-size: 1.4rem;
 }
 ul#tags {
@@ -75,7 +75,8 @@ ul#tags li input {
   margin-right: .3em;
 }
 ul#tags li label {
-  font-weight: 400;
+  font-size: 1.2rem;
+  font-weight: bold;
   margin: 0;
 }
 ul#tags li input:hover,
@@ -195,6 +196,9 @@ footer .heart {
 }
 .accent-color {
   color: #8bc34a;
+}
+.bold {
+  font-weight: bold;
 }
 @media only screen and (max-width: 640px) {
   #events-list div.event-box {
