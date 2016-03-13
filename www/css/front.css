@@ -21,7 +21,8 @@ h4 {
   -webkit-font-smoothing: antialiased;
 }
 header {
-  background-color: #2196f3;
+  background: linear-gradient(rgba(33, 150, 243, 0.9), rgba(33, 150, 243, 0.9)), url('/img/header-background.jpg');
+  background-size: cover;
   color: #ffffff;
   padding-bottom: 4.6rem;
 }

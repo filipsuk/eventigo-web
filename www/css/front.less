@@ -29,7 +29,11 @@ h1,h2,h3,h4{
 }
 
 header {
-  background-color: @headerBackground;
+  background: linear-gradient(
+          rgba(33, 150, 243, 0.9),
+          rgba(33, 150, 243, 0.9)
+  ), url('/img/header-background.jpg');
+  background-size: cover;
   color: @textPrimaryColor;
   padding-bottom: 4.6rem;
 
