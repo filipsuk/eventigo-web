@@ -1,5 +1,6 @@
 parameters:
-
+	security:
+		key: "***REMOVED***"
 
 database:
 	dsn: 'mysql:host=127.0.0.1:8889;dbname=events'
