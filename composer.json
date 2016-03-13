@@ -3,7 +3,7 @@
 	"description": "Events to your email",
 	"type": "project",
 	"require": {
-		"php": ">= 5.6.0",
+		"php": ">= 7.0.0",
 		"nette/application": "~2.3.6",
 		"nette/bootstrap": "~2.3.0",
 		"nette/caching": "~2.3.0",
@@ -21,7 +21,8 @@
 		"tracy/tracy": "~2.3.0",
 		"dg/adminer-custom": "~1.6",
 		"kdyby/translation": "~2.2.0",
-		"kdyby/console": "^2.5"
+		"kdyby/console": "^2.5",
+		"defuse/php-encryption": "~1.2.1"
 	},
 	"require-dev": {
 		"nette/tester": "~1.3"
