@@ -1,5 +1,19 @@
 {layout '@layout.latte'}
 
 {block content}
-    {control signInForm}
+    {form signInForm-form}
+        <div class="form-group has-feedback">
+            {input email, class => form-control}
+            <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+        </div>
+        <div class="form-group has-feedback">
+            {input password, class => form-control}
+            <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                {input signIn, class => 'btn btn-primary btn-block btn-flat'}
+            </div>
+        </div>
+    {/form}
 {/block}
