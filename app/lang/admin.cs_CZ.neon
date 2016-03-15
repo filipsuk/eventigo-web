@@ -19,6 +19,8 @@ eventForm.tag.rate.prompt: Vyber velikost tagu
 eventForm.tag.rate.required: Vyber velikost tagu
 eventForm.save: Uložit
 eventForm.success: Akce byla uložena
+events.create.header: Přidat akci
+events.update.header: Upravit akci
 footer.text: "&copy; 2016 eventigo | Made with <span class='heart'>&hearts;</span> in Prague"
 menu.events: Eventy
 signInForm.email: Email

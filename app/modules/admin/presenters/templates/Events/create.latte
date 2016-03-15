@@ -1,5 +1,13 @@
 {layout '../@layout.latte'}
 
+{block header}
+    {if $presenter->getAction() === 'create'}
+        {_admin.events.create.header}
+    {else}
+        {_admin.events.update.header}
+    {/if}
+{/block}
+
 {block content}
     {control eventForm}
 {/block}
