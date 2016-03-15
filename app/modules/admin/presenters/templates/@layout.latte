@@ -8,10 +8,19 @@
 <html>
 <head>
     <meta charset="utf-8">
-
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>{ifset title}{include title|striptags} | Events{/ifset}</title>
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <link rel="stylesheet" href="/libs/AdminLTE/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link type="text/css" rel="stylesheet" href="/libs/select2/dist/css/select2.min.css">
+    <link type="text/css" rel="stylesheet" href="/libs/normalize-css/normalize.css">
+    <link type="text/css" rel="stylesheet" href="/libs/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css">
+    <link rel="stylesheet" href="/libs/AdminLTE/dist/css/AdminLTE.min.css">
+    <link rel="stylesheet" href="/libs/AdminLTE/dist/css/skins/skin-black-light.min.css">
+    <link type="text/css" rel="stylesheet" href="/css/admin.css">
 
-    {* favicon *}
     <link rel="apple-touch-icon" sizes="57x57" href="/favicon/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/favicon/apple-icon-60x60.png">
     <link rel="apple-touch-icon" sizes="72x72" href="/favicon/apple-icon-72x72.png">
@@ -32,45 +41,93 @@
 
     <meta name="viewport" content="width=device-width">
 
-    {* Bootstrap *}
-    <link type="text/css" rel="stylesheet" href="/libs/bootswatch/flatly/bootstrap.min.css">
-    <link type="text/css" rel="stylesheet" href="/libs/select2/dist/css/select2.min.css">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
 
-    {* Styles *}
-    <link type="text/css" rel="stylesheet" href="/libs/normalize-css/normalize.css">
-    <link type="text/css" rel="stylesheet" href="/libs/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css">
-    <link type="text/css" rel="stylesheet" href="/css/front.css">
-    <link type="text/css" rel="stylesheet" href="/css/admin.css">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400,700' rel='stylesheet' type='text/css'>
 
     {block head}{/block}
 </head>
 
-<body>
+<body class="hold-transition sidebar-mini skin-black-light">
+<div class="wrapper">
 
-<section>
-    {block header}{/block}
-</section>
+    {* header *}
+    <header class="main-header">
 
-<section id="main">
-    <div class="container flash-messages">
-        {snippet flash-messages}
-            <div n:if="isset($flashes)"
-                 n:foreach="$flashes as $flash"
-                 n:class="flash, $flash->type">
-                {$flash->message|noescape}
+        {* logo *}
+        <a n:href="Dashboard:" class="logo">
+            <span class="logo-lg"><b>eventigo</b></span>
+        </a>
+
+        {* navbar *}
+        <nav class="navbar navbar-static-top" role="navigation">
+            <div class="navbar-custom-menu">
+                <ul class="nav navbar-nav">
+                    <li class="dropdown notifications-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="fa fa-user"></i>
+                            <span class="hidden-xs">{$user->id}</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <ul class="menu">
+                                    <li>
+                                        <a n:href="Sign:out">
+                                            <i class="fa fa-power-off text-red"></i> Sign out
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
             </div>
-        {/snippet}
+        </nav>
+    </header>
+
+    {* sidebar *}
+    <aside class="main-sidebar">
+        <section class="sidebar">
+            <ul class="sidebar-menu">
+                <li {ifCurrent Events:*}class="active"{/ifCurrent}>
+                    <a n:href="Events:"><i class="fa fa-calendar"></i>{_admin.menu.events}</a>
+                </li>
+            </ul>
+        </section>
+    </aside>
+
+    {* content *}
+    <div class="content-wrapper">
+        <section class="content-header">
+            {snippet flash-messages}
+                <div n:if="isset($flashes)"
+                     n:foreach="$flashes as $flash"
+                     n:class="alert, 'alert-' . $flash->type, alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <i class="icon fa fa-check"></i> {$flash->message|noescape}
+                </div>
+            {/snippet}
+
+            <h1>{block header}{/block}</h1>
+        </section>
+
+        <section class="content">
+            <section id="main">
+                {include content}
+            </section>
+        </section>
     </div>
 
-    {include content}
-</section>
-
-{block footer}
-    <footer>
-        {_front.footer.text |noescape}
+    {* footer *}
+    <footer class="main-footer">
+        {_admin.footer.text |noescape}
     </footer>
-{/block}
+</div>
 
 <script type="text/javascript" src="/libs/nette-forms/src/assets/netteForms.js"></script>
 <script type="text/javascript" src="/libs/jquery/dist/jquery.min.js"></script>
@@ -80,8 +137,11 @@
 <script type="text/javascript" src="/libs/select2/dist/js/select2.full.min.js"></script>
 <script type="text/javascript" src="/libs/moment/min/moment-with-locales.min.js"></script>
 <script type="text/javascript" src="/libs/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+<script type="text/javascript" src="/libs/AdminLTE/dist/js/app.min.js"></script>
 <script type="text/javascript" src="/js/main.js"></script>
 <script type="text/javascript" src="/js/admin.js"></script>
 {block scripts}{/block}
+
 </body>
 </html>
+

@@ -1,6 +1,4 @@
 #main {
-  margin: 0 auto 3rem;
-  width: 50%;
   display: block;
 }
 #main form th.th-label {
@@ -20,7 +18,6 @@
 #main form fieldset {
   border: none;
   display: inline-block;
-  width: 49%;
   vertical-align: top;
 }
 #frm-signInForm-form table {

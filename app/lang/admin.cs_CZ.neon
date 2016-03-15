@@ -1,4 +1,3 @@
-dashboard.events.link: Eventy
 eventForm.event: Akce
 eventForm.name: Název
 eventForm.name.required: Zadej název akce
@@ -20,6 +19,8 @@ eventForm.tag.rate.prompt: Vyber velikost tagu
 eventForm.tag.rate.required: Vyber velikost tagu
 eventForm.save: Uložit
 eventForm.success: Akce byla uložena
+footer.text: "&copy; 2016 eventigo | Made with <span class='heart'>&hearts;</span> in Prague"
+menu.events: Eventy
 signInForm.email: Email
 signInForm.email.placeholder: Email
 signInForm.email.required: Zadej email
@@ -28,4 +29,3 @@ signInForm.password: Heslo
 signInForm.password.placeholder: Heslo
 signInForm.password.required: Zadej heslo
 signInForm.signIn: Přihlásit
-
