@@ -23,3 +23,8 @@
 #frm-signInForm-form table {
   margin: auto;
 }
+.info-box-content .info-box-text.inline,
+.info-box-content .info-box-number.inline {
+  text-transform: inherit;
+  display: inline;
+}

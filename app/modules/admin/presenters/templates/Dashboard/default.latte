@@ -1,5 +1,21 @@
 {layout '../@layout.latte'}
 
 {block content}
-<a n:href="Events:create">{_admin.dashboard.events.link}</a>
+    <a n:href="Events:">
+        <div class="row">
+            <div class="col-md-3 col-sm-6 col-xs-12">
+                <div class="info-box">
+                    <span class="info-box-icon bg-aqua"><i class="ion ion-android-calendar"></i></span>
+                    <div class="info-box-content">
+                        <span class="info-box-text">{_admin.dashboard.events.upcoming, $eventsCounts->all}</span>
+                        <span class="info-box-text inline">{_admin.dashboard.events.thisMonth}:</span>
+                        <span class="info-box-number inline">{$eventsCounts->thisMonth}</span>
+                        <br />
+                        <span class="info-box-text inline">{_admin.dashboard.events.nextMonth}:</span>
+                        <span class="info-box-number inline">{$eventsCounts->nextMonth}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </a>
 {/block}
