@@ -54,4 +54,13 @@ $(function () {
         }
     });
 
+    // Scroll to flash messages if new appear
+    $('#snippet--flash-messages').bind('DOMNodeInserted', '.flash', function(e) {
+        if (!$('html,body').is(':animated') && $(this)[0].getBoundingClientRect().top < 0) { // scroll if needed and only once (DOMNodeInserted fires 3x)
+            $('html, body').animate({
+                scrollTop: $(this).offset().top - 15
+            }, 300);
+        }
+    });
+
 });

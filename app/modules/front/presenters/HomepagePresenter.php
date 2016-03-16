@@ -57,16 +57,24 @@ class HomepagePresenter extends BasePresenter
 		$control->onEmailExists[] = function ($email) {
 			$this['eventsList']->redrawControl();
 
-			$this->flashMessage($this->translator->translate('front.subscription.message.emailExists',
-				['email' => Html::el('strong')->setText($email)]));
+			$this->flashMessage(
+				'<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>' .
+				$this->translator->translate('front.subscription.message.emailExists',
+					['email' => Html::el('strong')->setText($email)]),
+				'success');
+
 			$this->redrawControl('flash-messages');
 		};
 
 		$control->onSuccess[] = function ($email) {
 			$this['eventsList']->redrawControl();
 
-			$this->flashMessage($this->translator->translate('front.subscription.message.success',
-				['email' => Html::el('strong')->setText($email)]));
+			$this->flashMessage(
+				'<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>' .
+				$this->translator->translate('front.subscription.message.success',
+					['email' => Html::el('strong')->setText($email)]),
+				'success');
+
 			$this->redrawControl('flash-messages');
 		};
 

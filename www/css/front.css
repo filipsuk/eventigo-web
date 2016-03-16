@@ -64,6 +64,12 @@ header .header-box {
 }
 .flash-messages .flash {
   margin-bottom: 2rem;
+  padding: 1rem;
+  color: #ffffff;
+  background-color: #8bc34a;
+}
+.flash-messages .flash .glyphicon {
+  margin-right: 0.5rem;
 }
 .tags-box .tags-header {
   font-size: 1.4rem;

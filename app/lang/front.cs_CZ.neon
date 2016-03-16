@@ -10,8 +10,8 @@ subscription.form.email.validation: Email je špatně. Zadej správně svou emai
 subscription.form.email.required: Zadej svou emailovou adresu
 subscription.form.subscribe.label: Chci dostávat výběr akcí
 subscription.form.email.label: "<span class='accent-color bold'>2.</span> Vyplň svou adresu"
-subscription.message.emailExists: "Nesmírně náš těsí tvůj zájem o naše služby. Email %email% byl již dříve přidán, ale zřejmě se nemůžeš dočkat pravidelného přehledu akcí, tak jsme ti rovnou poslali jeden čerstvý"
-subscription.message.success: Děkujeme za zájem. Na email %email% ti budou od teď bude pravidelně chodit přehled akcí
+subscription.message.emailExists: "Email %email% je již zaregistrován. Neboj, nezapomněli jsme na tebe. :)"
+subscription.message.success: "Vítej mezi námi! Na adresu %email% bude pravidelně chodit přehled akcí. Hlavně o eventigu nikomu neříkej, ať všechny ty maily stíháme. :)"
 events.thisWeek.title: Tento týden
 events.thisMonth.title: Tento měsíc
 events.nextMonth.title: Příští měsíc
