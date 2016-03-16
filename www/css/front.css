@@ -161,10 +161,17 @@ section#main {
 #events-list .event-box .event-image {
   height: 130px;
   overflow: hidden;
+  position: relative;
 }
 #events-list .event-box .event-image img {
   width: 100%;
   height: auto;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
 }
 #events-list .event-box .event-text {
   padding: 0.6rem 0.8rem;
@@ -212,7 +219,7 @@ footer .heart {
     width: 100%;
   }
 }
-@media only screen and (max-width: 320px) {
+@media only screen and (max-width: 360px) {
   header {
     padding-bottom: 3rem;
   }
@@ -235,8 +242,9 @@ footer .heart {
   #subscription {
     padding: 0.6rem 0;
   }
-  #subscription input:first-child {
-    margin-bottom: 0.5rem;
+  #subscription input[type=email] {
+    margin-top: 0.2rem;
+    margin-bottom: 0.4rem;
   }
   #tracy-debug-bar {
     display: none;

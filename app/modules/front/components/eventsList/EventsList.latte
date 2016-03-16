@@ -3,21 +3,21 @@
         <div class="row">
             {foreach $events as $event}
                 {* Titles *}
-                <div n:if="$events->drawThisWeekTitle()" class="events-list-title col-lg-12">
+                <div n:if="$events->drawThisWeekTitle()" class="events-list-title col-sm-12">
                     {_front.events.thisWeek.title}
                 </div>
-                <div n:if="$events->drawThisMonthTitle()" class="events-list-title col-lg-12">
+                <div n:if="$events->drawThisMonthTitle()" class="events-list-title col-sm-12">
                     {_front.events.thisMonth.title}
                 </div>
-                <div n:if="$events->drawNextMonthTitle()" class="events-list-title col-lg-12">
+                <div n:if="$events->drawNextMonthTitle()" class="events-list-title col-sm-12">
                     {_front.events.nextMonth.title}
                 </div>
-                <div n:if="$events->drawUpcomingTitle()" class="events-list-title col-lg-12">
+                <div n:if="$events->drawUpcomingTitle()" class="events-list-title col-sm-12">
                     {_front.events.upcoming.title}
                 </div>
 
                 {* Events *}
-                <div class="col-lg-4">
+                <div class="col-sm-4">
                     <div class="event-box">
                         <div class="event-image">
                             <a n:tag-if="$event->origin_url" target="_blank" href="{$event->origin_url}">
