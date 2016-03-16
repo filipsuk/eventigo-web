@@ -9,3 +9,4 @@ app/config/config.local.neon
 www/libs/*
 !www/libs/.gitkeep
 composer.phar
+phinx.yml
