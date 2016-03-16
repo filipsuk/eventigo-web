@@ -34,3 +34,4 @@ signInForm.password: Heslo
 signInForm.password.placeholder: Heslo
 signInForm.password.required: Zadej heslo
 signInForm.signIn: Přihlásit
+signOut: Odhlásit
