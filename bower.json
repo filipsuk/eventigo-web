@@ -8,7 +8,7 @@
     "nette.ajax.js": "~2.0",
     "select2": "~4.0",
     "eonasdan-bootstrap-datetimepicker": "~4.17.37",
-    "AdminLTE": "~2.3.2"
+    "admin-lte": "~2.3.2"
   },
   "private": true
 }
