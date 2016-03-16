@@ -2,6 +2,8 @@ parameters:
 	security:
 		key: "***REMOVED***"
 
+	googleAnalyticsKey: ***REMOVED***
+
 database:
 	dsn: 'mysql:host=127.0.0.1:8889;dbname=events'
 	user:

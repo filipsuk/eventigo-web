@@ -10,10 +10,10 @@
   width: 100%;
 }
 #main form td.td-control textarea {
-  border: 1px solid #ccc;
+  border: 1px solid #cccccc;
 }
 #main form td.td-control .select2-container--default .select2-selection--single {
-  border: 1px solid #ccc;
+  border: 1px solid #cccccc;
 }
 #main form fieldset {
   border: none;

@@ -29,4 +29,13 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter
 
 		return $template;
 	}
+
+	protected function beforeRender()
+	{
+		parent::beforeRender();
+
+		$this->template->parameters = $this->context->getParameters();
+
+	}
+
 }

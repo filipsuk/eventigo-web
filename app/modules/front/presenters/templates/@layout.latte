@@ -59,6 +59,20 @@
 
 <body>
 
+	{* Google Analytics if key is set in local config *}
+	{* TODO: put in separate file *}
+	{if !empty($parameters['googleAnalyticsKey'])}
+		<script n:syntax="double">
+			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+					m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+			ga('create', {{$parameters['googleAnalyticsKey']}}, 'auto');
+			ga('send', 'pageview');
+		</script>
+	{/if}
+
 	<section>
 		{block header}{/block}
 	</section>
