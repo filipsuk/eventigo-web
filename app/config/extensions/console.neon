@@ -6,6 +6,7 @@ console:
 	commands:
 		- App\Modules\Newsletter\Console\CreateNewslettersCommand
 		- App\Modules\Newsletter\Console\SendNewslettersCommand
+		- App\Modules\Admin\Console\GeneratePasswordCommand
 
 services:
 	createNewsletterCommand:
@@ -13,4 +14,7 @@ services:
 		tags: [kdyby.console.command]
 	sendNewsletterCommand:
 		class: App\Modules\Newsletter\Console\SendNewslettersCommand
+		tags: [kdyby.console.commandexit]
+	generatePasswordCommand:
+		class: App\Modules\Admin\Console\GeneratePasswordCommand
 		tags: [kdyby.console.command]
