@@ -164,20 +164,10 @@ section#main {
   height: 15.3rem;
   border-bottom: 1px solid #e4e4e4;
 }
-#events-list .event-box .event-image {
-  height: 130px;
-  overflow: hidden;
-  position: relative;
-}
 #events-list .event-box .event-image img {
   width: 100%;
-  height: auto;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  -webkit-transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
+  height: 130px;
+  object-fit: cover;
 }
 #events-list .event-box .event-text {
   padding: 0.6rem 0.8rem;
