@@ -33,7 +33,7 @@
                                 </a>
                             </div>
                             <div class="event-text-desc">
-                                {foreach $event->related('events_tags') as $tag}
+                                {foreach $event->related('events_tags')->order('rate DESC') as $tag}
                                     <span>#{$tag->tag->code}</span>
                                 {/foreach}
                             </div>
