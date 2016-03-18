@@ -65,7 +65,7 @@ class EventModel extends BaseModel
 			->select('MONTH(start) = MONTH(?) AS thisMonth', $calculateFrom)
 			->select('MONTH(start) = MONTH(?) AS nextMonth', $calculateFrom->modifyClone('+1 MONTH'));
 		if ($from) {
-			$selection->where('end >= ?', $from);
+			$selection->where('end >= ? OR end IS NULL', $from);
 		}
 		if ($from && $to) {
 			$selection->where('created BETWEEN ? AND ?', $from, $to);
