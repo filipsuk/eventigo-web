@@ -79,14 +79,12 @@ class EventModel extends BaseModel
 				->select('DISTINCT(event_id)')
 				->where('tag_id', $tagsIds)
 				->order('rate DESC')
-				->limit(EventModel::EVENTS_LIMIT)
 				->fetchAssoc('[]=event_id');
 
 			$selection->where('id', $eventsTags);
 		}
 
 		return $selection->order('start')
-			->limit(self::EVENTS_LIMIT)
 			->fetchPairs('id');
 	}
 }
