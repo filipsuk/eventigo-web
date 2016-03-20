@@ -7,8 +7,10 @@ $(function () {
     });
 
     // Move email subscription
-    $('#subscription').appendTo('.subscription-box');
-    $('.subscription-box input').attr('form', $('form').attr('id'));
+    var box = $('.subscription-box');
+    $('#subscription').appendTo(box);
+    box.find('input').attr('form', $('form').attr('id'));
+    box.data('originalOffset', box.offset().top);
 
     // Sticky subscription box
     // TODO: improve on mobile (now footer hidden on mobile to make it work)
@@ -20,7 +22,7 @@ $(function () {
                 .addClass('fixed-down');
         }
         // Fixed on bottom of the screen
-        else if ($('#main')[0].getBoundingClientRect().top  - $(window).height() < -420) {
+        else if ($('#main')[0].getBoundingClientRect().top  - $(window).height() < $('#main').offset().top - box.data('originalOffset') - box.height()) {
             box.addClass('fixed')
                 .removeClass('fixed-down');;
         }

@@ -8,6 +8,8 @@
 @headerButtonColor: @accentColor;
 @headerButtonColorHover: darken(@headerButtonColor, 4%);
 
+@logoFontColor: #D7E0E6;
+
 html {
   font-size: 15px;
 }
@@ -16,10 +18,6 @@ body {
   font-family: @baseFont;
   background-color: @bodyBackground;
   color: @primaryTextColor;
-}
-
-@media only screen and (max-width: 320px) {
-  body { font-size: 200%; }
 }
 
 h1,h2,h3,h4{
@@ -41,19 +39,21 @@ header {
   h1.logo {
     font-weight: 400;
     font-size: 2rem;
+    color: @logoFontColor;
   }
 
   h2 {
     font-size: 3rem;
-    margin: 1.2rem;
+    margin: 0 0 1.2rem;
   }
   h3 {
     font-size: 2rem;
   }
 
   p {
+    -webkit-font-smoothing: antialiased;
     font-weight: 300;
-    font-size: 1.5em;
+    font-size: 1.5rem;
   }
 
   .btn, .btn:active, .btn:focus {
@@ -155,7 +155,7 @@ section#main {
 .subscription-box {
   background-color: darken(@bodyBackground, 3%);
   position: absolute;
-  top: 350px;
+  top: 550px;
   width: 100%;
 
   &.fixed{
@@ -262,7 +262,7 @@ footer {
 }
 
 // iPhone 5/5S
-@media only screen and (max-width: 360px) {
+@media only screen and (max-width: 768px) {
   header{
     padding-bottom: 3rem;
     h2 { font-size: 2rem; }
@@ -288,6 +288,16 @@ footer {
     input[type=email] {
       margin-top: 0.2rem;
       margin-bottom: 0.4rem;
+      margin-right: 0;
+      width: 17rem;
+    }
+
+    .subscription-label {
+      font-size: 1.2rem;
+    }
+
+    .btn {
+      vertical-align: baseline;
     }
   }
 
@@ -296,6 +306,6 @@ footer {
   }
 
   footer {
-    display: none;
+    //display: none;
   }
 }

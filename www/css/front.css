@@ -7,11 +7,6 @@ body {
   background-color: #f9f9f9;
   color: #212121;
 }
-@media only screen and (max-width: 320px) {
-  body {
-    font-size: 200%;
-  }
-}
 h1,
 h2,
 h3,
@@ -30,17 +25,19 @@ header {
 header h1.logo {
   font-weight: 400;
   font-size: 2rem;
+  color: #d7e0e6;
 }
 header h2 {
   font-size: 3rem;
-  margin: 1.2rem;
+  margin: 0 0 1.2rem;
 }
 header h3 {
   font-size: 2rem;
 }
 header p {
+  -webkit-font-smoothing: antialiased;
   font-weight: 300;
-  font-size: 1.5em;
+  font-size: 1.5rem;
 }
 header .btn,
 header .btn:active,
@@ -129,7 +126,7 @@ section#main {
 .subscription-box {
   background-color: #f1f1f1;
   position: absolute;
-  top: 350px;
+  top: 550px;
   width: 100%;
 }
 .subscription-box.fixed {
@@ -216,7 +213,7 @@ footer .heart {
     width: 100%;
   }
 }
-@media only screen and (max-width: 360px) {
+@media only screen and (max-width: 768px) {
   header {
     padding-bottom: 3rem;
   }
@@ -242,11 +239,16 @@ footer .heart {
   #subscription input[type=email] {
     margin-top: 0.2rem;
     margin-bottom: 0.4rem;
+    margin-right: 0;
+    width: 17rem;
+  }
+  #subscription .subscription-label {
+    font-size: 1.2rem;
+  }
+  #subscription .btn {
+    vertical-align: baseline;
   }
   #tracy-debug-bar {
-    display: none;
-  }
-  footer {
     display: none;
   }
 }
