@@ -10,12 +10,14 @@ $(function () {
     var box = $('.subscription-box');
     $('#subscription').appendTo(box);
     box.find('input').attr('form', $('form').attr('id'));
-    box.data('originalOffset', box.offset().top);
 
     // Sticky subscription box
     // TODO: improve on mobile (now footer hidden on mobile to make it work)
     $(window).on("scroll", function() {
         var box = $('.subscription-box');
+        if (!box.data('originalOffset')) {
+            box.data('originalOffset', box.offset().top);
+        }
         // Fixed above footer
         if ($('footer')[0].getBoundingClientRect().top - $(window).height() < 0) {
             box.removeClass('fixed')

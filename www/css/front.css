@@ -248,6 +248,9 @@ footer .heart {
   #subscription .btn {
     vertical-align: baseline;
   }
+  .subscription-box {
+    top: 1000px;
+  }
   #tracy-debug-bar {
     display: none;
   }
