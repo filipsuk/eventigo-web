@@ -26,7 +26,7 @@ $(function () {
         // Fixed on bottom of the screen
         else if ($('#main')[0].getBoundingClientRect().top  - $(window).height() < $('#main').offset().top - box.data('originalOffset') - box.height()) {
             box.addClass('fixed')
-                .removeClass('fixed-down');;
+                .removeClass('fixed-down');
         }
         // In the middle of events list ready to be fixed
         else {
