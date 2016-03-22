@@ -1,10 +1,10 @@
 homepage.header.logo: eventigo
 homepage.header.title: Každý týden výběr akcí přesně pro tebe
 homepage.header.mainTitle: "Eventy, které tě zajímají"
-homepage.header.howItWorks: "Řekni nám, co Tě zajímá a my za tebe budeme kontrolovat všechny zdroje eventů."
+homepage.header.howItWorks: "Řekni nám, co tě zajímá, a my za tebe budeme kontrolovat všechny zdroje eventů."
 homepage.header.subTitle: "Email každý týden s výběrem akcí přesně pro tebe"
 homepage.header.button: To chci vyzkoušet
-homepage.tags.header: "<span class='accent-color bold'>1.</span> Zaškrtni co tě zajímá"
+homepage.tags.header: "<span class='accent-color bold'>1.</span> Zaškrtni, co tě zajímá"
 homepage.events.header: Nalezené akce
 subscription.form.email.placeholder: @
 subscription.form.email.validation: Email je špatně. Zadej správně svou emailovou adresu
