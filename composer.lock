@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "786bdbd36597328c31fc954e4ebc0bc3",
-    "content-hash": "5d5ed9be8424986a76aa0a0ea2e8597f",
+    "hash": "330c5e5002ba490d04c7bc74d7a27f56",
+    "content-hash": "9ca4758a3f73551c90f418a3e3182429",
     "packages": [
         {
             "name": "defuse/php-encryption",
@@ -51,25 +51,6 @@
                 "security"
             ],
             "time": "2015-03-14 20:27:45"
-        },
-        {
-            "name": "dg/adminer-custom",
-            "version": "v1.7.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/dg/adminer-custom.git",
-                "reference": "9866cc99392904ea99f139c41064cc81932e39aa"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/dg/adminer-custom/zipball/9866cc99392904ea99f139c41064cc81932e39aa",
-                "reference": "9866cc99392904ea99f139c41064cc81932e39aa",
-                "shasum": ""
-            },
-            "type": "project",
-            "notification-url": "https://packagist.org/downloads/",
-            "description": "Customization for the best database management tool written in PHP, Adminer",
-            "time": "2016-02-06 21:42:41"
         },
         {
             "name": "kdyby/console",
@@ -1223,67 +1204,6 @@
             "time": "2015-11-30 00:11:35"
         },
         {
-            "name": "robmorgan/phinx",
-            "version": "v0.5.3",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/robmorgan/phinx.git",
-                "reference": "4e7fee7792f4bf3dbf55ee29001850ba26c86a88"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/robmorgan/phinx/zipball/4e7fee7792f4bf3dbf55ee29001850ba26c86a88",
-                "reference": "4e7fee7792f4bf3dbf55ee29001850ba26c86a88",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.4",
-                "symfony/config": "~2.8|~3.0",
-                "symfony/console": "~2.8|~3.0",
-                "symfony/yaml": "~2.8|~3.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "^3.7|^4.0|^5.0"
-            },
-            "bin": [
-                "bin/phinx"
-            ],
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Phinx\\": "src/Phinx"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Rob Morgan",
-                    "email": "robbym@gmail.com",
-                    "homepage": "http://robmorgan.id.au",
-                    "role": "Lead Developer"
-                },
-                {
-                    "name": "Woody Gilk",
-                    "email": "woody.gilk@gmail.com",
-                    "homepage": "http://shadowhand.me",
-                    "role": "Developer"
-                }
-            ],
-            "description": "Phinx makes it ridiculously easy to manage the database migrations for your PHP app.",
-            "homepage": "https://phinx.org",
-            "keywords": [
-                "database",
-                "database migrations",
-                "db",
-                "migrations",
-                "phinx"
-            ],
-            "time": "2016-03-07 14:09:22"
-        },
-        {
             "name": "symfony/config",
             "version": "v2.8.3",
             "source": {
@@ -1569,55 +1489,6 @@
             "time": "2016-02-02 09:49:18"
         },
         {
-            "name": "symfony/yaml",
-            "version": "v3.0.3",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/symfony/yaml.git",
-                "reference": "b5ba64cd67ecd6887f63868fa781ca094bd1377c"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/symfony/yaml/zipball/b5ba64cd67ecd6887f63868fa781ca094bd1377c",
-                "reference": "b5ba64cd67ecd6887f63868fa781ca094bd1377c",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.5.9"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "3.0-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Symfony\\Component\\Yaml\\": ""
-                },
-                "exclude-from-classmap": [
-                    "/Tests/"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com"
-                },
-                {
-                    "name": "Symfony Community",
-                    "homepage": "https://symfony.com/contributors"
-                }
-            ],
-            "description": "Symfony Yaml Component",
-            "homepage": "https://symfony.com",
-            "time": "2016-02-23 15:16:06"
-        },
-        {
             "name": "tracy/tracy",
             "version": "v2.3.10",
             "source": {
@@ -1676,16 +1547,16 @@
     "packages-dev": [
         {
             "name": "nette/tester",
-            "version": "v1.7.0",
+            "version": "v1.7.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nette/tester.git",
-                "reference": "efbc31ff4ee0bef28da712a726316e8b0b5bf262"
+                "reference": "d97534578e8cf66eabe081e7d5eaa4dd527ab0c8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nette/tester/zipball/efbc31ff4ee0bef28da712a726316e8b0b5bf262",
-                "reference": "efbc31ff4ee0bef28da712a726316e8b0b5bf262",
+                "url": "https://api.github.com/repos/nette/tester/zipball/d97534578e8cf66eabe081e7d5eaa4dd527ab0c8",
+                "reference": "d97534578e8cf66eabe081e7d5eaa4dd527ab0c8",
                 "shasum": ""
             },
             "require": {
@@ -1728,7 +1599,117 @@
                 "testing",
                 "unit"
             ],
-            "time": "2016-02-08 10:30:15"
+            "time": "2016-03-19 14:34:02"
+        },
+        {
+            "name": "robmorgan/phinx",
+            "version": "v0.5.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/robmorgan/phinx.git",
+                "reference": "4e7fee7792f4bf3dbf55ee29001850ba26c86a88"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/robmorgan/phinx/zipball/4e7fee7792f4bf3dbf55ee29001850ba26c86a88",
+                "reference": "4e7fee7792f4bf3dbf55ee29001850ba26c86a88",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4",
+                "symfony/config": "~2.8|~3.0",
+                "symfony/console": "~2.8|~3.0",
+                "symfony/yaml": "~2.8|~3.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^3.7|^4.0|^5.0"
+            },
+            "bin": [
+                "bin/phinx"
+            ],
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Phinx\\": "src/Phinx"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Rob Morgan",
+                    "email": "robbym@gmail.com",
+                    "homepage": "http://robmorgan.id.au",
+                    "role": "Lead Developer"
+                },
+                {
+                    "name": "Woody Gilk",
+                    "email": "woody.gilk@gmail.com",
+                    "homepage": "http://shadowhand.me",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Phinx makes it ridiculously easy to manage the database migrations for your PHP app.",
+            "homepage": "https://phinx.org",
+            "keywords": [
+                "database",
+                "database migrations",
+                "db",
+                "migrations",
+                "phinx"
+            ],
+            "time": "2016-03-07 14:09:22"
+        },
+        {
+            "name": "symfony/yaml",
+            "version": "v3.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/yaml.git",
+                "reference": "b5ba64cd67ecd6887f63868fa781ca094bd1377c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/yaml/zipball/b5ba64cd67ecd6887f63868fa781ca094bd1377c",
+                "reference": "b5ba64cd67ecd6887f63868fa781ca094bd1377c",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5.9"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Component\\Yaml\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony Yaml Component",
+            "homepage": "https://symfony.com",
+            "time": "2016-02-23 15:16:06"
         }
     ],
     "aliases": [],

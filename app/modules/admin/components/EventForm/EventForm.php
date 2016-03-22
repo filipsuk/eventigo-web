@@ -58,8 +58,7 @@ class EventForm extends BaseControl
 		$form->addTextArea('description', 'description')
 			->setRequired('description.required');
 		$form->addText('image', 'image');
-		$form->addSelect('rate', $this->translator->translate('admin.eventForm.rate'),
-			$rate = array_combine($range = range(1, 10, 1), $range))
+		$form->addSelect('rate', $this->translator->translate('admin.eventForm.rate'), $this->getEventRates())
 			->setPrompt($this->translator->translate('admin.eventForm.rate.prompt'))
 			->setRequired('rate.required')
 			->setTranslator(null);
@@ -75,7 +74,7 @@ class EventForm extends BaseControl
 				->setPrompt($this->translator->translate('admin.eventForm.tag.prompt'))
 				->setTranslator(null);
 
-			$rateControl = $tagContainer->addSelect('rate', $this->translator->translate('admin.eventForm.tag.rate'), $rate)
+			$rateControl = $tagContainer->addSelect('rate', $this->translator->translate('admin.eventForm.tag.rate'), $this->getTagsRates())
 				->setPrompt($this->translator->translate('admin.eventForm.tag.rate.prompt'))
 				->setTranslator(null);
 			$rateControl->addConditionOn($codeControl, Form::FILLED)
@@ -102,5 +101,29 @@ class EventForm extends BaseControl
 			$this->eventService->updateEvent($values);
 			$this->onUpdate();
 		}
+	}
+
+
+	private function getEventRates()
+	{
+		return [
+			1 => $this->translator->translate('admin.eventForm.rate.meetup'),
+			$this->translator->translate('admin.eventForm.rate.bigMeetup'),
+			$this->translator->translate('admin.eventForm.rate.conference'),
+			$this->translator->translate('admin.eventForm.rate.bigConference'),
+			$this->translator->translate('admin.eventForm.rate.extraConference'),
+		];
+	}
+
+
+	private function getTagsRates()
+	{
+		return [
+			1 => $this->translator->translate('admin.eventForm.tag.rate.little'),
+			$this->translator->translate('admin.eventForm.tag.rate.more'),
+			$this->translator->translate('admin.eventForm.tag.rate.good'),
+			$this->translator->translate('admin.eventForm.tag.rate.reallyGood'),
+			$this->translator->translate('admin.eventForm.tag.rate.total'),
+		];
 	}
 }

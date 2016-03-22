@@ -12,12 +12,22 @@ eventForm.start.required: Zadej začátek akce
 eventForm.end: Do
 eventForm.image: Obrázek
 eventForm.rate: Velikost akce
+eventForm.rate.meetup: "Sraz (< 50)"
+eventForm.rate.bigMeetup: "Větší sraz (< 200)"
+eventForm.rate.conference: "Konference (< 500)"
+eventForm.rate.bigConference: "Velká konference (< 1000)"
+eventForm.rate.extraConference: "Extra konference (> 1000)"
 eventForm.rate.prompt: Vyber velikost akce
 eventForm.rate.required: Vyber velikost akce
 eventForm.tags: Tagy
 eventForm.tag: Tag
 eventForm.tag.prompt: Vyber tag
 eventForm.tag.rate: Hodnocení
+eventForm.tag.rate.little: Trochu
+eventForm.tag.rate.more: Víc
+eventForm.tag.rate.good: Dobré
+eventForm.tag.rate.reallyGood: Dost dobré
+eventForm.tag.rate.total: Nabyté
 eventForm.tag.rate.prompt: Vyber velikost tagu
 eventForm.tag.rate.required: Vyber velikost tagu
 eventForm.save: Uložit
