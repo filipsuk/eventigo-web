@@ -28,7 +28,11 @@ class RouterFactory
 		$router[] = $newsletterRouter;
 
 		// Front
-		$router[] = new Route('<presenter>/<action>[/<id>]', 'Front:Homepage:default');
+		$router[] = new Route('<presenter>/<action>[/<id>]', [
+			'module' => 'Front',
+			'presenter' => 'Homepage',
+			'action' => 'default'
+		]);
 		return $router;
 	}
 
