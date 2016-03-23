@@ -17,3 +17,5 @@ services:
 	- App\Modules\Core\Model\EventRedirectModel
 	- App\Modules\Core\Model\TagGroupModel
 	- App\Modules\Core\Model\EventSources\Facebook\FacebookEventSource
+	- App\Modules\Core\Model\OrganiserModel
+	- App\Modules\Core\Model\EventSeriesModel
