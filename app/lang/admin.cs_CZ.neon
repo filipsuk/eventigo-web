@@ -23,6 +23,8 @@ eventForm.rate.bigConference: "Velká konference (< 1000)"
 eventForm.rate.extraConference: "Extra konference (> 1000)"
 eventForm.rate.prompt: Vyber velikost akce
 eventForm.rate.required: Vyber velikost akce
+eventForm.eventSeries: Série organizátora
+eventForm.eventSeries.prompt: Vyber sérii organizátora
 eventForm.tags: Tagy
 eventForm.tag: Tag
 eventForm.tag.prompt: Vyber tag

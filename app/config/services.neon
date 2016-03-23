@@ -19,3 +19,4 @@ services:
 	- App\Modules\Core\Model\EventSources\Facebook\FacebookEventSource
 	- App\Modules\Core\Model\OrganiserModel
 	- App\Modules\Core\Model\EventSeriesModel
+	- App\Modules\Admin\Model\OrganiserService
