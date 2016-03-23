@@ -8,3 +8,4 @@ services:
 	- App\Modules\Core\Model\EventTagModel
 	- App\Modules\Admin\Model\EventService
 	- App\Modules\Admin\Model\Authenticator
+	- App\Modules\Core\Model\EventRedirectModel
