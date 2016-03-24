@@ -16,7 +16,7 @@ class SignPresenter extends \Nette\Application\UI\Presenter
 
 	public function actionIn()
 	{
-		if ($this->getUser()->isLoggedIn()) {
+		if ($this->getUser()->isLoggedIn() && $this->getUser()->isInRole('admin')) {
 			$this->redirect('Dashboard:');
 		}
 	}
@@ -41,7 +41,14 @@ class SignPresenter extends \Nette\Application\UI\Presenter
 
 	public function actionOut()
 	{
-		$this->getUser()->logout(true);
+		if (!$this->getUser()->isLoggedIn()) {
+			$this->redirect('in');
+		}
+
+		if ($this->getUser()->isInRole('admin')) {
+			$this->getUser()->logout(true);
+		}
+
 		$this->redirect('in');
 	}
 }

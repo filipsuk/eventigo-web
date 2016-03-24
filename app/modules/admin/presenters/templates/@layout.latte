@@ -71,7 +71,7 @@
                     <li class="dropdown notifications-menu">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <i class="fa fa-user"></i>
-                            <span class="hidden-xs">{$user->id}</span>
+                            <span class="hidden-xs">{$user->getIdentity()->email}</span>
                         </a>
                         <ul class="dropdown-menu">
                             <li>

@@ -47,7 +47,7 @@ class Authenticator implements IAuthenticator
 		if ($user !== false) {
 			switch ($type) {
 				case UserModel::SUBSCRIPTION_LOGIN:
-					return new Identity($email);
+					return new Identity($user->id, null, $user->toArray());
 				case UserModel::ADMIN_LOGIN:
 					return $this->logToAdmin($user, $password);
 				default:
@@ -73,7 +73,7 @@ class Authenticator implements IAuthenticator
 			$hash = \Crypto::Decrypt(base64_decode($user->password), $key);
 
 			if (Passwords::verify($password, $hash)) {
-				return new Identity($user->email);
+				return new Identity($user->id, ['admin'], $user->toArray());
 			} else {
 				throw new AuthenticationException('Incorrect credentials', IAuthenticator::INVALID_CREDENTIAL);
 			}

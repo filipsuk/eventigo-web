@@ -14,7 +14,7 @@ abstract class BasePresenter extends \App\Modules\Core\Presenters\BasePresenter
 	{
 		parent::startup();
 
-		if (!$this->getUser()->isLoggedIn() && !$this->getUser()->isInRole('admin')) {
+		if (!$this->getUser()->isLoggedIn() || !$this->getUser()->isInRole('admin')) {
 			$this->redirect('Sign:in');
 		}
 	}
