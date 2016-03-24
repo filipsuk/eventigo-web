@@ -54,10 +54,14 @@ class EventForm extends BaseControl
 			->setAttribute('class', 'datetime');
 		$form->addText('end', 'end')
 			->setAttribute('class', 'datetime');
-		$form->addText('origin_url', 'originUrl');
+		$form->addText('origin_url', 'originUrl')
+			->addCondition(Form::FILLED)
+			->addRule(Form::URL, 'originUrl.wrong');
 		$form->addTextArea('description', 'description')
 			->setRequired('description.required');
-		$form->addText('image', 'image');
+		$form->addText('image', 'image')
+			->addCondition(Form::FILLED)
+			->addRule(Form::URL, 'image.wrong');
 		$form->addSelect('rate', $this->translator->translate('admin.eventForm.rate'), $this->getEventRates())
 			->setPrompt($this->translator->translate('admin.eventForm.rate.prompt'))
 			->setRequired('rate.required')

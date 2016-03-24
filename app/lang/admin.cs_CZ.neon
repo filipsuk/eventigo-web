@@ -7,10 +7,12 @@ eventForm.name.required: Zadej název akce
 eventForm.description: Popis
 eventForm.description.required: Zadej popis akce
 eventForm.originUrl: Odkaz
+eventForm.originUrl.wrong: Zadej platný odkaz
 eventForm.start: Od
 eventForm.start.required: Zadej začátek akce
 eventForm.end: Do
 eventForm.image: Obrázek
+eventForm.image.wrong: Zadej platný odkaz obrázku
 eventForm.rate: Velikost akce
 eventForm.rate.meetup: "Sraz (< 50)"
 eventForm.rate.bigMeetup: "Větší sraz (< 200)"
