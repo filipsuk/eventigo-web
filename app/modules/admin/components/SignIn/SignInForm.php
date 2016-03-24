@@ -4,6 +4,7 @@ namespace App\Modules\Admin\Components;
 
 use App\Modules\Core\Components\BaseControl;
 use App\Modules\Core\Components\Form\Form;
+use App\Modules\Core\Model\UserModel;
 use Nette\Security\AuthenticationException;
 
 
@@ -46,7 +47,7 @@ class SignInForm extends BaseControl
 		$values = $form->getValues();
 
 		try {
-			$this->getPresenter()->getUser()->login($values->email, $values->password);
+			$this->getPresenter()->getUser()->login(UserModel::ADMIN_LOGIN, $values->email, $values->password);
 
 		} catch (AuthenticationException $e) {
 			$this->onIncorrectLogIn();

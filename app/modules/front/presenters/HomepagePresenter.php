@@ -4,6 +4,7 @@ namespace App\Modules\Front\Presenters;
 
 use App\Modules\Core\Model\EventModel;
 use App\Modules\Core\Model\TagModel;
+use App\Modules\Core\Model\UserModel;
 use App\Modules\Core\Presenters\BasePresenter;
 use App\Modules\Front\Components\EventsList\EventsListFactory;
 use App\Modules\Front\Components\SubscriptionTags\ISubscriptionTagsFactory;
@@ -67,6 +68,8 @@ class HomepagePresenter extends BasePresenter
 		};
 
 		$control->onSuccess[] = function ($email) {
+			$this->getUser()->login(UserModel::SUBSCRIPTION_LOGIN, $email);
+
 			$this['eventsList']->redrawControl();
 
 			$this->flashMessage(

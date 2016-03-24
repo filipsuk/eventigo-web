@@ -14,6 +14,10 @@ class UserModel extends BaseModel
 {
 	const TABLE_NAME = 'users';
 
+	/** Login types */
+	const SUBSCRIPTION_LOGIN = 'subscription';
+	const ADMIN_LOGIN = 'admin';
+
 	/** @var Container */
 	private $container;
 

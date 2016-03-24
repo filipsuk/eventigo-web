@@ -6,6 +6,7 @@ use App\Modules\Core\Model\UserModel;
 use CannotPerformOperationException;
 use CryptoTestFailedException;
 use InvalidCiphertextException;
+use Nette\Database\Table\ActiveRow;
 use Nette\DI\Container;
 use Nette\Security\AuthenticationException;
 use Nette\Security\IAuthenticator;
@@ -15,9 +16,6 @@ use Nette\Security\Passwords;
 
 class Authenticator implements IAuthenticator
 {
-	const INCORRECT_CREDENTIALS = 1;
-	const USER_NOT_FOUND = 2;
-
 	/** @var UserModel */
 	private $userModel;
 
@@ -32,9 +30,14 @@ class Authenticator implements IAuthenticator
 	}
 
 
+	/**
+	 * @param array $credentials
+	 * @return Identity
+	 * @throws AuthenticationException
+	 */
 	public function authenticate(array $credentials)
 	{
-		list($email, $password) = $credentials;
+		@list($type, $email, $password) = $credentials; // Password is optional, suppress the notice
 
 		// Get user with same email
 		$user = $this->userModel->getAll()->where([
@@ -42,26 +45,45 @@ class Authenticator implements IAuthenticator
 		])->fetch();
 
 		if ($user !== false) {
-			$key = $this->container->getParameters()['security']['key'];
-
-			try {
-				$hash = \Crypto::Decrypt(base64_decode($user->password), $key);
-
-				if (Passwords::verify($password, $hash)) {
+			switch ($type) {
+				case UserModel::SUBSCRIPTION_LOGIN:
 					return new Identity($email);
-				} else {
-					throw new AuthenticationException('Incorrect credentials', Authenticator::INCORRECT_CREDENTIALS);
-				}
-
-			} catch (InvalidCiphertextException $e) {
-				throw new AuthenticationException('Cannot decrypt ciphertext');
-			} catch (CryptoTestFailedException $e) {
-				throw new AuthenticationException('Cannot decrypt ciphertext');
-			} catch (CannotPerformOperationException $e) {
-				throw new AuthenticationException('Cannot decrypt ciphertext');
+				case UserModel::ADMIN_LOGIN:
+					return $this->logToAdmin($user, $password);
+				default:
+					throw new AuthenticationException('Unsupported login type', IAuthenticator::FAILURE);
 			}
 		} else {
-			throw new AuthenticationException('User with this email and password has not been found', Authenticator::USER_NOT_FOUND);
+			throw new AuthenticationException('User with this email and password has not been found', IAuthenticator::IDENTITY_NOT_FOUND);
+		}
+	}
+
+
+	/**
+	 * @param ActiveRow $user
+	 * @param string $password
+	 * @return Identity
+	 * @throws AuthenticationException
+	 */
+	private function logToAdmin(ActiveRow $user, string $password)
+	{
+		$key = $this->container->getParameters()['security']['key'];
+
+		try {
+			$hash = \Crypto::Decrypt(base64_decode($user->password), $key);
+
+			if (Passwords::verify($password, $hash)) {
+				return new Identity($user->email);
+			} else {
+				throw new AuthenticationException('Incorrect credentials', IAuthenticator::INVALID_CREDENTIAL);
+			}
+
+		} catch (InvalidCiphertextException $e) {
+			throw new AuthenticationException('Cannot decrypt ciphertext');
+		} catch (CryptoTestFailedException $e) {
+			throw new AuthenticationException('Cannot decrypt ciphertext');
+		} catch (CannotPerformOperationException $e) {
+			throw new AuthenticationException('Cannot decrypt ciphertext');
 		}
 	}
 }
