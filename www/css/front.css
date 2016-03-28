@@ -69,7 +69,8 @@ header .header-box {
   margin-right: 0.5rem;
 }
 .tags-box .tags-header {
-  font-size: 1.4rem;
+  font-size: 1.2rem;
+  font-weight: 600;
 }
 ul#tags {
   list-style-type: none;
@@ -111,21 +112,22 @@ section#main {
   border: 1px solid #D0D0D0;
 }
 #subscription .btn {
-  background-color: #8bc34a;
+  background-color: #649130;
   border-width: 0;
   font-size: 1rem;
   vertical-align: top;
 }
 #subscription .btn:hover {
-  background-color: #81bb3e;
+  background-color: #577d2a;
 }
 #subscription .subscription-label {
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   vertical-align: middle;
   margin-right: 0.5rem;
+  color: #ffffff;
 }
 .subscription-box {
-  background-color: #f1f1f1;
+  background-color: #8bc34a;
   position: absolute;
   top: 550px;
   width: 100%;
@@ -210,6 +212,20 @@ footer .heart {
 }
 .bold {
   font-weight: bold;
+}
+.step {
+  background-color: white;
+  border-radius: 15px;
+  width: 30px;
+  height: 30px;
+  display: inline-block;
+  line-height: 30px;
+  margin-right: 0.2rem;
+  text-align: center;
+}
+.step-accent {
+  background-color: #8bc34a;
+  color: #ffffff;
 }
 @media only screen and (max-width: 640px) {
   #events-list div.event-box {
