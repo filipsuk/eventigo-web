@@ -25,7 +25,8 @@ header {
 header h1.logo {
   font-weight: 400;
   font-size: 2rem;
-  color: #d7e0e6;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 0;
 }
 header h2 {
   font-size: 3rem;
@@ -37,7 +38,7 @@ header h3 {
 header p {
   -webkit-font-smoothing: antialiased;
   font-weight: 300;
-  font-size: 1.5rem;
+  font-size: 1.6rem;
 }
 header .btn,
 header .btn:active,
@@ -69,7 +70,7 @@ header .header-box {
   margin-right: 0.5rem;
 }
 .tags-box .tags-header {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   font-weight: 600;
 }
 ul#tags {
