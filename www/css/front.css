@@ -92,6 +92,7 @@ ul#tags li label {
 ul#tags li input:hover,
 ul#tags li label:hover {
   cursor: pointer;
+  color: #1976d2;
 }
 section#main {
   padding-top: 3.3rem;
