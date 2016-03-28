@@ -151,7 +151,9 @@ section#main {
   font-size: 1.2rem;
   margin: 1rem 0 0.6rem;
   text-align: center;
-  color: #727272;
+  color: #8bc34a;
+  font-weight: 600;
+  text-transform: uppercase;
 }
 #events-list .events-list-title:not(:first-child) {
   margin-top: 1.2rem;
