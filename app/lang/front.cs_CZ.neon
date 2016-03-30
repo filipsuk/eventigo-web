@@ -12,7 +12,7 @@ subscription.form.email.required: Zadej svou emailovou adresu
 subscription.form.subscribe.label: Chci dostávat týdenní výběr akcí
 subscription.form.email.label: "<span class='accent-color step'>2</span> Kam chceš akce posílat?"
 subscription.message.emailExists: "Email %email% je již zaregistrován. Neboj, nezapomněli jsme na tebe. :)"
-subscription.message.success: "Vítej mezi námi! Na adresu %email% bude pravidelně chodit přehled akcí. Hlavně o eventigu nikomu neříkej, ať všechny ty maily stíháme. :)"
+subscription.message.success: "Jsme rádi, že tě Eventigo zaujalo. Na adresu %email% ti bude pravidelně chodit přehled akcí."
 events.thisWeek.title: Tento týden
 events.thisMonth.title: Tento měsíc
 events.nextMonth.title: Příští měsíc
