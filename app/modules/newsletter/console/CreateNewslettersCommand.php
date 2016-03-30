@@ -3,7 +3,7 @@
 namespace App\Modules\Newsletter\Console;
 
 use App\Modules\Core\Model\UserModel;
-use App\Modules\Core\Model\UserNewsletterModel;
+use App\Modules\Newsletter\Model\NewsletterService;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
@@ -27,14 +27,14 @@ class CreateNewslettersCommand extends Command
 	{
 		$newsletterId = (int)$input->getArgument('newsletterId');
 
-		/** @var UserNewsletterModel $userNewsletterModel */
-		$userNewsletterModel = $this->getHelper('container')->getByType(UserNewsletterModel::class);
+		/** @var NewsletterService $newsletterService */
+		$newsletterService = $this->getHelper('container')->getByType(NewsletterService::class);
 		/** @var UserModel $userModel */
 		$userModel = $this->getHelper('container')->getByType(UserModel::class);
 
 		$users = $userModel->getAll()->fetchAll();
 		foreach($users as $user) {
-			$userNewsletterModel->createNewsletter($user->id, $newsletterId);
+			$newsletterService->createNewsletter($newsletterId, $user->id);
 		}
 
 		$output->writeLn('Newsletters have been created');

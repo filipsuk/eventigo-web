@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Modules\Core\Model;
+namespace App\Modules\Newsletter\Model;
 
+use App\Modules\Core\Model\BaseModel;
 use Nette\Utils\DateTime;
 use Nette\Utils\Json;
 use Nette\Utils\Random;
@@ -30,7 +31,7 @@ class UserNewsletterModel extends BaseModel
 	/**
 	 * @return string
 	 */
-	private function generateUniqueHash()
+	public function generateUniqueHash()
 	{
 		do {
 			$hash = Random::generate(32);

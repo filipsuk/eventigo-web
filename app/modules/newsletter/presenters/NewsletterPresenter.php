@@ -4,10 +4,10 @@ namespace App\Modules\Newsletter\Presenters;
 
 use App\Modules\Core\Model\EventModel;
 use App\Modules\Core\Model\TagModel;
-use App\Modules\Core\Model\UserNewsletterModel;
 use App\Modules\Core\Model\UserTagModel;
 use App\Modules\Core\Presenters\BasePresenter;
 use App\Modules\Newsletter\Components\Newsletter\NewsletterFactory;
+use App\Modules\Newsletter\Model\UserNewsletterModel;
 use Nette\Database\Table\ActiveRow;
 use Nette\Utils\Json;
 
