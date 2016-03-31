@@ -212,6 +212,9 @@ footer .heart {
   color: #A24444;
   font-size: 1rem;
 }
+.btn {
+  transition: all 0.2s ease;
+}
 .accent-color {
   color: #8bc34a;
 }

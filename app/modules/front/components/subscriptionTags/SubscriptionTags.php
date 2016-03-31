@@ -50,6 +50,7 @@ class SubscriptionTags extends Subscription
 		$form->addCheckboxList('tags')
 			->setItems($this->tags->fetchPairs('code', 'name'))
 			->setTranslator(NULL);
+		$form->addHidden('real_subscribe'); // For stupid Firefox not submitting "subscribe" input in POST
 
 		return $form;
 	}
@@ -61,9 +62,7 @@ class SubscriptionTags extends Subscription
 	public function processForm(Form $form)
 	{
 		$values = $form->getValues();
-		$httpData = $form->getHttpData();
-
-		if (array_key_exists('subscribe', $httpData)) {
+		if (array_key_exists('real_subscribe', $values) && $values['real_subscribe'] === 'true') {
 			$user = $this->subscribe($values->email);
 			if (!$user) {
 				return;
