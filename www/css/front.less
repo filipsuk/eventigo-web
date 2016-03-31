@@ -91,7 +91,7 @@ header {
 }
 
 .tags-box {
-
+  margin-bottom: 60px;
   .tags-header {
     font-size: 1.1rem;
     font-weight: 600;
@@ -114,6 +114,7 @@ ul#tags {
       font-size: 1.2rem;
       font-weight: bold;
       margin: 0;
+      transition: all 0.4s ease;
     }
     input:hover,
     label:hover {
@@ -182,6 +183,7 @@ section#main {
 .events-list-header {
   font-size: 1.4rem;
   text-align: center;
+  margin-top: 1rem;
 }
 
 #events-list {
@@ -189,9 +191,8 @@ section#main {
   margin-bottom: 120px;
 
   .events-list-title {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     margin: 1rem 0 0.6rem;
-    text-align: center;
     color: @accentColor;
     font-weight: 600;
     text-transform: uppercase;
@@ -282,10 +283,13 @@ footer {
   }
 }
 
-// iPhone 5/5S
 @media only screen and (max-width: 768px) {
   header{
     padding-bottom: 3rem;
+    h1.logo {
+      margin: 1rem;
+      font-size: 1.7rem;
+    }
     h2 { font-size: 2rem; }
     h3 { font-size: 1.7rem; }
   }
