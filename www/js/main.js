@@ -51,18 +51,26 @@ $(function () {
 
     
     $('input[name=subscribe]').click(function(e) {
+        e.preventDefault(); // Prevent form submission
         // When user wants to subscribe with empty email, focus on text input
         var mail = $('#frm-subscriptionTags-form-email');
         if (mail.val().length < 5) {
             mail.focus();
-            e.preventDefault(); // Prevent form submission
+            return;
         }
 
         // Subscribing by button (real_subscribe hidden input) :)
-        $(this).siblings('input[name=real_subscribe]').val(true);
+        var realSubscribe = $(this).siblings('input[name=real_subscribe]');
+        realSubscribe.val(true);
+        console.log(realSubscribe.val());
 
         // Hide subscription box
         $('.subscription-box').delay(1000).fadeOut();
+
+        $('#frm-subscriptionTags-form').submit();
+        realSubscribe.val(false);
+        console.log(realSubscribe.val());
+
     });
 
     // Scroll to flash messages if new appear
