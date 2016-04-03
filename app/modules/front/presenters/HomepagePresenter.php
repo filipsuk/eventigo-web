@@ -35,7 +35,7 @@ class HomepagePresenter extends BasePresenter
 	{
 		if (!$tags) {
 			$section = $this->getSession('subscriptionTags');
-			$tags = $section->tags;
+			$tags = $section->tags ?: $section->tags = [];
 		}
 
 		$this->template->eventModel = $this->eventModel;
