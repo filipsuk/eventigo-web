@@ -14,8 +14,12 @@ class Collection
 	{
 		$values = [];
 		foreach ($array as $value) {
-			foreach ($value as $item) {
-				$values[] = $item;
+			if (is_array($value)) {
+				foreach ($value as $item) {
+					$values[] = $item;
+				}
+			} else {
+				$values[] = $value;
 			}
 		}
 		return $values;
