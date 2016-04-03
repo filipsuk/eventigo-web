@@ -9,10 +9,13 @@
         {_front.homepage.tags.header |noescape}
     </div>
     <ul id="tags">
-        <li n:foreach="$form[tags]->items as $key => $label">
-            <label n:name="tags:$key" class="tag" data-tag="{$key}">
-                <input n:name="tags:$key"> {$label} ({$tags[$key]->eventsCount})
-            </label>
-        </li>
+        {foreach $form[tags]->getComponents() as $tagGroupName => $tagsGroup}
+            <h3>{_'tags.tagGroup.' . $tagGroupName}</h3>
+            <li n:foreach="$tagsGroup->items as $key => $label">
+                <label n:name="tags-$tagGroupName:$key" class="tag" data-tag="{$key}">
+                    <input n:name="tags-$tagGroupName:$key"> {$label} ({$tags[$key]->eventsCount})
+                </label>
+            </li>
+        {/foreach}
     </ul>
 {/form}

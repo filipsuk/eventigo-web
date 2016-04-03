@@ -4,7 +4,7 @@ html {
 }
 body {
   font-family: "Open Sans", Helvetica, Arial, sans-serif;
-  background-color: #f9f9f9;
+  background-color: #F9F9F9;
   color: #212121;
 }
 h1,
@@ -18,7 +18,7 @@ h4 {
 header {
   background: linear-gradient(rgba(33, 150, 243, 0.9), rgba(33, 150, 243, 0.9)), url('/img/header-background.jpg');
   background-size: cover;
-  color: #ffffff;
+  color: #FFFFFF;
   padding-bottom: 4.6rem;
   min-height: 100vh;
 }
@@ -43,7 +43,7 @@ header p {
 header .btn,
 header .btn:active,
 header .btn:focus {
-  background-color: #8bc34a;
+  background-color: #8BC34A;
   margin-top: 2rem;
   border-width: 0;
   font-size: 1rem;
@@ -63,8 +63,8 @@ header .header-box {
 .flash-messages .flash {
   margin-bottom: 2rem;
   padding: 1rem;
-  color: #ffffff;
-  background-color: #8bc34a;
+  color: #FFFFFF;
+  background-color: #8BC34A;
 }
 .flash-messages .flash .glyphicon {
   margin-right: 0.5rem;
@@ -91,14 +91,14 @@ ul#tags li input {
 }
 ul#tags li label {
   font-size: 1.2rem;
-  font-weight: bold;
+  font-weight: normal;
   margin: 0;
   transition: all 0.4s ease;
 }
 ul#tags li input:hover,
 ul#tags li label:hover {
   cursor: pointer;
-  color: #1976d2;
+  color: #1976D2;
 }
 section#main {
   padding-top: 3.3rem;
@@ -129,10 +129,10 @@ section#main {
   font-size: 1.2rem;
   vertical-align: middle;
   margin-right: 0.5rem;
-  color: #ffffff;
+  color: #FFFFFF;
 }
 .subscription-box {
-  background-color: #8bc34a;
+  background-color: #8BC34A;
   position: absolute;
   top: 550px;
   width: 100%;
@@ -158,7 +158,7 @@ section#main {
 #events-list .events-list-title {
   font-size: 1.3rem;
   margin: 1rem 0 0.6rem;
-  color: #8bc34a;
+  color: #8BC34A;
   font-weight: 600;
   text-transform: uppercase;
 }
@@ -169,7 +169,7 @@ section#main {
   background-color: #fff;
   margin: 0.5rem 0;
   height: 16.5rem;
-  border-bottom: 1px solid #e4e4e4;
+  border-bottom: 1px solid #E4E4E4;
 }
 #events-list .event-box .event-image img {
   width: 100%;
@@ -216,7 +216,7 @@ footer .heart {
   transition: all 0.2s ease;
 }
 .accent-color {
-  color: #8bc34a;
+  color: #8BC34A;
 }
 .bold {
   font-weight: bold;
@@ -232,8 +232,8 @@ footer .heart {
   text-align: center;
 }
 .step-accent {
-  background-color: #8bc34a;
-  color: #ffffff;
+  background-color: #8BC34A;
+  color: #FFFFFF;
 }
 @media only screen and (max-width: 640px) {
   #events-list div.event-box {

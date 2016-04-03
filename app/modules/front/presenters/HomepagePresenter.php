@@ -6,6 +6,7 @@ use App\Modules\Core\Model\EventModel;
 use App\Modules\Core\Model\TagModel;
 use App\Modules\Core\Model\UserModel;
 use App\Modules\Core\Presenters\BasePresenter;
+use App\Modules\Core\Utils\Collection;
 use App\Modules\Front\Components\EventsList\EventsListFactory;
 use App\Modules\Front\Components\SubscriptionTags\ISubscriptionTagsFactory;
 use Nette\Utils\DateTime;
@@ -94,8 +95,8 @@ class HomepagePresenter extends BasePresenter
 	public function createComponentEventsList()
 	{
 		$section = $this->getSession('subscriptionTags');
-		$tags = $section->tags;
 
+		$tags = Collection::getNestedValues($section->tags);
 		$tagsIds = $this->tagModel->getAll()->where('code', $tags)->fetchPairs(null, 'id');
 		$events = $this->eventModel->getAllWithDates($tagsIds, new DateTime);
 		return $this->eventsListFactory->create($events);

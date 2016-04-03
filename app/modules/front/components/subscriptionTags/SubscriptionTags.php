@@ -6,9 +6,11 @@ use App\Modules\Core\Components\Form\Form;
 use App\Modules\Core\Model\TagModel;
 use App\Modules\Core\Model\UserModel;
 use App\Modules\Core\Model\UserTagModel;
+use App\Modules\Core\Utils\Collection;
 use App\Modules\Front\Components\Subscription\Subscription;
 use App\Modules\Front\Model\Exceptions\Subscription\EmailExistsException;
 use Kdyby\Translation\Translator;
+use Nette\Database\Helpers;
 use Nette\Database\Table\Selection;
 
 
@@ -32,6 +34,7 @@ class SubscriptionTags extends Subscription
 		parent::__construct($translator, $userModel);
 		$this->tagModel = $tagModel;
 		$this->userTagModel = $userTagModel;
+		$this->tags = $this->tagModel->getAllByMostEvents();
 	}
 
 
@@ -46,10 +49,13 @@ class SubscriptionTags extends Subscription
 	{
 		$form = parent::createComponentForm();
 
-		$this->tags = $this->tagModel->getAllByMostEvents();
-		$form->addCheckboxList('tags')
-			->setItems($this->tags->fetchPairs('code', 'name'))
-			->setTranslator(NULL);
+		$tagsGroups = $this->tags->fetchAssoc('tagGroupName|id');
+		$tagsContainer = $form->addContainer('tags');
+		foreach ($tagsGroups as $tagGroupName => $tagsGroup) {
+			$tagsContainer->addCheckboxList($tagGroupName)
+				->setItems(Helpers::toPairs($tagsGroups[$tagGroupName], 'code', 'name'))
+				->setTranslator(NULL);
+		}
 		$form->addHidden('real_subscribe'); // For stupid Firefox not submitting "subscribe" input in POST
 
 		return $form;
@@ -69,7 +75,8 @@ class SubscriptionTags extends Subscription
 			}
 
 			// Store user's selected tags
-			$tags = $this->tagModel->getAll()->where('code IN (?)', $values->tags)->fetchAll();
+			$chosenTags = Collection::getNestedValues($values->tags);
+			$tags = $this->tagModel->getAll()->where('code IN (?)', $chosenTags)->fetchAll();
 			foreach ($tags as $tag) {
 				$this->userTagModel->insert([
 					'tag_id' => $tag->id,
