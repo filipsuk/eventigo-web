@@ -4,7 +4,7 @@ html {
 }
 body {
   font-family: "Open Sans", Helvetica, Arial, sans-serif;
-  background-color: #f9f9f9;
+  background-color: #F9F9F9;
   color: #212121;
 }
 h1,
@@ -18,7 +18,7 @@ h4 {
 header {
   background: linear-gradient(rgba(33, 150, 243, 0.9), rgba(33, 150, 243, 0.9)), url('/img/header-background.jpg');
   background-size: cover;
-  color: #ffffff;
+  color: #FFFFFF;
   padding-bottom: 4.6rem;
   min-height: 100vh;
 }
@@ -43,7 +43,7 @@ header p {
 header .btn,
 header .btn:active,
 header .btn:focus {
-  background-color: #8bc34a;
+  background-color: #8BC34A;
   margin-top: 2rem;
   border-width: 0;
   font-size: 1rem;
@@ -63,8 +63,8 @@ header .header-box {
 .flash-messages .flash {
   margin-bottom: 2rem;
   padding: 1rem;
-  color: #ffffff;
-  background-color: #8bc34a;
+  color: #FFFFFF;
+  background-color: #8BC34A;
 }
 .flash-messages .flash .glyphicon {
   margin-right: 0.5rem;
@@ -76,32 +76,40 @@ header .header-box {
   font-size: 1.1rem;
   font-weight: 600;
 }
-ul#tags {
+div#tags h3 {
+  font-size: 1.5rem;
+}
+div#tags ul {
   list-style-type: none;
   margin: 0;
   padding: 0 0;
 }
-ul#tags h3 {
-  font-size: 1.5rem;
-}
-ul#tags li {
+div#tags ul li {
   margin-right: 1.5em;
   margin-bottom: 0.3em;
   font-size: 1.1rem;
 }
-ul#tags li input {
+div#tags ul li input {
   margin-right: .3em;
 }
-ul#tags li label {
+div#tags ul li label {
   font-size: 1rem;
   font-weight: normal;
   margin: 0;
   transition: all 0.4s ease;
 }
-ul#tags li input:hover,
-ul#tags li label:hover {
+div#tags ul li input:hover,
+div#tags ul li label:hover {
   cursor: pointer;
-  color: #1976d2;
+  color: #1976D2;
+}
+div#tags ul#top-tags-group {
+  margin-top: 1.8rem;
+}
+div#tags ul#top-tags-group label {
+  font-size: 1.5rem;
+  font-weight: 300;
+  -webkit-font-smoothing: antialiased;
 }
 section#main {
   padding-top: 3.3rem;
@@ -132,10 +140,10 @@ section#main {
   font-size: 1.2rem;
   vertical-align: middle;
   margin-right: 0.5rem;
-  color: #ffffff;
+  color: #FFFFFF;
 }
 .subscription-box {
-  background-color: #8bc34a;
+  background-color: #8BC34A;
   position: absolute;
   top: 550px;
   width: 100%;
@@ -161,7 +169,7 @@ section#main {
 #events-list .events-list-title {
   font-size: 1.3rem;
   margin: 1rem 0 0.6rem;
-  color: #8bc34a;
+  color: #8BC34A;
   font-weight: 600;
   text-transform: uppercase;
 }
@@ -172,7 +180,7 @@ section#main {
   background-color: #fff;
   margin: 0.5rem 0;
   height: 16.5rem;
-  border-bottom: 1px solid #e4e4e4;
+  border-bottom: 1px solid #E4E4E4;
 }
 #events-list .event-box .event-image img {
   width: 100%;
@@ -219,7 +227,7 @@ footer .heart {
   transition: all 0.2s ease;
 }
 .accent-color {
-  color: #8bc34a;
+  color: #8BC34A;
 }
 .bold {
   font-weight: bold;
@@ -235,8 +243,8 @@ footer .heart {
   text-align: center;
 }
 .step-accent {
-  background-color: #8bc34a;
-  color: #ffffff;
+  background-color: #8BC34A;
+  color: #FFFFFF;
 }
 @media only screen and (max-width: 640px) {
   #events-list div.event-box {

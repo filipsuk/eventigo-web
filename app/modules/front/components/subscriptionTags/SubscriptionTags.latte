@@ -8,14 +8,30 @@
     <div class="tags-header">
         {_front.homepage.tags.header |noescape}
     </div>
-    <ul id="tags">
+    <div id="tags">
+        {* Top tags group *}
+        {var $top = isset($form[tags]->getComponents()[top]) ? $form[tags]->getComponents()[top] : null}
+        {if $top}
+            <ul id="top-tags-group">
+                <li n:foreach="$top->items as $key => $label">
+                    <label n:name="tags-top:$key" class="tag" data-tag="{$key}">
+                        <input n:name="tags-top:$key"> {$label} ({$tags[$key]->eventsCount})
+                    </label>
+                </li>
+            </ul>
+        {/if}
+
+        {* Tags groups *}
         {foreach $form[tags]->getComponents() as $tagGroupName => $tagsGroup}
+            {? if ($tagGroupName === 'top') continue;}
             <h3>{_'tags.tagGroup.' . $tagGroupName}</h3>
-            <li n:foreach="$tagsGroup->items as $key => $label">
-                <label n:name="tags-$tagGroupName:$key" class="tag" data-tag="{$key}">
-                    <input n:name="tags-$tagGroupName:$key"> {$label} ({$tags[$key]->eventsCount})
-                </label>
-            </li>
+            <ul>
+                <li n:foreach="$tagsGroup->items as $key => $label">
+                    <label n:name="tags-$tagGroupName:$key" class="tag" data-tag="{$key}">
+                        <input n:name="tags-$tagGroupName:$key"> {$label} ({$tags[$key]->eventsCount})
+                    </label>
+                </li>
+            </ul>
         {/foreach}
-    </ul>
+    </div>
 {/form}

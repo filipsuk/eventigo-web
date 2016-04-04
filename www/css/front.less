@@ -98,32 +98,41 @@ header {
   }
 }
 
-ul#tags {
-  list-style-type: none;
-  margin: 0;
-  padding: 0 0;
-
+div#tags {
   h3 {
     font-size: 1.5rem;
   }
 
-  li {
-    margin-right: 1.5em;
-    margin-bottom: 0.3em;
-    font-size: 1.1rem;
-    input {
-      margin-right: .3em;
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0 0;
+    li {
+      margin-right: 1.5em;
+      margin-bottom: 0.3em;
+      font-size: 1.1rem;
+      input {
+        margin-right: .3em;
+      }
+      label {
+        font-size: 1rem;
+        font-weight: normal;
+        margin: 0;
+        transition: all 0.4s ease;
+      }
+      input:hover,
+      label:hover {
+        cursor: pointer;
+        color: @darkPrimaryColor;
+      }
     }
+  }
+  ul#top-tags-group {
+    margin-top: 1.8rem;
     label {
-      font-size: 1rem;
-      font-weight: normal;
-      margin: 0;
-      transition: all 0.4s ease;
-    }
-    input:hover,
-    label:hover {
-      cursor: pointer;
-      color: @darkPrimaryColor;
+      font-size: 1.5rem;
+      font-weight: 300;
+      -webkit-font-smoothing: antialiased;
     }
   }
 }
