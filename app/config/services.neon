@@ -20,3 +20,4 @@ services:
 	- App\Modules\Core\Model\OrganiserModel
 	- App\Modules\Core\Model\EventSeriesModel
 	- App\Modules\Admin\Model\OrganiserService
+	- App\Modules\Admin\Model\SourceModel
