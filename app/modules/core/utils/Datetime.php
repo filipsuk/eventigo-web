@@ -11,6 +11,7 @@ class DateTime
 	public static $translator;
 	
 	const DATETIME_FORMAT = 'd. m. Y H:i';
+	const DATE_FORMAT = 'd. m. Y';
 
 	/**
 	 * Get maximum of given datetimes

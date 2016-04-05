@@ -52,3 +52,17 @@ signInForm.password.placeholder: Heslo
 signInForm.password.required: Zadej heslo
 signInForm.signIn: Přihlásit
 signOut: Odhlásit
+sourceForm.name: Název
+sourceForm.url: URL
+sourceForm.frequency: Četnost kontrol
+sourceForm.frequency.daily: Denně
+sourceForm.frequency.twiceAWeek: 2x týdně
+sourceForm.frequency.weekly: Týdně
+sourceForm.frequency.fortnightly: 2x měsícně
+sourceForm.frequency.monthly: Měsíčně
+sourceForm.frequency.quarterly: Čtvrtletně
+sourceForm.frequency.half-yearly: Půl ročně
+sourceForm.frequency.yearly: Ročně
+sourceForm.nextCheck: Příští kontrola
+sourceForm.save: Uložit
+sourceForm.success: Zdroj byl uložen
