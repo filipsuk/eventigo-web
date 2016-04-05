@@ -97,6 +97,9 @@
                 <li {ifCurrent Events:*}class="active"{/ifCurrent}>
                     <a n:href="Events:"><i class="fa fa-calendar"></i>{_admin.menu.events}</a>
                 </li>
+                <li {ifCurrent Sources:*}class="active"{/ifCurrent}>
+                    <a n:href="Sources:"><i class="fa fa-search-plus"></i>{_admin.menu.sources}</a>
+                </li>
             </ul>
         </section>
     </aside>
@@ -138,7 +141,7 @@
 <script type="text/javascript" src="/libs/moment/min/moment-with-locales.min.js"></script>
 <script type="text/javascript" src="/libs/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
 <script type="text/javascript" src="/libs/admin-lte/dist/js/app.min.js"></script>
-<script type="text/javascript" src="/js/main.js"></script>
+
 <script type="text/javascript" src="/js/admin.js"></script>
 {block scripts}{/block}
 

@@ -43,6 +43,7 @@ events.create.header: Přidat akci
 events.update.header: Upravit akci
 footer.text: "&copy; 2016 eventigo | Made with <span class='heart'>&hearts;</span> in Prague"
 menu.events: Eventy
+menu.sources: Zdroje
 signInForm.email: Email
 signInForm.email.placeholder: Email
 signInForm.email.required: Zadej email
