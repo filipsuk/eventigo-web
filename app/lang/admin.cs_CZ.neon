@@ -53,6 +53,9 @@ signInForm.password.placeholder: Heslo
 signInForm.password.required: Zadej heslo
 signInForm.signIn: Přihlásit
 signOut: Odhlásit
+sources.create.header: Přidat zdroj
+sources.default.table.name: Název
+sources.default.table.nextCheck: Plánovaná kontrola
 sourceForm.name: Název
 sourceForm.url: URL
 sourceForm.frequency: Četnost kontrol

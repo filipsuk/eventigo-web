@@ -3,6 +3,7 @@
 namespace App\Modules\Admin\Presenters;
 
 use App\Modules\Admin\Components\SourceForm\SourceFormFactory;
+use App\Modules\Admin\Components\SourcesTable\SourcesTableFactory;
 use App\Modules\Admin\Model\SourceModel;
 use Nette\Database\Table\ActiveRow;
 use Nette\Utils\DateTime;
@@ -12,6 +13,9 @@ class SourcesPresenter extends BasePresenter
 {
 	/** @var SourceFormFactory @inject  */
 	public $sourceFormFactory;
+
+	/** @var SourcesTableFactory @inject */
+	public $sourcesTableFactory;
 
 	/** @var SourceModel @inject */
 	public $sourceModel;
@@ -42,5 +46,11 @@ class SourcesPresenter extends BasePresenter
 		};
 
 		return $control;
+	}
+
+
+	public function createComponentSourcesTable()
+	{
+		return $this->sourcesTableFactory->create($this->sourceModel->getAll()->select('id, name, url'));
 	}
 }

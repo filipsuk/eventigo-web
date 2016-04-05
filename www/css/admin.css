@@ -20,6 +20,9 @@
   display: inline-block;
   vertical-align: top;
 }
+#main .pure-box {
+  margin-bottom: 20px;
+}
 #frm-signInForm-form table {
   margin: auto;
 }
