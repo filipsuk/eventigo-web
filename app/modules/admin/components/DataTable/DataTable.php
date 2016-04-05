@@ -34,4 +34,10 @@ abstract class DataTable extends BaseControl
 		$json = $this->generateJson();
 		$this->presenter->sendResponse(new \Nette\Application\Responses\JsonResponse($json));
 	}
+
+
+	public function getLang() : string
+	{
+		return '//cdn.datatables.net/plug-ins/1.10.11/i18n/Czech.json';
+	}
 }

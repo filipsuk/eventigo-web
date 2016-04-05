@@ -21,7 +21,7 @@ class SourcesPresenter extends BasePresenter
 	public $sourceModel;
 
 
-	public function actionCreate($id)
+	public function actionCreate()
 	{
 		$defaults = [
 			'frequencyNumber' => 1,
