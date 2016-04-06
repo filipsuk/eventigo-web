@@ -18,6 +18,7 @@
                 <thead>
                     <th>{_admin.sources.default.table.name}</th>
                     <th>{_admin.sources.default.table.nextCheck}</th>
+                    <th></th>
                 </thead>
                 <tbody></tbody>
             </table>
@@ -34,7 +35,8 @@
                 sAjaxSource: {{link sourcesTable-json!}},
                 aoColumns: [
                     {mData: "name"},
-                    {mData: "nextCheck"}
+                    {mData: "nextCheck"},
+                    {mData: "actions"}
                 ],
                 order: [[1, 'asc']],
                 language: {
