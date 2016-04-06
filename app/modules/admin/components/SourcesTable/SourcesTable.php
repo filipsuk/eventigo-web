@@ -27,8 +27,10 @@ class SourcesTable extends DataTable
 
 		foreach ($json['aaData'] as &$item) {
 			$item = $item->toArray();
-			$item['name'] = (string)Html::el('a')->setText($item['name'])
-				->addAttributes(['href' => $item['url']]);
+
+			$i = Html::el('i', ['class' => 'fa fa-external-link']);
+			$item['name'] = (string)Html::el('a', ['href' => $item['url'], 'target' => '_blank'])
+				->setHtml($item['name'] . '&nbsp; ' . (string)$i);
 			$item['nextCheck'] = DateTime::from($item['next_check'])
 				->format(\App\Modules\Core\Utils\DateTime::DATE_FORMAT);
 		}
