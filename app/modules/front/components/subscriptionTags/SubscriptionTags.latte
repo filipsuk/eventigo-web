@@ -15,7 +15,7 @@
             <ul id="top-tags-group">
                 <li n:foreach="$top->items as $key => $label">
                     <label n:name="tags-top:$key" class="tag" data-tag="{$key}">
-                        <input n:name="tags-top:$key"> {$label} ({$tags[$key]->eventsCount})
+                        <input n:name="tags-top:$key"><i class="fa fa-group"></i> {$label} ({$tags[$key]->eventsCount})
                     </label>
                 </li>
             </ul>
