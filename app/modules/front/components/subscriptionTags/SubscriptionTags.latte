@@ -24,7 +24,11 @@
         {* Tags groups *}
         {foreach $form[tags]->getComponents() as $tagGroupName => $tagsGroup}
             {? if ($tagGroupName === 'top') continue;}
-            <h3>{_'tags.tagGroup.' . $tagGroupName}</h3>
+            <h3>
+                {ifset $tagsGroups[$tagGroupName]}
+                    <i class="fa fa-{$tagsGroups[$tagGroupName]}"></i>
+                {/ifset}
+                {_'tags.tagGroup.' . $tagGroupName}</h3>
             <ul>
                 <li n:foreach="$tagsGroup->items as $key => $label">
                     <label n:name="tags-$tagGroupName:$key" class="tag" data-tag="{$key}">

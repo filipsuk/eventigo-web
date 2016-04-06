@@ -3,6 +3,7 @@
 namespace App\Modules\Front\Components\SubscriptionTags;
 
 use App\Modules\Core\Components\Form\Form;
+use App\Modules\Core\Model\TagGroupModel;
 use App\Modules\Core\Model\TagModel;
 use App\Modules\Core\Model\UserModel;
 use App\Modules\Core\Model\UserTagModel;
@@ -28,12 +29,20 @@ class SubscriptionTags extends Subscription
 	/** @var Selection */
 	private $tags;
 
+	/** @var TagGroupModel */
+	private $tagGroupModel;
 
-	public function __construct(Translator $translator, UserModel $userModel, TagModel $tagModel, UserTagModel $userTagModel)
+
+	public function __construct(Translator $translator,
+	                            UserModel $userModel,
+	                            TagModel $tagModel,
+	                            UserTagModel $userTagModel,
+	                            TagGroupModel $tagGroupModel)
 	{
 		parent::__construct($translator, $userModel);
 		$this->tagModel = $tagModel;
 		$this->userTagModel = $userTagModel;
+		$this->tagGroupModel = $tagGroupModel;
 		$this->tags = $this->tagModel->getAllByMostEvents();
 	}
 
@@ -41,6 +50,9 @@ class SubscriptionTags extends Subscription
 	public function render()
 	{
 		$this->template->tags = $this->tags->fetchPairs('code');
+		$this->template->tagsGroups = $this->tagGroupModel->getAll()
+			->where('icon IS NOT NULL')
+			->fetchPairs('name', 'icon');
 		parent::render();
 	}
 

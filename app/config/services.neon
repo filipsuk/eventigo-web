@@ -13,3 +13,4 @@ services:
 	-
 		class: App\Modules\Newsletter\Model\NewsletterService
 		inject: yes
+	- App\Modules\Core\Model\TagGroupModel
