@@ -89,12 +89,9 @@
 		})(window,document,'//static.hotjar.com/c/hotjar-','.js?sv=');
 	</script>
 
-
-	<section>
+	<div id="wrapper">
 		{block header}{/block}
-	</section>
 
-	<section id="main">
 		<div class="container flash-messages">
 			{snippet flash-messages}
 			<div n:if="isset($flashes)"
@@ -106,19 +103,19 @@
 		</div>
 
 		{include content}
-	</section>
 
-	{block footer}
-		<footer>
-			{_front.footer.text |noescape}
-		</footer>
-	{/block}
+		{block footer}
+			<footer>
+				{_front.footer.text |noescape}
+			</footer>
+		{/block}
+	</div>
 
 	<script type="text/javascript" src="/libs/nette-forms/src/assets/netteForms.js"></script>
 	<script type="text/javascript" src="/libs/jquery/dist/jquery.min.js"></script>
 	<script type="text/javascript" src="/libs/nette.ajax.js/nette.ajax.js"></script>
 	<script type="text/javascript" src="/js/lib.js"></script>
-	<script type="text/javascript" src="libs/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="/libs/bootstrap/dist/js/bootstrap.min.js"></script>
 	<!--script type="text/javascript" src="/js/plugins/eventFilter.js"></script-->
 	<script type="text/javascript" src="/js/main.js"></script>
 	{block scripts}{/block}

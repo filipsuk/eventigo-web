@@ -24,7 +24,7 @@ $(function () {
                 .addClass('fixed-down');
         }
         // Fixed on bottom of the screen
-        else if ($('#main')[0].getBoundingClientRect().top  - $(window).height() < $('#main').offset().top - box.data('originalOffset') - box.height()) {
+        else if ($('#homepage')[0].getBoundingClientRect().top  - $(window).height() < $('#homepage').offset().top - box.data('originalOffset') - box.height()) {
             box.addClass('fixed')
                 .removeClass('fixed-down');
         }

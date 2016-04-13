@@ -2,6 +2,10 @@
 html {
   font-size: 15px;
 }
+html,
+body {
+  height: 100%;
+}
 body {
   font-family: "Open Sans", Helvetica, Arial, sans-serif;
   background-color: #F9F9F9;
@@ -29,6 +33,7 @@ header h1.logo {
   margin-bottom: 0;
 }
 header h2 {
+  padding-top: 3.3rem;
   font-size: 3rem;
   margin: 0 0 1.2rem;
 }
@@ -70,11 +75,14 @@ header .header-box {
   margin-right: 0.5rem;
 }
 .tags-box {
-  margin-bottom: 60px;
+  margin-bottom: 70px;
 }
 .tags-box .tags-header {
   font-size: 1.1rem;
   font-weight: 600;
+}
+div#tags {
+  margin-bottom: 2rem;
 }
 div#tags h3 {
   font-size: 1.5rem;
@@ -111,9 +119,15 @@ div#tags ul#top-tags-group label {
   font-weight: 300;
   -webkit-font-smoothing: antialiased;
 }
-section#main {
-  padding-top: 3.3rem;
+div#wrapper {
   position: relative;
+  min-height: 100%;
+}
+div#wrapper #homepage {
+  padding-top: 3.3rem;
+}
+div#wrapper .content {
+  padding-bottom: 83px;
 }
 #subscription {
   text-align: center;
@@ -145,7 +159,7 @@ section#main {
 .subscription-box {
   background-color: #8BC34A;
   position: absolute;
-  top: 550px;
+  top: 1440px;
   width: 100%;
 }
 .subscription-box.fixed {
@@ -157,6 +171,7 @@ section#main {
   top: inherit;
   bottom: 0;
   position: absolute;
+  padding-bottom: 83px;
 }
 .events-list-header {
   font-size: 1.4rem;
@@ -218,6 +233,11 @@ footer {
   background-color: #3e464c;
   color: #99979c;
   font-size: 0.8rem;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 83px;
 }
 footer .heart {
   color: #A24444;
@@ -265,7 +285,7 @@ footer .heart {
   header h3 {
     font-size: 1.7rem;
   }
-  section#main {
+  section#wrapper {
     padding-top: 2rem;
   }
   .tags-header {
@@ -294,9 +314,34 @@ footer .heart {
     vertical-align: baseline;
   }
   .subscription-box {
-    top: 1000px;
+    top: 2194px;
   }
   #tracy-debug-bar {
     display: none;
+  }
+}
+nav#user-settings {
+  background-color: #2196F3;
+}
+nav#user-settings a:hover,
+nav#user-settings a:focus {
+  text-decoration: none;
+}
+nav#user-settings a:hover h1,
+nav#user-settings a:focus h1 {
+  color: rgba(255, 255, 255, 0.9);
+}
+nav#user-settings a h1 {
+  font-size: 1.5em;
+  color: rgba(255, 255, 255, 0.7);
+}
+#profile .tags-box {
+  width: 18rem;
+  margin: 0 auto 2rem auto;
+}
+@media (max-width: 992px) {
+  div#tags {
+    width: 80%;
+    margin: 0 auto 2rem;
   }
 }

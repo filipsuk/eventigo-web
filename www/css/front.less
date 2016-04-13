@@ -9,9 +9,14 @@
 @headerButtonColorHover: darken(@headerButtonColor, 4%);
 
 @logoFontColor: rgba(255, 255, 255, 0.7);
+@footerHeight: 83px;
 
 html {
   font-size: 15px;
+}
+
+html, body {
+  height:100%;
 }
 
 body {
@@ -44,6 +49,7 @@ header {
   }
 
   h2 {
+    padding-top: 3.3rem;
     font-size: 3rem;
     margin: 0 0 1.2rem;
   }
@@ -91,7 +97,7 @@ header {
 }
 
 .tags-box {
-  margin-bottom: 60px;
+  margin-bottom: 70px;
   .tags-header {
     font-size: 1.1rem;
     font-weight: 600;
@@ -99,6 +105,7 @@ header {
 }
 
 div#tags {
+  margin-bottom: 2rem;
   h3 {
     font-size: 1.5rem;
   }
@@ -137,9 +144,15 @@ div#tags {
   }
 }
 
-section#main {
-  padding-top: 3.3rem;
+div#wrapper {
   position: relative;
+  min-height: 100%;
+  #homepage {
+    padding-top: 3.3rem;
+  }
+  .content {
+    padding-bottom: @footerHeight;
+  }
 }
 
 #subscription {
@@ -173,7 +186,7 @@ section#main {
 .subscription-box {
   background-color: @accentColor;
   position: absolute;
-  top: 550px;
+  top: 1440px;
   width: 100%;
 
   &.fixed{
@@ -185,6 +198,7 @@ section#main {
     top: inherit;
     bottom: 0;
     position: absolute;
+    padding-bottom: @footerHeight;
   }
 }
 
@@ -258,6 +272,11 @@ footer {
   background-color: @footerBgColor;
   color: @footerColor;
   font-size: 0.8rem;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: @footerHeight;
 
   .heart {
     color: #A24444;
@@ -311,7 +330,7 @@ footer {
     h3 { font-size: 1.7rem; }
   }
 
-  section#main {
+  section#wrapper {
     padding-top: 2rem;
   }
 
@@ -346,7 +365,7 @@ footer {
   }
 
   .subscription-box {
-    top: 1000px;
+    top: 2194px;
   }
 
   #tracy-debug-bar {
@@ -355,5 +374,35 @@ footer {
 
   footer {
     //display: none;
+  }
+}
+
+nav#user-settings {
+  background-color: #2196F3;
+  a {
+    &:hover, &:focus {
+      text-decoration: none;
+      h1 {
+        color: rgba(255, 255, 255, 0.9);
+      }
+    }
+    h1 {
+      font-size: 1.5em;
+      color: rgba(255, 255, 255, 0.7);
+    }
+  }
+}
+
+#profile {
+  .tags-box {
+    width: 18rem;
+    margin: 0 auto 2rem auto;
+  }
+}
+
+@media (max-width: 992px) {
+  div#tags {
+    width: 80%;
+    margin: 0 auto 2rem;
   }
 }
