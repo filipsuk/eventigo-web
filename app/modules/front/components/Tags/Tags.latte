@@ -1,0 +1,41 @@
+{form form, class => ajax}
+    <div id="tags">
+        {* Top tags group *}
+        {var $top = isset($form[tags]->getComponents()[top]) ? $form[tags]->getComponents()[top] : null}
+        {if $top}
+            <ul id="top-tags-group">
+                <li n:foreach="$top->items as $key => $label">
+                    <label n:name="tags-top:$key" class="tag" data-tag="{$key}">
+                        <input n:name="tags-top:$key"><i class="fa fa-group"></i> {$label} ({$tags[$key]->eventsCount})
+                    </label>
+                </li>
+            </ul>
+        {/if}
+
+        {* Tags groups *}
+        {foreach $form[tags]->getComponents() as $tagGroupName => $tagsGroup}
+            {? if ($tagGroupName === 'top') continue;}
+
+            {if $iterator->getCounter() % $columnsPerRow === 1 && $iterator->getCounter() > 1}
+            </div> {* // div.row *}
+            {/if}
+
+            <div class="row" n:tag-if="$iterator->getCounter() % $columnsPerRow === 1">
+                <div class="col-md-{12 / $columnsPerRow}">
+                    <h3>
+                        {ifset $tagsGroups[$tagGroupName]}
+                            <i class="fa fa-{$tagsGroups[$tagGroupName]}"></i>
+                        {/ifset}
+                        {_'tags.tagGroup.' . $tagGroupName}</h3>
+                    <ul>
+                        <li n:foreach="$tagsGroup->items as $key => $label">
+                            <label n:name="tags-$tagGroupName:$key" class="tag" data-tag="{$key}">
+                                <input n:name="tags-$tagGroupName:$key"> {$label} ({$tags[$key]->eventsCount})
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+        {/foreach}
+             </div> {* // div.row *}
+    </div>
+{/form}
