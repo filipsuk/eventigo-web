@@ -5,6 +5,7 @@ namespace App\Modules\Core\Model;
 use App\Modules\Front\Model\Exceptions\Subscription\EmailExistsException;
 use CannotPerformOperationException;
 use Nette\Database\Context;
+use Nette\Database\Table\ActiveRow;
 use Nette\Database\Table\IRow;
 use Nette\DI\Container;
 use Nette\Security\Passwords;
@@ -42,9 +43,18 @@ class UserModel extends BaseModel
 				throw new EmailExistsException;
 
 			} else {
-				return $this->insert([
+				// Create user
+				/** @var ActiveRow $user */
+				$user = $this->insert([
 					'email' => $email,
 				]);
+
+				// Generate token for user
+				$this->getAll()->wherePrimary($user->id)->update([
+					'token' => $this->generateToken($user),
+				]);
+
+				return $user;
 			}
 
 		} else {
@@ -75,5 +85,11 @@ class UserModel extends BaseModel
 	{
 		$key = $this->container->getParameters()['security']['key'];
 		return base64_encode(\Crypto::Encrypt(Passwords::hash($password), $key));
+	}
+
+
+	public function generateToken(ActiveRow $user) : string
+	{
+		return hash('sha256', $user->email . $user->created->format('ymdHis'));
 	}
 }
