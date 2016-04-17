@@ -1,11 +1,11 @@
 {form form, class => ajax}
-    <div id="subscription">
+    <div id="subscription" n:if="!$user->isLoggedIn()">
         <span class="subscription-label">{_front.subscription.form.email.label |noescape}</span>
         {input email}
         {input real_subscribe}
         {input subscribe, class => ['btn','btn-success']}
     </div>
-    <div class="tags-header">
+    <div class="tags-header" n:if="!$user->isLoggedIn()">
         {_front.homepage.tags.header |noescape}
     </div>
     <div id="tags">

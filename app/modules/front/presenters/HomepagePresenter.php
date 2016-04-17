@@ -71,15 +71,13 @@ class HomepagePresenter extends BasePresenter
 		$control->onSuccess[] = function ($email) {
 			$this->getUser()->login(UserModel::SUBSCRIPTION_LOGIN, $email);
 
-			$this['eventsList']->redrawControl();
-
 			$this->flashMessage(
 				'<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>' .
 				$this->translator->translate('front.subscription.message.success',
 					['email' => Html::el('strong')->setText($email)]),
 				'success');
 
-			$this->redrawControl('flash-messages');
+			$this->redirect('Homepage:');
 		};
 
 		$control->onChange[] = function () {

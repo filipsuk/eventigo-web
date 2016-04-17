@@ -101,6 +101,7 @@ header {
   .tags-header {
     font-size: 1.1rem;
     font-weight: 600;
+    margin-bottom: 1.8rem;
   }
 }
 
@@ -135,7 +136,6 @@ div#tags {
     }
   }
   ul#top-tags-group {
-    margin-top: 1.8rem;
     label {
       font-size: 1.5rem;
       font-weight: 300;
@@ -152,6 +152,12 @@ div#wrapper {
   }
   .content {
     padding-bottom: @footerHeight;
+  }
+  &.logged {
+    padding-top: 90px;
+    #homepage {
+      padding-top: 1rem;
+    }
   }
 }
 
@@ -377,18 +383,16 @@ footer {
   }
 }
 
-nav#user-settings {
+nav.navbar {
   background-color: #2196F3;
-  a {
+  a.navbar-brand {
+    font-size: 1.7rem;
+    padding-top: 13.5px;
+    color: rgba(255, 255, 255, 0.8);
+    font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
     &:hover, &:focus {
-      text-decoration: none;
-      h1 {
-        color: rgba(255, 255, 255, 0.9);
-      }
-    }
-    h1 {
-      font-size: 1.5em;
-      color: rgba(255, 255, 255, 0.7);
+      color: rgba(255, 255, 255, 1);
     }
   }
 }

@@ -7,7 +7,7 @@
  *}
 
 {block header}
-	<header>
+	<header n:if="!$user->isLoggedIn()">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-12">
@@ -26,7 +26,6 @@
 				</div>
 			</div>
 		</div>
-
 	</header>
 {/block}
 
@@ -37,7 +36,7 @@
 				{control subscriptionTags}
 			</div>
 			<div class="col-lg-9">
-				<div class="events-list-header">
+				<div class="events-list-header" n:if="!$user->isLoggedIn()">
 					{_front.homepage.events.header}
 				</div>
 				{control eventsList}

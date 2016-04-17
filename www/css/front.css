@@ -80,6 +80,7 @@ header .header-box {
 .tags-box .tags-header {
   font-size: 1.1rem;
   font-weight: 600;
+  margin-bottom: 1.8rem;
 }
 div#tags {
   margin-bottom: 2rem;
@@ -111,9 +112,6 @@ div#tags ul li label:hover {
   cursor: pointer;
   color: #1976D2;
 }
-div#tags ul#top-tags-group {
-  margin-top: 1.8rem;
-}
 div#tags ul#top-tags-group label {
   font-size: 1.5rem;
   font-weight: 300;
@@ -128,6 +126,12 @@ div#wrapper #homepage {
 }
 div#wrapper .content {
   padding-bottom: 83px;
+}
+div#wrapper.logged {
+  padding-top: 90px;
+}
+div#wrapper.logged #homepage {
+  padding-top: 1rem;
 }
 #subscription {
   text-align: center;
@@ -320,20 +324,19 @@ footer .heart {
     display: none;
   }
 }
-nav#user-settings {
+nav.navbar {
   background-color: #2196F3;
 }
-nav#user-settings a:hover,
-nav#user-settings a:focus {
-  text-decoration: none;
+nav.navbar a.navbar-brand {
+  font-size: 1.7rem;
+  padding-top: 13.5px;
+  color: rgba(255, 255, 255, 0.8);
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
 }
-nav#user-settings a:hover h1,
-nav#user-settings a:focus h1 {
-  color: rgba(255, 255, 255, 0.9);
-}
-nav#user-settings a h1 {
-  font-size: 1.5em;
-  color: rgba(255, 255, 255, 0.7);
+nav.navbar a.navbar-brand:hover,
+nav.navbar a.navbar-brand:focus {
+  color: #ffffff;
 }
 #profile .tags-box {
   width: 18rem;
