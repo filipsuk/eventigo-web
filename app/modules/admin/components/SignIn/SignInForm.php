@@ -47,7 +47,6 @@ class SignInForm extends BaseControl
 		$values = $form->getValues();
 
 		try {
-			$this->getPresenter()->getUser()->setExpiration('30 days', false);
 			$this->getPresenter()->getUser()->login(UserModel::ADMIN_LOGIN, $values->email, $values->password);
 
 		} catch (AuthenticationException $e) {

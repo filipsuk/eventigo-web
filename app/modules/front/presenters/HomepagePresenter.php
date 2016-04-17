@@ -69,7 +69,6 @@ class HomepagePresenter extends BasePresenter
 		};
 
 		$control->onSuccess[] = function ($email) {
-			$this->getUser()->setExpiration('30 days', false);
 			$this->getUser()->login(UserModel::SUBSCRIPTION_LOGIN, $email);
 
 			$this['eventsList']->redrawControl();

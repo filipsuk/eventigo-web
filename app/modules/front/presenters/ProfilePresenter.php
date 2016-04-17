@@ -43,7 +43,6 @@ class ProfilePresenter extends BasePresenter
 
 		if ( ! ($this->getUser()->isLoggedIn() && $this->getUser()->getId() === $user->id)) {
 			$this->getUser()->login(new Identity($user->id, null, $user->toArray()));
-			$this->getUser()->setExpiration('30 days');
 		}
 	}
 
