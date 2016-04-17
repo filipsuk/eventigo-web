@@ -83,7 +83,7 @@ header .header-box {
   margin-bottom: 1.8rem;
 }
 div#tags {
-  margin-bottom: 2rem;
+  margin-bottom: 4rem;
 }
 div#tags h3 {
   font-size: 1.5rem;
@@ -123,6 +123,7 @@ div#wrapper {
 }
 div#wrapper #homepage {
   padding-top: 3.3rem;
+  padding-bottom: 4rem;
 }
 div#wrapper .content {
   padding-bottom: 83px;
