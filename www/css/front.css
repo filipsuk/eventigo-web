@@ -327,16 +327,22 @@ footer .heart {
 nav.navbar {
   background-color: #2196F3;
 }
-nav.navbar a.navbar-brand {
-  font-size: 1.7rem;
-  padding-top: 13.5px;
+nav.navbar a.navbar-brand,
+nav.navbar .navbar-nav a {
   color: rgba(255, 255, 255, 0.8);
-  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
 }
 nav.navbar a.navbar-brand:hover,
-nav.navbar a.navbar-brand:focus {
+nav.navbar .navbar-nav a:hover,
+nav.navbar a.navbar-brand:focus,
+nav.navbar .navbar-nav a:focus {
   color: #ffffff;
+  background-color: inherit;
+}
+nav.navbar a.navbar-brand {
+  font-size: 1.7rem;
+  padding-top: 13.5px;
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 #profile .tags-box {
   width: 18rem;
