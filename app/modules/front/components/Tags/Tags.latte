@@ -30,7 +30,8 @@
                     <ul>
                         <li n:foreach="$tagsGroup->items as $key => $label">
                             <label n:name="tags-$tagGroupName:$key" class="tag" data-tag="{$key}">
-                                <input n:name="tags-$tagGroupName:$key"> {$label} ({$tags[$key]->eventsCount})
+                                <input n:name="tags-$tagGroupName:$key"> {$label}
+                                <span n:if="$tags[$key]->eventsCount">({$tags[$key]->eventsCount})</span>
                             </label>
                         </li>
                     </ul>

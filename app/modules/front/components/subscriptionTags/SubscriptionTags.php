@@ -43,7 +43,7 @@ class SubscriptionTags extends Subscription
 		$this->tagModel = $tagModel;
 		$this->userTagModel = $userTagModel;
 		$this->tagGroupModel = $tagGroupModel;
-		$this->tags = $this->tagModel->getAllByMostEvents();
+		$this->tags = $this->tagModel->getByMostEvents();
 	}
 
 
