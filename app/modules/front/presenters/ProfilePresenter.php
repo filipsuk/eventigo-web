@@ -34,14 +34,14 @@ class ProfilePresenter extends BasePresenter
 	public $userModel;
 
 
-	public function actionTags($token)
+	public function actionTags($token = null)
 	{
-		if ($token === null || ($user = $this->userModel->getAll()
-				->where('token', $token)->fetch()) === false) {
-			throw new BadRequestException();
-		}
+		if (!$this->getUser()->isLoggedIn()) {
+			if ($token === null || ($user = $this->userModel->getAll()
+					->where('token', $token)->fetch()) === false) {
+				throw new BadRequestException();
+			}
 
-		if ( ! ($this->getUser()->isLoggedIn() && $this->getUser()->getId() === $user->id)) {
 			$this->getUser()->login(new Identity($user->id, null, $user->toArray()));
 		}
 	}
