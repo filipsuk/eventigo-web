@@ -15,6 +15,9 @@ class RouterFactory
 	 */
 	public static function createRouter()
 	{
+		// HTTPS default for all routes
+		Route::$defaultFlags = Route::SECURED;
+
 		$router = new RouteList;
 
 		// Admin
