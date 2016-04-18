@@ -15,19 +15,16 @@ class RouterFactory
 	 */
 	public static function createRouter()
 	{
-		// HTTPS default for all routes
-		Route::$defaultFlags = Route::SECURED;
-
 		$router = new RouteList;
 
 		// Admin
 		$adminRouter = new RouteList('Admin');
-		$adminRouter[] = new Route('admin/<presenter>/<action>[/<id>]', 'Dashboard:default');
+		$adminRouter[] = new Route('admin/<presenter>/<action>[/<id>]', 'Dashboard:default', Route::SECURED);
 		$router[] = $adminRouter;
 
 		// Nesletter
 		$newsletterRouter = new RouteList('Newsletter');
-		$newsletterRouter[] = new Route('newsletter/<hash>', 'Newsletter:default');
+		$newsletterRouter[] = new Route('newsletter/<hash>', 'Newsletter:default', Route::SECURED);
 		$router[] = $newsletterRouter;
 
 		// Front
@@ -35,7 +32,7 @@ class RouterFactory
 			'module' => 'Front',
 			'presenter' => 'Homepage',
 			'action' => 'default'
-		]);
+		], Route::SECURED);
 		return $router;
 	}
 
