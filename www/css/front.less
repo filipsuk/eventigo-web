@@ -10,6 +10,9 @@
 
 @logoFontColor: rgba(255, 255, 255, 0.7);
 @footerHeight: 83px;
+@originalNavbarHeight: 60px;
+@navbarHeight: 50px;
+@navbarHeightDiff: @originalNavbarHeight - @navbarHeight;
 
 html {
   font-size: 15px;
@@ -386,9 +389,11 @@ footer {
 
 nav.navbar {
   background-color: #2196F3;
+  min-height: @navbarHeight;
   a.navbar-brand, .navbar-nav a {
     color: rgba(255, 255, 255, 0.8);
     -webkit-font-smoothing: antialiased;
+    height: @navbarHeight;
     &:hover, &:focus {
       color: rgba(255, 255, 255, 1);
       background-color: inherit;
@@ -396,10 +401,18 @@ nav.navbar {
   }
   a.navbar-brand {
     font-size: 1.7rem;
-    padding-top: 13.5px;
+    padding: (13.5 - @navbarHeightDiff / 2) (15 - @navbarHeightDiff / 2);
     font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   }
 }
+
+@media (min-width: 768px) {
+  .navbar-nav > li > a {
+    padding-top: 19.5 - @navbarHeightDiff / 2;
+    padding-bottom: 19.5 - @navbarHeightDiff / 2;
+  }
+}
+
 
 #profile {
   .tags-box {

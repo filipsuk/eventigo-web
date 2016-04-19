@@ -327,11 +327,13 @@ footer .heart {
 }
 nav.navbar {
   background-color: #2196F3;
+  min-height: 50px;
 }
 nav.navbar a.navbar-brand,
 nav.navbar .navbar-nav a {
   color: rgba(255, 255, 255, 0.8);
   -webkit-font-smoothing: antialiased;
+  height: 50px;
 }
 nav.navbar a.navbar-brand:hover,
 nav.navbar .navbar-nav a:hover,
@@ -342,8 +344,14 @@ nav.navbar .navbar-nav a:focus {
 }
 nav.navbar a.navbar-brand {
   font-size: 1.7rem;
-  padding-top: 13.5px;
+  padding: 8.5px 10px;
   font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+@media (min-width: 768px) {
+  .navbar-nav > li > a {
+    padding-top: 14.5px;
+    padding-bottom: 14.5px;
+  }
 }
 #profile .tags-box {
   width: 18rem;
