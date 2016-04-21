@@ -2,7 +2,7 @@
 
 namespace App\Modules\Newsletter\Console;
 
-use App\Modules\Core\Model\UserNewsletterModel;
+use App\Modules\Newsletter\Model\UserNewsletterModel;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
@@ -22,12 +22,11 @@ class SendNewslettersCommand extends Command
 		/** @var UserNewsletterModel $userNewsletterModel */
 		$userNewsletterModel = $this->getHelper('container')->getByType(UserNewsletterModel::class);
 
-		$usersNewslettersHashes = $userNewsletterModel->getAll()
-			->select('hash')
-			->where('sent IS NULL')
-			->fetchPairs(NULL, 'hash');
+		$usersNewslettersIds = $userNewsletterModel->getAll()
+			->where('sent', null)
+			->fetchPairs(null, 'id');
 
-		$userNewsletterModel->sendNewsletters($usersNewslettersHashes);
+		$userNewsletterModel->sendNewsletters($usersNewslettersIds);
 
 		$output->writeLn('Newsletters have been sent');
 		return 0;

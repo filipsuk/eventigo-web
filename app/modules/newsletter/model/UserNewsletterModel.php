@@ -4,7 +4,6 @@ namespace App\Modules\Newsletter\Model;
 
 use App\Modules\Core\Model\BaseModel;
 use Nette\Utils\DateTime;
-use Nette\Utils\Json;
 use Nette\Utils\Random;
 
 
@@ -15,23 +14,20 @@ class UserNewsletterModel extends BaseModel
 
 	/**
 	 * @param int $userId
-	 * @param int $newsletterId
+	 * @param string $content
 	 * @return bool|int|\Nette\Database\Table\IRow
 	 */
-	public function createNewsletter($userId, $newsletterId)
+	public function createNewsletter($userId, $content)
 	{
 		return $this->insert([
 			'user_id' => $userId,
-			'newsletter_id' => $newsletterId,
+			'content' => $content,
 			'hash' => $this->generateUniqueHash(),
 		]);
 	}
 
 
-	/**
-	 * @return string
-	 */
-	public function generateUniqueHash()
+	public function generateUniqueHash() : string
 	{
 		do {
 			$hash = Random::generate(32);
@@ -41,20 +37,14 @@ class UserNewsletterModel extends BaseModel
 	}
 
 
-	public function sendNewsletters(array $usersNewslettersHashes)
+	/**
+	 * @param int[] $usersNewslettersIds
+	 */
+	public function sendNewsletters(array $usersNewslettersIds)
 	{
-		$usersNewsletters = $this->getAll()->wherePrimary($usersNewslettersHashes)->fetchAll();
+		$usersNewsletters = $this->getAll()->wherePrimary($usersNewslettersIds)->fetchAll();
 		foreach ($usersNewsletters as $userNewsletter) {
-			// Get user tags
-			$tags = [];
-			$userTags = $userNewsletter->user->related('users_tags');
-			foreach ($userTags as $userTag) {
-				$tags[] = $userTag->tag->code;
-			}
-
-			// Save current user tags
-			$this->update([
-				'variables' => Json::encode($tags),
+			$this->getAll()->wherePrimary($userNewsletter->id)->update([
 				'sent' => new DateTime,
 			]);
 

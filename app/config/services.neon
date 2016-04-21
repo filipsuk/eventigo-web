@@ -9,8 +9,4 @@ services:
 	- App\Modules\Admin\Model\EventService
 	- App\Modules\Admin\Model\Authenticator
 	- App\Modules\Core\Model\EventRedirectModel
-	- App\Modules\Newsletter\Model\NewsletterModel
-	-
-		class: App\Modules\Newsletter\Model\NewsletterService
-		inject: yes
 	- App\Modules\Core\Model\TagGroupModel
