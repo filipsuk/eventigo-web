@@ -9,6 +9,7 @@ use Nette\Database\Table\ActiveRow;
 use Nette\Database\Table\IRow;
 use Nette\DI\Container;
 use Nette\Security\Passwords;
+use Nette\Utils\Random;
 
 
 class UserModel extends BaseModel
@@ -18,6 +19,8 @@ class UserModel extends BaseModel
 	/** Login types */
 	const SUBSCRIPTION_LOGIN = 'subscription';
 	const ADMIN_LOGIN = 'admin';
+
+	const TOKEN_LENGTH = 64;
 
 	/** @var Container */
 	private $container;
@@ -88,8 +91,12 @@ class UserModel extends BaseModel
 	}
 
 
-	public function generateToken(ActiveRow $user) : string
+	public function generateToken() : string
 	{
-		return hash('sha256', $user->email . $user->created->format('ymdHis'));
+		do {
+			$token = Random::generate(self::TOKEN_LENGTH);
+		} while ($this->getAll()->where(['token' => $token])->fetch());
+
+		return $token;
 	}
 }
