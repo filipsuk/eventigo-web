@@ -1,81 +1,81 @@
-{**
- * @param string $basePath web base path
- * @param array $flashes  flash messages
- * @param array $allTags
- *}
-
 <!DOCTYPE html>
 <html>
 <head>
 	<meta charset="utf-8">
 
-	<title>{ifset title}{include title|striptags} | Events{/ifset}</title>
+	<title>{ifset title}{include title|striptags} | {/ifset}Eventigo.cz</title>
 
 	{* favicon *}
-	<link rel="apple-touch-icon" sizes="57x57" href="/favicon/apple-icon-57x57.png">
-	<link rel="apple-touch-icon" sizes="60x60" href="/favicon/apple-icon-60x60.png">
-	<link rel="apple-touch-icon" sizes="72x72" href="/favicon/apple-icon-72x72.png">
-	<link rel="apple-touch-icon" sizes="76x76" href="/favicon/apple-icon-76x76.png">
-	<link rel="apple-touch-icon" sizes="114x114" href="/favicon/apple-icon-114x114.png">
-	<link rel="apple-touch-icon" sizes="120x120" href="/favicon/apple-icon-120x120.png">
-	<link rel="apple-touch-icon" sizes="144x144" href="/favicon/apple-icon-144x144.png">
-	<link rel="apple-touch-icon" sizes="152x152" href="/favicon/apple-icon-152x152.png">
-	<link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-icon-180x180.png">
-	<link rel="icon" type="image/png" sizes="192x192"  href="/favicon/android-icon-192x192.png">
-	<link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
-	<link rel="icon" type="image/png" sizes="96x96" href="/favicon/favicon-96x96.png">
-	<link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+	<link rel="apple-touch-icon" sizes="57x57" href="/favicon/apple-touch-icon-57x57.png">
+	<link rel="apple-touch-icon" sizes="60x60" href="/favicon/apple-touch-icon-60x60.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="/favicon/apple-touch-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="/favicon/apple-touch-icon-76x76.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="/favicon/apple-touch-icon-114x114.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="/favicon/apple-touch-icon-120x120.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="/favicon/apple-touch-icon-144x144.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="/favicon/apple-touch-icon-152x152.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon-180x180.png">
+	<link rel="icon" type="image/png" href="/favicon/favicon-32x32.png" sizes="32x32">
+	<link rel="icon" type="image/png" href="/favicon/android-chrome-192x192.png" sizes="192x192">
+	<link rel="icon" type="image/png" href="/favicon/favicon-96x96.png" sizes="96x96">
+	<link rel="icon" type="image/png" href="/favicon/favicon-16x16.png" sizes="16x16">
 	<link rel="manifest" href="/favicon/manifest.json">
-	<meta name="msapplication-TileColor" content="#ffffff">
-	<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+	<link rel="mask-icon" href="/favicon/safari-pinned-tab.svg" color="#5bbad5">
+	<link rel="shortcut icon" href="/favicon/favicon.ico">
+	<meta name="apple-mobile-web-app-title" content="Eventigo.cz">
+	<meta name="application-name" content="Eventigo.cz">
+	<meta name="msapplication-TileColor" content="#da532c">
+	<meta name="msapplication-TileImage" content="/favicon/mstile-144x144.png">
+	<meta name="msapplication-config" content="/favicon/browserconfig.xml">
 	<meta name="theme-color" content="#ffffff">
+
+	{* Open Graph Markup *}
+	<meta property="og:url"                content="http://{$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']}" />
+	<meta property="og:type"               content="website" />
+	<meta property="og:title"              content="{_front.meta.title}" />
+	<meta property="og:description"        content="{_front.meta.description}" />
+	<meta property="og:image"              content="http://{$_SERVER['HTTP_HOST']}/img/og-image.jpg" />
+	<meta property="og:image:width" content="1200" />
+	<meta property="og:image:height" content="1200" />
 
 	<meta name="viewport" content="width=device-width">
 
-	{* Bootstrap *}
-	<link type="text/css" rel="stylesheet" href="libs/bootstrap-theme-bootswatch-flatly/css/bootstrap.css">
-
 	{* Styles *}
 	<link type="text/css" rel="stylesheet" href="/libs/normalize-css/normalize.css">
-	<link type="text/css" rel="stylesheet" href="/css/front.css">
-	<link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400,700' rel='stylesheet' type='text/css'>
+	<link type="text/css" rel="stylesheet" href="/css/newsletter.css">
 
 	{block head}{/block}
 </head>
 
 <body>
+	{include content}
 
-	<section>
-		{block header}{/block}
-	</section>
-
-	<section id="main">
-		<div class="container flash-messages">
-			{snippet flash-messages}
-			<div n:if="isset($flashes)"
-				 n:foreach="$flashes as $flash"
-				 n:class="flash, $flash->type">
-				{$flash->message|noescape}
-			</div>
-			{/snippet}
-		</div>
-
-		{include content}
-	</section>
-
-	{block footer}
-		<footer>
-			{_front.footer.text |noescape}
-		</footer>
-	{/block}
-
-	<script type="text/javascript" src="/libs/nette-forms/src/assets/netteForms.js"></script>
-	<script type="text/javascript" src="/libs/jquery/dist/jquery.min.js"></script>
-	<script type="text/javascript" src="/libs/nette.ajax.js/nette.ajax.js"></script>
-	<script type="text/javascript" src="/js/lib.js"></script>
-	<script type="text/javascript" src="libs/bootstrap/dist/js/bootstrap.min.js"></script>
-	<!--script type="text/javascript" src="/js/plugins/eventFilter.js"></script-->
-	<script type="text/javascript" src="/js/main.js"></script>
 	{block scripts}{/block}
+
+	{* Google Analytics if key is set in local config *}
+	{* TODO: put in separate file *}
+	{if !empty($parameters['googleAnalyticsKey'])}
+		<script n:syntax="double">
+			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+					m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+			ga('create', {{$parameters['googleAnalyticsKey']}}, 'auto');
+			ga('send', 'pageview');
+		</script>
+	{/if}
+
+	<!-- Hotjar Tracking Code for http://eventigo.cz -->
+	<script n:syntax="double">
+		(function(h,o,t,j,a,r){
+			h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+			h._hjSettings={hjid:176338,hjsv:5};
+			a=o.getElementsByTagName('head')[0];
+			r=o.createElement('script');r.async=1;
+			r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+			a.appendChild(r);
+		})(window,document,'//static.hotjar.com/c/hotjar-','.js?sv=');
+	</script>
 </body>
 </html>

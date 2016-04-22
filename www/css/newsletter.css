@@ -1,0 +1,9 @@
+body {
+  background-color: #F9F9F9;
+}
+#newsletter {
+  border: 1px solid #D6D5CA;
+  background-color: #fff;
+  width: 580px;
+  margin: 3rem auto;
+}

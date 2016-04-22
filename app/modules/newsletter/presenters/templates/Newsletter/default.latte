@@ -1,1 +1,7 @@
-{control newsletter}
+{layout '../@layout.latte'}
+
+{block content}
+    <article id="newsletter">
+        {!$userNewsletter->content}
+    </article>
+{/block}
