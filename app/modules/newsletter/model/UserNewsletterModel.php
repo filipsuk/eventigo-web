@@ -3,7 +3,6 @@
 namespace App\Modules\Newsletter\Model;
 
 use App\Modules\Core\Model\BaseModel;
-use Nette\Utils\DateTime;
 use Nette\Utils\Random;
 
 
@@ -11,16 +10,19 @@ class UserNewsletterModel extends BaseModel
 {
 	const TABLE_NAME = 'users_newsletters';
 
-
 	/**
 	 * @param int $userId
+	 * @param string $from
+	 * @param string $subject
 	 * @param string $content
 	 * @return bool|int|\Nette\Database\Table\IRow
 	 */
-	public function createNewsletter($userId, $content)
+	public function createNewsletter($userId, $from, $subject, $content)
 	{
 		return $this->insert([
 			'user_id' => $userId,
+			'from' => $from,
+			'subject' => $subject,
 			'content' => $content,
 			'hash' => $this->generateUniqueHash(),
 		]);
@@ -34,21 +36,5 @@ class UserNewsletterModel extends BaseModel
 		} while ($this->getAll()->where(['hash' => $hash])->fetch());
 
 		return $hash;
-	}
-
-
-	/**
-	 * @param int[] $usersNewslettersIds
-	 */
-	public function sendNewsletters(array $usersNewslettersIds)
-	{
-		$usersNewsletters = $this->getAll()->wherePrimary($usersNewslettersIds)->fetchAll();
-		foreach ($usersNewsletters as $userNewsletter) {
-			$this->getAll()->wherePrimary($userNewsletter->id)->update([
-				'sent' => new DateTime,
-			]);
-
-			// TODO Push newsletter to email queue
-		}
 	}
 }

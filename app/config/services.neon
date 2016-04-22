@@ -4,6 +4,11 @@ services:
 	- App\Modules\Core\Model\TagModel
 	- App\Modules\Core\Model\UserModel
 	- App\Modules\Core\Model\UserTagModel
+	-
+		class: App\Modules\Newsletter\Model\NewsletterService
+		setup:
+			- setApiKey(%SendGrid.ApiKey%)
+		inject: yes
 	- App\Modules\Newsletter\Model\UserNewsletterModel
 	- App\Modules\Core\Model\EventTagModel
 	- App\Modules\Admin\Model\EventService

@@ -3,7 +3,7 @@
 namespace App\Modules\Newsletter\Console;
 
 use App\Modules\Core\Model\UserModel;
-use App\Modules\Newsletter\Model\UserNewsletterModel;
+use App\Modules\Newsletter\Model\NewsletterService;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
@@ -15,22 +15,29 @@ class CreateNewslettersCommand extends Command
 	protected function configure()
 	{
 		$this->setName('newsletters:create')
-			->setDescription('Create newsletters');
+			->setDescription('Create newsletters')
+			->addArgument(
+				'from',
+				InputArgument::OPTIONAL,
+				'Email from'
+			);
 	}
 
 	protected function execute(InputInterface $input, OutputInterface $output)
 	{
-		/** @var UserNewsletterModel $userNewsletterModel */
-		$userNewsletterModel = $this->getHelper('container')->getByType(UserNewsletterModel::class);
+		$from = $input->getArgument('from') ?: 'filip';
+
+		/** @var NewsletterService $newsletterService */
+		$newsletterService = $this->getHelper('container')->getByType(NewsletterService::class);
 		/** @var UserModel $userModel */
 		$userModel = $this->getHelper('container')->getByType(UserModel::class);
 
-		$users = $userModel->getAll()->fetchAll();
+		$users = $userModel->getAll()->where('newsletter', true)->fetchAll();
 		foreach($users as $user) {
-			$userNewsletterModel->createNewsletter($user->id, '');
+			$newsletterService->createNewsletter($user->id, $from . '@eventigo.cz', '', '');
 		}
 
-		$output->writeLn('Newsletters have been created');
+		$output->writeLn(count($users) . ' newsletters have been created');
 		return 0;
 	}
 }
