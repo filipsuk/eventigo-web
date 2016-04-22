@@ -24,7 +24,8 @@ class RouterFactory
 
 		// Nesletter
 		$newsletterRouter = new RouteList('Newsletter');
-		$newsletterRouter[] = new Route('newsletter/<hash>', 'Newsletter:default', Route::SECURED);
+		$newsletterRouter[] = new Route('newsletter/<hash [a-z0-9]{32}>', 'Newsletter:default', Route::SECURED);
+		$newsletterRouter[] = new Route('newsletter/<action>/<hash>', 'Newsletter:default', Route::SECURED);
 		$router[] = $newsletterRouter;
 
 		// Front
