@@ -21,7 +21,8 @@
 		"tracy/tracy": "~2.3.0",
 		"kdyby/translation": "~2.2.0",
 		"kdyby/console": "^2.5",
-		"defuse/php-encryption": "~1.2.1"
+		"defuse/php-encryption": "~1.2.1",
+		"sendgrid/sendgrid": "^4.0"
 	},
 	"require-dev": {
 		"nette/tester": "~1.3",

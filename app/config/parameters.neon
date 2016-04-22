@@ -1,1 +1,3 @@
 parameters:
+	SendGrid:
+		ApiKey: ***REMOVED***
