@@ -46,7 +46,7 @@ class SourcesTable extends DataTable
 			$item['name'] = (string)Html::el('a', ['href' => $item['url'], 'target' => '_blank'])
 				->setHtml($item['name'] . '&nbsp; ' . (string)$i);
 			$item['nextCheck'] = DateTime::from($item['next_check'])
-				->format(\App\Modules\Core\Utils\DateTime::DATE_FORMAT);
+				->format(\App\Modules\Core\Utils\DateTime::NO_ZERO_DATE_FORMAT);
 
 			$actions = (string)Html::el('a', [
 				'href' => $this->link('done!', $item['id']),
@@ -71,7 +71,7 @@ class SourcesTable extends DataTable
 
 		$this->getPresenter()->flashMessage($this->translator->translate('admin.sources.default.table.done', [
 			'source' => $source->name,
-			'nextCheck' => $nextCheck->format(\App\Modules\Core\Utils\DateTime::DATE_FORMAT),
+			'nextCheck' => $nextCheck->format(\App\Modules\Core\Utils\DateTime::NO_ZERO_DATE_FORMAT),
 		]), 'success');
 
 		$this->getPresenter()->redirect('Sources:');
