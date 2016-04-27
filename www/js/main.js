@@ -6,7 +6,7 @@ $(function () {
         $(this).closest('form').submit();
     });
 
-    $('#profile input[type=checkbox]').on('change', function() {
+    $('#main-settings input[type=checkbox]').on('change', function() {
         $(this).closest('form').submit();
     });
 

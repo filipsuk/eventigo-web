@@ -51,4 +51,14 @@ abstract class BaseModel
 	{
 		return $this->getAll()->update($data);
 	}
+
+
+	/**
+	 * Delete rows in a table
+	 * @param array $data
+	 */
+	public function delete(array $data)
+	{
+		$this->getAll()->where($data)->delete();
+	}
 }

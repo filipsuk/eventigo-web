@@ -90,6 +90,7 @@ class Tags extends BaseControl
 
 		foreach ($tags as $tag) {
 			try {
+				// Add newly checked tags
 				$this->userTagModel->insert([
 					'tag_id' => $tag->id,
 					'user_id' => $this->user->getId(),
@@ -98,6 +99,12 @@ class Tags extends BaseControl
 				// Tag has been already inserted
 			}
 		}
+
+		// Remove not checked tags
+		$this->userTagModel->delete([
+			'user_id' => $this->user->getId(),
+			'tag_id NOT IN (?)' => $this->tagModel->getAll()->where('code IN (?)', $chosenTags)->fetchPairs(null, 'id'),
+		]);
 
 		$this->onChange();
 	}
