@@ -126,6 +126,7 @@ div#wrapper #homepage {
   padding-bottom: 4rem;
 }
 div#wrapper .content {
+  padding-top: 3.3rem;
   padding-bottom: 83px;
 }
 div#wrapper.logged {
@@ -133,6 +134,9 @@ div#wrapper.logged {
 }
 div#wrapper.logged #homepage {
   padding-top: 1rem;
+}
+div#wrapper #profile {
+  padding-top: 3rem;
 }
 #subscription {
   text-align: center;
@@ -352,14 +356,25 @@ nav.navbar a.navbar-brand {
     padding-top: 14.5px;
     padding-bottom: 14.5px;
   }
+  div#wrapper #profile {
+    padding-top: 0;
+  }
 }
 #profile .tags-box {
   width: 18rem;
   margin: 0 auto 2rem auto;
 }
+#profile #main-settings {
+  margin-bottom: 2rem;
+}
+#profile label {
+  font-weight: normal;
+}
 @media (max-width: 992px) {
   div#tags {
-    width: 80%;
     margin: 0 auto 2rem;
   }
+}
+input[type=checkbox] {
+  margin-right: .3em;
 }

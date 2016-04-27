@@ -6,6 +6,10 @@ $(function () {
         $(this).closest('form').submit();
     });
 
+    $('#profile input[type=checkbox]').on('change', function() {
+        $(this).closest('form').submit();
+    });
+
     // Move email subscription
     var box = $('.subscription-box');
     $('#subscription').appendTo(box);
