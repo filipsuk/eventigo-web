@@ -4,11 +4,10 @@ namespace App\Modules\Front\Presenters;
 
 use App\Modules\Core\Model\EventRedirectModel;
 use App\Modules\Core\Model\EventModel;
-use App\Modules\Core\Presenters\BasePresenter;
 use Nette\Http\Url;
 
 
-class RedirectPresenter extends BasePresenter
+class RedirectPresenter extends \App\Modules\Core\Presenters\BasePresenter
 {
 	/** @var EventModel @inject */
 	public $eventModel;

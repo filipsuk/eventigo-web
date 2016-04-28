@@ -4,6 +4,10 @@ parameters:
 
 	googleAnalyticsKey: ***REMOVED***
 
+	lastAccess:
+		syncToDb: 5 minutes
+
+
 database:
 	dsn: 'mysql:host=127.0.0.1:8889;dbname=events'
 	user:
