@@ -66,15 +66,9 @@ $(function () {
         // Subscribing by button (real_subscribe hidden input) :)
         var realSubscribe = $(this).siblings('input[name=real_subscribe]');
         realSubscribe.val(true);
-        console.log(realSubscribe.val());
-
-        // Hide subscription box
-        $('.subscription-box').delay(1000).fadeOut();
 
         $('#frm-subscriptionTags-form').submit();
         realSubscribe.val(false);
-        console.log(realSubscribe.val());
-
     });
 
     // Scroll to flash messages if new appear

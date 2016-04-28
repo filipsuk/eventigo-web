@@ -89,7 +89,7 @@ header {
 }
 
 .flash-messages .flash {
-  margin-bottom: 2rem;
+  margin-top: 2rem;
   padding: 1rem;
   color: @textPrimaryColor;
   background-color: @accentColor;
@@ -159,9 +159,9 @@ div#wrapper {
     padding-bottom: @footerHeight;
   }
   &.logged {
-    padding-top: 90px;
+    padding-top: 50px;
     #homepage {
-      padding-top: 1rem;
+      padding-top: 3.3rem;
     }
   }
   #profile {
@@ -407,6 +407,19 @@ nav.navbar {
     font-size: 1.7rem;
     padding: (13.5 - @navbarHeightDiff / 2) (15 - @navbarHeightDiff / 2);
     font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  }
+  ul.menu {
+    padding: 0.5rem 1rem;
+    li {
+      list-style: none;
+      a {
+        color: #333;
+        &:hover {
+          color: #666666;
+          text-decoration: none;
+        }
+      }
+    }
   }
 }
 

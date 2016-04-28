@@ -66,7 +66,7 @@ header .header-box {
   align-items: center;
 }
 .flash-messages .flash {
-  margin-bottom: 2rem;
+  margin-top: 2rem;
   padding: 1rem;
   color: #FFFFFF;
   background-color: #8BC34A;
@@ -130,10 +130,10 @@ div#wrapper .content {
   padding-bottom: 83px;
 }
 div#wrapper.logged {
-  padding-top: 90px;
+  padding-top: 50px;
 }
 div#wrapper.logged #homepage {
-  padding-top: 1rem;
+  padding-top: 3.3rem;
 }
 div#wrapper #profile {
   padding-top: 3rem;
@@ -350,6 +350,19 @@ nav.navbar a.navbar-brand {
   font-size: 1.7rem;
   padding: 8.5px 10px;
   font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+nav.navbar ul.menu {
+  padding: 0.5rem 1rem;
+}
+nav.navbar ul.menu li {
+  list-style: none;
+}
+nav.navbar ul.menu li a {
+  color: #333;
+}
+nav.navbar ul.menu li a:hover {
+  color: #666666;
+  text-decoration: none;
 }
 @media (min-width: 768px) {
   .navbar-nav > li > a {
