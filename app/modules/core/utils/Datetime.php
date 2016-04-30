@@ -17,7 +17,7 @@ class DateTime
 	{
 		$dateTimes = array_filter(func_get_args());
 
-		$max = reset($dateTimes);
+		$max = reset($dateTimes) ?: null;
 		foreach ($dateTimes as $dateTime) {
 			if ($max < $dateTime) {
 				$max = $dateTime;

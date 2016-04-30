@@ -69,6 +69,8 @@ class EventModel extends BaseModel
 		}
 		if ($lastAccess) {
 			$selection->select('created > ? AS newEvent', $lastAccess);
+		} else {
+			$selection->select('FALSE AS newEvent');
 		}
 
 		// Filter events by tags
