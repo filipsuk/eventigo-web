@@ -68,9 +68,7 @@ class EventModel extends BaseModel
 			$selection->where('(end IS NOT NULL AND end >= ?) OR (end IS NULL AND start >= ?)', $from, $from);
 		}
 		if ($from && $to) {
-			$selection->where('created BETWEEN ? AND ?', $from, $to);
-		} elseif ($from) {
-			$selection->where('created <= ?', $from);
+			$selection->where('start <= ?', $to);
 		}
 
 		// Filter events by tags

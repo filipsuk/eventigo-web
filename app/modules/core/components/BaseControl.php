@@ -28,22 +28,8 @@ abstract class BaseControl extends Control
 		}
 
 		$template->addFilter('datetime', function (DateTime $a, DateTime $b = null) {
-			// Translate name of day
-			$aDayName = $this->translator->translate('front.datetime.' . strtolower(strftime('%A', $a->getTimestamp())));
-
-			// Two day event
-			if ($b && ($a->format('dmy') !== $b->format('dmy'))) {
-				$result = $aDayName . $a->format(' j. n. ') . '&nbsp;&ndash;&nbsp;' . $b->format('j. n. Y');
-			}
-			// One day event
-			else {
-				$result = $aDayName . $a->format(' j. n. Y');
-				// Add Hour:minute time if its not 00:00
-				if ((int)$a->format('G') > 0) {
-					$result .= $a->format(' G:i');
-				}
-			}
-			return $result;
+			\App\Modules\Core\Utils\DateTime::setTranslator($this->translator);
+			return \App\Modules\Core\Utils\DateTime::eventsDatetimeFilter($a, $b);
 		});
 
 		return $template;

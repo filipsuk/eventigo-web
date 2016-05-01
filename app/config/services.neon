@@ -10,8 +10,10 @@ services:
 			- setApiKey(%SendGrid.ApiKey%)
 		inject: yes
 	- App\Modules\Newsletter\Model\UserNewsletterModel
+	- App\Modules\Newsletter\Model\NewsletterModel
 	- App\Modules\Core\Model\EventTagModel
 	- App\Modules\Admin\Model\EventService
 	- App\Modules\Admin\Model\Authenticator
 	- App\Modules\Core\Model\EventRedirectModel
 	- App\Modules\Core\Model\TagGroupModel
+	- App\Modules\Front\Components\Settings\SettingsFactory
