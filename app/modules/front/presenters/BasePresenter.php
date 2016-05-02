@@ -48,7 +48,9 @@ abstract class BasePresenter extends \App\Modules\Core\Presenters\BasePresenter
 
 		// Update last access in DB if it has been updated few minutes ago or earlier
 		$syncToDb = $this->getParameters()['lastAccess']['syncToDb'] ?? '5 minutes';
-		if (!($access->lastInDb ?? null) || $access->lastInDb < new DateTime('-' . $syncToDb)) {
+		if (!($access->lastInDb ?? null)
+			|| (($lastInDb ?? null) && $lastInDb > $access->lastInDb)
+			|| $access->lastInDb < new DateTime('-' . $syncToDb)) {
 
 			if ($this->getUser()->isLoggedIn()) {
 				$this->userModel->getAll()
