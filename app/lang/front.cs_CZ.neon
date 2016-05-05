@@ -1,3 +1,4 @@
+homepage.fbLogin.failed: Přihlášení přes facebook neproběhlo v pořádku
 homepage.header.logo: eventigo
 homepage.header.title: Každý týden výběr akcí přesně pro tebe
 homepage.header.mainTitle: "Eventy, které tě zajímají"
@@ -31,6 +32,9 @@ meta.description: "Každý týden výběr akcí přesně pro tebe. Konference, m
 meta.title: "Eventy na tento týden"
 nav.settings: Nastavení
 nav.signOut: Odhlásit se
+nav.login: Přihlásit se
+nav.login.facebook: Přihlásit se přes Facebook
+nav.user: Uživatel
 profile.settings.main.newsletter: Chci dostávat email s výběrem akcí
 profile.settings.main.title: Hlavní nastavení
 profile.settings.tags.title: Sledování tagů

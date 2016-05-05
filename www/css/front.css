@@ -65,6 +65,56 @@ header .header-box {
   display: flex;
   align-items: center;
 }
+.unlogged .navbar ul.nav {
+  margin-top: 13px;
+}
+.unlogged .navbar ul.nav li > a {
+  color: rgba(255, 255, 255, 0.7);
+}
+.unlogged .navbar ul.nav li > a:hover {
+  background: none;
+  color: rgba(255, 255, 255, 0.9);
+}
+.unlogged .navbar ul.nav li.open > a {
+  background: none;
+}
+.unlogged .navbar ul.menu {
+  padding: 0.5rem 1rem;
+}
+.unlogged .navbar ul.menu li {
+  list-style: none;
+}
+.unlogged .navbar ul.menu li a {
+  color: #333;
+  white-space: nowrap;
+}
+.unlogged .navbar ul.menu li a:hover {
+  color: #666666;
+  text-decoration: none;
+}
+.unlogged .navbar .navbar-header {
+  float: left;
+}
+.unlogged .navbar .navbar-right {
+  float: right;
+}
+.unlogged .navbar .navbar-right .dropdown-menu {
+  left: auto;
+  right: 0;
+}
+.unlogged .navbar-collapse.collapse {
+  display: block!important;
+}
+.unlogged .navbar-nav > li,
+.unlogged .navbar-nav {
+  float: left !important;
+}
+.unlogged .navbar-nav.navbar-right:last-child {
+  margin-right: -15px !important;
+}
+.unlogged .navbar-right {
+  float: right!important;
+}
 .flash-messages .flash {
   margin-top: 2rem;
   padding: 1rem;
@@ -73,6 +123,9 @@ header .header-box {
 }
 .flash-messages .flash .glyphicon {
   margin-right: 0.5rem;
+}
+.flash-messages .flash.danger {
+  background-color: #f44336;
 }
 .tags-box {
   margin-bottom: 70px;
@@ -341,38 +394,38 @@ footer .heart {
     display: none;
   }
 }
-nav.navbar {
+.logged nav.navbar {
   background-color: #2196F3;
   min-height: 50px;
 }
-nav.navbar a.navbar-brand,
-nav.navbar .navbar-nav a {
+.logged nav.navbar a.navbar-brand,
+.logged nav.navbar .navbar-nav a {
   color: rgba(255, 255, 255, 0.8);
   -webkit-font-smoothing: antialiased;
   height: 50px;
 }
-nav.navbar a.navbar-brand:hover,
-nav.navbar .navbar-nav a:hover,
-nav.navbar a.navbar-brand:focus,
-nav.navbar .navbar-nav a:focus {
+.logged nav.navbar a.navbar-brand:hover,
+.logged nav.navbar .navbar-nav a:hover,
+.logged nav.navbar a.navbar-brand:focus,
+.logged nav.navbar .navbar-nav a:focus {
   color: #ffffff;
   background-color: inherit;
 }
-nav.navbar a.navbar-brand {
+.logged nav.navbar a.navbar-brand {
   font-size: 1.7rem;
   padding: 8.5px 10px;
   font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
-nav.navbar ul.menu {
+.logged nav.navbar ul.menu {
   padding: 0.5rem 1rem;
 }
-nav.navbar ul.menu li {
+.logged nav.navbar ul.menu li {
   list-style: none;
 }
-nav.navbar ul.menu li a {
+.logged nav.navbar ul.menu li a {
   color: #333;
 }
-nav.navbar ul.menu li a:hover {
+.logged nav.navbar ul.menu li a:hover {
   color: #666666;
   text-decoration: none;
 }

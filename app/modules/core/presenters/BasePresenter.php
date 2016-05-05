@@ -23,6 +23,10 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter
 			return \App\Modules\Core\Utils\DateTime::eventsDatetimeFilter($a, $b);
 		});
 
+		$template->addFilter('username', function (Nette\Security\Identity $identity) {
+			return $identity->fullname ?: $identity->email ?: $this->translator->translate('front.nav.user');
+		});
+
 		return $template;
 	}
 

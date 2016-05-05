@@ -4,6 +4,7 @@ includes:
 	- parameters.neon
 	- extensions/translation.neon
 	- extensions/console.neon
+	- extensions/facebook.neon
 
 php:
 	date.timezone: Europe/Prague

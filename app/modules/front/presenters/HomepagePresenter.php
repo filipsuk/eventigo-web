@@ -26,6 +26,9 @@ class HomepagePresenter extends BasePresenter
 	/** @var EventsListFactory @inject */
 	public $eventsListFactory;
 
+	/** @var \Kdyby\Facebook\Facebook @inject */
+	public $facebook;
+
 
 	/**
 	 * @param string[] $tags
@@ -146,5 +149,44 @@ class HomepagePresenter extends BasePresenter
 		$this->followedTags = $section->tags;
 
 		$this['eventsList']->redrawControl();
+	}
+
+
+	/**
+	 * @return \Kdyby\Facebook\Dialog\LoginDialog
+	 */
+	protected function createComponentFbLogin()
+	{
+		/** @var \Kdyby\Facebook\Dialog\LoginDialog $dialog */
+		$dialog = $this->facebook->createDialog('login');
+
+		$dialog->onResponse[] = function (\Kdyby\Facebook\Dialog\LoginDialog $dialog) {
+			$fb = $dialog->getFacebook();
+
+			if (!$fb->getUser()) {
+				$this->flashMessage($this->translator->translate('front.homepage.fbLogin.failed'), 'danger');
+				return;
+			}
+
+			try {
+				$me = $fb->api('/me?fields=email,first_name,name');
+
+				if (!$existing = $this->userModel->findByFacebookId($fb->getUser())) {
+					$this->userModel->signInViaFacebook($me);
+				}
+
+				$existing = $this->userModel->updateFacebook($me, $fb->getAccessToken());
+
+				$this->getUser()->login(new \Nette\Security\Identity($existing->id, null, $existing->toArray()));
+
+			} catch (\Kdyby\Facebook\FacebookApiException $e) {
+				\Tracy\Debugger::log($e, 'facebook');
+				$this->flashMessage($this->translator->translate('front.homepage.fbLogin.failed'), 'danger');
+			}
+
+			$this->redirect('this');
+		};
+
+		return $dialog;
 	}
 }
