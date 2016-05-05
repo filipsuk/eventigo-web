@@ -9,6 +9,7 @@ use Nette\Database\Table\ActiveRow;
 use Nette\Database\Table\IRow;
 use Nette\DI\Container;
 use Nette\Security\Passwords;
+use Nette\Utils\ArrayHash;
 use Nette\Utils\Random;
 
 
@@ -98,5 +99,49 @@ class UserModel extends BaseModel
 		} while ($this->getAll()->where(['token' => $token])->fetch());
 
 		return $token;
+	}
+
+
+	/**
+	 * @param string $facebookId
+	 * @return bool|IRow
+	 */
+	public function findByFacebookId($facebookId)
+	{
+		return $this->getAll()->where('facebook_id', $facebookId)->fetch();
+	}
+
+
+	/**
+	 * @param ArrayHash $me
+	 * @return IRow
+	 */
+	public function signInViaFacebook(ArrayHash $me)
+	{
+		if (isset($me->email) && $user = $this->getAll()->where('email', $me->email)->fetch()) {
+			$this->getAll()->wherePrimary($user->id)->update([
+				'facebook_id' => $me->id,
+			]);
+			return $this->findByFacebookId($me->id);
+		} else {
+			return $this->insert([
+				'email' => $me->email ?? null,
+				'facebook_id' => $me->id,
+			]);
+		}
+	}
+
+
+	public function updateFacebook(ArrayHash $me, string $token) : ActiveRow
+	{
+		$user = $this->getAll()->where('facebook_id', $me->id)->fetch();
+
+		$this->getAll()->wherePrimary($user->id)->update([
+			'facebook_token' => $token,
+			'firstname' => $user->firstname ?: $me->first_name,
+			'fullname' => $user->fullname ?: $me->name,
+		]);
+
+		return $this->findByFacebookId($me->id);
 	}
 }

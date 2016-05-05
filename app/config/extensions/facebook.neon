@@ -1,0 +1,8 @@
+extensions:
+	facebook: Kdyby\Facebook\DI\FacebookExtension
+
+facebook:
+	appId: "1757132394505607"
+	appSecret: "***REMOVED***"
+	permissions: [public_profile, email]
+	graphVersion: v2.6
