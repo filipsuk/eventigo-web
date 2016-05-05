@@ -253,6 +253,12 @@ div#wrapper #profile {
 #events-list .events-list-title:not(:first-child) {
   margin-top: 1.2rem;
 }
+#events-list .events-list-title:before,
+#events-list .events-list-title:after {
+  content: " ";
+  display: table;
+  clear: both;
+}
 #events-list .event-box {
   background-color: #fff;
   margin: 0.5rem 0;
@@ -436,6 +442,31 @@ footer .heart {
   }
   div#wrapper #profile {
     padding-top: 0;
+  }
+}
+@media (max-width: 768px) {
+  #events-list .row {
+    margin-left: -10px;
+    margin-right: -10px;
+  }
+  .col-sm-4 {
+    width: 33%;
+    float: left;
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+}
+@media (max-width: 600px) {
+  .col-sm-4 {
+    width: 50%;
+  }
+  .col-sm-4:nth-of-type(even) {
+    padding-left: 10px;
+    padding-right: 5px;
+  }
+  .col-sm-4:nth-of-type(odd) {
+    padding-left: 5px;
+    padding-right: 10px;
   }
 }
 #profile .tags-box {
