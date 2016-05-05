@@ -94,7 +94,7 @@ class HomepagePresenter extends BasePresenter
 
 		$tags = Collection::getNestedValues($section->tags);
 		$tagsIds = $this->tagModel->getAll()->where('code', $tags)->fetchPairs(null, 'id');
-		$events = $this->eventModel->getAllWithDates($tagsIds, new DateTime, $this->lastAccess);
+		$events = $this->eventModel->getAllWithDates($tagsIds, new DateTime, null, $this->lastAccess);
 		return $this->eventsListFactory->create($events);
 	}
 
