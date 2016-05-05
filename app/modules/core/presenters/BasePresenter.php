@@ -27,6 +27,10 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter
 			return $result . $b->format('Y');
 		});
 
+		$template->addFilter('username', function (Nette\Security\Identity $identity) {
+			return $identity->fullname ?: $identity->email ?: $this->translator->translate('front.nav.user');
+		});
+
 		return $template;
 	}
 

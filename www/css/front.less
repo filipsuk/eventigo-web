@@ -9,6 +9,7 @@
 @headerButtonColorHover: darken(@headerButtonColor, 4%);
 
 @logoFontColor: rgba(255, 255, 255, 0.7);
+@logoFontColorHover: rgba(255, 255, 255, 0.9);
 @footerHeight: 83px;
 @originalNavbarHeight: 60px;
 @navbarHeight: 50px;
@@ -88,6 +89,63 @@ header {
   }
 }
 
+.unlogged {
+  .navbar {
+    ul.nav {
+      margin-top: 13px;
+      li {
+        > a {
+          color: @logoFontColor;
+          &:hover {
+            background: none;
+            color: @logoFontColorHover;
+          }
+        }
+        &.open > a {
+          background: none;
+        }
+      }
+    }
+    ul.menu {
+      padding: 0.5rem 1rem;
+      li {
+        list-style: none;
+        a {
+          color: #333;
+          &:hover {
+            color: #666666;
+            text-decoration: none;
+          }
+          white-space: nowrap;
+        }
+      }
+    }
+    .navbar-header {
+      float: left;
+    }
+    .navbar-right {
+      float: right;
+    }
+    .navbar-right .dropdown-menu {
+      left: auto;
+      right: 0;
+    }
+  }
+
+  .navbar-collapse.collapse {
+    display: block!important;
+  }
+  .navbar-nav>li, .navbar-nav {
+    float: left !important;
+  }
+  .navbar-nav.navbar-right:last-child {
+    margin-right: -15px !important;
+  }
+  .navbar-right {
+    float: right!important;
+  }
+}
+
 .flash-messages .flash {
   margin-top: 2rem;
   padding: 1rem;
@@ -96,6 +154,10 @@ header {
 
   .glyphicon {
     margin-right: 0.5rem;
+  }
+
+  &.danger {
+    background-color: @redColor;
   }
 }
 
@@ -404,7 +466,7 @@ footer {
   }
 }
 
-nav.navbar {
+.logged nav.navbar {
   background-color: #2196F3;
   min-height: @navbarHeight;
   a.navbar-brand, .navbar-nav a {
