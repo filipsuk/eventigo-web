@@ -6,7 +6,6 @@ use App\Modules\Core\Model\EventModel;
 use App\Modules\Core\Model\TagModel;
 use App\Modules\Core\Model\UserModel;
 use App\Modules\Core\Model\UserTagModel;
-use App\Modules\Core\Presenters\BasePresenter;
 use App\Modules\Front\Components\EventsList\EventsListFactory;
 use App\Modules\Front\Components\Settings\SettingsFactory;
 use App\Modules\Front\Components\Tags\ITagsFactory;
@@ -14,7 +13,7 @@ use Nette\Application\BadRequestException;
 use Nette\Security\Identity;
 
 
-class ProfilePresenter extends BasePresenter
+class ProfilePresenter extends \App\Modules\Core\Presenters\BasePresenter
 {
 	/** @var EventModel @inject */
 	public $eventModel;

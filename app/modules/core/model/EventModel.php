@@ -52,9 +52,10 @@ class EventModel extends BaseModel
 	 * @param int[] $tagsIds
 	 * @param \Nette\Utils\DateTime|NULL $from
 	 * @param \Nette\Utils\DateTime|NULL $to
+	 * @param \Nette\Utils\DateTime|NULL $lastAccess
 	 * @return array
 	 */
-	public function getAllWithDates(array $tagsIds, DateTime $from = NULL, DateTime $to = NULL)
+	public function getAllWithDates(array $tagsIds, DateTime $from = NULL, DateTime $to = NULL, DateTime $lastAccess = null)
 	{
 		$calculateFrom = $from ?: new DateTime;
 		$selection = $this->getAll()
@@ -69,6 +70,11 @@ class EventModel extends BaseModel
 		}
 		if ($from && $to) {
 			$selection->where('start <= ?', $to);
+		}
+		if ($lastAccess) {
+			$selection->select('created > ? AS newEvent', $lastAccess);
+		} else {
+			$selection->select('FALSE AS newEvent');
 		}
 
 		// Filter events by tags

@@ -18,7 +18,8 @@
 
                 {* Events *}
                 <div class="col-sm-4">
-                    <div class="event-box">
+                    <div n:class="event-box, $event->newEvent ? 'new-event'">
+                        <div class="label" n:if="$event->newEvent">{_front.eventList.label.new}</div>
                         <div class="event-image">
                             <a n:tag-if="$event->origin_url" target="_blank" href="{plink ":Front:Redirect:", $event->origin_url}">
                                 <img src="{$event->image}">
