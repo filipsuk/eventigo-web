@@ -4,6 +4,8 @@ parameters:
 
 	googleAnalyticsKey: ***REMOVED***
 
+	baseUrl: 'https://eventigo.cz'
+
 	lastAccess:
 		syncToDb: 5 minutes
 

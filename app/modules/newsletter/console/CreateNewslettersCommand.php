@@ -4,6 +4,7 @@ namespace App\Modules\Newsletter\Console;
 
 use App\Modules\Core\Model\UserModel;
 use App\Modules\Newsletter\Model\NewsletterService;
+use App\Modules\Newsletter\Model\NoEventsFoundException;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
@@ -15,29 +16,28 @@ class CreateNewslettersCommand extends Command
 	protected function configure()
 	{
 		$this->setName('newsletters:create')
-			->setDescription('Create newsletters')
-			->addArgument(
-				'from',
-				InputArgument::OPTIONAL,
-				'Email from'
-			);
+			->setDescription('Create newsletters');
 	}
 
 	protected function execute(InputInterface $input, OutputInterface $output)
 	{
-		$from = $input->getArgument('from') ?: 'filip';
-
 		/** @var NewsletterService $newsletterService */
 		$newsletterService = $this->getHelper('container')->getByType(NewsletterService::class);
 		/** @var UserModel $userModel */
 		$userModel = $this->getHelper('container')->getByType(UserModel::class);
 
 		$users = $userModel->getAll()->where('newsletter', true)->fetchAll();
+		$createdCount = 0;
 		foreach($users as $user) {
-			$newsletterService->createNewsletter($user->id, $from . '@eventigo.cz', '', '');
+			try {
+				$newsletterService->createUserNewsletter($user->id);
+				$createdCount++;
+			} catch (NoEventsFoundException $e) {
+				$output->writeln($e->getMessage());
+			}
 		}
 
-		$output->writeLn(count($users) . ' newsletters have been created');
+		$output->writeln($createdCount . ' newsletters have been created');
 		return 0;
 	}
 }

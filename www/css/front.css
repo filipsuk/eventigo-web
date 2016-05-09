@@ -8,7 +8,7 @@ body {
 }
 body {
   font-family: "Open Sans", Helvetica, Arial, sans-serif;
-  background-color: #F9F9F9;
+  background-color: #f9f9f9;
   color: #212121;
 }
 h1,
@@ -22,7 +22,7 @@ h4 {
 header {
   background: linear-gradient(rgba(33, 150, 243, 0.9), rgba(33, 150, 243, 0.9)), url('/img/header-background.jpg');
   background-size: cover;
-  color: #FFFFFF;
+  color: #ffffff;
   padding-bottom: 4.6rem;
   min-height: 100vh;
 }
@@ -48,7 +48,7 @@ header p {
 header .btn,
 header .btn:active,
 header .btn:focus {
-  background-color: #8BC34A;
+  background-color: #8bc34a;
   margin-top: 2rem;
   border-width: 0;
   font-size: 1rem;
@@ -118,8 +118,8 @@ header .header-box {
 .flash-messages .flash {
   margin-top: 2rem;
   padding: 1rem;
-  color: #FFFFFF;
-  background-color: #8BC34A;
+  color: #ffffff;
+  background-color: #8bc34a;
 }
 .flash-messages .flash .glyphicon {
   margin-right: 0.5rem;
@@ -163,7 +163,7 @@ div#tags ul li label {
 div#tags ul li input:hover,
 div#tags ul li label:hover {
   cursor: pointer;
-  color: #1976D2;
+  color: #1976d2;
 }
 div#tags ul#top-tags-group label {
   font-size: 1.5rem;
@@ -216,10 +216,10 @@ div#wrapper #profile {
   font-size: 1.2rem;
   vertical-align: middle;
   margin-right: 0.5rem;
-  color: #FFFFFF;
+  color: #ffffff;
 }
 .subscription-box {
-  background-color: #8BC34A;
+  background-color: #8bc34a;
   position: absolute;
   top: 1440px;
   width: 100%;
@@ -246,7 +246,7 @@ div#wrapper #profile {
 #events-list .events-list-title {
   font-size: 1.3rem;
   margin: 1rem 0 0.6rem;
-  color: #8BC34A;
+  color: #8bc34a;
   font-weight: 600;
   text-transform: uppercase;
 }
@@ -257,7 +257,7 @@ div#wrapper #profile {
   background-color: #fff;
   margin: 0.5rem 0;
   height: 16.5rem;
-  border-bottom: 1px solid #E4E4E4;
+  border-bottom: 1px solid #e4e4e4;
 }
 #events-list .event-box .event-image img {
   width: 100%;
@@ -321,7 +321,7 @@ footer .heart {
   transition: all 0.2s ease;
 }
 .accent-color {
-  color: #8BC34A;
+  color: #8bc34a;
 }
 .bold {
   font-weight: bold;
@@ -337,8 +337,8 @@ footer .heart {
   text-align: center;
 }
 .step-accent {
-  background-color: #8BC34A;
-  color: #FFFFFF;
+  background-color: #8bc34a;
+  color: #ffffff;
 }
 @media only screen and (max-width: 640px) {
   #events-list div.event-box {

@@ -17,4 +17,18 @@ class UserTagModel extends BaseModel
 			->group('tag.tag_group_id, tag.id')
 			->fetchAssoc('tagGroupName[]=code');
 	}
+
+	/**
+	 * Get ids of user's subscribed tags
+	 * 
+	 * @param int $userId
+	 * @return array
+	 */
+	public function getUserTagIds(int $userId) : array
+	{
+		return $this->getAll()
+			->select('tag_id')
+			->where('user_id', $userId)
+			->fetchAssoc('[]=tag_id');
+	}
 }

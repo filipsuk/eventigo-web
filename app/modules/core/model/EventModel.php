@@ -51,10 +51,11 @@ class EventModel extends BaseModel
 	/**
 	 * @param int[] $tagsIds
 	 * @param \Nette\Utils\DateTime|NULL $from
+	 * @param \Nette\Utils\DateTime|NULL $to
 	 * @param \Nette\Utils\DateTime|NULL $lastAccess
 	 * @return array
 	 */
-	public function getAllWithDates(array $tagsIds, DateTime $from = null, DateTime $lastAccess = null)
+	public function getAllWithDates(array $tagsIds, DateTime $from = NULL, DateTime $to = NULL, DateTime $lastAccess = null)
 	{
 		$calculateFrom = $from ?: new DateTime;
 		$selection = $this->getAll()
@@ -66,6 +67,9 @@ class EventModel extends BaseModel
 			->select('MONTH(start) = MONTH(?) AS nextMonth', $calculateFrom->modifyClone('+1 MONTH'));
 		if ($from) {
 			$selection->where('(end IS NOT NULL AND end >= ?) OR (end IS NULL AND start >= ?)', $from, $from);
+		}
+		if ($from && $to) {
+			$selection->where('start <= ?', $to);
 		}
 		if ($lastAccess) {
 			$selection->select('created > ? AS newEvent', $lastAccess);

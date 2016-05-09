@@ -25,10 +25,12 @@ class RouterFactory
 		// Nesletter
 		$newsletterRouter = new RouteList('Newsletter');
 		$newsletterRouter[] = new Route('newsletter/<hash [a-z0-9]{32}>', 'Newsletter:default', Route::SECURED);
+		$newsletterRouter[] = new Route('newsletter/dynamic/<userId>', 'Newsletter:dynamic', Route::SECURED);
 		$newsletterRouter[] = new Route('newsletter/<action>/<hash>', 'Newsletter:default', Route::SECURED);
 		$router[] = $newsletterRouter;
 
 		// Front
+		$router[] = new Route('profile/settings/<token>', 'Front:Profile:settings', Route::SECURED);
 		$router[] = new Route('<presenter>/<action>[/<id>]', [
 			'module' => 'Front',
 			'presenter' => 'Homepage',

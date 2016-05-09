@@ -144,4 +144,15 @@ class UserModel extends BaseModel
 
 		return $this->findByFacebookId($me->id);
 	}
+
+	/**
+	 * Get user token (hash).
+	 *
+	 * @param int $userId
+	 * @return FALSE|mixed
+	 */
+	public function getUserToken(int $userId)
+	{
+		return $this->getAll()->wherePrimary($userId)->fetchField('token');
+	}
 }

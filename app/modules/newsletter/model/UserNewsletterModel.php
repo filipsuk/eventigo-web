@@ -15,16 +15,17 @@ class UserNewsletterModel extends BaseModel
 	 * @param string $from
 	 * @param string $subject
 	 * @param string $content
+	 * @param null $hash
 	 * @return bool|int|\Nette\Database\Table\IRow
 	 */
-	public function createNewsletter($userId, $from, $subject, $content)
+	public function createNewsletter($userId, $from, $subject, $content, $hash = null)
 	{
 		return $this->insert([
 			'user_id' => $userId,
 			'from' => $from,
 			'subject' => $subject,
 			'content' => $content,
-			'hash' => $this->generateUniqueHash(),
+			'hash' => $hash ?? $this->generateUniqueHash(),
 		]);
 	}
 
