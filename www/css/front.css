@@ -509,11 +509,16 @@ input[type=checkbox] {
 }
 @media (max-width: 450px) {
   #events-list .event-box {
-    height: 20rem;
+    height: 22rem;
   }
 }
 @media (max-width: 350px) {
   #events-list .event-box {
     height: 23rem;
+  }
+}
+@media (max-width: 300px) {
+  #events-list .event-box {
+    height: 25rem;
   }
 }
