@@ -16,4 +16,3 @@ services:
 	- App\Modules\Admin\Model\Authenticator
 	- App\Modules\Core\Model\EventRedirectModel
 	- App\Modules\Core\Model\TagGroupModel
-	- App\Modules\Front\Components\Settings\SettingsFactory
