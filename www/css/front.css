@@ -455,6 +455,15 @@ footer .heart {
     padding-left: 5px;
     padding-right: 5px;
   }
+  .logged nav.navbar ul.menu li {
+    padding-left: 2rem;
+  }
+  .logged nav.navbar ul.menu li a {
+    color: rgba(255, 255, 255, 0.7);
+  }
+  .logged nav.navbar ul.menu li a:hover {
+    color: rgba(255, 255, 255, 0.9);
+  }
 }
 @media (max-width: 600px) {
   .col-sm-4 {
@@ -486,6 +495,12 @@ footer .heart {
 }
 input[type=checkbox] {
   margin-right: .3em;
+}
+.navbar-toggle {
+  padding: 4px 10px;
+}
+.navbar-toggle span {
+  background-color: rgba(255, 255, 255, 0.7);
 }
 @media (max-width: 992px) {
   #events-list .event-box {

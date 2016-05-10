@@ -66,9 +66,14 @@
 		<nav class="navbar navbar-fixed-top" n:if="$user->isLoggedIn()">
 			<div class="container">
 				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
 					<a class="navbar-brand" n:href="Homepage:">{_front.homepage.header.logo}</a>
 				</div>
-				<div>
+				<div class="navbar-collapse collapse" id="navbar">
 					<ul class="nav navbar-nav navbar-right">
 						<li>
 							<a n:href="Profile:settings">

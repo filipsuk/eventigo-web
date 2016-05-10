@@ -526,6 +526,22 @@ footer {
     padding-left: 5px;
     padding-right: 5px;
   }
+
+  .logged {
+    nav.navbar {
+      ul.menu {
+        li {
+          padding-left: 2rem;
+          a {
+            color: @logoFontColor;
+            &:hover {
+              color: @logoFontColorHover;
+            }
+          }
+        }
+      }
+    }
+  }
 }
 
 @media (max-width: 600px) {
@@ -566,6 +582,13 @@ footer {
 
 input[type=checkbox] {
   margin-right: .3em;
+}
+
+.navbar-toggle {
+  padding: 4px 10px;
+  span {
+    background-color: @logoFontColor;
+  }
 }
 
 @media (max-width: 992px) { #events-list .event-box { height: 16.5rem; } }
