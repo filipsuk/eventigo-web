@@ -180,7 +180,7 @@ div#wrapper #homepage {
 }
 div#wrapper .content {
   padding-top: 3.3rem;
-  padding-bottom: 83px;
+  padding-bottom: 93px;
 }
 div#wrapper.logged {
   padding-top: 50px;
@@ -233,7 +233,7 @@ div#wrapper #profile {
   top: inherit;
   bottom: 0;
   position: absolute;
-  padding-bottom: 83px;
+  padding-bottom: 93px;
 }
 .events-list-header {
   font-size: 1.4rem;
@@ -317,11 +317,20 @@ footer {
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 83px;
+  height: 93px;
 }
 footer .heart {
   color: #A24444;
   font-size: 1rem;
+}
+footer .social {
+  font-size: 1rem;
+}
+footer .social .fa {
+  margin: 0 2px;
+}
+footer .social .fa:hover {
+  color: #ffffff;
 }
 .btn {
   transition: all 0.2s ease;
