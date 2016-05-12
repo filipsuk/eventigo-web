@@ -65,7 +65,8 @@ class EventForm extends BaseControl
 			->setRequired('description.required');
 		$form->addText('image', 'image')
 			->addCondition(Form::FILLED)
-			->addRule(Form::URL, 'image.wrong');
+			->addRule(Form::URL, 'image.wrong')
+			->addRule(Form::PATTERN, 'image.notSecure', '^https:.*');
 		$form->addSelect('rate', $this->translator->translate('admin.eventForm.rate'), $this->getEventRates())
 			->setPrompt($this->translator->translate('admin.eventForm.rate.prompt'))
 			->setRequired('rate.required')
