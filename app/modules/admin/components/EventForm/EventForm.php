@@ -7,6 +7,7 @@ use App\Modules\Core\Components\BaseControl;
 use App\Modules\Core\Components\Form\Form;
 use App\Modules\Core\Model\TagModel;
 use Kdyby\Translation\Translator;
+use Nette\Database\UniqueConstraintViolationException;
 
 
 class EventForm extends BaseControl
@@ -57,6 +58,9 @@ class EventForm extends BaseControl
 		$form->addText('origin_url', 'originUrl')
 			->addCondition(Form::FILLED)
 			->addRule(Form::URL, 'originUrl.wrong');
+		$form->addSubmit('facebook_load', 'loadFromFb')
+			->setValidationScope([$form['origin_url']])
+			->setAttribute('class', 'btn btn-primary');
 		$form->addTextArea('description', 'description')
 			->setRequired('description.required');
 		$form->addText('image', 'image')
@@ -98,9 +102,36 @@ class EventForm extends BaseControl
 	public function processForm(Form $form)
 	{
 		$values = $form->getValues();
+
+		// Loading from Facebook
+		if ($form['facebook_load']->isSubmittedBy()) {
+
+			// Parse id from url
+			preg_match( '/\d{5,}(?=\/)/' , $values['origin_url'], $id);
+
+			// Get event from fb
+			$event = $this->eventService->getEventFromPlatform($id[0], EventService::PLATFORM_FACEBOOK);
+
+			// Set form values
+			$values['name'] = $event->getName();
+			$values['description'] = $event->getDescription();
+			$values['start'] = $event->getStart() ? $event->getStart()->format('d. m. Y H:i') : null;
+			$values['end'] = $event->getEnd() ? $event->getEnd()->format('d. m. Y H:i') : null;
+			$values['image'] = $event->getImage();
+			$values['rate'] = $event->getRate();
+			$form->setValues($values, true);
+
+			return;
+		}
+
 		if (!$values->id) {
-			$this->eventService->createEvent($values);
-			$this->onCreate();
+			try {
+				$this->eventService->createEvent($values);
+				$this->onCreate();
+			} catch (UniqueConstraintViolationException $e) {
+				$form->addError($this->translator->trans('admin.eventForm.error.alreadyExists'));
+				return;
+			}
 		} else {
 			$this->eventService->updateEvent($values);
 			$this->onUpdate();

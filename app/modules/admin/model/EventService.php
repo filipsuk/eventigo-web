@@ -3,7 +3,9 @@
 namespace App\Modules\Admin\Model;
 
 
+use App\Modules\Core\Model\Entity\Event;
 use App\Modules\Core\Model\EventModel;
+use App\Modules\Core\Model\EventSources\Facebook\FacebookEventSource;
 use App\Modules\Core\Model\EventTagModel;
 use App\Modules\Core\Model\TagModel;
 use Nette\Utils\DateTime;
@@ -19,14 +21,21 @@ class EventService
 	/** @var EventTagModel */
 	private $eventTagModel;
 
+	/** @var FacebookEventSource */
+	private $facebookEventSource;
+
+	const PLATFORM_FACEBOOK = 'facebook';
+
 
 	public function __construct(EventModel $eventModel,
 	                            TagModel $tagModel,
-	                            EventTagModel $eventTagModel)
+	                            EventTagModel $eventTagModel,
+								FacebookEventSource $facebookEventSource)
 	{
 		$this->eventModel = $eventModel;
 		$this->tagModel = $tagModel;
 		$this->eventTagModel = $eventTagModel;
+		$this->facebookEventSource = $facebookEventSource;
 	}
 
 
@@ -93,5 +102,20 @@ class EventService
 				'rate' => $tagValues->rate,
 			]);
 		}
+	}
+
+	/**
+	 * Get event by platform specific ID
+	 * 
+	 * @param $id
+	 * @param $platform
+	 * @return Event
+	 */
+	public function getEventFromPlatform($id, $platform) : Event
+	{
+		if ($platform === self::PLATFORM_FACEBOOK) {
+			return $this->facebookEventSource->getEventById($id);
+		}
+		return null;
 	}
 }

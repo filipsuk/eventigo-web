@@ -8,6 +8,7 @@ eventForm.description: Popis
 eventForm.description.required: Zadej popis akce
 eventForm.originUrl: Odkaz
 eventForm.originUrl.wrong: Zadej platný odkaz
+eventForm.loadFromFb: Načíst z Facebooku
 eventForm.start: Od
 eventForm.start.required: Zadej začátek akce
 eventForm.end: Do
@@ -34,6 +35,7 @@ eventForm.tag.rate.prompt: Vyber velikost tagu
 eventForm.tag.rate.required: Vyber velikost tagu
 eventForm.save: Uložit
 eventForm.success: Akce byla uložena
+eventForm.error.alreadyExists: Event s tímto jméném a datem již existuje
 events.create.header: Přidat akci
 events.update.header: Upravit akci
 footer.text: "&copy; 2016 eventigo | Made with <span class='heart'>&hearts;</span> in Prague"
