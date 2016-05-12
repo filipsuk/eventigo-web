@@ -77,8 +77,8 @@ class EventModel extends BaseModel
 			$selection->select('FALSE AS newEvent');
 		}
 
-		// Filter events by tags
-		if ($tagsIds) {
+		// Filter events by tags (if user has some subscribed), otherwise return all events
+		if (count($tagsIds) > 0) {
 			$eventsTags = $this->database->table('events_tags')
 				->select('DISTINCT(event_id)')
 				->where('tag_id', $tagsIds)
@@ -88,7 +88,8 @@ class EventModel extends BaseModel
 			$selection->where('id', $eventsTags);
 		}
 
-		return $selection->order('start')
+		// Return selected events ordered by start time and size (bigger first)
+		return $selection->order('start, rate DESC')
 			->fetchPairs('id');
 	}
 }
