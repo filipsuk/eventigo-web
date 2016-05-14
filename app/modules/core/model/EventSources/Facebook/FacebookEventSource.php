@@ -13,6 +13,7 @@ use App\Modules\Core\Model\Entity\Event;
 use App\Modules\Core\Model\EventSources\IEventSource;
 use Kdyby\Facebook\Facebook;
 use Kdyby\Facebook\FacebookApiException;
+use Nette\Http\Url;
 use Nette\Utils\DateTime;
 use Tracy\Debugger;
 
@@ -100,5 +101,16 @@ class FacebookEventSource implements IEventSource
 		}
 
 		return $events;
+	}
+
+
+	public static function isFacebookSource($url) : bool
+	{
+		try {
+			return (new Url($url))->getHost() === 'www.facebook.com';
+
+		} catch (\Exception $e) {
+			return false;
+		}
 	}
 }

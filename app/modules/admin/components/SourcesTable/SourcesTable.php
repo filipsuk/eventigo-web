@@ -4,6 +4,7 @@ namespace App\Modules\Admin\Components\SourcesTable;
 
 use App\Modules\Admin\Components\DataTable\DataTable;
 use App\Modules\Admin\Model\SourceModel;
+use App\Modules\Core\Model\EventSources\Facebook\FacebookEventSource;
 use Kdyby\Translation\Translator;
 use Nette\Database\Table\Selection;
 use Nette\Utils\DateTime;
@@ -43,8 +44,12 @@ class SourcesTable extends DataTable
 			$item = $item->toArray();
 
 			$i = Html::el('i', ['class' => 'fa fa-external-link']);
-			$item['name'] = (string)Html::el('a', ['href' => $item['url'], 'target' => '_blank'])
-				->setHtml($item['name'] . '&nbsp; ' . (string)$i);
+			$name = $item['name'] . '&nbsp; ' . (string)$i;
+			if (FacebookEventSource::isFacebookSource($item['url'])) {
+				$name = Html::el('i', ['class' => 'fa fa-facebook-square']) . '&nbsp;' . $name;
+			}
+
+			$item['name'] = (string)Html::el('a', ['href' => $item['url'], 'target' => '_blank'])->setHtml($name);
 			$item['nextCheck'] = DateTime::from($item['next_check'])
 				->format(\App\Modules\Core\Utils\DateTime::NO_ZERO_DATE_FORMAT);
 
