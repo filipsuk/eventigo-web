@@ -2,6 +2,7 @@
 
 namespace App\Modules\Core\Model;
 
+use App\Modules\Core\Model\Entity\Event;
 use Nette\Database\Table\IRow;
 use Nette\Utils\DateTime;
 
@@ -13,6 +14,7 @@ class EventModel extends BaseModel
 	/** Number of events per list */
 	const EVENTS_LIMIT = 10;
 
+	const STATE_APPROVED = 'approved';
 
 	/**
 	 * @param \Nette\Database\Table\IRow $event
@@ -88,8 +90,24 @@ class EventModel extends BaseModel
 			$selection->where('id', $eventsTags);
 		}
 
+		$selection->where('state', self::STATE_APPROVED);
+
 		// Return selected events ordered by start time and size (bigger first)
 		return $selection->order('start, rate DESC')
 			->fetchPairs('id');
+	}
+
+
+	/**
+	 * @param Event $event
+	 * @return bool|mixed|\Nette\Database\Table\IRow
+	 */
+	public function findExistingEvent(Event $event)
+	{
+		return $this->getAll()
+			->where('origin_url = ? OR origin_url = ?',
+				$event->getOriginUrl(),
+				strpos($event->getOriginUrl(), '/') ? $event->getOriginUrl() : $event->getOriginUrl() . '/'
+			)->fetch();
 	}
 }

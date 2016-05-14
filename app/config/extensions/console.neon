@@ -7,6 +7,7 @@ console:
 		- App\Modules\Newsletter\Console\CreateNewslettersCommand
 		- App\Modules\Newsletter\Console\SendNewslettersCommand
 		- App\Modules\Admin\Console\GeneratePasswordCommand
+		- App\Modules\Admin\Console\CrawlSourcesCommand
 
 services:
 	createNewsletterCommand:
@@ -18,3 +19,6 @@ services:
 	generatePasswordCommand:
 		class: App\Modules\Admin\Console\GeneratePasswordCommand
 		tags: [kdyby.console.command]
+	CrawlSourcesCommand:
+			class: App\Modules\Admin\Console\CrawlSourcesCommand
+			tags: [kdyby.console.command]
