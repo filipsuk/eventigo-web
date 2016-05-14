@@ -41,6 +41,9 @@ eventForm.success: Akce byla uložena
 eventForm.error.alreadyExists: Event s tímto jméném a datem již existuje
 events.create.header: Přidat akci
 events.update.header: Upravit akci
+events.crawlSources.link: Získat akce ze zdrojů
+events.crawlSources.success: Přidáno %events% nových akcí
+events.crawlSources.noEvents: Žádné nové akce nebyly nalezeny
 footer.text: "&copy; 2016 eventigo | Made with <span class='heart'>&hearts;</span> in Prague"
 menu.events: Eventy
 menu.sources: Zdroje
@@ -54,6 +57,7 @@ signInForm.password.required: Zadej heslo
 signInForm.signIn: Přihlásit
 signOut: Odhlásit
 sources.create.header: Přidat zdroj
+sources.default.table.title: Zdroje
 sources.default.table.done.title: Zkontrolováno
 sources.default.table.done: Příští kontrola <strong>%source%</strong> naplánovaná na <strong>%nextCheck%</strong>
 sources.default.table.name: Název

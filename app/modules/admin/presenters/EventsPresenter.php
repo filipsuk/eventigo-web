@@ -3,6 +3,7 @@
 namespace App\Modules\Admin\Presenters;
 
 use App\Modules\Admin\Components\EventForm\EventFormFactory;
+use App\Modules\Admin\Model\SourceService;
 use App\Modules\Core\Model\EventModel;
 use Nette\Utils\DateTime;
 
@@ -14,6 +15,9 @@ class EventsPresenter extends BasePresenter
 
 	/** @var EventModel @inject */
 	public $eventModel;
+
+	/** @var SourceService @inject */
+	public $sourceService;
 
 
 	public function actionUpdate($id)
@@ -55,5 +59,20 @@ class EventsPresenter extends BasePresenter
 		};
 
 		return $control;
+	}
+
+
+	public function handleCrawlSources()
+	{
+		$addedEvents = $this->sourceService->crawlSources();
+
+		if ($addedEvents > 0) {
+			$this->flashMessage($this->translator->translate('admin.events.crawlSources.success',
+				['events' => $addedEvents]));
+		} else {
+			$this->flashMessage($this->translator->translate('admin.events.crawlSources.noEvents'));
+		}
+
+		$this->redirect('this');
 	}
 }
