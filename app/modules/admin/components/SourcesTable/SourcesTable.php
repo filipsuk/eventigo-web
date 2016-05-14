@@ -51,7 +51,7 @@ class SourcesTable extends DataTable
 
 			$item['name'] = (string)Html::el('a', ['href' => $item['url'], 'target' => '_blank'])->setHtml($name);
 			$item['nextCheck'] = DateTime::from($item['next_check'])
-				->format(\App\Modules\Core\Utils\DateTime::NO_ZERO_DATE_FORMAT);
+				->format(\App\Modules\Core\Utils\DateTime::W3C_DATE);
 
 			$actions = (string)Html::el('a', [
 				'href' => $this->link('done!', $item['id']),
