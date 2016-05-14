@@ -39,11 +39,21 @@ eventForm.tag.rate.required: Vyber velikost tagu
 eventForm.save: Uložit
 eventForm.success: Akce byla uložena
 eventForm.error.alreadyExists: Event s tímto jméném a datem již existuje
+eventForm.state: Stav
+eventForm.approved: Schváleno
+eventForm.not-approved: Neschváleno
+eventForm.skip: Nezpracovat
 events.create.header: Přidat akci
 events.update.header: Upravit akci
+events.approve.header: Schválit akci
 events.crawlSources.link: Získat akce ze zdrojů
 events.crawlSources.success: Přidáno %events% nových akcí
 events.crawlSources.noEvents: Žádné nové akce nebyly nalezeny
+events.default.notApprovedEventsTable.title: Akce ke schválení
+notApprovedEventsTable.name: Název
+notApprovedEventsTable.date: Datum
+notApprovedEventsTable.created: Přidáno
+notApprovedEventsTable.approve.title: Upravit a schválit
 footer.text: "&copy; 2016 eventigo | Made with <span class='heart'>&hearts;</span> in Prague"
 menu.events: Eventy
 menu.sources: Zdroje

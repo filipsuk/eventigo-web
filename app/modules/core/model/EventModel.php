@@ -15,6 +15,15 @@ class EventModel extends BaseModel
 	const EVENTS_LIMIT = 10;
 
 	const STATE_APPROVED = 'approved';
+	const STATE_NOT_APPROVED = 'not-approved';
+	const STATE_SKIP = 'skip';
+
+	const STATES = [
+		self::STATE_APPROVED,
+		self::STATE_NOT_APPROVED,
+		self::STATE_SKIP,
+	];
+
 
 	/**
 	 * @param \Nette\Database\Table\IRow $event
@@ -74,7 +83,7 @@ class EventModel extends BaseModel
 			$selection->where('start <= ?', $to);
 		}
 		if ($lastAccess) {
-			$selection->select('created > ? AS newEvent', $lastAccess);
+			$selection->select('approved > ? AS newEvent', $lastAccess);
 		} else {
 			$selection->select('FALSE AS newEvent');
 		}

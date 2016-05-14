@@ -6,6 +6,7 @@ use App\Modules\Admin\Model\EventService;
 use App\Modules\Admin\Model\OrganiserService;
 use App\Modules\Core\Components\BaseControl;
 use App\Modules\Core\Components\Form\Form;
+use App\Modules\Core\Model\EventModel;
 use App\Modules\Core\Model\TagModel;
 use Kdyby\Facebook\FacebookApiException;
 use Kdyby\Translation\Translator;
@@ -84,6 +85,7 @@ class EventForm extends BaseControl
 			->setPrompt($this->translator->translate('admin.eventForm.rate.prompt'))
 			->setRequired('rate.required')
 			->setTranslator(null);
+		$form->addSelect('state', 'state', array_combine(EventModel::STATES, EventModel::STATES));
 
 		// Tags
 		$form->addGroup();

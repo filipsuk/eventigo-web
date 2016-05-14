@@ -104,10 +104,12 @@ class FacebookEventSource implements IEventSource
 	}
 
 
-	public static function isFacebookSource($url) : bool
+	public static function isFacebook($url) : bool
 	{
+
 		try {
-			return (new Url($url))->getHost() === 'www.facebook.com';
+			$host = (new Url($url))->getHost();
+			return $host === 'www.facebook.com' || $host === 'facebook.com';
 
 		} catch (\Exception $e) {
 			return false;

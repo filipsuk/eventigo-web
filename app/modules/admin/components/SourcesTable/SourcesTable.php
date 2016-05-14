@@ -45,7 +45,7 @@ class SourcesTable extends DataTable
 
 			$i = Html::el('i', ['class' => 'fa fa-external-link']);
 			$name = $item['name'] . '&nbsp; ' . (string)$i;
-			if (FacebookEventSource::isFacebookSource($item['url'])) {
+			if (FacebookEventSource::isFacebook($item['url'])) {
 				$name = Html::el('i', ['class' => 'fa fa-facebook-square']) . '&nbsp;' . $name;
 			}
 

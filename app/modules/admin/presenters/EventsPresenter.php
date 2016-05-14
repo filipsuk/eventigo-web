@@ -3,6 +3,7 @@
 namespace App\Modules\Admin\Presenters;
 
 use App\Modules\Admin\Components\EventForm\EventFormFactory;
+use App\Modules\Admin\Components\NotApprovedEventsTable\NotApprovedEventsTableFactory;
 use App\Modules\Admin\Model\SourceService;
 use App\Modules\Core\Model\EventModel;
 use Nette\Utils\DateTime;
@@ -18,6 +19,9 @@ class EventsPresenter extends BasePresenter
 
 	/** @var SourceService @inject */
 	public $sourceService;
+
+	/** @var NotApprovedEventsTableFactory @inject */
+	public $notApprovedEventsTableFactory;
 
 
 	public function actionUpdate($id)
@@ -74,5 +78,19 @@ class EventsPresenter extends BasePresenter
 		}
 
 		$this->redirect('this');
+	}
+
+
+	public function actionApprove($id)
+	{
+		$this->forward('update', $id);
+	}
+
+
+	public function createComponentNotApprovedEventsTable()
+	{
+		return $this->notApprovedEventsTableFactory->create(
+			$this->eventModel->getAll()->where('state', EventModel::STATE_NOT_APPROVED)
+		);
 	}
 }

@@ -12,4 +12,18 @@
             {_admin.events.crawlSources.link}
         </a>
     </div>
+
+    <div class="box">
+        <div class="box-header">
+            {_admin.events.default.notApprovedEventsTable.title}
+        </div>
+        <div class="box-body">
+            {control notApprovedEventsTable}
+        </div>
+    </div>
+{/block}
+
+
+{block scripts}
+    {control notApprovedEventsTable:js}
 {/block}

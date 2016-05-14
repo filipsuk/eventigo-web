@@ -3,6 +3,8 @@
 {block header}
     {if $presenter->getAction() === 'create'}
         {_admin.events.create.header}
+    {elseif $presenter->getAction() === 'approve'}
+        {_admin.events.approve.header}
     {else}
         {_admin.events.update.header}
     {/if}
