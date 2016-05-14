@@ -14,6 +14,7 @@ use App\Modules\Core\Model\EventSources\IEventSource;
 use Kdyby\Facebook\Facebook;
 use Kdyby\Facebook\FacebookApiException;
 use Nette\Utils\DateTime;
+use Tracy\Debugger;
 
 class FacebookEventSource implements IEventSource
 {
@@ -36,6 +37,7 @@ class FacebookEventSource implements IEventSource
 	 *
 	 * @param $id
 	 * @return Event
+	 * @throws \Kdyby\Facebook\FacebookApiException
 	 */
 	public function getEventById($id) : Event
 	{
@@ -57,7 +59,8 @@ class FacebookEventSource implements IEventSource
 			return $e;
 
 		} catch (FacebookApiException $e) {
-			return false;
+			Debugger::log($e, Debugger::EXCEPTION);
+			throw $e;
 		}
 	}
 }

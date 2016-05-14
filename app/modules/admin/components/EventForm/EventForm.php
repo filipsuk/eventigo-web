@@ -6,6 +6,7 @@ use App\Modules\Admin\Model\EventService;
 use App\Modules\Core\Components\BaseControl;
 use App\Modules\Core\Components\Form\Form;
 use App\Modules\Core\Model\TagModel;
+use Kdyby\Facebook\FacebookApiException;
 use Kdyby\Translation\Translator;
 use Nette\Database\UniqueConstraintViolationException;
 
@@ -108,10 +109,15 @@ class EventForm extends BaseControl
 		if ($form['facebook_load']->isSubmittedBy()) {
 
 			// Parse id from url
-			preg_match( '/\d{5,}(?=\/)/' , $values['origin_url'], $id);
+			preg_match( '/(?<=\/)\d{5,}/' , $values['origin_url'], $id);
 
 			// Get event from fb
-			$event = $this->eventService->getEventFromPlatform($id[0], EventService::PLATFORM_FACEBOOK);
+			try {
+				$event = $this->eventService->getEventFromPlatform($id[0], EventService::PLATFORM_FACEBOOK);
+			} catch (FacebookApiException $e) {
+				$form->addError($e->getMessage());
+				return;
+			}
 
 			// Set form values
 			$values['name'] = $event->getName();

@@ -106,16 +106,18 @@ class EventService
 
 	/**
 	 * Get event by platform specific ID
-	 * 
+	 *
 	 * @param $id
 	 * @param $platform
 	 * @return Event
+	 * @throws \Kdyby\Facebook\FacebookApiException
+	 * @throws \InvalidArgumentException
 	 */
 	public function getEventFromPlatform($id, $platform) : Event
 	{
 		if ($platform === self::PLATFORM_FACEBOOK) {
 			return $this->facebookEventSource->getEventById($id);
 		}
-		return null;
+		throw new \InvalidArgumentException('Invalid platform');
 	}
 }
