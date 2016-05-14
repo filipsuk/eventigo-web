@@ -14,6 +14,9 @@ class DateTime
 	const DATE_FORMAT = 'd. m. Y';
 	const NO_ZERO_DATE_FORMAT = 'j. n. Y';
 	const W3C_DATE = 'Y-m-d';
+	const W3C_DATETIME_MINUTES = 'Y-m-d H:i';
+	const W3C_DATETIME = 'Y-m-d H:i:s';
+	const TIME_MINUTES = 'H:i';
 
 
 	/**

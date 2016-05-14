@@ -1,0 +1,19 @@
+<script src="/libs/admin-lte/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="/libs/admin-lte/plugins/datatables/dataTables.bootstrap.min.js"></script>
+<script n:syntax="double">
+    $(function() {
+        $('#not-approved-events-table').DataTable({
+            sAjaxSource: {{link json!}},
+            aoColumns: [
+                {mData: "name"},
+                {mData: "date"},
+                {mData: "created"},
+                {mData: "actions"}
+            ],
+            order: [[2, 'asc']],
+            language: {
+                "url": {{$control->getLang()}}
+            }
+        });
+    });
+</script>

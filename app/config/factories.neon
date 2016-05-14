@@ -8,3 +8,4 @@ services:
 	- App\Modules\Front\Components\Settings\SettingsFactory
 	- App\Modules\Admin\Components\SourceForm\SourceFormFactory
 	- App\Modules\Admin\Components\SourcesTable\SourcesTableFactory
+	- App\Modules\Admin\Components\NotApprovedEventsTable\NotApprovedEventsTableFactory
