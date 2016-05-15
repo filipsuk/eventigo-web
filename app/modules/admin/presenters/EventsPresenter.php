@@ -72,7 +72,7 @@ class EventsPresenter extends BasePresenter
 
 		if ($addedEvents > 0) {
 			$this->flashMessage($this->translator->translate('admin.events.crawlSources.success',
-				['events' => $addedEvents]));
+				$addedEvents, ['events' => $addedEvents]), 'success');
 		} else {
 			$this->flashMessage($this->translator->translate('admin.events.crawlSources.noEvents'));
 		}

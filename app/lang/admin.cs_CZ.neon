@@ -47,7 +47,7 @@ events.create.header: Přidat akci
 events.update.header: Upravit akci
 events.approve.header: Schválit akci
 events.crawlSources.link: Získat akce ze zdrojů
-events.crawlSources.success: Přidáno %events% nových akcí
+events.crawlSources.success: Přidána %events% nová akce|Přidány %events% nové akce|Přidáno %events% nových akcí
 events.crawlSources.noEvents: Žádné nové akce nebyly nalezeny
 events.default.notApprovedEventsTable.title: Akce ke schválení
 notApprovedEventsTable.name: Název
@@ -68,7 +68,8 @@ signInForm.signIn: Přihlásit
 signOut: Odhlásit
 sources.create.header: Přidat zdroj
 sources.default.table.title: Zdroje
-sources.default.table.done.title: Zkontrolováno
+sources.default.table.done.title: Zkontrolováno ručně
+sources.default.table.crawl.title: Získat nové akce
 sources.default.table.done: Příští kontrola <strong>%source%</strong> naplánovaná na <strong>%nextCheck%</strong>
 sources.default.table.name: Název
 sources.default.table.nextCheck: Plánovaná kontrola
