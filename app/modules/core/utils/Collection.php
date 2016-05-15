@@ -24,4 +24,19 @@ class Collection
 		}
 		return $values;
 	}
+
+
+	/**
+	 * @param array $array
+	 * @param string $prefix
+	 * @return array
+	 */
+	public static function prefix(array $array, $prefix)
+	{
+		foreach ($array as &$item) {
+			$item = $prefix . $item;
+		}
+
+		return $array;
+	}
 }

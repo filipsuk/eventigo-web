@@ -1,0 +1,48 @@
+{layout '../@layout.latte'}
+
+{block header}
+    <link rel="stylesheet" href="/libs/admin-lte/plugins/datatables/dataTables.bootstrap.css">
+{/block}
+
+{block content}
+    <div class="pure-box">
+        <a n:href="Sources:create" class="btn btn-primary">{_admin.sources.create.header}</a>
+    </div>
+
+    <div class="box">
+        <div class="box-header">
+            {_admin.sources.default.table.title}
+        </div>
+        <div class="box-body">
+            <table id="sources" class="table table-bordered table-striped table-hover">
+                <thead>
+                    <th>{_admin.sources.default.table.name}</th>
+                    <th>{_admin.sources.default.table.nextCheck}</th>
+                    <th></th>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+{/block}
+
+{block scripts}
+    <script src="/libs/admin-lte/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="/libs/admin-lte/plugins/datatables/dataTables.bootstrap.min.js"></script>
+    <script n:syntax="double">
+        $(function() {
+            $('#sources').DataTable({
+                sAjaxSource: {{link sourcesTable-json!}},
+                aoColumns: [
+                    {mData: "name"},
+                    {mData: "nextCheck"},
+                    {mData: "actions"}
+                ],
+                order: [[1, 'asc']],
+                language: {
+                    "url": {{$control[sourcesTable]->getLang()}}
+                }
+            });
+        });
+    </script>
+{/block}

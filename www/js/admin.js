@@ -7,4 +7,9 @@ $(function() {
 		locale: 'cs',
 		format: "D. M. YYYY LT"
 	});
+
+	$('.date').datetimepicker({
+		locale: 'cs',
+		format: "D. M. YYYY"
+	});
 });

@@ -23,6 +23,8 @@ eventForm.rate.bigConference: "Velká konference (< 1000)"
 eventForm.rate.extraConference: "Extra konference (> 1000)"
 eventForm.rate.prompt: Vyber velikost akce
 eventForm.rate.required: Vyber velikost akce
+eventForm.eventSeries: Série organizátora
+eventForm.eventSeries.prompt: Vyber sérii organizátora
 eventForm.tags: Tagy
 eventForm.tag: Tag
 eventForm.tag.prompt: Vyber tag
@@ -37,10 +39,24 @@ eventForm.tag.rate.required: Vyber velikost tagu
 eventForm.save: Uložit
 eventForm.success: Akce byla uložena
 eventForm.error.alreadyExists: Event s tímto jméném a datem již existuje
+eventForm.state: Stav
+eventForm.approved: Schváleno
+eventForm.not-approved: Neschváleno
+eventForm.skip: Nezpracovat
 events.create.header: Přidat akci
 events.update.header: Upravit akci
+events.approve.header: Schválit akci
+events.crawlSources.link: Získat akce ze zdrojů
+events.crawlSources.success: Přidána %events% nová akce|Přidány %events% nové akce|Přidáno %events% nových akcí
+events.crawlSources.noEvents: Žádné nové akce nebyly nalezeny
+events.default.notApprovedEventsTable.title: Akce ke schválení
+notApprovedEventsTable.name: Název
+notApprovedEventsTable.date: Datum
+notApprovedEventsTable.created: Přidáno
+notApprovedEventsTable.approve.title: Upravit a schválit
 footer.text: "&copy; 2016 eventigo | Made with <span class='heart'>&hearts;</span> in Prague"
 menu.events: Eventy
+menu.sources: Zdroje
 signInForm.email: Email
 signInForm.email.placeholder: Email
 signInForm.email.required: Zadej email
@@ -50,3 +66,25 @@ signInForm.password.placeholder: Heslo
 signInForm.password.required: Zadej heslo
 signInForm.signIn: Přihlásit
 signOut: Odhlásit
+sources.create.header: Přidat zdroj
+sources.default.table.title: Zdroje
+sources.default.table.done.title: Zkontrolováno ručně
+sources.default.table.crawl.title: Získat nové akce
+sources.default.table.done: Příští kontrola <strong>%source%</strong> naplánovaná na <strong>%nextCheck%</strong>
+sources.default.table.name: Název
+sources.default.table.nextCheck: Plánovaná kontrola
+sourceForm.name: Název
+sourceForm.url: URL
+sourceForm.frequency: Četnost kontrol
+sourceForm.frequency.daily: Denně
+sourceForm.frequency.twiceAWeek: 2x týdně
+sourceForm.frequency.weekly: Týdně
+sourceForm.frequency.fortnightly: 2x měsícně
+sourceForm.frequency.monthly: Měsíčně
+sourceForm.frequency.quarterly: Čtvrtletně
+sourceForm.frequency.half-yearly: Půl ročně
+sourceForm.frequency.yearly: Ročně
+sourceForm.nextCheck: Příští kontrola
+sourceForm.save: Uložit
+sourceForm.success: Zdroj byl uložen
+sourceForm.createOrganiser: Vytvořit organizátora

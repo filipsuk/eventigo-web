@@ -2,6 +2,7 @@
 
 namespace App\Modules\Core\Model;
 
+use App\Modules\Core\Model\Entity\Event;
 use Nette\Database\Table\IRow;
 use Nette\Utils\DateTime;
 
@@ -12,6 +13,16 @@ class EventModel extends BaseModel
 
 	/** Number of events per list */
 	const EVENTS_LIMIT = 10;
+
+	const STATE_APPROVED = 'approved';
+	const STATE_NOT_APPROVED = 'not-approved';
+	const STATE_SKIP = 'skip';
+
+	const STATES = [
+		self::STATE_APPROVED,
+		self::STATE_NOT_APPROVED,
+		self::STATE_SKIP,
+	];
 
 
 	/**
@@ -72,7 +83,7 @@ class EventModel extends BaseModel
 			$selection->where('start <= ?', $to);
 		}
 		if ($lastAccess) {
-			$selection->select('created > ? AS newEvent', $lastAccess);
+			$selection->select('approved > ? AS newEvent', $lastAccess);
 		} else {
 			$selection->select('FALSE AS newEvent');
 		}
@@ -88,8 +99,24 @@ class EventModel extends BaseModel
 			$selection->where('id', $eventsTags);
 		}
 
+		$selection->where('state', self::STATE_APPROVED);
+
 		// Return selected events ordered by start time and size (bigger first)
 		return $selection->order('start, rate DESC')
 			->fetchPairs('id');
+	}
+
+
+	/**
+	 * @param Event $event
+	 * @return bool|mixed|\Nette\Database\Table\IRow
+	 */
+	public function findExistingEvent(Event $event)
+	{
+		return $this->getAll()
+			->where('origin_url = ? OR origin_url = ?',
+				$event->getOriginUrl(),
+				strpos($event->getOriginUrl(), '/') ? $event->getOriginUrl() : $event->getOriginUrl() . '/'
+			)->fetch();
 	}
 }

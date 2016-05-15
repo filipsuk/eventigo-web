@@ -3,8 +3,10 @@
 namespace App\Modules\Admin\Components\EventForm;
 
 use App\Modules\Admin\Model\EventService;
+use App\Modules\Admin\Model\OrganiserService;
 use App\Modules\Core\Components\BaseControl;
 use App\Modules\Core\Components\Form\Form;
+use App\Modules\Core\Model\EventModel;
 use App\Modules\Core\Model\TagModel;
 use Kdyby\Facebook\FacebookApiException;
 use Kdyby\Translation\Translator;
@@ -25,15 +27,21 @@ class EventForm extends BaseControl
 	/** @var array */
 	public $onUpdate = [];
 
+	/** @var OrganiserService */
+	private $organiserService;
+
 
 	public function __construct(Translator $translator,
 	                            TagModel $tagModel,
-	                            EventService $eventService)
+	                            EventService $eventService,
+	                            OrganiserService $organiserService)
 	{
 		parent::__construct($translator);
 		$this->tagModel = $tagModel;
 		$this->eventService = $eventService;
+		$this->organiserService = $organiserService;
 	}
+
 
 	public function render()
 	{
@@ -48,6 +56,11 @@ class EventForm extends BaseControl
 
 		// Event
 		$form->addGroup();
+		$series = $this->organiserService->getOrganisersSeries();
+		$form->addSelect('event_series_id', $this->translator->translate('admin.eventForm.eventSeries'))
+			->setItems(OrganiserService::formatSeriesForSelect($series))
+			->setPrompt($this->translator->translate('admin.eventForm.eventSeries.prompt'))
+			->setTranslator(null);
 		$form->addText('name', 'name')
 			->setRequired('name.required')
 			->setAttribute('autofocus', true);
@@ -72,6 +85,7 @@ class EventForm extends BaseControl
 			->setPrompt($this->translator->translate('admin.eventForm.rate.prompt'))
 			->setRequired('rate.required')
 			->setTranslator(null);
+		$form->addSelect('state', 'state', array_combine(EventModel::STATES, EventModel::STATES));
 
 		// Tags
 		$form->addGroup();

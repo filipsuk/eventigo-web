@@ -51,11 +51,7 @@ class UserModel extends BaseModel
 				/** @var ActiveRow $user */
 				$user = $this->insert([
 					'email' => $email,
-				]);
-
-				// Generate token for user
-				$this->getAll()->wherePrimary($user->id)->update([
-					'token' => $this->generateToken($user),
+					'token' => $this->generateToken(),
 				]);
 
 				return $user;
@@ -127,6 +123,7 @@ class UserModel extends BaseModel
 			return $this->insert([
 				'email' => $me->email ?? null,
 				'facebook_id' => $me->id,
+				'token' => $this->generateToken(),
 			]);
 		}
 	}

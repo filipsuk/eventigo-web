@@ -52,6 +52,8 @@ class EventService
 				: null,
 			'image' => $values->image ?: null,
 			'rate' => $values->rate,
+			'state' => $values->state,
+			'approved' => $values->state === EventModel::STATE_APPROVED ? new DateTime : null,
 		]);
 
 		$this->addTags($values->tags, $event->id);
@@ -60,6 +62,8 @@ class EventService
 
 	public function updateEvent($values)
 	{
+		$event = $this->eventModel->getAll()->wherePrimary($values->id)->fetch();
+
 		// Create event
 		$this->eventModel->getAll()->wherePrimary($values->id)->update([
 			'name' => $values->name,
@@ -71,6 +75,9 @@ class EventService
 				: null,
 			'image' => $values->image ?: null,
 			'rate' => $values->rate,
+			'state' => $values->state,
+			'approved' => $values->state === EventModel::STATE_APPROVED && !$event->approved
+				? new DateTime : $event->approved,
 		]);
 
 		//TODO remove missing tags, add new ones

@@ -1,0 +1,21 @@
+{layout '../@layout.latte'}
+
+{block header}
+    {if $presenter->getAction() === 'create'}
+        {_admin.sources.create.header}
+    {else}
+        {_admin.sources.update.header}
+    {/if}
+{/block}
+
+{block content}
+    <div class="row">
+        <div class="col-md-6">
+            <div class="box">
+                <div class="box-body">
+                    {control sourceForm}
+                </div>
+            </div>
+        </div>
+    </div>
+{/block}

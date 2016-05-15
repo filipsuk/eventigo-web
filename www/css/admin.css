@@ -9,6 +9,10 @@
 #main form td.td-control textarea {
   width: 100%;
 }
+#main form td.td-control input[type=checkbox] {
+  width: inherit;
+  margin-right: 1rem;
+}
 #main form td.td-control textarea {
   border: 1px solid #ccc;
 }
@@ -19,6 +23,9 @@
   border: none;
   display: inline-block;
   vertical-align: top;
+}
+#main .pure-box {
+  margin-bottom: 20px;
 }
 #frm-signInForm-form table {
   margin: auto;
