@@ -2,11 +2,11 @@
 
 namespace App\Modules\Admin\Components\SourceForm;
 
+use App\Modules\Admin\Model\OrganiserService;
 use App\Modules\Admin\Model\SourceModel;
 use App\Modules\Core\Components\BaseControl;
 use App\Modules\Core\Components\Form\Form;
 use App\Modules\Core\Utils\Collection;
-use Kdyby\Translation\Translator;
 use Nette\Utils\DateTime;
 
 
@@ -18,16 +18,11 @@ class SourceForm extends BaseControl
 	/** @var array */
 	public $onUpdate = [];
 
-	/** @var SourceModel */
-	private $sourceModel;
+	/** @var SourceModel @inject */
+	public $sourceModel;
 
-
-	public function __construct(Translator $translator,
-								SourceModel $sourceModel)
-	{
-		parent::__construct($translator);
-		$this->sourceModel = $sourceModel;
-	}
+	/** @var OrganiserService @inject */
+	public $organiserService;
 
 
 	public function render()
@@ -56,6 +51,8 @@ class SourceForm extends BaseControl
 		$form->addText('nextCheck', 'nextCheck')
 			->setAttribute('class', 'date');
 
+		$form->addCheckbox('createOrganiser', 'createOrganiser');
+
 		$form->addHidden('id');
 
 		$form->addSubmit('save', 'save')
@@ -71,16 +68,22 @@ class SourceForm extends BaseControl
 		$values = $form->getValues();
 
 		if (!$values->id) {
+			if ($values->createOrganiser) {
+				$organiser = $this->organiserService->createOrganiser($values->name, $values->url);
+			}
+
 			$source = $this->sourceModel->insert([
 				'name' => $values->name ?: null,
 				'url' => $values->url ?: null,
-				'organiser_id' => $values->organiserId ?? null,
-				'event_series_id' => $values->organiserId ?? null,
 				'check_frequency' => $checkFrequency = SourceModel::FREQUENCY_TYPES[$values->frequency],
 				'next_check' => $values->nextCheck
 					? DateTime::createFromFormat(\App\Modules\Core\Utils\DateTime::DATE_FORMAT, $values->nextCheck)
 					: new DateTime('+' . $checkFrequency . ' days'),
+				'event_series_id' => $values->createOrganiser
+					? $organiser->related('events_series')->fetch()->id
+					: null,
 			]);
+
 			$this->onCreate($source);
 		} else {
 			$source = $this->sourceModel->update($values);

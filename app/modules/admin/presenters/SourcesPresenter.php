@@ -26,6 +26,7 @@ class SourcesPresenter extends BasePresenter
 		$defaults = [
 			'frequencyNumber' => 1,
 			'nextCheck' => (new DateTime('+1 days'))->format(\App\Modules\Core\Utils\DateTime::DATE_FORMAT),
+			'createOrganiser' => true,
 		];
 		$this['sourceForm-form']->setDefaults($defaults);
 	}

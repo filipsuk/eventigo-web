@@ -19,7 +19,9 @@ services:
 	- App\Modules\Core\Model\EventSources\Facebook\FacebookEventSource
 	- App\Modules\Core\Model\OrganiserModel
 	- App\Modules\Core\Model\EventSeriesModel
-	- App\Modules\Admin\Model\OrganiserService
+	-
+		class: App\Modules\Admin\Model\OrganiserService
+		inject: yes
 	- App\Modules\Admin\Model\SourceModel
 	-
 		class: App\Modules\Admin\Model\SourceService

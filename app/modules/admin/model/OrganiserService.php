@@ -2,19 +2,18 @@
 
 namespace App\Modules\Admin\Model;
 
+use App\Modules\Core\Model\EventSeriesModel;
 use App\Modules\Core\Model\OrganiserModel;
+use Nette\Database\Table\ActiveRow;
 
 
 class OrganiserService
 {
-	/** @var OrganiserModel */
-	private $organiserModel;
+	/** @var OrganiserModel @inject */
+	public $organiserModel;
 
-
-	public function __construct(OrganiserModel $organiserModel)
-	{
-		$this->organiserModel = $organiserModel;
-	}
+	/** @var EventSeriesModel @inject */
+	public $eventSeriesModel;
 
 
 	/**
@@ -40,9 +39,27 @@ class OrganiserService
 
 		foreach ($series as $item) {
 			$result[$item->seriesId] = $item->organiser
-				. ($item->series ? ': ' . $item->series : '');
+				. ($item->series && $item->organiser !== $item->series
+					? ': ' . $item->series
+					: '');
 		}
 
 		return $result;
+	}
+
+
+	public function createOrganiser($name, $url) : ActiveRow
+	{
+		$organiser = $this->organiserModel->insert([
+			'name' => $name,
+		]);
+
+		$this->eventSeriesModel->insert([
+			'organiser_id' => $organiser->id,
+			'name' => $name,
+			'url' => $url,
+		]);
+
+		return $organiser;
 	}
 }

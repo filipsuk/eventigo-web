@@ -9,6 +9,10 @@
 #main form td.td-control textarea {
   width: 100%;
 }
+#main form td.td-control input[type=checkbox] {
+  width: inherit;
+  margin-right: 1rem;
+}
 #main form td.td-control textarea {
   border: 1px solid #ccc;
 }
