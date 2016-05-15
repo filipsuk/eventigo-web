@@ -30,7 +30,9 @@ class EventsPresenter extends BasePresenter
 
 		$defaults = $event->toArray();
 		$defaults['start'] = DateTime::from($defaults['start'])->format(\App\Modules\Core\Utils\DateTime::DATETIME_FORMAT);
-		$defaults['end'] = DateTime::from($defaults['end'])->format(\App\Modules\Core\Utils\DateTime::DATETIME_FORMAT);
+		$defaults['end'] = $defaults['end']
+			? DateTime::from($defaults['end'])->format(\App\Modules\Core\Utils\DateTime::DATETIME_FORMAT)
+			: null;
 		$defaults['tags'] = [];
 		foreach ($event->related('events_tags') as $eventTag) {
 			$defaults['tags'][] = [
