@@ -45,11 +45,21 @@ class NotApprovedEventsTable extends DataTable
 			$item = $item->toArray();
 
 			$i = Html::el('i', ['class' => 'fa fa-external-link']);
-			$name = $item['name'] . '&nbsp; ' . (string)$i;
+			$name = $item['name'] . '&nbsp; '
+				. (string)Html::el('a', [
+					'href' => $item['origin_url'],
+					'target' => '_blank',
+					'data-toggle' => 'tooltip',
+					'title' => $item['origin_url'],
+				])->setHtml($i);
 			if (FacebookEventSource::isFacebook($item['origin_url'])) {
 				$name = Html::el('i', ['class' => 'fa fa-facebook-square']) . '&nbsp;' . $name;
 			}
-			$item['name'] = (string)Html::el('a', ['href' => $item['origin_url'], 'target' => '_blank'])->setHtml($name);
+			$item['name'] = (string)Html::el('a', [
+				'href' => $this->getPresenter()->link('Events:approve', $item['id']),
+				'data-toggle' => 'tooltip',
+				'title' => $this->translator->translate('admin.notApprovedEventsTable.approve.title'),
+			])->setHtml($name);
 
 			$start = DateTime::from($item['start']);
 			$end = DateTime::from($item['end']);
@@ -65,7 +75,7 @@ class NotApprovedEventsTable extends DataTable
 
 			$actions = (string)Html::el('a', [
 				'href' => $this->getPresenter()->link('Events:approve', $item['id']),
-				'class' => 'btn btn-primary btn-sm',
+				'class' => 'btn btn-primary btn-xs',
 				'data-toggle' => 'tooltip',
 				'title' => $this->translator->translate('admin.notApprovedEventsTable.approve.title'),
 			])->setHtml('<i class="fa fa-pencil"></i>');

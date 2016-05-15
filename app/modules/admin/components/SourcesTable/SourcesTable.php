@@ -44,18 +44,24 @@ class SourcesTable extends DataTable
 			$item = $item->toArray();
 
 			$i = Html::el('i', ['class' => 'fa fa-external-link']);
-			$name = $item['name'] . '&nbsp; ' . (string)$i;
+			$name = $item['name'] . '&nbsp; '
+				. (string)Html::el('a', [
+					'href' => $item['url'],
+					'target' => '_blank',
+					'data-toggle' => 'tooltip',
+					'title' => $item['url'],
+				])->setHtml($i);
 			if (FacebookEventSource::isFacebook($item['url'])) {
 				$name = Html::el('i', ['class' => 'fa fa-facebook-square']) . '&nbsp;' . $name;
 			}
 
-			$item['name'] = (string)Html::el('a', ['href' => $item['url'], 'target' => '_blank'])->setHtml($name);
+			$item['name'] = $name;
 			$item['nextCheck'] = DateTime::from($item['next_check'])
 				->format(\App\Modules\Core\Utils\DateTime::W3C_DATE);
 
 			$actions = (string)Html::el('a', [
 				'href' => $this->link('done!', $item['id']),
-				'class' => 'btn btn-success btn-sm',
+				'class' => 'btn btn-primary btn-xs',
 				'data-toggle' => 'tooltip',
 				'title' => $this->translator->translate('admin.sources.default.table.done.title'),
 			])->setHtml('<i class="fa fa-check"></i>');
