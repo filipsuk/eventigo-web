@@ -5,6 +5,7 @@ namespace App\Modules\Admin\Presenters;
 use App\Modules\Admin\Components\SourceForm\SourceFormFactory;
 use App\Modules\Admin\Components\SourcesTable\SourcesTableFactory;
 use App\Modules\Admin\Model\SourceModel;
+use App\Modules\Admin\Model\SourceService;
 use Nette\Database\Table\ActiveRow;
 use Nette\Utils\DateTime;
 
@@ -19,6 +20,9 @@ class SourcesPresenter extends BasePresenter
 
 	/** @var SourceModel @inject */
 	public $sourceModel;
+
+	/** @var SourceService @inject */
+	public $sourceService;
 
 
 	public function actionCreate()
@@ -38,6 +42,16 @@ class SourcesPresenter extends BasePresenter
 
 		$control->onCreate[] = function(ActiveRow $source) {
 			$this->flashMessage($this->translator->translate('admin.sourceForm.success'), 'success');
+
+			// Crawl recently added source
+			$addedEvents = $this->sourceService->crawlSource($source);
+			if ($addedEvents > 0) {
+				$this->flashMessage($this->translator->translate('admin.events.crawlSources.success',
+					$addedEvents, ['events' => $addedEvents]), 'success');
+			} else {
+				$this->flashMessage($this->translator->translate('admin.events.crawlSources.noEvents'));
+			}
+
 			$this->redirect('Sources:default');
 		};
 
