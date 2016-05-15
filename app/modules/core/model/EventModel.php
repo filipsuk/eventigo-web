@@ -113,10 +113,16 @@ class EventModel extends BaseModel
 	 */
 	public function findExistingEvent(Event $event)
 	{
+		$url = $event->getOriginUrl();
+
 		return $this->getAll()
-			->where('origin_url = ? OR origin_url = ?',
-				$event->getOriginUrl(),
-				strpos($event->getOriginUrl(), '/') ? $event->getOriginUrl() : $event->getOriginUrl() . '/'
+			->where('origin_url = ? OR origin_url =     ?
+					OR REPLACE(origin_url, ?, "//") = ?
+					OR REPLACE(origin_url, ?, "//") = ?',
+				$url = substr($url, -1) === '/' ? substr($url, 0, -1) : $url,
+				$urlSlash = $url . '/',
+				'//www.', str_replace('//www.', '//', $url),
+				'//www.', str_replace('//www.', '//', $urlSlash)
 			)->fetch();
 	}
 }

@@ -5,6 +5,7 @@ namespace App\Modules\Admin\Model;
 use App\Modules\Core\Model\EventModel;
 use App\Modules\Core\Model\EventSources\Facebook\FacebookEventSource;
 use Nette\Database\Table\ActiveRow;
+use Nette\Database\UniqueConstraintViolationException;
 use Nette\Http\Url;
 
 
@@ -48,16 +49,20 @@ class SourceService
 				$existingEvent = $this->eventModel->findExistingEvent($event);
 
 				if (!$existingEvent) {
-					$this->eventModel->insert([
-						'name' => $event->getName(),
-						'description' => $event->getDescription(),
-						'start' => $event->getStart(),
-						'end' => $event->getEnd(),
-						'origin_url' => $event->getOriginUrl(),
-						'image' => $event->getImage(),
-						'rate' => $event->getRate(),
-						'event_series_id' => $source->event_series_id,
-					]);
+					try {
+						$this->eventModel->insert([
+							'name' => $event->getName(),
+							'description' => $event->getDescription(),
+							'start' => $event->getStart(),
+							'end' => $event->getEnd(),
+							'origin_url' => $event->getOriginUrl(),
+							'image' => $event->getImage(),
+							'rate' => $event->getRate(),
+							'event_series_id' => $source->event_series_id,
+						]);
+					} catch (UniqueConstraintViolationException $e) {
+						continue;
+					}
 
 					$addedEvents++;
 				}
