@@ -47,22 +47,26 @@ abstract class BasePresenter extends \App\Modules\Core\Presenters\BasePresenter
 		$access->last = clone $now;
 
 		// Update last access in DB if it has been updated few minutes ago or earlier
-		$syncToDb = $this->getParameters()['lastAccess']['syncToDb'] ?? '5 minutes';
-		if (!($access->lastInDb ?? null)
-			|| (($lastInDb ?? null) && $lastInDb > $access->lastInDb)
-			|| $access->lastInDb < new DateTime('-' . $syncToDb)) {
-
-			if ($this->getUser()->isLoggedIn()) {
-				$this->userModel->getAll()
-					->wherePrimary($this->getUser()->getId())
-					->update([
-						'last_access' => $now,
-					]);
-			}
+		$syncToDb = $this->context->getParameters()['lastAccess']['syncToDb'] ?? '5 minutes';
+		if ($this->getUser()->isLoggedIn()
+			&& $this->shouldSyncToDb($access->lastInDb ?? null, $lastInDb ?? null, $syncToDb)
+		) {
+			$this->userModel->getAll()
+				->wherePrimary($this->getUser()->getId())
+				->update([
+					'last_access' => $now,
+				]);
 
 			// Update last in DB access
 			$access->lastInDb = clone $now;
 		}
 	}
 
+
+	private function shouldSyncToDb(DateTime $sessionLastInDb = null, DateTime $lastInDb = null, string $syncToDb) : bool
+	{
+		return !$sessionLastInDb
+		|| ($lastInDb && $lastInDb > $sessionLastInDb)
+		|| $sessionLastInDb < new DateTime('-' . $syncToDb);
+	}
 }
