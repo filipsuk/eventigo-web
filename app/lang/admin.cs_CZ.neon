@@ -1,6 +1,7 @@
 dashboard.events.upcoming: Nadcházející akce|Nadcházející akce|Nadcházejících akcí
 dashboard.events.thisMonth: Tento měsíc
 dashboard.events.nextMonth: Příští měsíc
+dashboard.events.notApproved: Akce ke schválení
 eventForm.event: Akce
 eventForm.name: Název
 eventForm.name.required: Zadej název akce

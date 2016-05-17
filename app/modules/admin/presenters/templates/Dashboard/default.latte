@@ -7,12 +7,31 @@
                 <div class="info-box">
                     <span class="info-box-icon bg-aqua"><i class="ion ion-android-calendar"></i></span>
                     <div class="info-box-content">
-                        <span class="info-box-text">{_admin.dashboard.events.upcoming, $eventsCounts->all}</span>
+                        <span class="info-box-text">{_admin.dashboard.events.upcoming, $approvedEventsCounts->all}</span>
                         <span class="info-box-text inline">{_admin.dashboard.events.thisMonth}:</span>
-                        <span class="info-box-number inline">{$eventsCounts->thisMonth}</span>
+                        <span class="info-box-number inline">{$approvedEventsCounts->thisMonth}</span>
                         <br />
                         <span class="info-box-text inline">{_admin.dashboard.events.nextMonth}:</span>
-                        <span class="info-box-number inline">{$eventsCounts->nextMonth}</span>
+                        <span class="info-box-number inline">{$approvedEventsCounts->nextMonth}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6 col-xs-12">
+                <div class="info-box">
+                    <span n:class="info-box-icon,
+                        $notApprovedEventsCounts->all === 0
+                            ? bg-green
+                            : ($notApprovedEventsCounts->thisMonth
+                                ? bg-red : bg-orange)">
+                        <i class="ion ion-android-calendar"></i>
+                    </span>
+                    <div class="info-box-content">
+                        <span class="info-box-text">{_admin.dashboard.events.notApproved}</span>
+                        <span class="info-box-text inline">{_admin.dashboard.events.thisMonth}:</span>
+                        <span class="info-box-number inline">{$notApprovedEventsCounts->thisMonth}</span>
+                        <br />
+                        <span class="info-box-text inline">{_admin.dashboard.events.nextMonth}:</span>
+                        <span class="info-box-number inline">{$notApprovedEventsCounts->nextMonth}</span>
                     </div>
                 </div>
             </div>
