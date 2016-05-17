@@ -54,6 +54,7 @@ class EventService
 			'rate' => $values->rate,
 			'state' => $values->state,
 			'approved' => $values->state === EventModel::STATE_APPROVED ? new DateTime : null,
+			'event_series_id' => $values->event_series_id,
 		]);
 
 		$this->addTags($values->tags, $event->id);
@@ -78,6 +79,7 @@ class EventService
 			'state' => $values->state,
 			'approved' => $values->state === EventModel::STATE_APPROVED && !$event->approved
 				? new DateTime : $event->approved,
+			'event_series_id' => $values->event_series_id,
 		]);
 
 		//TODO remove missing tags, add new ones
