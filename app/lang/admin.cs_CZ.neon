@@ -57,6 +57,8 @@ notApprovedEventsTable.name: Název
 notApprovedEventsTable.date: Datum
 notApprovedEventsTable.created: Přidáno
 notApprovedEventsTable.approve.title: Upravit a schválit
+notApprovedEventsTable.skip.title: Nezpracovat akci
+notApprovedEventsTable.skip.success: Akce %name% nebude zpracována
 footer.text: "&copy; 2016 eventigo | Made with <span class='heart'>&hearts;</span> in Prague"
 menu.events: Eventy
 menu.sources: Zdroje

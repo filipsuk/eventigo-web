@@ -4,6 +4,7 @@ namespace App\Modules\Admin\Components\NotApprovedEventsTable;
 
 use App\Modules\Admin\Components\DataTable\DataTable;
 use App\Modules\Admin\Model\SourceModel;
+use App\Modules\Core\Model\EventModel;
 use App\Modules\Core\Model\EventSources\Facebook\FacebookEventSource;
 use Kdyby\Translation\Translator;
 use Nette\Database\Table\Selection;
@@ -16,11 +17,16 @@ class NotApprovedEventsTable extends DataTable
 	/** @var SourceModel */
 	private $sourceModel;
 
+	/** @var EventModel */
+	private $eventModel;
 
-	public function __construct(Translator $translator, Selection $dataSource, SourceModel $sourceModel)
+
+	public function __construct(Translator $translator, Selection $dataSource, SourceModel $sourceModel,
+	                            EventModel $eventModel)
 	{
 		parent::__construct($translator, $dataSource);
 		$this->sourceModel = $sourceModel;
+		$this->eventModel = $eventModel;
 	}
 
 
@@ -85,11 +91,30 @@ class NotApprovedEventsTable extends DataTable
 				'data-toggle' => 'tooltip',
 				'title' => $this->translator->translate('admin.notApprovedEventsTable.approve.title'),
 			])->setHtml('<i class="fa fa-pencil"></i>');
+			$actions .= (string)Html::el('a', [
+				'href' => $this->link('skip!', $item['id']),
+				'class' => 'btn btn-default btn-xs',
+				'data-toggle' => 'tooltip',
+				'title' => $this->translator->translate('admin.notApprovedEventsTable.skip.title'),
+			])->setHtml('<i class="fa fa-times"></i>');
 			$item['actions'] = $actions;
 		}
 		$json['aaData'] = array_values($json['aaData']);
 
 		return $json;
+	}
+
+
+	public function handleSkip($eventId)
+	{
+		$event = $this->eventModel->getAll()->wherePrimary($eventId)->fetch();
+		$this->eventModel->getAll()->wherePrimary($eventId)->update([
+			'state' => EventModel::STATE_SKIP,
+		]);
+
+		$this->getPresenter()->flashMessage($this->translator->translate('admin.notApprovedEventsTable.skip.success',
+			['name' => $event->name]));
+		$this->getPresenter()->redirect('this');
 	}
 
 
