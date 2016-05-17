@@ -27,7 +27,8 @@ class NotApprovedEventsTable extends DataTable
 	public function getData()
 	{
 		return $this->dataSource
-			->select('id, name, origin_url, start, end, created')
+			->select('events.id, events.name, events.origin_url, events.start, events.end, events.created,
+				event_series.name AS event_series, event_series.organiser.name AS organiser')
 			->order('created ASC')
 			->order('start ASC')
 			->order('name ASC')
@@ -43,6 +44,11 @@ class NotApprovedEventsTable extends DataTable
 
 		foreach ($json['aaData'] as &$item) {
 			$item = $item->toArray();
+
+			$item['series'] = $item['organiser']
+				? $item['organiser']
+					. ($item['organiser'] !== $item['event_series'] ? ': ' . $item['event_series'] : '')
+				: '';
 
 			$i = Html::el('i', ['class' => 'fa fa-external-link']);
 			$name = $item['name'] . '&nbsp; '

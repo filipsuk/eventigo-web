@@ -5,6 +5,7 @@
         $('#not-approved-events-table').DataTable({
             sAjaxSource: {{link json!}},
             aoColumns: [
+                {mData: "series"},
                 {mData: "name"},
                 {mData: "date"},
                 {mData: "created"},
