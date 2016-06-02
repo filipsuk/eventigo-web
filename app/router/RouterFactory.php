@@ -19,7 +19,7 @@ class RouterFactory
 
 		// Admin
 		$adminRouter = new RouteList('Admin');
-		$adminRouter[] = new Route('admin/<presenter>/<action>[/<id>]', 'Dashboard:default', Route::SECURED);
+		$adminRouter[] = new Route('admin/<presenter>/<action>[/<id>]', 'Dashboard:default');
 		$router[] = $adminRouter;
 
 		// Nesletter
@@ -31,11 +31,12 @@ class RouterFactory
 
 		// Front
 		$router[] = new Route('profile/settings/<token>', 'Front:Profile:settings', Route::SECURED);
+		$router[] = new Route('discover/?', 'Front:Homepage:discover', Route::SECURED);
 		$router[] = new Route('<presenter>/<action>[/<id>]', [
 			'module' => 'Front',
 			'presenter' => 'Homepage',
 			'action' => 'default'
-		], Route::SECURED);
+		]);
 		return $router;
 	}
 

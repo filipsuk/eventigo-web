@@ -178,6 +178,14 @@ div#wrapper #homepage {
   padding-top: 3.3rem;
   padding-bottom: 4rem;
 }
+div#wrapper #homepage .list-group a.list-group-item.active {
+  background-color: #fff;
+  color: #555;
+  font-weight: bold;
+}
+div#wrapper #homepage .list-group a.list-group-item.active:hover {
+  background-color: #ecf0f1;
+}
 div#wrapper .content {
   padding-top: 3.3rem;
   padding-bottom: 93px;
@@ -446,6 +454,9 @@ footer .social .fa:hover {
   padding: 8.5px 10px;
   font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
+.logged nav.navbar ul.nav.navbar-nav {
+  margin-left: 1rem;
+}
 .logged nav.navbar ul.menu {
   padding: 0.5rem 1rem;
 }
@@ -458,6 +469,15 @@ footer .social .fa:hover {
 .logged nav.navbar ul.menu li a:hover {
   color: #666666;
   text-decoration: none;
+}
+.logged nav.navbar li.active a {
+  color: rgba(255, 255, 255, 0.9);
+  background-color: #2783DE;
+}
+.logged nav.navbar li.active a:hover,
+.logged nav.navbar li.active a:focus {
+  color: #fff;
+  background-color: #2783DE;
 }
 @media (min-width: 768px) {
   .navbar-nav > li > a {
@@ -487,6 +507,15 @@ footer .social .fa:hover {
   }
   .logged nav.navbar ul.menu li a:hover {
     color: rgba(255, 255, 255, 0.9);
+  }
+  .logged nav.navbar ul.nav.navbar-nav {
+    margin-left: inherit;
+  }
+  .logged nav.navbar ul.nav.navbar-nav:first-of-type {
+    margin-bottom: 0;
+  }
+  .logged nav.navbar ul.nav.navbar-nav:last-of-type {
+    margin-top: 0;
   }
 }
 @media (max-width: 600px) {

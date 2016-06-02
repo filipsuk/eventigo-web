@@ -74,8 +74,15 @@
 					<a class="navbar-brand" n:href="Homepage:">{_front.homepage.header.logo}</a>
 				</div>
 				<div class="navbar-collapse collapse" id="navbar">
+					<ul class="nav navbar-nav">
+						<li {ifCurrent Homepage:discover}class="active"{/ifCurrent}>
+							<a n:href="Homepage:discover">
+								{_front.nav.discover}
+							</a>
+						</li>
+					</ul>
 					<ul class="nav navbar-nav navbar-right">
-						<li>
+						<li {ifCurrent Profile:settings}class="active"{/ifCurrent}>
 							<a n:href="Profile:settings">
 								<i class="fa fa-wrench" aria-hidden="true"></i>
 								{_front.nav.settings}

@@ -31,6 +31,7 @@ datetime.sunday: Neděle
 footer.text: "&copy; 2016 eventigo<br/> Made with <span class='heart'>&hearts;</span> in Prague"
 meta.description: "Každý týden výběr akcí přesně pro tebe. Konference, meetupy, přednášky, workshopy a další."
 meta.title: "Eventy na tento týden"
+nav.discover: Procházet akce
 nav.settings: Nastavení
 nav.signOut: Odhlásit se
 nav.login: Přihlásit se

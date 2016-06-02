@@ -215,6 +215,19 @@ div#wrapper {
   #homepage {
     padding-top: 3.3rem;
     padding-bottom: 4rem;
+
+    .list-group {
+      a.list-group-item {
+        &.active {
+          background-color: #fff;
+          color: #555;
+          font-weight: bold;
+          &:hover {
+            background-color: #ecf0f1;
+          }
+        }
+      }
+    }
   }
   .content {
     padding-top: 3.3rem;
@@ -513,6 +526,9 @@ footer {
     padding: (13.5 - @navbarHeightDiff / 2) (15 - @navbarHeightDiff / 2);
     font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   }
+  ul.nav.navbar-nav {
+    margin-left: 1rem;
+  }
   ul.menu {
     padding: 0.5rem 1rem;
     li {
@@ -524,6 +540,14 @@ footer {
           text-decoration: none;
         }
       }
+    }
+  }
+  li.active a {
+    color: rgba(255, 255, 255, 0.9);
+    background-color: @darkishPrimaryColor;
+    &:hover, &:focus {
+      color: #fff;
+      background-color: @darkishPrimaryColor;
     }
   }
 }
@@ -563,6 +587,15 @@ footer {
               color: @logoFontColorHover;
             }
           }
+        }
+      }
+      ul.nav.navbar-nav {
+        margin-left: inherit;
+        &:first-of-type {
+          margin-bottom: 0;
+        }
+        &:last-of-type {
+          margin-top: 0;
         }
       }
     }

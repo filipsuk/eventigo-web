@@ -106,10 +106,16 @@ class HomepagePresenter extends BasePresenter
 
 	public function createComponentEventsList()
 	{
-		$section = $this->getSession('subscriptionTags');
+		if (!$this->getUser()->getId() || $this->getAction() !== 'default') {
+			$section = $this->getSession('subscriptionTags');
+			$tags = Collection::getNestedValues($section->tags);
+			$tagsIds = $this->tagModel->getAll()->where('code', $tags)->fetchPairs(null, 'id');
+		} else {
+			$tagsIds = $this->userTagModel->getAll()
+				->where('user_id', $this->getUser()->getId())
+				->fetchPairs(null, 'id');
+		}
 
-		$tags = Collection::getNestedValues($section->tags);
-		$tagsIds = $this->tagModel->getAll()->where('code', $tags)->fetchPairs(null, 'id');
 		$events = $this->eventModel->getAllWithDates($tagsIds, new DateTime, null, $this->lastAccess);
 		return $this->eventsListFactory->create($events);
 	}
