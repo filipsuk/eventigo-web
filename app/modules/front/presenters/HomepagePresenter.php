@@ -83,6 +83,15 @@ class HomepagePresenter extends BasePresenter
 					['email' => Html::el('strong')->setText($email)]),
 				'success');
 
+			// TODO refactor duplicate code
+			// Redirect to settings if no tags
+			$section = $this->getSession('subscriptionTags');
+			$chosenTags = Collection::getNestedValues($section->tags);
+			if (isset($chosenTags) && count($chosenTags) === 0) {
+				$this->flashMessage($this->translator->translate('front.profile.settings.afterLogin', 'info'));
+				$this->redirect('Profile:settings');
+			}
+
 			$this->redirect('Homepage:');
 		};
 
@@ -197,6 +206,14 @@ class HomepagePresenter extends BasePresenter
 			} catch (\Kdyby\Facebook\FacebookApiException $e) {
 				\Tracy\Debugger::log($e, 'facebook');
 				$this->flashMessage($this->translator->translate('front.homepage.fbLogin.failed'), 'danger');
+				$this->redirect('this');
+			}
+
+			// TODO refactor duplicate code
+			// Redirect to settings if no tags
+			if (isset($chosenTags) && count($chosenTags) === 0) {
+				$this->flashMessage($this->translator->translate('front.profile.settings.afterLogin', 'info'));
+				$this->redirect('Profile:settings');
 			}
 
 			$this->redirect('this');
