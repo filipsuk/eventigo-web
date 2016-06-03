@@ -2,7 +2,10 @@
 
 namespace App\Modules\Front\Presenters;
 
+use App\Modules\Core\Model\TagModel;
 use App\Modules\Core\Model\UserModel;
+use App\Modules\Core\Model\UserTagModel;
+use App\Modules\Core\Utils\Collection;
 use Nette;
 use Nette\Utils\DateTime;
 
@@ -18,12 +21,35 @@ abstract class BasePresenter extends \App\Modules\Core\Presenters\BasePresenter
 	/** @var DateTime */
 	protected $lastAccess;
 
+	/** @var UserTagModel @inject */
+	public $userTagModel;
+
+	/** @var TagModel @inject */
+	public $tagModel;
+
 
 	protected function startup()
 	{
 		parent::startup();
 
 		$this->updateAccess();
+
+		// TODO delete when none of the users has no tag chosen
+		// Copy tags from session when user has no tags chosen
+		if ($this->getUser()->isLoggedIn()) {
+			$userTag = $this->userTagModel->getAll()->where('user_id', $this->getUser()->getId())->fetch();
+			if ($userTag === false) {
+				$section = $this->getSession('subscriptionTags');
+				$chosenTags = Collection::getNestedValues($section->tags);
+				$tags = $this->tagModel->getAll()->where('code IN (?)', $chosenTags)->fetchAll();
+				foreach ($tags as $tag) {
+					$this->userTagModel->insert([
+						'tag_id' => $tag->id,
+						'user_id' => $this->getUser()->getId(),
+					]);
+				}
+			}
+		}
 	}
 
 
