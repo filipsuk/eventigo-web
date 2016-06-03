@@ -101,10 +101,16 @@ class Tags extends BaseControl
 		}
 
 		// Remove not checked tags
-		$this->userTagModel->delete([
-			'user_id' => $this->user->getId(),
-			'tag_id NOT IN (?)' => $this->tagModel->getAll()->where('code IN (?)', $chosenTags)->fetchPairs(null, 'id'),
-		]);
+		if ($chosenTags) {
+			$this->userTagModel->delete([
+				'user_id' => $this->user->getId(),
+				'tag_id NOT IN (?)' => $this->tagModel->getAll()->where('code IN (?)', $chosenTags)->fetchPairs(null, 'id'),
+			]);
+		} else {
+			$this->userTagModel->delete([
+				'user_id' => $this->user->getId(),
+			]);
+		}
 
 		$this->onChange();
 	}
