@@ -5,6 +5,7 @@ namespace App\Modules\Front\Presenters;
 use App\Modules\Core\Model\EventModel;
 use App\Modules\Core\Model\TagModel;
 use App\Modules\Core\Model\UserModel;
+use App\Modules\Core\Model\UserTagModel;
 use App\Modules\Core\Utils\Collection;
 use App\Modules\Front\Components\EventsList\EventsListFactory;
 use App\Modules\Front\Components\SubscriptionTags\ISubscriptionTagsFactory;
@@ -28,6 +29,9 @@ class HomepagePresenter extends BasePresenter
 
 	/** @var \Kdyby\Facebook\Facebook @inject */
 	public $facebook;
+
+	/** @var UserTagModel @inject */
+	public $userTagModel;
 
 
 	/**
@@ -172,7 +176,18 @@ class HomepagePresenter extends BasePresenter
 				$me = $fb->api('/me?fields=email,first_name,name');
 
 				if (!$existing = $this->userModel->findByFacebookId($fb->getUser())) {
-					$this->userModel->signInViaFacebook($me);
+					$user = $this->userModel->signInViaFacebook($me);
+
+					// TODO move to user tag service
+					$section = $this->getSession('subscriptionTags');
+					$chosenTags = Collection::getNestedValues($section->tags);
+					$tags = $this->tagModel->getAll()->where('code IN (?)', $chosenTags)->fetchAll();
+					foreach ($tags as $tag) {
+						$this->userTagModel->insert([
+							'tag_id' => $tag->id,
+							'user_id' => $user->id,
+						]);
+					}
 				}
 
 				$existing = $this->userModel->updateFacebook($me, $fb->getAccessToken());

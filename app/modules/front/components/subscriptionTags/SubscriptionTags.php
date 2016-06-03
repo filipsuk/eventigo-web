@@ -86,6 +86,7 @@ class SubscriptionTags extends Subscription
 				return;
 			}
 
+			// TODO move to user tag service
 			// Store user's selected tags
 			$chosenTags = Collection::getNestedValues($values->tags);
 			$tags = $this->tagModel->getAll()->where('code IN (?)', $chosenTags)->fetchAll();
