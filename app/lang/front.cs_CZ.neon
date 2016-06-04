@@ -19,6 +19,7 @@ events.thisMonth.title: Tento měsíc
 events.nextMonth.title: Příští měsíc
 events.upcoming.title: Další akce
 eventList.label.new: nové
+eventList.label.today: dnes
 newsletter.header.title: Výběr nadcházejících akcí
 datetime.monday: Pondělí
 datetime.tuesday: Úterý

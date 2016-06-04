@@ -295,17 +295,31 @@ div#wrapper #profile {
 #events-list .event-box .event-text a:hover {
   text-decoration: none;
 }
-#events-list .event-box.new-event {
-  border: 2px solid #2196F3;
-  box-shadow: 0 0 5px rgba(33, 150, 243, 0.4);
+#events-list .event-box.label-event {
   position: relative;
 }
-#events-list .event-box.new-event .label {
+#events-list .event-box.label-event .label {
   position: absolute;
   right: 0;
-  background-color: rgba(33, 150, 243, 0.8);
   padding: 0.5rem 0.8rem;
   margin: 0.5rem 0;
+  -webkit-font-smoothing: antialiased;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+  border-radius: 3px 0 0 3px;
+}
+#events-list .event-box.label-event.label-new {
+  border: 2px solid #2196F3;
+  box-shadow: 0 0 5px rgba(33, 150, 243, 0.4);
+}
+#events-list .event-box.label-event.label-new .label {
+  background-color: rgba(33, 150, 243, 0.8);
+}
+#events-list .event-box.label-event.label-today {
+  border: 2px solid #8BC34A;
+  box-shadow: 0 0 5px rgba(103, 140, 53, 0.63);
+}
+#events-list .event-box.label-event.label-today .label {
+  background-color: #8BC34A;
 }
 footer {
   text-align: center;
