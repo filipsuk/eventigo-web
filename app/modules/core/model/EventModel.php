@@ -76,9 +76,11 @@ class EventModel extends BaseModel
 			->select('WEEKOFYEAR(start) = WEEKOFYEAR(?) AS thisWeek', $calculateFrom)
 			->select('MONTH(start) = MONTH(?) AS thisMonth', $calculateFrom)
 			->select('MONTH(start) = MONTH(?) AS nextMonth', $calculateFrom->modifyClone('+1 MONTH'))
-			->select('CURDATE() = DATE(start) OR CURDATE() BETWEEN DATE(start) AND DATE(end) AS todayEvent');
+			->select('CURDATE() = DATE(start)
+			OR CURDATE() BETWEEN DATE(start) AND DATE(end) AS todayEvent');
 		if ($from) {
-			$selection->where('(end IS NOT NULL AND end >= ?) OR (end IS NULL AND start >= ?)', $from, $from);
+			$selection->where('(end IS NOT NULL AND end >= ?) OR (end IS NULL AND DATE(start) >= ?)',
+				$from, $from->setTime(0, 0));
 		}
 		if ($from && $to) {
 			$selection->where('start <= ?', $to);
