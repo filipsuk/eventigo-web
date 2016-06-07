@@ -5,7 +5,7 @@ namespace App\Modules\Front\Model;
 use App\Modules\Core\Model\Iterator;
 
 
-class EventsIterator extends Iterator
+class EventsIterator extends Iterator implements \Countable
 {
 	private $thisWeek = FALSE;
 
@@ -65,5 +65,11 @@ class EventsIterator extends Iterator
 		} else {
 			return FALSE;
 		}
+	}
+
+
+	public function count() : int
+	{
+		return count($this->data);
 	}
 }

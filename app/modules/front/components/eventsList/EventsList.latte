@@ -43,8 +43,43 @@
                         </div>
                     </div>
                 </div>
-
             {/foreach}
+
+            {* No events info *}
+            {if $events->count() === 0}
+                <div id="no-events-info">
+                    <div class="header">
+                        <i class="fa fa-calendar-times-o"></i>
+                        <h3>{_front.eventList.noEvents.title}</h3>
+                    </div>
+                    <div class="fluid-row">
+                        <div class="col-sm-5 col-sm-offset-1">
+                            <a href="{plink Homepage:discover}">
+                                <i class="fa fa-calendar"></i>
+                            </a>
+                            <p>
+                                {_front.eventList.noEvents.discoverInfo}
+                                <br />
+                                <a href="{plink Homepage:discover}" class="btn btn-info">
+                                    {_front.eventList.noEvents.linkToDiscover}
+                                </a>
+                            </p>
+                        </div>
+                        <div class="col-sm-5">
+                            <a href="{plink Profile:settings}">
+                                <i class="fa fa-wrench"></i>
+                            </a>
+                            <p>
+                                {_front.eventList.noEvents.settingsInfo}
+                                <br />
+                                <a href="{plink Profile:settings}" class="btn btn-info">
+                                    {_front.eventList.noEvents.linkToSettings}
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            {/if}
         </div>
 
     </div>

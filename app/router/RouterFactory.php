@@ -30,8 +30,8 @@ class RouterFactory
 		$router[] = $newsletterRouter;
 
 		// Front
-		$router[] = new Route('profile/settings/<token>', 'Front:Profile:settings', Route::SECURED);
-		$router[] = new Route('discover/?', 'Front:Homepage:discover', Route::SECURED);
+		$router[] = new Route('profile/settings/<token>', 'Front:Profile:settings');
+		$router[] = new Route('discover/?', 'Front:Homepage:discover');
 		$router[] = new Route('<presenter>/<action>[/<id>]', [
 			'module' => 'Front',
 			'presenter' => 'Homepage',

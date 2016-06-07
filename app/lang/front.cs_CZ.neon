@@ -20,6 +20,11 @@ events.nextMonth.title: Příští měsíc
 events.upcoming.title: Další akce
 eventList.label.new: nové
 eventList.label.today: dnes
+eventList.noEvents.title: Žádné akce?
+eventList.noEvents.settingsInfo: "Mrkni do nastavení tagů, zda tě nezaujme nějaké další téma, které sledovat"
+eventList.noEvents.linkToSettings: Nastavení sledovaných tagů
+eventList.noEvents.discoverInfo: Projdi si ostatní nadcházející akce
+eventList.noEvents.linkToDiscover: Procházet akce
 newsletter.header.title: Výběr nadcházejících akcí
 datetime.monday: Pondělí
 datetime.tuesday: Úterý

@@ -34,25 +34,10 @@ class HomepagePresenter extends BasePresenter
 	public $userTagModel;
 
 
-	/**
-	 * @param string[] $tags
-	 */
-	public function renderDefault(array $tags)
+	public function renderDiscover()
 	{
-		if (!$tags) {
-			$section = $this->getSession('subscriptionTags');
-			$tags = $section->tags ?: $section->tags = [];
-		}
-
-		$this->template->eventModel = $this->eventModel;
-		$this->template->tags = $this->tagModel->getAll();
-
-		// Get array of all tags
-		$allTags = [];
-		foreach ($this->template->tags as $tag) {
-			$allTags[] = $tag->code;
-		}
-		$this->template->allTags = $allTags;
+		$section = $this->getSession('subscriptionTags');
+		$tags = $section->tags ?: $section->tags = [];
 
 		$this['subscriptionTags']['form']->setDefaults(['tags' => $tags]);
 	}
