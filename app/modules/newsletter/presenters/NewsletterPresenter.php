@@ -7,6 +7,9 @@ use App\Modules\Core\Presenters\BasePresenter;
 use App\Modules\Newsletter\Model\NewsletterService;
 use App\Modules\Newsletter\Model\UserNewsletterModel;
 use Nette\Database\Table\ActiveRow;
+use Pelago\Emogrifier;
+use TijsVerkoyen\CssToInlineStyles\CssToInlineStyles;
+use Tracy\Debugger;
 
 
 class NewsletterPresenter extends BasePresenter
@@ -23,6 +26,8 @@ class NewsletterPresenter extends BasePresenter
 	/** @var ActiveRow */
 	private $userNewsletter;
 
+	/** Path to css file used for css inline of newsletter texts html */
+	const CSS_FILE_PATH = __DIR__ . DIRECTORY_SEPARATOR . 'templates' . DIRECTORY_SEPARATOR . 'Newsletter' . DIRECTORY_SEPARATOR . 'build.css';
 
 	public function actionDefault($hash)
 	{
@@ -35,6 +40,7 @@ class NewsletterPresenter extends BasePresenter
 	public function renderDefault()
 	{
 		$this->template->userNewsletter = $this->userNewsletter;
+		$this->inlineCss();
 	}
 
 
@@ -53,6 +59,35 @@ class NewsletterPresenter extends BasePresenter
 	public function renderDynamic($userId)
 	{
 		$this->template->newsletter = $this->newsletterService->buildArrayForTemplate((int)$userId);
-		// TODO Convert utf8 chars to html entities. Probably for email clients not respecting charset header. mb_convert_encoding($string, 'HTML-ENTITIES', 'UTF-8');
+		$this->inlineCss();
+	}
+
+	/**
+	 * Inline CSS styles of intro and outro text in newsletter
+	 * TODO: Move this to admin when saving new newsletter
+	 */
+	private function inlineCss() {
+		$css = file_get_contents(self::CSS_FILE_PATH);
+		$newsletter =& $this->template->newsletter;
+		$emogrifier = new Emogrifier();
+		$emogrifier->setCss($css);
+
+		try {
+			// Inline CSS of intro text
+			if (!empty($newsletter['intro_text'])) {
+				$emogrifier->setHtml($newsletter['intro_text']);
+				$newsletter['intro_text'] = $emogrifier->emogrifyBodyContent();
+			}
+
+			// Inline CSS of outro text
+			if (!empty($newsletter['outro_text'])) {
+				$emogrifier->setHtml($newsletter['outro_text']);
+				$newsletter['outro_text'] = $emogrifier->emogrifyBodyContent();
+			}
+
+		} catch (\BadMethodCallException $e) {
+			Debugger::log($e->getMessage());
+		}
+
 	}
 }

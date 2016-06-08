@@ -23,7 +23,8 @@
 		"kdyby/console": "^2.5",
 		"defuse/php-encryption": "~1.2.1",
 		"sendgrid/sendgrid": "^4.0",
-		"kdyby/facebook": "v2.0.1"
+		"kdyby/facebook": "v2.0.1",
+		"pelago/emogrifier": "@dev"
 	},
 	"require-dev": {
 		"nette/tester": "~1.3",
