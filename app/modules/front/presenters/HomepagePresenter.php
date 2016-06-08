@@ -34,9 +34,26 @@ class HomepagePresenter extends BasePresenter
 	public $userTagModel;
 
 
+	/**
+	 * @param string[] $tags
+	 */
+	public function renderDefault(array $tags)
+	{
+		if (!$tags) {
+			$section = $this->getSession('subscriptionTags');
+			$tags = $section->tags;
+		}
+
+		$this->template->eventModel = $this->eventModel;
+		$this->template->tags = $this->tagModel->getAll();
+
+		$this['subscriptionTags']['form']->setDefaults(['tags' => $tags ?? []]);
+	}
+
+
 	public function renderDiscover()
 	{
-		$section = $this->getSession('subscriptionTags');
+		$section = $this->getSession('discover');
 		$tags = $section->tags ?: $section->tags = [];
 
 		$this['subscriptionTags']['form']->setDefaults(['tags' => $tags]);
@@ -92,8 +109,8 @@ class HomepagePresenter extends BasePresenter
 	public function createComponentEventsList()
 	{
 		if (!$this->getUser()->getId() || $this->getAction() !== 'default') {
-			$section = $this->getSession('subscriptionTags');
-			$tags = Collection::getNestedValues($section->tags);
+			$section = $this->getSession($this->getAction() === 'discover' ? 'discover' : 'subscriptionTags');
+			$tags = Collection::getNestedValues($section->tags ?? []);
 			$tagsIds = $this->tagModel->getAll()->where('code', $tags)->fetchPairs(null, 'id');
 		} else {
 			$tagsIds = $this->userTagModel->getAll()

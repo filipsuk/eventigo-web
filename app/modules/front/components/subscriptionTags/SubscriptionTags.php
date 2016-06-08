@@ -101,7 +101,9 @@ class SubscriptionTags extends Subscription
 
 		} else {
 			// Store tags to session
-			$section = $this->presenter->getSession('subscriptionTags');
+			$section = $this->presenter->getSession($this->getPresenter()->getAction() === 'discover'
+				? 'discover'
+				: 'subscriptionTags');
 			$section->tags = $values->tags;
 			$this->onChange();
 		}
