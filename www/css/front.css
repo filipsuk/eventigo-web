@@ -557,6 +557,9 @@ footer .social .fa:hover {
   #no-events-info .col-sm-5 {
     margin-bottom: 1rem;
   }
+  div#wrapper.logged #homepage {
+    padding-top: 2rem;
+  }
 }
 @media (max-width: 600px) {
   .col-sm-4 {
