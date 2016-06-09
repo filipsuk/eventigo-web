@@ -14,8 +14,10 @@ use Nette\Application\UI\Presenter;
 use Nette\Bridges\ApplicationLatte\Template;
 use Nette\DI\Container;
 use Nette\Utils\DateTime;
+use Pelago\Emogrifier;
 use SendGrid;
 use SendGrid\Email;
+use Tracy\Debugger;
 
 class NewsletterService
 {
@@ -58,6 +60,8 @@ class NewsletterService
 	/** @var  Translator @inject */
 	public $translator;
 
+	/** Path to css file used for css inline of newsletter texts html */
+	const CSS_FILE_PATH = __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'presenters' . DIRECTORY_SEPARATOR . 'templates' . DIRECTORY_SEPARATOR . 'Newsletter' . DIRECTORY_SEPARATOR . 'build.css';
 
 	public function setApiKey(string $apiKey) : self
 	{
@@ -209,12 +213,42 @@ class NewsletterService
 			return \App\Modules\Core\Utils\DateTime::eventsDatetimeFilter($a, $b);
 		});
 		
-		$this->template->newsletter = $newsletter;
+		$this->template->newsletter = self::inlineCss($newsletter);
 
 		$templateFile = __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'presenters' . DIRECTORY_SEPARATOR .
 			'templates' . DIRECTORY_SEPARATOR . 'Newsletter' . DIRECTORY_SEPARATOR . 'dynamic.latte';
 		$this->template->setFile($templateFile);
 
 		return $this->template->getLatte()->renderToString($this->template->getFile(), $this->template->getParameters());
+	}
+
+	/**
+	 * Inline CSS styles of intro and outro text in newsletter
+	 * TODO: Move this to admin when saving new newsletter
+	 * @param $newsletter
+	 * @return mixed
+	 */
+	public static function inlineCss($newsletter) {
+		$css = file_get_contents(self::CSS_FILE_PATH);
+		$emogrifier = new Emogrifier();
+		$emogrifier->setCss($css);
+
+		try {
+			// Inline CSS of intro text
+			if (!empty($newsletter['intro_text'])) {
+				$emogrifier->setHtml($newsletter['intro_text']);
+				$newsletter['intro_text'] = $emogrifier->emogrifyBodyContent();
+			}
+
+			// Inline CSS of outro text
+			if (!empty($newsletter['outro_text'])) {
+				$emogrifier->setHtml($newsletter['outro_text']);
+				$newsletter['outro_text'] = $emogrifier->emogrifyBodyContent();
+			}
+
+		} catch (\BadMethodCallException $e) {
+			Debugger::log($e->getMessage());
+		}
+		return $newsletter;
 	}
 }
