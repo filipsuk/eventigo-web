@@ -516,6 +516,10 @@ footer .social .fa:hover {
   color: #1976D2;
 }
 @media (max-width: 768px) {
+  .navbar-collapse {
+    -webkit-box-shadow: none;
+    box-shadow: none;
+  }
   #events-list .row {
     margin-left: -10px;
     margin-right: -10px;
@@ -537,12 +541,11 @@ footer .social .fa:hover {
   }
   .logged nav.navbar ul.nav.navbar-nav {
     margin-left: inherit;
-  }
-  .logged nav.navbar ul.nav.navbar-nav:first-of-type {
+    margin-top: 0;
     margin-bottom: 0;
   }
-  .logged nav.navbar ul.nav.navbar-nav:last-of-type {
-    margin-top: 0;
+  .logged nav.navbar li a {
+    line-height: 2rem;
   }
   #no-events-info div.content {
     padding: 2rem 0;

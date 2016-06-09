@@ -598,6 +598,10 @@ footer {
 }
 
 @media (max-width: 768px) {
+  .navbar-collapse {
+    -webkit-box-shadow: none;
+    box-shadow: none;
+  }
   #events-list .row {
     margin-left: -10px;
     margin-right: -10px;
@@ -624,12 +628,11 @@ footer {
       }
       ul.nav.navbar-nav {
         margin-left: inherit;
-        &:first-of-type {
-          margin-bottom: 0;
-        }
-        &:last-of-type {
-          margin-top: 0;
-        }
+        margin-top: 0;
+        margin-bottom: 0;
+      }
+      li a {
+        line-height: 2rem;
       }
     }
   }
