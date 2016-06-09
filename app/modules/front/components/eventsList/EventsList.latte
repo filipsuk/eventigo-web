@@ -1,5 +1,5 @@
 {snippet events-list}
-    <div id="events-list">
+    <div id="events-list" n:class="$events->count() === 0 ? no-events">
         <div class="row">
             {foreach $events as $event}
                 {* Titles *}

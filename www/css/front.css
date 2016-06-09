@@ -493,9 +493,17 @@ footer .social .fa:hover {
 }
 #no-events-info .header h3 {
   margin-bottom: 3rem;
+  padding: 1rem 3rem;
 }
 #no-events-info .header i {
   color: #f44336;
+}
+#no-events-info i {
+  font-size: 5rem;
+  color: #2196F3;
+}
+#no-events-info a:not(.btn):hover i {
+  color: #1976D2;
 }
 #no-events-info div.content {
   padding: 0;
@@ -505,16 +513,6 @@ footer .social .fa:hover {
   height: 5rem;
   margin-bottom: 0;
 }
-#no-events-info div.content i {
-  font-size: 5rem;
-  color: #2196F3;
-}
-#no-events-info div.content a.btn {
-  margin-top: 1rem;
-}
-#no-events-info div.content a:not(.btn):hover i {
-  color: #1976D2;
-}
 @media (max-width: 768px) {
   .navbar-collapse {
     -webkit-box-shadow: none;
@@ -523,6 +521,9 @@ footer .social .fa:hover {
   #events-list .row {
     margin-left: -10px;
     margin-right: -10px;
+  }
+  #events-list.no-events {
+    margin-bottom: 3rem;
   }
   .col-sm-4 {
     width: 33%;
@@ -548,10 +549,13 @@ footer .social .fa:hover {
     line-height: 2rem;
   }
   #no-events-info div.content {
-    padding: 2rem 0;
+    padding: 1rem 0;
   }
   #no-events-info div.content p {
     height: auto;
+  }
+  #no-events-info .col-sm-5 {
+    margin-bottom: 1rem;
   }
 }
 @media (max-width: 600px) {
