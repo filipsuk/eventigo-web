@@ -1,0 +1,18 @@
+{layout '../@layout.latte'}
+
+{block content}
+    <div class="container" id="homepage">
+        <div class="row">
+            <div class="col-lg-3 tags-box">
+                {control subscriptionTags}
+            </div>
+            <div class="col-lg-9">
+                <div class="events-list-header" n:if="!$user->isLoggedIn()">
+                    {_front.homepage.events.header}
+                </div>
+                {control eventsList}
+            </div>
+        </div>
+    </div>
+    <div class="subscription-box"><!-- Placeholder for subscription input --></div>
+{/block}

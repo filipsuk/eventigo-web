@@ -215,6 +215,19 @@ div#wrapper {
   #homepage {
     padding-top: 3.3rem;
     padding-bottom: 4rem;
+
+    .list-group {
+      a.list-group-item {
+        &.active {
+          background-color: #fff;
+          color: #555;
+          font-weight: bold;
+          &:hover {
+            background-color: #ecf0f1;
+          }
+        }
+      }
+    }
   }
   .content {
     padding-top: 3.3rem;
@@ -513,6 +526,9 @@ footer {
     padding: (13.5 - @navbarHeightDiff / 2) (15 - @navbarHeightDiff / 2);
     font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   }
+  ul.nav.navbar-nav {
+    margin-left: 1rem;
+  }
   ul.menu {
     padding: 0.5rem 1rem;
     li {
@@ -524,6 +540,14 @@ footer {
           text-decoration: none;
         }
       }
+    }
+  }
+  li.active a {
+    color: rgba(255, 255, 255, 0.9);
+    background-color: @darkishPrimaryColor;
+    &:hover, &:focus {
+      color: #fff;
+      background-color: @darkishPrimaryColor;
     }
   }
 }
@@ -540,10 +564,50 @@ footer {
   }
 }
 
+
+#no-events-info {
+  text-align: center;
+  .header {
+    h3 {
+      margin-bottom: 3rem;
+      padding: 1rem 3rem;
+    }
+    i {
+      color: @redColor;
+    }
+  }
+  i {
+    font-size: 5rem;
+    color: @primaryColor;
+  }
+  a:not(.btn) {
+    &:hover i {
+      color: @darkPrimaryColor;
+    }
+  }
+  div.content {
+    padding: 0;
+    p {
+      padding: 1rem 3rem;
+      height: 5rem;
+      margin-bottom: 0;
+    }
+  }
+}
+
 @media (max-width: 768px) {
-  #events-list .row {
-    margin-left: -10px;
-    margin-right: -10px;
+  .navbar-collapse {
+    -webkit-box-shadow: none;
+    box-shadow: none;
+  }
+  #events-list {
+    .row {
+      margin-left: -10px;
+      margin-right: -10px;
+    }
+    &.no-events {
+      margin-bottom: 3rem;
+    }
   }
   .col-sm-4 {
     width: 33%;
@@ -565,6 +629,25 @@ footer {
           }
         }
       }
+      ul.nav.navbar-nav {
+        margin-left: inherit;
+        margin-top: 0;
+        margin-bottom: 0;
+      }
+      li a {
+        line-height: 2rem;
+      }
+    }
+  }
+  #no-events-info {
+    div.content {
+      padding: 1rem 0;
+      p {
+        height: auto;
+      }
+    }
+    .col-sm-5 {
+      margin-bottom: 1rem;
     }
   }
 }

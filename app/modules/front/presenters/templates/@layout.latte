@@ -51,7 +51,7 @@
 
 	{* Styles *}
 	<link type="text/css" rel="stylesheet" href="/libs/normalize-css/normalize.css">
-	<link type="text/css" rel="stylesheet" href="/css/front.css?v=201606040330">
+	<link type="text/css" rel="stylesheet" href="/css/front.css?v=201606081900">
 
 	{* Google Fonts *}
 	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300italic,700|Open+Sans+Condensed:300,700&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
@@ -74,8 +74,20 @@
 					<a class="navbar-brand" n:href="Homepage:">{_front.homepage.header.logo}</a>
 				</div>
 				<div class="navbar-collapse collapse" id="navbar">
+					<ul class="nav navbar-nav">
+						<li {ifCurrent Homepage:}class="active"{/ifCurrent}>
+							<a n:href="Homepage:">
+								{_front.nav.myFeed}
+							</a>
+						</li>
+						<li {ifCurrent Homepage:discover}class="active"{/ifCurrent}>
+							<a n:href="Homepage:discover">
+								{_front.nav.discover}
+							</a>
+						</li>
+					</ul>
 					<ul class="nav navbar-nav navbar-right">
-						<li>
+						<li {ifCurrent Profile:settings}class="active"{/ifCurrent}>
 							<a n:href="Profile:settings">
 								<i class="fa fa-wrench" aria-hidden="true"></i>
 								{_front.nav.settings}

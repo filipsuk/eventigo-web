@@ -41,18 +41,20 @@ class HomepagePresenter extends BasePresenter
 	{
 		if (!$tags) {
 			$section = $this->getSession('subscriptionTags');
-			$tags = $section->tags ?: $section->tags = [];
+			$tags = $section->tags;
 		}
 
 		$this->template->eventModel = $this->eventModel;
 		$this->template->tags = $this->tagModel->getAll();
 
-		// Get array of all tags
-		$allTags = [];
-		foreach ($this->template->tags as $tag) {
-			$allTags[] = $tag->code;
-		}
-		$this->template->allTags = $allTags;
+		$this['subscriptionTags']['form']->setDefaults(['tags' => $tags ?? []]);
+	}
+
+
+	public function renderDiscover()
+	{
+		$section = $this->getSession('discover');
+		$tags = $section->tags ?: $section->tags = [];
 
 		$this['subscriptionTags']['form']->setDefaults(['tags' => $tags]);
 	}
@@ -106,10 +108,16 @@ class HomepagePresenter extends BasePresenter
 
 	public function createComponentEventsList()
 	{
-		$section = $this->getSession('subscriptionTags');
+		if (!$this->getUser()->getId() || $this->getAction() !== 'default') {
+			$section = $this->getSession($this->getAction() === 'discover' ? 'discover' : 'subscriptionTags');
+			$tags = Collection::getNestedValues($section->tags ?? []);
+			$tagsIds = $this->tagModel->getAll()->where('code', $tags)->fetchPairs(null, 'id');
+		} else {
+			$tagsIds = $this->userTagModel->getAll()
+				->where('user_id', $this->getUser()->getId())
+				->fetchPairs(null, 'id');
+		}
 
-		$tags = Collection::getNestedValues($section->tags);
-		$tagsIds = $this->tagModel->getAll()->where('code', $tags)->fetchPairs(null, 'id');
 		$events = $this->eventModel->getAllWithDates($tagsIds, new DateTime, null, $this->lastAccess);
 		return $this->eventsListFactory->create($events);
 	}
