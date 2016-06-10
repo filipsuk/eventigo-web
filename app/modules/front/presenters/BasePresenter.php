@@ -40,7 +40,7 @@ abstract class BasePresenter extends \App\Modules\Core\Presenters\BasePresenter
 			$userTag = $this->userTagModel->getAll()->where('user_id', $this->getUser()->getId())->fetch();
 			if ($userTag === false) {
 				$section = $this->getSession('subscriptionTags');
-				$chosenTags = Collection::getNestedValues($section->tags);
+				$chosenTags = Collection::getNestedValues($section->tags ?? []);
 				$tags = $this->tagModel->getAll()->where('code IN (?)', $chosenTags)->fetchAll();
 				foreach ($tags as $tag) {
 					$this->userTagModel->insert([
