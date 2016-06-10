@@ -55,6 +55,18 @@ class HomepagePresenter extends BasePresenter
 	{
 		$section = $this->getSession('discover');
 		$tags = $section->tags ?: $section->tags = [];
+		$tags = (array)$tags;
+
+		// TODO do this more general
+		// Remove tags with no events
+		$activeTags = $this->tagModel->getByMostEvents()->fetchPairs(null, 'code');
+		foreach ($tags as $tagsGroupName => &$tagsGroup) {
+			foreach ($tagsGroup as $i => &$tag) {
+				if (!in_array($tag, $activeTags)) {
+					unset($tags[$tagsGroupName][$i]);
+				}
+			}
+		}
 
 		$this['subscriptionTags']['form']->setDefaults(['tags' => $tags]);
 	}
@@ -111,6 +123,16 @@ class HomepagePresenter extends BasePresenter
 		if (!$this->getUser()->getId() || $this->getAction() !== 'default') {
 			$section = $this->getSession($this->getAction() === 'discover' ? 'discover' : 'subscriptionTags');
 			$tags = Collection::getNestedValues($section->tags ?? []);
+
+			// TODO do this more general
+			// Remove tags with no events
+			$activeTags = $this->tagModel->getByMostEvents()->fetchPairs(null, 'code');
+			foreach ($tags as $i => $tag) {
+				if (!in_array($tag, $activeTags)) {
+					unset($tags[$i]);
+				}
+			}
+
 			$tagsIds = $this->tagModel->getAll()->where('code', $tags)->fetchPairs(null, 'id');
 		} else {
 			$tagsIds = $this->userTagModel->getAll()
