@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "34fbdf17f671943b17e63df10417d931",
-    "content-hash": "d6e0350fd3037202dccf061b58e973b9",
+    "hash": "cdbd3b05e5c9e7b50bb69bedee0454fc",
+    "content-hash": "c6e430634a66b071443f6a1a2a16a5c4",
     "packages": [
         {
             "name": "defuse/php-encryption",
@@ -51,6 +51,41 @@
                 "security"
             ],
             "time": "2015-03-14 20:27:45"
+        },
+        {
+            "name": "greeny/nette-slack-logger",
+            "version": "1.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/greeny/nette-slack-logger.git",
+                "reference": "4666db51cdaf4e2aaa9b663e7afd77c8c886309d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/greeny/nette-slack-logger/zipball/4666db51cdaf4e2aaa9b663e7afd77c8c886309d",
+                "reference": "4666db51cdaf4e2aaa9b663e7afd77c8c886309d",
+                "shasum": ""
+            },
+            "require": {
+                "tracy/tracy": "^2.3"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "greeny\\NetteSlackLogger\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Log your error messages directly into Slack room",
+            "keywords": [
+                "logger",
+                "nette",
+                "slack"
+            ],
+            "time": "2016-03-30 12:06:53"
         },
         {
             "name": "guzzle/guzzle",

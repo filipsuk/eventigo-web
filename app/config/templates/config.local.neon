@@ -16,3 +16,11 @@ database:
 	password:
 	options:
 		lazy: yes
+
+slackLogger:
+	enabled: false
+	timeout: 60
+	slackUrl: ***REMOVED***
+	logUrl: '' #http://path/to/your/logs/directory/__FILE__
+	defaults:
+		name: EventigoApp

@@ -20,3 +20,6 @@ session:
 	expiration: 365 days
 	savePath: "%tempDir%/sessions"
 
+extensions:
+	slackLogger: greeny\NetteSlackLogger\DI\SlackLoggerExtension
+
