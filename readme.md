@@ -22,3 +22,7 @@ Unsubscribe newsletterů přes link https://eventigo.cz/newsletter/unsubscribe/<
 newsletters:send
 `
 
+Exceptions
+----------
+Html exceptions lze číst jako admin na url `/admin/exception/[exception-file.html]`
+

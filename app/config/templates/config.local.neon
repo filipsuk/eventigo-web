@@ -21,6 +21,6 @@ slackLogger:
 	enabled: false
 	timeout: 60
 	slackUrl: ***REMOVED***
-	logUrl: '' #http://path/to/your/logs/directory/__FILE__
+	logUrl: '%baseUrl%/admin/exception/?filename=__FILE__'
 	defaults:
 		name: EventigoApp
