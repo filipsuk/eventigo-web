@@ -47,6 +47,18 @@ class HomepagePresenter extends BasePresenter
 		$this->template->eventModel = $this->eventModel;
 		$this->template->tags = $this->tagModel->getAll();
 
+		$tags = (array) $tags;
+		// TODO do this more general
+		// Remove tags with no events
+		$activeTags = $this->tagModel->getByMostEvents()->fetchPairs(null, 'code');
+		foreach ($tags as $tagsGroupName => &$tagsGroup) {
+			foreach ($tagsGroup as $i => &$tag) {
+				if (!in_array($tag, $activeTags)) {
+					unset($tags[$tagsGroupName][$i]);
+				}
+			}
+		}
+
 		$this['subscriptionTags']['form']->setDefaults(['tags' => $tags ?? []]);
 	}
 
