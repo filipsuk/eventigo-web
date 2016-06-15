@@ -20,6 +20,7 @@ events.nextMonth.title: Příští měsíc
 events.upcoming.title: Další akce
 eventList.label.new: nové
 eventList.label.today: dnes
+eventList.label.recentlyAdded: nedávno přidané
 eventList.noEvents.title: Pro tvoje sledované tagy nejsou aktuálně žádné akce
 eventList.noEvents.settingsInfo: "Mrkni do nastavení tagů, zda tě nezaujme nějaké další téma, které sledovat"
 eventList.noEvents.linkToSettings: Nastavení sledovaných tagů

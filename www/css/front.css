@@ -329,6 +329,13 @@ div#wrapper #profile {
 #events-list .event-box.label-event.label-today .label {
   background-color: #8BC34A;
 }
+#events-list .event-box.label-event.label-recently-added {
+  border: 1px solid rgba(33, 150, 243, 0.75);
+  box-shadow: 0 0 4px rgba(33, 150, 243, 0.4);
+}
+#events-list .event-box.label-event.label-recently-added .label {
+  background-color: rgba(33, 150, 243, 0.6);
+}
 footer {
   text-align: center;
   padding: 1.5rem;

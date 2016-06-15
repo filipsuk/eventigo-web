@@ -77,7 +77,8 @@ class EventModel extends BaseModel
 			->select('MONTH(start) = MONTH(?) AS thisMonth', $calculateFrom)
 			->select('MONTH(start) = MONTH(?) AS nextMonth', $calculateFrom->modifyClone('+1 MONTH'))
 			->select('CURDATE() = DATE(start)
-			OR CURDATE() BETWEEN DATE(start) AND DATE(end) AS todayEvent');
+				OR CURDATE() BETWEEN DATE(start) AND DATE(end) AS todayEvent')
+			->select('DATE(approved) BETWEEN (CURDATE() - INTERVAL 2 DAY) AND CURDATE() AS recentlyAddedEvent');
 		if ($from) {
 			$selection->where('(end IS NOT NULL AND end >= ?) OR (end IS NULL AND DATE(start) >= ?)',
 				$from, $from->setTime(0, 0));
