@@ -92,7 +92,9 @@ class EventsPresenter extends BasePresenter
 	public function createComponentNotApprovedEventsTable()
 	{
 		return $this->notApprovedEventsTableFactory->create(
-			$this->eventModel->getAll()->where('state', EventModel::STATE_NOT_APPROVED)
+			$this->eventModel->getAll()
+				->where('state', EventModel::STATE_NOT_APPROVED)
+				->where('start > ?', new DateTime)
 		);
 	}
 }
