@@ -20,11 +20,16 @@
                 <div class="col-sm-4">
                     <div n:class="event-box,
                             $event->newEvent || $event->todayEvent || $event->recentlyAddedEvent ? label-event,
-                            $event->newEvent ? 'label-new', $event->todayEvent ? 'label-today',
-                            $event->recentlyAddedEvent && !$event->newEvent ? 'label-recently-added'">
-                        <div class="label" n:if="$event->newEvent">{_front.eventList.label.new}</div>
+                            $event->todayEvent ? 'label-today',
+                            $event->newEvent && !$event->todayEvent ? 'label-new',
+                            $event->recentlyAddedEvent && !$event->newEvent && !$event->todayEvent ? 'label-recently-added'">
                         <div class="label" n:if="$event->todayEvent">{_front.eventList.label.today}</div>
-                        <div class="label" n:if="$event->recentlyAddedEvent && !$event->newEvent">{_front.eventList.label.recentlyAdded}</div>
+                        <div class="label" n:if="$event->newEvent && !$event->todayEvent">
+                            {_front.eventList.label.new}
+                        </div>
+                        <div class="label" n:if="$event->recentlyAddedEvent && !$event->newEvent && !$event->todayEvent">
+                            {_front.eventList.label.recentlyAdded}
+                        </div>
                         <div class="event-image">
                             <a n:tag-if="$event->origin_url" target="_blank" href="{plink ":Front:Redirect:", $event->origin_url}">
                                 <img src="{$event->image}">
