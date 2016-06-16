@@ -20,7 +20,7 @@ h4 {
   -webkit-font-smoothing: antialiased;
 }
 header {
-  background: linear-gradient(rgba(33, 150, 243, 0.9), rgba(33, 150, 243, 0.9)), url('/img/header-background.jpg');
+  background: linear-gradient(rgba(33, 150, 243, 0.9), rgba(33, 150, 243, 0.6)), url('/img/header-background.jpg');
   background-size: cover;
   color: #FFFFFF;
   padding-bottom: 4.6rem;
@@ -33,7 +33,6 @@ header h1.logo {
   margin-bottom: 0;
 }
 header h2 {
-  padding-top: 3.3rem;
   font-size: 3rem;
   margin: 0 0 1.2rem;
 }
