@@ -18,9 +18,6 @@ class HomepagePresenter extends BasePresenter
 	/** @var EventModel @inject */
 	public $eventModel;
 
-	/** @var TagModel @inject */
-	public $tagModel;
-
 	/** @var ISubscriptionTagsFactory @inject */
 	public $subscriptionTags;
 
@@ -30,15 +27,18 @@ class HomepagePresenter extends BasePresenter
 	/** @var \Kdyby\Facebook\Facebook @inject */
 	public $facebook;
 
-	/** @var UserTagModel @inject */
-	public $userTagModel;
-
 
 	/**
 	 * @param string[] $tags
+	 * @throws \Nette\Application\BadRequestException
 	 */
-	public function renderDefault(array $tags)
+	public function renderDefault(array $tags, $token = null)
 	{
+		// Try to log in the user with provided token
+		if ($token) {
+			$this->loginWithToken($token);
+		}
+		
 		if (!$tags) {
 			$section = $this->getSession('subscriptionTags');
 			$tags = $section->tags;

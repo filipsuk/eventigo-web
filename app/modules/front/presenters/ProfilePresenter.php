@@ -9,8 +9,6 @@ use App\Modules\Core\Model\UserTagModel;
 use App\Modules\Front\Components\EventsList\EventsListFactory;
 use App\Modules\Front\Components\Settings\SettingsFactory;
 use App\Modules\Front\Components\Tags\ITagsFactory;
-use Nette\Application\BadRequestException;
-use Nette\Security\Identity;
 
 
 class ProfilePresenter extends \App\Modules\Core\Presenters\BasePresenter
@@ -39,13 +37,9 @@ class ProfilePresenter extends \App\Modules\Core\Presenters\BasePresenter
 
 	public function actionSettings($token = null)
 	{
-		if (!$this->getUser()->isLoggedIn()) {
-			if ($token === null || ($user = $this->userModel->getAll()
-					->where('token', $token)->fetch()) === false) {
-				throw new BadRequestException();
-			}
-
-			$this->getUser()->login(new Identity($user->id, null, $user->toArray()));
+		// Try to log in the user with provided token
+		if ($token) {
+			$this->loginWithToken($token);
 		}
 	}
 
