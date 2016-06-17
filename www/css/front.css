@@ -256,6 +256,7 @@ div#wrapper #profile {
   color: #8BC34A;
   font-weight: 600;
   text-transform: uppercase;
+  clear: both;
 }
 #events-list .events-list-title:not(:first-child) {
   margin-top: 1.2rem;
@@ -287,6 +288,7 @@ div#wrapper #profile {
   font-size: 0.9rem;
 }
 #events-list .event-box .event-text .event-text-name {
+  color: #202020;
   font-weight: 600;
   margin-bottom: 0.3rem;
   font-size: 1.1rem;
@@ -295,12 +297,6 @@ div#wrapper #profile {
 #events-list .event-box .event-text .event-text-desc {
   font-size: 0.8rem;
   color: #727272;
-}
-#events-list .event-box .event-text a {
-  color: inherit;
-}
-#events-list .event-box .event-text a:hover {
-  text-decoration: none;
 }
 #events-list .event-box.label-event {
   position: relative;
@@ -334,6 +330,11 @@ div#wrapper #profile {
 }
 #events-list .event-box.label-event.label-recently-added .label {
   background-color: rgba(33, 150, 243, 0.6);
+}
+a:hover,
+a:active,
+a:focus {
+  text-decoration: none;
 }
 footer {
   text-align: center;

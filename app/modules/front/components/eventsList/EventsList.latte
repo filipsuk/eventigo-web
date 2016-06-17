@@ -18,38 +18,36 @@
 
                 {* Events *}
                 <div class="col-sm-4">
-                    <div n:class="event-box,
-                            $event->newEvent || $event->todayEvent || $event->recentlyAddedEvent ? label-event,
-                            $event->todayEvent ? 'label-today',
-                            $event->newEvent && !$event->todayEvent ? 'label-new',
-                            $event->recentlyAddedEvent && !$event->newEvent && !$event->todayEvent ? 'label-recently-added'">
-                        <div class="label" n:if="$event->todayEvent">{_front.eventList.label.today}</div>
-                        <div class="label" n:if="$event->newEvent && !$event->todayEvent">
-                            {_front.eventList.label.new}
-                        </div>
-                        <div class="label" n:if="$event->recentlyAddedEvent && !$event->newEvent && !$event->todayEvent">
-                            {_front.eventList.label.recentlyAdded}
-                        </div>
-                        <div class="event-image">
-                            <a n:tag-if="$event->origin_url" target="_blank" href="{plink ":Front:Redirect:", $event->origin_url}">
+                    <a target="_blank" href="{plink ":Front:Redirect:", $event->origin_url}">
+                        <div n:class="event-box,
+                                $event->newEvent || $event->todayEvent || $event->recentlyAddedEvent ? label-event,
+                                $event->todayEvent ? 'label-today',
+                                $event->newEvent && !$event->todayEvent ? 'label-new',
+                                $event->recentlyAddedEvent && !$event->newEvent && !$event->todayEvent ? 'label-recently-added'">
+                            <div class="label" n:if="$event->todayEvent">{_front.eventList.label.today}</div>
+                            <div class="label" n:if="$event->newEvent && !$event->todayEvent">
+                                {_front.eventList.label.new}
+                            </div>
+                            <div class="label" n:if="$event->recentlyAddedEvent && !$event->newEvent && !$event->todayEvent">
+                                {_front.eventList.label.recentlyAdded}
+                            </div>
+                            <div class="event-image">
                                 <img src="{$event->image}">
-                            </a>
-                        </div>
+                            </div>
 
-                        <div class="event-text">
-                            <div class="event-text-date">{$event->start, $event->end |datetime|noescape}</div>
-                            <div class="event-text-name">
-                                <a n:tag-if="$event->origin_url" target="_blank" href="{plink ":Front:Redirect:", $event->origin_url}">
+                            <div class="event-text">
+                                <div class="event-text-date">{$event->start, $event->end |datetime|noescape}</div>
+                                <div class="event-text-name">
                                     {$event->name}
-                                </a>
-                            </div>
-                            <div class="event-text-desc">
-                                {foreach $event->related('events_tags')->order('rate DESC') as $tag}
-                                    <span>#{$tag->tag->code}</span>
-                                {/foreach}
+                                </div>
+                                <div class="event-text-desc">
+                                    {foreach $event->related('events_tags')->order('rate DESC') as $tag}
+                                        <span>#{$tag->tag->code}</span>
+                                    {/foreach}
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
             {/foreach}
 
