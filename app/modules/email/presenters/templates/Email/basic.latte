@@ -1,3 +1,4 @@
+{* -- Email template used for general transactional emails -- *}
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en" style="background:#f3f3f3;min-height:100%">
 <head>
@@ -55,7 +56,7 @@
 													-- Text --
 													---------*}
 													<p style="Margin:0;Margin-bottom:10px;color:#343434;font-family:Helvetica,Arial,sans-serif;font-size:17px;font-weight:400;line-height:19px;margin:0;margin-bottom:10px;padding:0;text-align:left">
-														{_email.login.text|inline|noescape}
+														{$email->getIntroText()|inline|noescape}
 													</p></th>
 												<th class="expander"
 													style="Margin:0;color:#343434;font-family:Helvetica,Arial,sans-serif;font-size:16px;font-weight:400;line-height:19px;margin:0;padding:0!important;text-align:left;visibility:hidden;width:0"></th>
@@ -86,9 +87,9 @@
 																				{* ----------------
 																				 -- Login button --
 																				 -----------------*}
-																				<a href="{plink ":Front:Homepage:default", null, $token}"
+																				<a href="{$email->getButtonUrl()->getAbsoluteUrl()}"
 																				   style="Margin:0;border:0 solid #2196F3;border-radius:3px;color:#fefefe;display:inline-block;font-family:Helvetica,Arial,sans-serif;font-size:16px;font-weight:400;line-height:1.3;margin:0;padding:8px 16px 8px 16px;text-align:left;text-decoration:none">
-																					{_email.login.loginButton|inline|noescape}
+																					{$email->getButtonText()|inline|noescape}
 																				</a></td>
 																		</tr>
 																	</table>
@@ -119,7 +120,7 @@
 														{* ----------------
 														 -- Footer text --
 														 -----------------*}
-														{_email.login.footerText|inline|noescape}</p>
+														{$email->getFooterText()|inline|noescape}</p>
 													<p class="footer"
 													   style="Margin:0;Margin-bottom:10px;color:#8a8a8a;font-family:Helvetica,Arial,sans-serif;font-size:14px;font-weight:400;line-height:19px;margin:0;margin-bottom:10px;padding:0;text-align:center">
 														<a href="https://eventigo.cz"
