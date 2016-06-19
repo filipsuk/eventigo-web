@@ -29,6 +29,11 @@ class RouterFactory
 		$newsletterRouter[] = new Route('newsletter/<action>/<hash>', 'Newsletter:default', Route::SECURED);
 		$router[] = $newsletterRouter;
 
+		// Email
+		$emailRouter = new RouteList('Email');
+		$emailRouter[] = new Route('email/login', 'Email:login', Route::SECURED);
+		$router[] = $emailRouter;
+
 		// Front
 		$router[] = new Route('profile/settings/<token>', 'Front:Profile:settings', Route::SECURED);
 		$router[] = new Route('discover/?', 'Front:Homepage:discover', Route::SECURED);

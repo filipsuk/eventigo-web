@@ -2,6 +2,7 @@
 
 namespace App\Modules\Core\Presenters;
 
+use App\Modules\Core\Utils\Helper;
 use Nette;
 use Nette\Application\BadRequestException;
 use Nette\Security\Identity;
@@ -29,6 +30,15 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter
 
 		$template->addFilter('username', function (Nette\Security\Identity $identity) {
 			return $identity->fullname ?: $identity->email ?: $this->translator->translate('front.nav.user');
+		});
+
+		// Inline filter used for CSS inline and UTF8 to HTML entities conversion (email clients compatibility)
+		$template->addFilter('inline', function (string $s, bool $stripTags = true) {
+			$output = Helper::utfToHtmlEntities($s);
+			if ($stripTags) {
+				$output = strip_tags($output);
+			}
+			return $output;
 		});
 
 		return $template;

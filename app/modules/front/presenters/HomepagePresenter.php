@@ -30,6 +30,7 @@ class HomepagePresenter extends BasePresenter
 
 	/**
 	 * @param string[] $tags
+	 * @param null $token User token for login
 	 * @throws \Nette\Application\BadRequestException
 	 */
 	public function renderDefault(array $tags, $token = null)
