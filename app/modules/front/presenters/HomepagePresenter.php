@@ -38,6 +38,7 @@ class HomepagePresenter extends BasePresenter
 		// Try to log in the user with provided token
 		if ($token) {
 			$this->loginWithToken($token);
+			$this->redirect('Homepage:');
 		}
 		
 		if (!$tags) {
