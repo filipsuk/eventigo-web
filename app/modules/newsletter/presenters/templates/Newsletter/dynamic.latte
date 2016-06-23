@@ -397,7 +397,7 @@
 																						{$event['date']|datetime}
 																					</p>
 																					{* - Event url - *}
-																					<a href="{plink ":Front:Redirect:", $event['url']}"
+																					<a href="{plink ":Front:Redirect:",e $event['url']}"
 																									style="Margin:0;color:#2196F3;font-family:Helvetica,Arial,sans-serif;font-weight:400;line-height:1.3;margin:0;padding:0;text-align:left;text-decoration:underline">
 																						<h5 style="Margin:0;Margin-bottom:10px;color:inherit;font-family:Helvetica,Arial,sans-serif;font-size:20px;font-weight:400;line-height:1.3;margin:0;margin-bottom:5px;margin-top:2px;padding:0;text-align:left;word-wrap:normal">
 																							{* - Event name - *}
@@ -464,6 +464,23 @@
 											<tr style="padding:0;text-align:left;vertical-align:top">
 												<th style="Margin:0;color:#0a0a0a;font-family:Helvetica,Arial,sans-serif;font-size:16px;font-weight:400;line-height:19px;margin:0;padding:0;text-align:left">
 													<center data-parsed="" style="min-width:100%!important;width:100%">
+														{* - Event feed link - *}
+														<table class="button small success text-center"
+															   style="Margin:0 0 16px 0;border-collapse:collapse;border-spacing:0;margin:0 0 16px 0;padding:0;text-align:center;vertical-align:top;width:auto!important">
+															<tr style="padding:0;text-align:left;vertical-align:top">
+																<td style="-moz-hyphens:auto;-webkit-hyphens:auto;Margin:0;border-collapse:collapse!important;color:#343434;font-family:Helvetica,Arial,sans-serif;font-size:16px;font-weight:400;hyphens:auto;line-height:19px;margin:0;padding:0;text-align:left;vertical-align:top;word-wrap:break-word">
+																	<table style="border-collapse:collapse;border-spacing:0;padding:0;text-align:left;vertical-align:top;width:100%">
+																		<tr style="padding:0;text-align:left;vertical-align:top">
+																			<td style="-moz-hyphens:auto;-webkit-hyphens:auto;Margin:0;background:#3adb76;border:2px solid #3adb76;border-collapse:collapse!important;color:#fefefe;font-family:Helvetica,Arial,sans-serif;font-size:12px;font-weight:400;hyphens:auto;line-height:19px;margin:0;padding:5px 10px 5px 10px;text-align:left;vertical-align:top;word-wrap:break-word">
+																				<a href="{$newsletter['feedUrl']}"
+																				   style="Margin:0;border:0 solid #3adb76;border-radius:3px;color:#fefefe;display:inline-block;font-family:Helvetica,Arial,sans-serif;font-size:12px;font-weight:400;line-height:1.3;margin:0;padding:5px 10px 5px 10px;text-align:left;text-decoration:none">Zobrazit
+																					feed dal&#x161;&#xED;ch
+																					akc&#xED;</a></td>
+																		</tr>
+																	</table>
+																</td>
+															</tr>
+														</table>
 														<table class="button small text-center"
 															   style="Margin:0 0 16px 0;border-collapse:collapse;border-spacing:0;margin:0 0 16px 0;padding:0;text-align:center;vertical-align:top;width:auto!important">
 															<tr style="padding:0;text-align:left;vertical-align:top">

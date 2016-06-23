@@ -9,6 +9,7 @@ use App\Modules\Core\Model\UserModel;
 use App\Modules\Core\Model\UserTagModel;
 use Kdyby\Translation\Translator;
 use Nette\Application\IPresenterFactory;
+use Nette\Application\LinkGenerator;
 use Nette\Application\UI\ITemplateFactory;
 use Nette\Application\UI\Presenter;
 use Nette\Bridges\ApplicationLatte\Template;
@@ -60,8 +61,13 @@ class NewsletterService
 	/** @var  Translator @inject */
 	public $translator;
 
+	/** @var  LinkGenerator @inject*/
+	public $linkGenerator;
+
 	/** Path to css file used for css inline of newsletter texts html */
 	const CSS_FILE_PATH = __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'presenters' . DIRECTORY_SEPARATOR . 'templates' . DIRECTORY_SEPARATOR . 'Newsletter' . DIRECTORY_SEPARATOR . 'build.css';
+
+	const NEWSLETTER_UTM_PARAMETERS = ['utm_source'=>'newsletter', 'utm_medium' => 'email'];
 
 	public function setApiKey(string $apiKey) : self
 	{
@@ -112,7 +118,8 @@ class NewsletterService
 		$newsletter = $this->newsletterModel->getLatest();
 		$newsletter['hash'] = $newsletterHash;
 		$newsletter['eventGroups'] = $this->getGroupedEvents($userId);
-		$newsletter['updatePreferencesUrl'] = $baseUrl . '/profile/settings/' . $userToken;
+		$newsletter['updatePreferencesUrl'] = $this->linkGenerator->link('Front:Profile:settings', array_merge(['token' => $userToken, 'utm_campaign' => 'newsletterButton'], self::NEWSLETTER_UTM_PARAMETERS));
+		$newsletter['feedUrl'] = $this->linkGenerator->link('Front:Homepage:default', array_merge(['token' => $userToken, 'utm_campaign' => 'newsletterButton'], self::NEWSLETTER_UTM_PARAMETERS));
 		$newsletter['unsubscribeUrl'] = $baseUrl . '/newsletter/unsubscribe/' . $newsletterHash;
 
 		return $newsletter;
