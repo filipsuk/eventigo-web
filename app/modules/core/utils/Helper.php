@@ -26,4 +26,16 @@ class Helper
 			return $input;
 		}
 	}
+
+	/**
+	 * Returns utm params from array of parameters.
+	 * 
+	 * @param array $params
+	 * @return array
+	 */
+	public static function extractUtmParameters(array $params)
+	{
+		$utmParams = ['utm_source', 'utm_campaign', 'utm_medium'];
+		return array_intersect_key($params, array_flip($utmParams));
+	}
 }

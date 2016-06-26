@@ -7,6 +7,7 @@ use App\Modules\Core\Model\TagModel;
 use App\Modules\Core\Model\UserModel;
 use App\Modules\Core\Model\UserTagModel;
 use App\Modules\Core\Utils\Collection;
+use App\Modules\Core\Utils\Helper;
 use App\Modules\Front\Components\EventsList\EventsListFactory;
 use App\Modules\Front\Components\SubscriptionTags\ISubscriptionTagsFactory;
 use Nette\Utils\DateTime;
@@ -32,13 +33,14 @@ class HomepagePresenter extends BasePresenter
 	 * @param string[] $tags
 	 * @param null $token User token for login
 	 * @throws \Nette\Application\BadRequestException
+	 * @throws \Nette\Application\AbortException
 	 */
 	public function renderDefault(array $tags, $token = null)
 	{
 		// Try to log in the user with provided token
 		if ($token) {
 			$this->loginWithToken($token);
-			$this->redirect('Homepage:');
+			$this->redirect('Homepage:', Helper::extractUtmParameters($this->getParameters()));
 		}
 		
 		if (!$tags) {
