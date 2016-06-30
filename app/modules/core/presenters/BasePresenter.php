@@ -2,11 +2,10 @@
 
 namespace App\Modules\Core\Presenters;
 
-use App\Modules\Core\Utils\Helper;
+use App\Modules\Core\Utils\Filters;
 use Nette;
 use Nette\Application\BadRequestException;
 use Nette\Security\Identity;
-use Nette\Utils\DateTime;
 use Tracy\Debugger;
 use Tracy\ILogger;
 
@@ -23,23 +22,8 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter
 	{
 		$template = parent::createTemplate();
 
-		$template->addFilter('datetime', function (DateTime $a, DateTime $b = null) {
-			\App\Modules\Core\Utils\DateTime::setTranslator($this->translator);
-			return \App\Modules\Core\Utils\DateTime::eventsDatetimeFilter($a, $b);
-		});
-
-		$template->addFilter('username', function (Nette\Security\Identity $identity) {
-			return $identity->fullname ?: $identity->email ?: $this->translator->translate('front.nav.user');
-		});
-
-		// Inline filter used for CSS inline and UTF8 to HTML entities conversion (email clients compatibility)
-		$template->addFilter('inline', function (string $s, bool $stripTags = true) {
-			$output = Helper::utfToHtmlEntities($s);
-			if ($stripTags) {
-				$output = strip_tags($output);
-			}
-			return $output;
-		});
+		Filters::setTranslator($this->translator);
+		$template->addFilter(null, [Filters::class, 'loader']);
 
 		return $template;
 	}

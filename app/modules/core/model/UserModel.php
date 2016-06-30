@@ -69,9 +69,20 @@ class UserModel extends BaseModel
 	 */
 	public function emailExists($email)
 	{
-		return (bool)$this->getAll()
+		return (bool)$this->getUserByEmail($email);
+	}
+
+	/**
+	 * @param string $email
+	 * @return IRow|null
+	 */
+	public function getUserByEmail(string $email)
+	{
+		$user = $this->getAll()
 			->where('email', $email)
 			->fetch();
+
+		return $user ?? null;
 	}
 
 

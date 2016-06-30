@@ -1,3 +1,4 @@
 login.loginButton: "Přihlásit se"
-login.text: "Pro přihlášení klikni na tlačítko níže. Nevedeme uživatelská hesla, protože si je stejně nikdo napamatuje."
+login.text: "Pro přihlášení klikni na tlačítko níže. Nevedeme uživatelská hesla, protože si je stejně nikdo nepamatuje."
 login.footerText: "Tento e-mail jsi dostal na základě pokusu o přihlášení na eventigo.cz."
+login.subject: Přihlášení na eventigo.cz

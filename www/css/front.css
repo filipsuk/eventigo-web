@@ -387,6 +387,28 @@ footer .social .fa:hover {
   background-color: #8BC34A;
   color: #FFFFFF;
 }
+#login-form {
+  display: none;
+  color: #202020;
+}
+#login-form form {
+  padding: 1rem;
+}
+#login-form form input {
+  width: 100%;
+  line-height: 1.3rem;
+}
+#login-form form input[name=email] {
+  padding: .3rem .8rem;
+}
+#login-form form input.btn {
+  margin-top: .8rem;
+}
+#login-form h4 {
+  padding: 0 1rem;
+  text-align: center;
+  margin-bottom: 0;
+}
 @media only screen and (max-width: 640px) {
   #events-list div.event-box {
     width: 100%;

@@ -11,3 +11,4 @@ services:
 		inject: yes
 	- App\Modules\Admin\Components\SourcesTable\SourcesTableFactory
 	- App\Modules\Admin\Components\NotApprovedEventsTable\NotApprovedEventsTableFactory
+	- App\Modules\Front\Components\Sign\SignInFactory

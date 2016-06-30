@@ -4,7 +4,9 @@ namespace App\Modules\Email\Presenters;
 
 use App\Modules\Core\Model\UserModel;
 use App\Modules\Core\Presenters\BasePresenter;
+use App\Modules\Email\Model\EmailService;
 use App\Modules\Email\Model\Entity\BasicEmail;
+use Latte\Loaders\StringLoader;
 use Nette\Http\Url;
 
 
@@ -14,11 +16,15 @@ use Nette\Http\Url;
  */
 class EmailPresenter extends BasePresenter
 {
+	const TEMPLATE_DIR = __DIR__ . DIRECTORY_SEPARATOR . 'templates' . DIRECTORY_SEPARATOR . 'Email';
+	const BASIC_EMAIL_TEMPLATE_FILE = self::TEMPLATE_DIR . DIRECTORY_SEPARATOR . 'basic.latte';
+
 	/** @var UserModel @inject */
 	public $userModel;
 
-	const TEMPLATE_DIR = __DIR__ . DIRECTORY_SEPARATOR . 'templates' . DIRECTORY_SEPARATOR . 'Email';
-	const BASIC_EMAIL_TEMPLATE_FILE = self::TEMPLATE_DIR . DIRECTORY_SEPARATOR . 'basic.latte';
+	/** @var EmailService @inject */
+	public $emailService;
+
 
 	/**
 	 * Renders login email with provided user token.
@@ -30,14 +36,8 @@ class EmailPresenter extends BasePresenter
 	 */
 	public function renderLogin($token)
 	{
-		$email = new BasicEmail();
-		$email->setIntroText($this->translator->trans('email.login.text'));
-		$email->setButtonText($this->translator->trans('email.login.loginButton'));
-		$email->setButtonUrl(new Url($this->link('//:Front:Homepage:default',  null, $token)));
-		$email->setFooterText($this->translator->trans('email.login.footerText'));
-
-		$this->template->setFile(self::BASIC_EMAIL_TEMPLATE_FILE);
-		$this->template->email = $email;
+		$this->template->getLatte()->setLoader(new StringLoader);
+		$this->template->setFile($this->emailService->renderLoginEmail($token));
 	}
 
 }

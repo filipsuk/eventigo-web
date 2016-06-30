@@ -458,6 +458,29 @@ footer {
   }
 }
 
+#login-form {
+  display: none;
+  color: @blackText;
+  form {
+    padding: 1rem;
+    input {
+      width: 100%;
+      line-height: 1.3rem;
+    }
+    input[name=email] {
+      padding: .3rem .8rem;
+    }
+    input.btn {
+      margin-top: .8rem;
+    }
+  }
+  h4 {
+    padding: 0 1rem;
+    text-align: center;
+    margin-bottom: 0;
+  }
+}
+
 @media only screen and (max-width: 640px) {
   #events-list {
     div.event-box {

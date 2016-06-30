@@ -13,7 +13,7 @@ $(function () {
     // Move email subscription
     var box = $('.subscription-box');
     $('#subscription').appendTo(box);
-    box.find('input').attr('form', $('form').attr('id'));
+    box.find('input').attr('form', 'frm-subscriptionTags-form');
 
     // Sticky subscription box
     // TODO: improve on mobile (now footer hidden on mobile to make it work)
@@ -73,11 +73,37 @@ $(function () {
 
     // Scroll to flash messages if new appear
     $('#snippet--flash-messages').bind('DOMNodeInserted', '.flash', function(e) {
-        if (!$('html,body').is(':animated') && $(this)[0].getBoundingClientRect().top < 0) { // scroll if needed and only once (DOMNodeInserted fires 3x)
+        if (!$('html,body').is(':animated')) { // && $(this)[0].getBoundingClientRect().top < 0) { // scroll if needed and only once (DOMNodeInserted fires 3x)
             $('html, body').animate({
                 scrollTop: $(this).offset().top - 15
             }, 300);
         }
+
+        // Hide login form after form is submitted
+        // HACK should be catched better way
+        if ($('#login-form').is(':visible')) {
+            $('body').trigger('click.bs.dropdown.data-api');
+            resetLoginMenu();
+        }
     });
 
+    // TODO separe this to own file / module / plugin / component
+    $('#login-via-email-btn').click(function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        $(this).closest('ul').find('li.login-list-item').hide();
+        $('#login-form').show().find('input[name=email]').focus();
+    });
+
+    $('#login-form').closest('.dropdown').on('hidden.bs.dropdown', function() {
+        resetLoginMenu();
+    });
 });
+
+
+function resetLoginMenu()
+{
+    $('#login-form').hide();
+    $('#login-form').find('input[name=email]').val('');
+    $('li.login-list-item').show();
+}
