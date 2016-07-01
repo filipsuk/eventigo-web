@@ -55,7 +55,7 @@ signIn.form.email.placeholder: tvuj@email.cz
 signIn.form.email.invalid: "Zadej platný email, ať ti tam pošleme odkaz pro přihlášení"
 signIn.form.email.required: "Zadej email, až ti tam pošleme odkaz pro přihlášení"
 signIn.form.submit: Získat přihlašovací odkaz
+signIn.form.submit.sending: Zasílám přihlašovací odkaz
 signIn.form.success: Na email <strong>%email%</strong> ti přijde odkaz pro přihlášení
 signIn.form.nonExists: Email <strong>%email%</strong> v systému nemáme.
 signIn.form.title: Přihlášení přes email
-

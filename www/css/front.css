@@ -55,6 +55,12 @@ header .btn:focus {
 header .btn:hover {
   background-color: #81bb3e;
 }
+header .btn-success.disabled:hover,
+header .btn-success[disabled]:hover,
+header .btn-success.disabled:focus,
+header .btn-success[disabled]:focus {
+  background-color: #8BC34A;
+}
 header img {
   max-width: 100%;
   height: auto;
@@ -408,6 +414,7 @@ footer .social .fa:hover {
   padding: 0 1rem;
   text-align: center;
   margin-bottom: 0;
+  white-space: nowrap;
 }
 @media only screen and (max-width: 640px) {
   #events-list div.event-box {

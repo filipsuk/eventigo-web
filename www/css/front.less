@@ -77,6 +77,12 @@ header {
   .btn:hover {
     background-color: @headerButtonColorHover;
   }
+  .btn-success.disabled:hover,
+  .btn-success[disabled]:hover,
+  .btn-success.disabled:focus,
+  .btn-success[disabled]:focus {
+    background-color: @accentColor;
+  }
 
   img {
     max-width: 100%;
@@ -478,6 +484,7 @@ footer {
     padding: 0 1rem;
     text-align: center;
     margin-bottom: 0;
+    white-space: nowrap;
   }
 }
 

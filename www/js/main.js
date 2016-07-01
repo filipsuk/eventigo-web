@@ -84,6 +84,7 @@ $(function () {
         if ($('#login-form').is(':visible')) {
             $('body').trigger('click.bs.dropdown.data-api');
             resetLoginMenu();
+            $('#login-form [type=submit]').button('reset');
         }
     });
 
@@ -98,6 +99,12 @@ $(function () {
     $('#login-form').closest('.dropdown').on('hidden.bs.dropdown', function() {
         resetLoginMenu();
     });
+
+    $.nette.ext({start: function (e) {
+        if ($('#login-form').is(':visible')) {
+            $('#login-form [type=submit]').button('loading');
+        }
+    }});
 });
 
 

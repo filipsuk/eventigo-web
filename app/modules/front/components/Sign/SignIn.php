@@ -42,7 +42,8 @@ class SignIn extends BaseControl
 			->setAttribute('placeholder', 'email.placeholder')
 			->addRule(Form::EMAIL, 'email.invalid')
 			->setRequired('email.required');
-		$form->addSubmit('submit', 'submit');
+		$form->addSubmit('submit', 'submit')
+			->setAttribute('data-loading-text', $this->translator->translate('front.signIn.form.submit.sending'));
 
 		$form->onSuccess[] = [$this, 'processForm'];
 		return $form;
