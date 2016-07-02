@@ -33,23 +33,6 @@ abstract class BasePresenter extends \App\Modules\Core\Presenters\BasePresenter
 		parent::startup();
 
 		$this->updateAccess();
-
-		// TODO delete when none of the users has no tag chosen
-		// Copy tags from session when user has no tags chosen
-		if ($this->getUser()->isLoggedIn()) {
-			$userTag = $this->userTagModel->getAll()->where('user_id', $this->getUser()->getId())->fetch();
-			if ($userTag === false) {
-				$section = $this->getSession('subscriptionTags');
-				$chosenTags = Collection::getNestedValues($section->tags ?? []);
-				$tags = $this->tagModel->getAll()->where('code IN (?)', $chosenTags)->fetchAll();
-				foreach ($tags as $tag) {
-					$this->userTagModel->insert([
-						'tag_id' => $tag->id,
-						'user_id' => $this->getUser()->getId(),
-					]);
-				}
-			}
-		}
 	}
 
 
