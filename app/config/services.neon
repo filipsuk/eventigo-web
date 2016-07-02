@@ -26,4 +26,8 @@ services:
 	-
 		class: App\Modules\Admin\Model\SourceService
 		inject: yes
-
+	-
+		class: App\Modules\Email\Model\EmailService
+		setup:
+			- setApiKey(%SendGrid.ApiKey%)
+		inject: yes

@@ -21,14 +21,20 @@
 								<span>{_front.nav.login}</span>
 							</a>
 							<ul class="dropdown-menu">
-								<li>
-									<ul class="menu">
-										<li>
-											<a n:href="fbLogin-open!">
-												<i class="fa fa-facebook-square" aria-hidden="true"></i> {_front.nav.login.facebook}
-											</a>
-										</li>
-									</ul>
+								<li class="login-list-item">
+									<a n:href="fbLogin-open!">
+										<i class="fa fa-facebook-square" aria-hidden="true"></i>
+										{_front.nav.login.facebook}
+									</a>
+								</li>
+								<li class="login-list-item">
+									<a href="#" id="login-via-email-btn">
+										<i class="fa fa-envelope-o" aria-hidden="true"></i>
+										{_front.nav.login.email}
+									</a>
+								</li>
+								<li id="login-form">
+									{control signIn}
 								</li>
 							</ul>
 						</li>

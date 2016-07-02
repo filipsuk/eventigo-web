@@ -43,9 +43,19 @@ nav.settings: Nastavení
 nav.signOut: Odhlásit se
 nav.login: Přihlásit se
 nav.login.facebook: Přihlásit se přes Facebook
+nav.login.email: Přihlásit se přes email
 nav.user: Uživatel
 profile.settings.main.newsletter: Chci dostávat email s výběrem akcí
 profile.settings.main.title: Hlavní nastavení
 profile.settings.tags.title: Sledování tagů
 profile.settings.afterLogin: "Nastav si sledování tagů, které tě zajímají"
 sign.out: Byl jsi odhlášen. %bye%
+signIn.form.email: email
+signIn.form.email.placeholder: tvuj@email.cz
+signIn.form.email.invalid: "Zadej platný email, ať ti tam pošleme odkaz pro přihlášení"
+signIn.form.email.required: "Zadej email, až ti tam pošleme odkaz pro přihlášení"
+signIn.form.submit: Získat přihlašovací odkaz
+signIn.form.submit.sending: Zasílám přihlašovací odkaz
+signIn.form.success: Na email <strong>%email%</strong> ti přijde odkaz pro přihlášení
+signIn.form.nonExists: Email <strong>%email%</strong> v systému nemáme.
+signIn.form.title: Přihlášení přes email

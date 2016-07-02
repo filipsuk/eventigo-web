@@ -3,12 +3,11 @@
 namespace App\Modules\Front\Presenters;
 
 use App\Modules\Core\Model\EventModel;
-use App\Modules\Core\Model\TagModel;
 use App\Modules\Core\Model\UserModel;
-use App\Modules\Core\Model\UserTagModel;
 use App\Modules\Core\Utils\Collection;
 use App\Modules\Core\Utils\Helper;
 use App\Modules\Front\Components\EventsList\EventsListFactory;
+use App\Modules\Front\Components\Sign\SignInFactory;
 use App\Modules\Front\Components\SubscriptionTags\ISubscriptionTagsFactory;
 use Nette\Utils\DateTime;
 use Nette\Utils\Html;
@@ -28,6 +27,8 @@ class HomepagePresenter extends BasePresenter
 	/** @var \Kdyby\Facebook\Facebook @inject */
 	public $facebook;
 
+	/** @var SignInFactory @inject */
+	public $signInFactory;
 
 	/**
 	 * @param string[] $tags
@@ -266,5 +267,24 @@ class HomepagePresenter extends BasePresenter
 		};
 
 		return $dialog;
+	}
+
+
+	public function createComponentSignIn()
+	{
+		$control = $this->signInFactory->create();
+
+		$control->onSuccess[] = function (string $email) {
+			$this->flashMessage($this->translator->translate('front.signIn.form.success', ['email' => $email]));
+			$this->redrawControl('flash-messages');
+		};
+
+		$control->onNonExists[] = function (string $email) {
+			$this->flashMessage($this->translator->translate('front.signIn.form.nonExists', ['email' => $email]),
+				'danger');
+			$this->redrawControl('flash-messages');
+		};
+
+		return $control;
 	}
 }

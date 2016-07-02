@@ -55,6 +55,12 @@ header .btn:focus {
 header .btn:hover {
   background-color: #81bb3e;
 }
+header .btn-success.disabled:hover,
+header .btn-success[disabled]:hover,
+header .btn-success.disabled:focus,
+header .btn-success[disabled]:focus {
+  background-color: #8BC34A;
+}
 header img {
   max-width: 100%;
   height: auto;
@@ -63,6 +69,22 @@ header .header-box {
   min-height: 85vh;
   display: flex;
   align-items: center;
+}
+ul.dropdown-menu {
+  padding: 0.5rem 0;
+}
+ul.dropdown-menu li {
+  list-style: none;
+}
+ul.dropdown-menu li a {
+  color: #333 !important;
+  white-space: nowrap;
+  line-height: 1.8rem;
+}
+ul.dropdown-menu li a:hover {
+  color: #FFFFFF !important;
+  text-decoration: none;
+  background-color: #2783DE !important;
 }
 .unlogged .navbar ul.nav {
   margin-top: 13px;
@@ -76,20 +98,6 @@ header .header-box {
 }
 .unlogged .navbar ul.nav li.open > a {
   background: none;
-}
-.unlogged .navbar ul.menu {
-  padding: 0.5rem 1rem;
-}
-.unlogged .navbar ul.menu li {
-  list-style: none;
-}
-.unlogged .navbar ul.menu li a {
-  color: #333;
-  white-space: nowrap;
-}
-.unlogged .navbar ul.menu li a:hover {
-  color: #666666;
-  text-decoration: none;
 }
 .unlogged .navbar .navbar-header {
   float: left;
@@ -385,6 +393,29 @@ footer .social .fa:hover {
   background-color: #8BC34A;
   color: #FFFFFF;
 }
+#login-form {
+  display: none;
+  color: #202020;
+}
+#login-form form {
+  padding: 1rem;
+}
+#login-form form input {
+  width: 100%;
+  line-height: 1.3rem;
+}
+#login-form form input[name=email] {
+  padding: .3rem .8rem;
+}
+#login-form form input.btn {
+  margin-top: .8rem;
+}
+#login-form h4 {
+  padding: 0 1rem;
+  text-align: center;
+  margin-bottom: 0;
+  white-space: nowrap;
+}
 @media only screen and (max-width: 640px) {
   #events-list div.event-box {
     width: 100%;
@@ -444,15 +475,15 @@ footer .social .fa:hover {
   min-height: 50px;
 }
 .logged nav.navbar a.navbar-brand,
-.logged nav.navbar .navbar-nav a {
+.logged nav.navbar .navbar-nav > li > a {
   color: rgba(255, 255, 255, 0.8);
   -webkit-font-smoothing: antialiased;
   height: 50px;
 }
 .logged nav.navbar a.navbar-brand:hover,
-.logged nav.navbar .navbar-nav a:hover,
+.logged nav.navbar .navbar-nav > li > a:hover,
 .logged nav.navbar a.navbar-brand:focus,
-.logged nav.navbar .navbar-nav a:focus {
+.logged nav.navbar .navbar-nav > li > a:focus {
   color: #ffffff;
   background-color: inherit;
 }
@@ -464,19 +495,6 @@ footer .social .fa:hover {
 .logged nav.navbar ul.nav.navbar-nav {
   margin-left: 1rem;
 }
-.logged nav.navbar ul.menu {
-  padding: 0.5rem 1rem;
-}
-.logged nav.navbar ul.menu li {
-  list-style: none;
-}
-.logged nav.navbar ul.menu li a {
-  color: #333;
-}
-.logged nav.navbar ul.menu li a:hover {
-  color: #666666;
-  text-decoration: none;
-}
 .logged nav.navbar li.active a {
   color: rgba(255, 255, 255, 0.9);
   background-color: #2783DE;
@@ -485,6 +503,11 @@ footer .social .fa:hover {
 .logged nav.navbar li.active a:focus {
   color: #fff;
   background-color: #2783DE;
+}
+.logged nav.navbar li.open > a,
+.logged nav.navbar li.open > a:hover,
+.logged nav.navbar li.open > a:focus {
+  background: #2783DE;
 }
 @media (min-width: 768px) {
   .navbar-nav > li > a {
@@ -538,13 +561,10 @@ footer .social .fa:hover {
     padding-left: 5px;
     padding-right: 5px;
   }
-  .logged nav.navbar ul.menu li {
-    padding-left: 2rem;
+  .logged nav.navbar ul.dropdown-menu li a {
+    color: rgba(255, 255, 255, 0.7) !important;
   }
-  .logged nav.navbar ul.menu li a {
-    color: rgba(255, 255, 255, 0.7);
-  }
-  .logged nav.navbar ul.menu li a:hover {
+  .logged nav.navbar ul.dropdown-menu li a:hover {
     color: rgba(255, 255, 255, 0.9);
   }
   .logged nav.navbar ul.nav.navbar-nav {
