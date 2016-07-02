@@ -6,6 +6,7 @@ use App\Modules\Core\Model\EventModel;
 use App\Modules\Core\Model\UserModel;
 use App\Modules\Core\Utils\Collection;
 use App\Modules\Core\Utils\Helper;
+use App\Modules\Email\Model\EmailService;
 use App\Modules\Front\Components\EventsList\EventsListFactory;
 use App\Modules\Front\Components\Sign\SignInFactory;
 use App\Modules\Front\Components\SubscriptionTags\ISubscriptionTagsFactory;
@@ -29,6 +30,10 @@ class HomepagePresenter extends BasePresenter
 
 	/** @var SignInFactory @inject */
 	public $signInFactory;
+
+	/** @var EmailService @inject */
+	public $emailService;
+
 
 	/**
 	 * @param string[] $tags
@@ -94,10 +99,12 @@ class HomepagePresenter extends BasePresenter
 		$control = $this->subscriptionTags->create();
 
 		$control->onEmailExists[] = function ($email) {
-			$this['eventsList']->redrawControl();
+			// Send email with login
+			$user = $this->userModel->getUserByEmail($email);
+			$this->emailService->sendLogin($email, $user->token);
 
 			$this->flashMessage(
-				'<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>' .
+				'<i class="fa fa-envelope"></i> ' .
 				$this->translator->translate('front.subscription.message.emailExists',
 					['email' => Html::el('strong')->setText($email)]),
 				'success');
@@ -275,7 +282,10 @@ class HomepagePresenter extends BasePresenter
 		$control = $this->signInFactory->create();
 
 		$control->onSuccess[] = function (string $email) {
-			$this->flashMessage($this->translator->translate('front.signIn.form.success', ['email' => $email]));
+			$this->flashMessage(
+			 	'<i class="fa fa-envelope"></i> ' .
+			 	$this->translator->translate('front.signIn.form.success', ['email' => $email])
+			);
 			$this->redrawControl('flash-messages');
 		};
 

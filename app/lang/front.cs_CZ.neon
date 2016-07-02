@@ -12,7 +12,7 @@ subscription.form.email.validation: Email je špatně. Zadej správně svou emai
 subscription.form.email.required: Zadej svou emailovou adresu
 subscription.form.subscribe.label: Chci dostávat týdenní výběr akcí
 subscription.form.email.label: "<span class='accent-color step'>2</span> Kam chceš akce posílat?"
-subscription.message.emailExists: "Email %email% je již zaregistrován. Neboj, nezapomněli jsme na tebe. :)"
+subscription.message.emailExists: "Email %email% je již zaregistrován. Poslali jsme ti odkaz pro přihlášení"
 subscription.message.success: "Jsme rádi, že tě Eventigo zaujalo. Na adresu %email% ti bude pravidelně chodit přehled akcí."
 events.thisWeek.title: Tento týden
 events.thisMonth.title: Tento měsíc
@@ -53,9 +53,9 @@ sign.out: Byl jsi odhlášen. %bye%
 signIn.form.email: email
 signIn.form.email.placeholder: tvuj@email.cz
 signIn.form.email.invalid: "Zadej platný email, ať ti tam pošleme odkaz pro přihlášení"
-signIn.form.email.required: "Zadej email, až ti tam pošleme odkaz pro přihlášení"
+signIn.form.email.required: "Zadej email, ať ti tam pošleme odkaz pro přihlášení"
 signIn.form.submit: Získat přihlašovací odkaz
 signIn.form.submit.sending: Zasílám email
-signIn.form.success: Na email <strong>%email%</strong> ti přijde odkaz pro přihlášení
+signIn.form.success: Na email <strong>%email%</strong> jsme ti poslali odkaz pro přihlášení
 signIn.form.nonExists: Email <strong>%email%</strong> v systému nemáme.
 signIn.form.title: Přihlášení přes email
