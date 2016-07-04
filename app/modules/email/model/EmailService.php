@@ -48,6 +48,7 @@ class EmailService
 			->setFrom('prihlaseni@eventigo.cz')
 			->setFromName('Eventigo.cz')
 			->setSubject($this->translator->translate('email.login.subject'))
+			->setCategory('emailLogin')
 			->setHtml($content);
 
 		try {

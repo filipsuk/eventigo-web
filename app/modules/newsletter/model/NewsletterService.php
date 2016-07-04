@@ -139,6 +139,7 @@ class NewsletterService
 				->setFrom($userNewsletter->from)
 				->setFromName('Eventigo.cz')
 				->setSubject($userNewsletter->subject)
+				->setCategory('newsletter')
 				->setHtml($userNewsletter->content);
 				//TODO: setText() - we should also send text format
 
