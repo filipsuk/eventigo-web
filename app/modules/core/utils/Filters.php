@@ -3,6 +3,7 @@
 namespace App\Modules\Core\Utils;
 
 use Nette\Security\Identity;
+use Nette\Utils\DateTime;
 
 
 class Filters
