@@ -64,7 +64,7 @@ class NotApprovedEventsTable extends DataTable
 					'data-toggle' => 'tooltip',
 					'title' => $item['origin_url'],
 				])->setHtml($i);
-			if (FacebookEventSource::isFacebook($item['origin_url'])) {
+			if (FacebookEventSource::isSource($item['origin_url'])) {
 				$name = Html::el('i', ['class' => 'fa fa-facebook-square']) . '&nbsp;' . $name;
 			}
 			$item['name'] = (string)Html::el('a', [

@@ -5,6 +5,7 @@ namespace App\Modules\Admin\Components\SourcesTable;
 use App\Modules\Admin\Components\DataTable\DataTable;
 use App\Modules\Admin\Model\SourceModel;
 use App\Modules\Admin\Model\SourceService;
+use App\Modules\Core\Model\EventSources\Utils\EventSource;
 use App\Modules\Core\Model\EventSources\Facebook\FacebookEventSource;
 use Kdyby\Translation\Translator;
 use Nette\Database\Table\Selection;
@@ -48,7 +49,7 @@ class SourcesTable extends DataTable
 
 		foreach ($json['aaData'] as &$item) {
 			$item = $item->toArray();
-			$isCrawlable = FacebookEventSource::isFacebook($item['url']);
+			$isCrawlable = EventSource::isCrawlable($item['url']);
 
 			$i = Html::el('i', ['class' => 'fa fa-external-link']);
 			$name = $item['name'] . '&nbsp; '
@@ -58,7 +59,7 @@ class SourcesTable extends DataTable
 					'data-toggle' => 'tooltip',
 					'title' => $item['url'],
 				])->setHtml($i);
-			if ($isCrawlable) {
+			if ($isCrawlable && FacebookEventSource::isSource($item['url'])) {
 				$name = Html::el('i', ['class' => 'fa fa-facebook-square']) . '&nbsp;' . $name;
 			}
 
@@ -88,7 +89,7 @@ class SourcesTable extends DataTable
 	{
 		$source = $this->sourceModel->getAll()->wherePrimary($sourceId)->fetch();
 
-		if (FacebookEventSource::isFacebook($source->url)) {
+		if (EventSource::isCrawlable($source->url)) {
 			$addedEvents = $this->sourceService->crawlSource($source);
 
 			if ($addedEvents > 0) {

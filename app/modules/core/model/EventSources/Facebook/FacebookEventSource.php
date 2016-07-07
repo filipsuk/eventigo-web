@@ -8,21 +8,26 @@
 
 namespace App\Modules\Core\Model\EventSources\Facebook;
 
-
 use App\Modules\Core\Model\Entity\Event;
-use App\Modules\Core\Model\EventSources\IEventSource;
+use App\Modules\Core\Model\EventSources\EventSource;
 use Kdyby\Facebook\Facebook;
 use Kdyby\Facebook\FacebookApiException;
-use Nette\Http\Url;
 use Nette\Utils\DateTime;
 use Tracy\Debugger;
 
-class FacebookEventSource implements IEventSource
+
+class FacebookEventSource extends EventSource
 {
 	const EVENT_FIELDS = 'cover,end_time,start_time,name,description,interested_count,attending_count';
 
+	const URLS = [
+		'facebook.com',
+		'www.facebook.com',
+	];
+
 	/** @var \Kdyby\Facebook\Facebook*/
 	public $facebook;
+
 
 	/**
 	 * FacebookEventSource constructor.
@@ -73,7 +78,7 @@ class FacebookEventSource implements IEventSource
 	 * @return Event[]
 	 * @throws FacebookApiException
 	 */
-	public function getPageEvents($pageId)
+	public function getEvents(string $pageId)
 	{
 		$response = $this->facebook->api(
 			'/' . $pageId, 'GET', [
@@ -101,18 +106,5 @@ class FacebookEventSource implements IEventSource
 		}
 
 		return $events;
-	}
-
-
-	public static function isFacebook($url) : bool
-	{
-
-		try {
-			$host = (new Url($url))->getHost();
-			return $host === 'www.facebook.com' || $host === 'facebook.com';
-
-		} catch (\Exception $e) {
-			return false;
-		}
 	}
 }

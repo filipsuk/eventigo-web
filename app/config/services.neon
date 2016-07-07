@@ -31,3 +31,4 @@ services:
 		setup:
 			- setApiKey(%SendGrid.ApiKey%)
 		inject: yes
+	- App\Modules\Core\Model\EventSources\Srazy\SrazyEventSource
