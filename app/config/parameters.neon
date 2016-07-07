@@ -2,3 +2,7 @@ parameters:
 	SendGrid:
 		ApiKey: ***REMOVED***
 	baseUrl: 'https://eventigo.cz'
+
+	meetup:
+		apiKey: ***REMOVED***
+

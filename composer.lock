@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "b84fa6d73f521173c06ff32689c3c37d",
-    "content-hash": "891c350930fa6558062df469c0096a47",
+    "hash": "61708c968c197de84afc9bedf642a4ed",
+    "content-hash": "bc1a2b3b1d38f7c6c455924fd1e0fa03",
     "packages": [
         {
             "name": "defuse/php-encryption",
@@ -51,6 +51,65 @@
                 "security"
             ],
             "time": "2015-03-14 20:27:45"
+        },
+        {
+            "name": "dms/meetup-api-client",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/rdohms/meetup-api-client.git",
+                "reference": "ebbe87b3dbfa30d88bb5046e54b90b4ffbfbfb38"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/rdohms/meetup-api-client/zipball/ebbe87b3dbfa30d88bb5046e54b90b4ffbfbfb38",
+                "reference": "ebbe87b3dbfa30d88bb5046e54b90b4ffbfbfb38",
+                "shasum": ""
+            },
+            "require": {
+                "guzzle/guzzle": "~3.7",
+                "php": "^5.3.10 | ^7.0"
+            },
+            "require-dev": {
+                "mathiasgrimm/arraypath": "~1.3",
+                "phpunit/phpunit": "^4.8",
+                "symfony/console": "~2.2",
+                "symfony/css-selector": "~2.2",
+                "symfony/dom-crawler": "~2.2",
+                "symfony/var-dumper": "~2.6"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "DMS": [
+                        "src/",
+                        "tests/"
+                    ]
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Rafael Dohms",
+                    "homepage": "http://doh.ms"
+                }
+            ],
+            "description": "Meetup.com API client written on top of Guzzle. This supports all API operations.",
+            "keywords": [
+                "Guzzle",
+                "api",
+                "dms",
+                "meetup.com"
+            ],
+            "time": "2016-06-17 14:17:43"
         },
         {
             "name": "doctrine/collections",
@@ -2833,7 +2892,8 @@
     "minimum-stability": "stable",
     "stability-flags": {
         "pelago/emogrifier": 20,
-        "webuni/srazy-api-client": 20
+        "webuni/srazy-api-client": 20,
+        "dms/meetup-api-client": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
