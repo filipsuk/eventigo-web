@@ -6,6 +6,7 @@ use App\Modules\Admin\Components\EventForm\EventFormFactory;
 use App\Modules\Admin\Components\NotApprovedEventsTable\NotApprovedEventsTableFactory;
 use App\Modules\Admin\Model\SourceService;
 use App\Modules\Core\Model\EventModel;
+use Nette\Application\Request;
 use Nette\Utils\DateTime;
 
 
@@ -40,6 +41,11 @@ class EventsPresenter extends BasePresenter
 				'rate' => $eventTag->rate,
 			];
 		}
+
+		if ($this->getRequest()->getMethod() === Request::FORWARD) {
+			$defaults['state'] = EventModel::STATE_APPROVED;
+		}
+
 		$this['eventForm-form']->setDefaults($defaults);
 	}
 
