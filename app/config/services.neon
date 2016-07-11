@@ -32,3 +32,8 @@ services:
 			- setApiKey(%SendGrid.ApiKey%)
 		inject: yes
 	- App\Modules\Core\Model\EventSources\Srazy\SrazyEventSource
+	-
+		class: App\Modules\Core\Model\EventSources\Meetup\MeetupEventSource
+		setup:
+			- setApiKey(%meetup.apiKey%)
+

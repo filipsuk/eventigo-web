@@ -3,6 +3,7 @@
 namespace App\Modules\Admin\Model;
 
 use App\Modules\Core\Model\EventModel;
+use App\Modules\Core\Model\EventSources\Meetup\MeetupEventSource;
 use App\Modules\Core\Model\EventSources\Utils\EventSource;
 use App\Modules\Core\Model\EventSources\Facebook\FacebookEventSource;
 use App\Modules\Core\Model\EventSources\Srazy\SrazyEventSource;
@@ -21,6 +22,9 @@ class SourceService
 
 	/** @var SrazyEventSource @inject */
 	public $srazySource;
+
+	/** @var MeetupEventSource @inject */
+	public $meetupSource;
 
 	/** @var EventModel @inject */
 	public $eventModel;
@@ -53,6 +57,10 @@ class SourceService
 			$pathParts = array_filter(explode('/', $sourceUrl->getPath()));
 			$series = reset($pathParts);
 			$events = $this->srazySource->getEvents($series);
+		} elseif (MeetupEventSource::isSource($source->url)) {
+			$pathParts = array_filter(explode('/', $sourceUrl->getPath()));
+			$group = reset($pathParts);
+			$events = $this->meetupSource->getEvents($group);
 		}
 
 		foreach ($events as $event) {

@@ -11,6 +11,8 @@ class EventSource
 		'facebook.com',
 		'www.facebook.com',
 		'srazy.info',
+		'meetup.com',
+		'www.meetup.com',
 	];
 
 

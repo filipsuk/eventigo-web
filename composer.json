@@ -26,7 +26,8 @@
 		"kdyby/facebook": "v2.0.1",
 		"pelago/emogrifier": "@dev",
 		"greeny/nette-slack-logger": "^1.2",
-		"webuni/srazy-api-client": "1.0.x-dev"
+		"webuni/srazy-api-client": "1.0.x-dev",
+		"dms/meetup-api-client": "2.0.x-dev"
 	},
 	"require-dev": {
 		"nette/tester": "~1.3",
