@@ -35,7 +35,7 @@ class MeetupEventSource extends EventSource
 		$groupEvents = $client->getGroupEvents(['urlname' => $group])->getData();
 
 		$groupData = $client->getGroup(['urlname' => $group])->getData();
-		$groupPhoto = $groupData['group_photo']['photo_link'];
+		$groupPhoto = isset($groupData['group_photo']) ? $groupData['group_photo']['photo_link'] : null;
 
 		$events = [];
 		foreach ($groupEvents as $event) {
@@ -45,7 +45,9 @@ class MeetupEventSource extends EventSource
 				$e->setDescription($event['description'] ?? '');
 				$e->setStart(DateTime::from($event['time'] / 1000));
 				$e->setOriginUrl($event['link']);
-				$e->setImage($groupPhoto);
+				if ($groupPhoto) {
+					$e->setImage($groupPhoto);
+				}
 				$e->setRateByAttendeesCount($event['yes_rsvp_count'] + $event['waitlist_count']);
 				$events[] = $e;
 			}
