@@ -219,13 +219,22 @@ div#wrapper #profile {
   border: 1px solid #D0D0D0;
 }
 #subscription .btn {
-  background-color: #649130;
+  margin: 1px 0;
   border-width: 0;
   font-size: 1rem;
   vertical-align: top;
 }
-#subscription .btn:hover {
+#subscription .btn-success {
+  background-color: #649130;
+}
+#subscription .btn-success:hover {
   background-color: #577d2a;
+}
+#subscription .btn-primary {
+  background-color: #11508e;
+}
+#subscription .btn-primary:hover {
+  background-color: #0e4377;
 }
 #subscription .subscription-label {
   font-size: 1.2rem;

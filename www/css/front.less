@@ -266,13 +266,22 @@ div#wrapper {
     border: 1px solid #D0D0D0;
   }
   .btn {
-    background-color: darken(@accentColor, 15%);
+    margin: 1px 0;
     border-width: 0;
     font-size: 1rem;
     vertical-align: top;
   }
-  .btn:hover {
-    background-color: darken(@accentColor, 20%);
+  .btn-success {
+    background-color: darken(@accentColor, 15%);
+    &:hover {
+      background-color: darken(@accentColor, 20%);
+    }
+  }
+  .btn-primary {
+    background-color: darken(@darkPrimaryColor, 15%);
+    &:hover {
+      background-color: darken(@darkPrimaryColor, 20%);
+    }
   }
   .subscription-label {
     font-size: 1.2rem;

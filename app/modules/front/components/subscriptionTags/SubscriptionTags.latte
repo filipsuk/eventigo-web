@@ -4,6 +4,7 @@
         {input email}
         {input real_subscribe}
         {input subscribe, class => ['btn','btn-success']}
+        <a href="#" class="btn btn-primary">{_front.nav.login.facebook}</a>
     </div>
     <div class="tags-header" n:if="!$user->isLoggedIn()">
         {_front.homepage.tags.header |noescape}

@@ -72,12 +72,14 @@ class Subscription extends BaseControl
 
 			if ($this->reflection->name === __CLASS__) {
 				$this->onSuccess($user->email);
+				return null;
 			} else {
 				return $user;
 			}
 
 		} catch (EmailExistsException $e) {
 			$this->onEmailExists($email);
+			return null;
 		}
 	}
 }

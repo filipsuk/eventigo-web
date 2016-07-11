@@ -10,7 +10,7 @@ homepage.events.header: Ukázka akcí z newsletteru
 subscription.form.email.placeholder: tvuj@email.cz
 subscription.form.email.validation: Email je špatně. Zadej správně svou emailovou adresu
 subscription.form.email.required: Zadej svou emailovou adresu
-subscription.form.subscribe.label: Chci dostávat týdenní výběr akcí
+subscription.form.subscribe.label: Registrovat se e-mailem
 subscription.form.email.label: "<span class='accent-color step'>2</span> Kam chceš akce posílat?"
 subscription.message.emailExists: "Email %email% je již zaregistrován. Poslali jsme ti odkaz pro přihlášení"
 subscription.message.success: "Jsme rádi, že tě Eventigo zaujalo. Na adresu %email% ti bude pravidelně chodit přehled akcí."
