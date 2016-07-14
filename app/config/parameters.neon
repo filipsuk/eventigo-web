@@ -6,3 +6,5 @@ parameters:
 	meetup:
 		apiKey: ***REMOVED***
 
+	sendNewsletterWithNoEvents: true
+

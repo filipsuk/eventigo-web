@@ -188,7 +188,8 @@ class NewsletterService
 		];
 
 		$nextWeekEvents = $this->eventModel->getAllWithDates($userTags, $from, $to);
-		if (count($nextWeekEvents) === 0) {
+		
+		if (!$this->context->parameters['sendNewsletterWithNoEvents'] && count($nextWeekEvents) === 0) {
 			throw new NoEventsFoundException("No events found for user $userId!");
 		}
 
