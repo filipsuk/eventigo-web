@@ -13,6 +13,7 @@ use Nette\Application\LinkGenerator;
 use Nette\Application\UI\ITemplateFactory;
 use Nette\Application\UI\Presenter;
 use Nette\Bridges\ApplicationLatte\Template;
+use Nette\Bridges\ApplicationLatte\TemplateFactory;
 use Nette\DI\Container;
 use Nette\Utils\DateTime;
 use Pelago\Emogrifier;
@@ -200,7 +201,7 @@ class NewsletterService
 				'name' => $event->name,
 				'date' => $event->start,
 				'hashtags' => $hashtags,
-				'url' => $event->origin_url
+				'url' => $this->linkGenerator->link("Front:Redirect:", [$event->origin_url])
 			];
 		}
 
@@ -215,8 +216,7 @@ class NewsletterService
 	 */
 	private function renderNewsletterContent($newsletter) : string
 	{
-		$this->presenter = $this->presenterFactory->createPresenter('Newsletter:Newsletter');
-		$this->template = $this->templateFactory->createTemplate($this->presenter);
+		$this->template = $this->templateFactory->createTemplate();
 		$this->template->addFilter('datetime', function (DateTime $a, DateTime $b = null) {
 			\App\Modules\Core\Utils\DateTime::setTranslator($this->translator);
 			return \App\Modules\Core\Utils\DateTime::eventsDatetimeFilter($a, $b);
@@ -227,6 +227,9 @@ class NewsletterService
 		$templateFile = __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'presenters' . DIRECTORY_SEPARATOR .
 			'templates' . DIRECTORY_SEPARATOR . 'Newsletter' . DIRECTORY_SEPARATOR . 'dynamic.latte';
 		$this->template->setFile($templateFile);
+
+		$this->template->_control = $this->linkGenerator; // pro Latte 2.3
+//		$this->template->getLatte()->addProvider('uiControl', $this->linkGenerator); // pro Latte 2.4
 
 		return $this->template->getLatte()->renderToString($this->template->getFile(), $this->template->getParameters());
 	}
