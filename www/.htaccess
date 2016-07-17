@@ -14,7 +14,7 @@
 	RewriteRule ^(.*)$ https://eventigo.cz/$1 [L,R=301]
 
 	# prevents files starting with dot to be viewed by browser
-	RewriteRule /\.|^\. - [F]
+	RewriteRule /\.|^\.(?!well-known/) - [F]
 
 	# front controller
 	RewriteCond %{REQUEST_FILENAME} !-f
