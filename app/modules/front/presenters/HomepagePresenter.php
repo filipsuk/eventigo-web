@@ -289,12 +289,6 @@ class HomepagePresenter extends BasePresenter
 			$this->redrawControl('flash-messages');
 		};
 
-		$control->onNonExists[] = function (string $email) {
-			$this->flashMessage($this->translator->translate('front.signIn.form.nonExists', ['email' => $email]),
-				'danger');
-			$this->redrawControl('flash-messages');
-		};
-
 		return $control;
 	}
 }

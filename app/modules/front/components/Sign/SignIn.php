@@ -52,11 +52,13 @@ class SignIn extends BaseControl
 
 	public function processForm(Form $form, ArrayHash $values)
 	{
-		if ($user = $this->userModel->getUserByEmail($values->email)) {
-			$this->emailService->sendLogin($values->email, $user->token);
-			$this->onSuccess($values->email);
-		} else {
-			$this->onNonExists($values->email);
+		$user = $this->userModel->getUserByEmail($values->email);
+
+		if (!$user) {
+			$user = $this->userModel->subscribe($values->email);
 		}
+
+		$this->emailService->sendLogin($values->email, $user->token);
+		$this->onSuccess($values->email);
 	}
 }

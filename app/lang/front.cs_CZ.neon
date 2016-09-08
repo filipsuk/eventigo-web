@@ -57,5 +57,4 @@ signIn.form.email.required: "Zadej email, ať ti tam pošleme odkaz pro přihlá
 signIn.form.submit: Získat přihlašovací odkaz
 signIn.form.submit.sending: Zasílám email
 signIn.form.success: Na email <strong>%email%</strong> jsme ti poslali odkaz pro přihlášení
-signIn.form.nonExists: Email <strong>%email%</strong> v systému nemáme.
 signIn.form.title: Přihlášení přes email
