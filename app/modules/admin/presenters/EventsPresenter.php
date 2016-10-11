@@ -62,12 +62,12 @@ class EventsPresenter extends BasePresenter
 
 		$control->onCreate[] = function() {
 			$this->flashMessage($this->translator->translate('admin.eventForm.success'), 'success');
-			$this->redirect('Events:create');
+			$this->redirect('Events:default');
 		};
 
 		$control->onUpdate[] = function() {
 			$this->flashMessage($this->translator->translate('admin.eventForm.success'), 'success');
-			$this->redirect('Events:update', ['id' => $this->getParameter('id')]);
+			$this->redirect('Events:default');
 		};
 
 		return $control;
