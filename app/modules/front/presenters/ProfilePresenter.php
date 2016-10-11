@@ -34,6 +34,15 @@ class ProfilePresenter extends \App\Modules\Core\Presenters\BasePresenter
 	/** @var UserModel @inject */
 	public $userModel;
 
+	protected function startup()
+	{
+		parent::startup();
+
+		if (!$this->getUser()->isLoggedIn()) {
+			$this->flashMessage($this->translator->translate('front.profile.settings.notLoggedIn'));
+			$this->redirect('Homepage:default');
+		}
+	}
 
 	public function actionSettings($token = null)
 	{

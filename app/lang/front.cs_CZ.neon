@@ -49,6 +49,7 @@ profile.settings.main.newsletter: Chci dostávat email s výběrem akcí
 profile.settings.main.title: Hlavní nastavení
 profile.settings.tags.title: Sledování tagů
 profile.settings.afterLogin: "Nastav si sledování tagů, které tě zajímají"
+profile.settings.notLoggedIn: Pro nastavení tagů se prosím přihlaš tlačítkem vpravo nahoře.
 sign.out: Byl jsi odhlášen. %bye%
 signIn.form.email: email
 signIn.form.email.placeholder: tvuj@email.cz
