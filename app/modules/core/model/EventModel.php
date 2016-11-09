@@ -129,4 +129,19 @@ class EventModel extends BaseModel
 				'//www.', str_replace('//www.', '//', $urlSlash)
 			)->fetch();
 	}
+
+
+	/**
+	 * Find previous event in series with image
+	 * @param int $eventSeriesId
+	 * @return \Nette\Database\Table\IRow|null
+	 */
+	public function findPreviousEvent(int $eventSeriesId)
+	{
+		return $this->getAll()
+			->where('event_series_id', $eventSeriesId)
+			->where('image IS NOT NULL OR image <> \'\'')
+			->order('end DESC')
+			->fetch() ?: null;
+	}
 }
