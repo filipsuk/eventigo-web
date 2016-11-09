@@ -17,3 +17,27 @@
         </div>
     </div>
 {/block}
+
+{block scripts}
+    <script>
+        $(function () {
+            $('[name=image]').on('input', function () {
+                reloadPreview($(this))
+            });
+
+            reloadPreview($('[name=image]'))
+        });
+
+        function reloadPreview(el) {
+            if ($('#image-preview').length) {
+                $('#image-preview img').attr('src', $(el).val());
+            } else {
+                var imgWrapper = $('<div>')
+                    .attr('id', 'image-preview');
+                var img = $('<img>')
+                    .attr('src', $(el).val());
+                $(el).after(imgWrapper.append(img));
+            }
+        }
+    </script>
+{/block}
