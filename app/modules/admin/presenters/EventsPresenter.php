@@ -49,7 +49,9 @@ class EventsPresenter extends BasePresenter
 		// Set image from previous event in series if none
 		if (!$defaults['image'] && $event['event_series_id']) {
 			$previousEvent = $this->eventModel->findPreviousEvent($event['event_series_id']);
-			$defaults['image'] = $previousEvent->image;
+			if ($previousEvent) {
+				$defaults['image'] = $previousEvent->image;
+			}
 		}
 
 		$this['eventForm-form']->setDefaults($defaults);
