@@ -5,7 +5,7 @@ require __DIR__ . '/../vendor/autoload.php';
 $configurator = new Nette\Configurator;
 
 if (PHP_SAPI !== "cli") {
-	$configurator->setDebugMode(in_array($_SERVER['HTTP_HOST'], ['kuba.eventigo.cz', 'filip.eventigo.cz', 'eventigo.local', 'eventigo.local.cz']) || $_GET['ladenka'] === '1');
+	$configurator->setDebugMode(in_array($_SERVER['HTTP_HOST'], ['kuba.eventigo.cz', 'filip.eventigo.cz', 'eventigo.local', 'eventigo.local.cz']) || (isset($_GET['ladenka']) && $_GET['ladenka'] === '1'));
 }
 
 // Fix redirects to port 80 (https://forum.nette.org/cs/13896-openshift-redirect-z-https-pridava-port-80)
