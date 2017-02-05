@@ -1,8 +1,19 @@
-Eventigo
-========
+# Eventigo
 
-Newsletters
------------
+## First run
+
+1. Vytvořit novou MySQL databázi a importovat `events.sql.zip`
+2. Zkopírovat `app/config/templates/config.local.neon` do adresáře `app/config` a upravit konfiguraci
+3. Zkopírovat `phinx.yml.template` jako nový soubor `phinx.yml` a nastavit přístupy do databáze (viz [Phinx docs](http://docs.phinx.org/en/latest/configuration.html))
+4. Nainstalovat závislosti `composer install`
+5. Spustit databázové migrace `vendor/bin/phinx migrate`
+6. Vygenerovat heslo příkazem `php www/index.php admin:generatePassword <heslo>`
+7. Přihlásit se na url `/admin`
+8. Demo admin účet: demo@gmail.com, heslo: demo
+
+
+## Newsletters
+
 Před vytvořením emailů je možný dynamický preview na adrese `/newsletter/dynamic/<users.id>`
 
 1. Vytvořit (nebo zkotrolovat) záznam v tabulce newsletters - zatím ručně. Použije se poslední podle parametru created. Obsahuje texty, předmět mailu atd.
@@ -22,7 +33,7 @@ Unsubscribe newsletterů přes link https://eventigo.cz/newsletter/unsubscribe/<
 newsletters:send
 `
 
-Exceptions
-----------
+## Exceptions
+
 Html exceptions lze číst jako admin na url `/admin/exception/[exception-file.html]`
 

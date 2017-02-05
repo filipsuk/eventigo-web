@@ -1,13 +1,9 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace App\Modules\Admin\Model;
 
 use App\Modules\Core\Model\UserModel;
-use CannotPerformOperationException;
-use CryptoTestFailedException;
-use InvalidCiphertextException;
 use Nette\Database\Table\ActiveRow;
-use Nette\DI\Container;
 use Nette\Security\AuthenticationException;
 use Nette\Security\IAuthenticator;
 use Nette\Security\Identity;
@@ -19,23 +15,17 @@ class Authenticator implements IAuthenticator
 	/** @var UserModel */
 	private $userModel;
 
-	/** @var Container */
-	private $container;
 
-
-	public function __construct(UserModel $userModel, Container $container)
+	public function __construct(UserModel $userModel)
 	{
 		$this->userModel = $userModel;
-		$this->container = $container;
 	}
 
 
 	/**
-	 * @param array $credentials
-	 * @return Identity
 	 * @throws AuthenticationException
 	 */
-	public function authenticate(array $credentials)
+	public function authenticate(array $credentials) : Identity
 	{
 		@list($type, $email, $password) = $credentials; // Password is optional, suppress the notice
 
@@ -59,31 +49,12 @@ class Authenticator implements IAuthenticator
 	}
 
 
-	/**
-	 * @param ActiveRow $user
-	 * @param string $password
-	 * @return Identity
-	 * @throws AuthenticationException
-	 */
-	private function logToAdmin(ActiveRow $user, string $password)
+	private function logToAdmin(ActiveRow $user, string $password) : Identity
 	{
-		$key = $this->container->getParameters()['security']['key'];
-
-		try {
-			$hash = \Crypto::Decrypt(base64_decode($user->password), $key);
-
-			if (Passwords::verify($password, $hash)) {
-				return new Identity($user->id, ['admin'], $user->toArray());
-			} else {
-				throw new AuthenticationException('Incorrect credentials', IAuthenticator::INVALID_CREDENTIAL);
-			}
-
-		} catch (InvalidCiphertextException $e) {
-			throw new AuthenticationException('Cannot decrypt ciphertext');
-		} catch (CryptoTestFailedException $e) {
-			throw new AuthenticationException('Cannot decrypt ciphertext');
-		} catch (CannotPerformOperationException $e) {
-			throw new AuthenticationException('Cannot decrypt ciphertext');
+		if (Passwords::verify($password, $user['password'])) {
+			return new Identity($user['id'], ['admin'], $user->toArray());
 		}
+
+		throw new AuthenticationException('Incorrect credentials', IAuthenticator::INVALID_CREDENTIAL);
 	}
 }
