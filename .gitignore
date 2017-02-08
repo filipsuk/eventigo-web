@@ -10,3 +10,4 @@ www/libs/*
 !www/libs/.gitkeep
 composer.phar
 phinx.yml
+composer.lock
