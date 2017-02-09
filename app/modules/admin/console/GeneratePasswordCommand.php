@@ -31,7 +31,7 @@ class GeneratePasswordCommand extends Command
 
 		$hash = $userModel->hashAndEncrypt($password);
 
-		$output->writeLn($hash);
+		$output->writeln($hash);
 		return 0;
 	}
 }

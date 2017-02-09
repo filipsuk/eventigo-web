@@ -1,7 +1,4 @@
 parameters:
-	security:
-		key: "***REMOVED***"
-
 	googleAnalyticsKey: ***REMOVED***
 
 	baseUrl: 'https://eventigo.cz'
