@@ -49,7 +49,15 @@ class NewsletterPresenter extends BasePresenter
 			$this->template->email = $userNewsletter->user->email;
 		}
 	}
-	
+
+	public function actionDynamic()
+	{
+		// Allow newsletter preview only for admins
+		if (!$this->getUser()->isLoggedIn() || !$this->getUser()->isInRole('admin')) {
+			$this->redirect(':Admin:Sign:in');
+		}
+	}
+
 	public function renderDynamic($userId)
 	{
 		$newsletter = $this->newsletterService->buildArrayForTemplate((int)$userId);
