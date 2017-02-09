@@ -1,10 +1,11 @@
 parameters:
-	SendGrid:
-		ApiKey: ***REMOVED***
 	baseUrl: 'https://eventigo.cz'
 
+	SendGrid:
+		ApiKey: XXXX
+
 	meetup:
-		apiKey: ***REMOVED***
+		apiKey: XXXX
 
 	sendNewsletterWithNoEvents: true
 

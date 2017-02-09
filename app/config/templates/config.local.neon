@@ -1,5 +1,4 @@
 parameters:
-	googleAnalyticsKey: ***REMOVED***
 
 	baseUrl: 'https://eventigo.cz'
 
@@ -8,6 +7,7 @@ parameters:
 
 	sendNewsletterWithNoEvents: true
 
+#	googleAnalyticsKey: UA-XXXX
 
 database:
 	dsn: 'mysql:host=127.0.0.1:8889;dbname=events'
@@ -19,7 +19,7 @@ database:
 slackLogger:
 	enabled: false
 	timeout: 60
-	slackUrl: ***REMOVED***
+	slackUrl: https://hooks.slack.com/services/XXXX
 	logUrl: '%baseUrl%/admin/exception/?filename=__FILE__'
 	defaults:
 		name: EventigoApp
