@@ -14,7 +14,7 @@ class GeneratePasswordCommand extends Command
 	protected function configure()
 	{
 		$this->setName('admin:generatePassword')
-			->setDescription('Create newsletters')
+			->setDescription('Generate admin password')
 			->addArgument(
 				'password',
 				InputArgument::REQUIRED,
@@ -31,7 +31,7 @@ class GeneratePasswordCommand extends Command
 
 		$hash = $userModel->hashAndEncrypt($password);
 
-		$output->writeLn($hash);
+		$output->writeln($hash);
 		return 0;
 	}
 }

@@ -3,7 +3,6 @@
 namespace App\Modules\Core\Utils;
 
 use Nette\Security\Identity;
-use Nette\Utils\DateTime;
 
 
 class Filters
@@ -29,11 +28,11 @@ class Filters
 
 
 	/**
-	 * @param DateTime $a
-	 * @param DateTime|null $b
+	 * @param \Nette\Utils\DateTime $a
+	 * @param \Nette\Utils\DateTime|null $b
 	 * @return string
 	 */
-	public static function datetime(DateTime $a, DateTime $b = null) : string
+	public static function datetime(\Nette\Utils\DateTime $a, \Nette\Utils\DateTime $b = null) : string
 	{
 		\App\Modules\Core\Utils\DateTime::setTranslator(self::$translator);
 		return \App\Modules\Core\Utils\DateTime::eventsDatetimeFilter($a, $b);

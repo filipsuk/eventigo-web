@@ -87,15 +87,13 @@ class UserModel extends BaseModel
 
 
 	/**
-	 * Hash and encrypt the password
+	 * Hash the password
 	 * @param string $password
 	 * @return string
-	 * @throws CannotPerformOperationException
 	 */
 	public function hashAndEncrypt($password)
 	{
-		$key = $this->container->getParameters()['security']['key'];
-		return base64_encode(\Crypto::Encrypt(Passwords::hash($password), $key));
+		return Passwords::hash($password);
 	}
 
 
