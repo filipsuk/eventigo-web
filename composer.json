@@ -36,29 +36,7 @@
 	},
 	"autoload": {
 		"psr-4": {
-			"App\\Modules\\Admin\\Components\\": "app/modules/admin/components",
-			"App\\Modules\\Admin\\Console\\": "app/modules/admin/console",
-			"App\\Modules\\Admin\\Presenters\\": "app/modules/admin/presenters",
-			"App\\Modules\\Admin\\Model\\": "app/modules/admin/model",
-			"App\\Modules\\Core\\Components\\": "app/modules/core/components",
-			"App\\Modules\\Core\\Components\\Form\\": "app/modules/core/components/form",
-			"App\\Modules\\Core\\Model\\": "app/modules/core/model",
-			"App\\Modules\\Core\\Utils\\": "app/modules/core/utils",
-			"App\\Modules\\Core\\Presenters\\": "app/modules/core/presenters",
-			"App\\Modules\\Email\\Presenters\\": "app/modules/email/presenters",
-			"App\\Modules\\Email\\Model\\": "app/modules/email/model",
-			"App\\Modules\\Front\\Components\\": "app/modules/front/components",
-			"App\\Modules\\Front\\Components\\Subscription\\": "app/modules/front/components/subscription",
-			"App\\Modules\\Front\\Components\\SubscriptionTags\\": "app/modules/front/components/subscriptionTags",
-			"App\\Modules\\Front\\Components\\EventsList\\": "app/modules/front/components/eventsList",
-			"App\\Modules\\Front\\Model\\": "app/modules/front/model",
-			"App\\Modules\\Front\\Model\\Exceptions\\": "app/modules/front/model/exceptions",
-			"App\\Modules\\Front\\Model\\Exceptions\\Subscription\\": "app/modules/front/model/exceptions/subscription",
-			"App\\Modules\\Front\\Presenters\\": "app/modules/front/presenters",
-			"App\\Modules\\Newsletter\\Console\\": "app/modules/newsletter/console",
-			"App\\Modules\\Newsletter\\Model\\": "app/modules/newsletter/model",
-			"App\\Modules\\Newsletter\\Presenters\\": "app/modules/newsletter/presenters",
-			"App\\": "app/router"
+			"App\\": "app"
 		}
 	},
 	"scripts": {
