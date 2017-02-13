@@ -2,15 +2,13 @@
 
 namespace App\Modules\Email\Model\Entity;
 
-use Nette\Object;
-
 /**
  * Class Email represents data structure of general email. 
  * Serves as a parent to different email types sent to users.
  * 
  * @package App\Modules\Email\Model\Entity
  */
-class Email extends Object 
+class Email
 {
 	/**
 	 * @var string From email address

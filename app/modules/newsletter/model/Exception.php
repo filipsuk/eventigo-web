@@ -13,7 +13,3 @@ class Exception extends \Exception
 {
 
 }
-class NoEventsFoundException extends Exception
-{
-	
-}

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Modules\Admin\Components\NotApprovedEventsTable;
+namespace App\Modules\Admin\Components\EventsTable;
 
 use Nette\Database\Table\Selection;
 

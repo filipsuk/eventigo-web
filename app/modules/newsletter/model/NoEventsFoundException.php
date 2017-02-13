@@ -9,10 +9,6 @@
 namespace App\Modules\Newsletter\Model;
 
 
-class Exception extends \Exception
-{
-
-}
 class NoEventsFoundException extends Exception
 {
 	

@@ -2,10 +2,11 @@
 
 namespace App\Modules\Admin\Presenters;
 
-use App\Modules\Admin\Components\SignInFormFactory;
+use App\Modules\Admin\Components\SignIn\SignInFormFactory;
+use Nette\Application\UI\Presenter;
 
 
-class SignPresenter extends \Nette\Application\UI\Presenter
+class SignPresenter extends Presenter
 {
 	/** @var \Kdyby\Translation\Translator @inject */
 	public $translator;

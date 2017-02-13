@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Modules\Admin\Components\NotApprovedEventsTable;
+namespace App\Modules\Admin\Components\EventsTable;
 
 use App\Modules\Admin\Components\DataTable\DataTable;
 use App\Modules\Admin\Model\SourceModel;

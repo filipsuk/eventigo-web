@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Modules\Admin\Components;
+namespace App\Modules\Admin\Components\SignIn;
 
 use App\Modules\Core\Components\BaseControl;
 use App\Modules\Core\Components\Form\Form;

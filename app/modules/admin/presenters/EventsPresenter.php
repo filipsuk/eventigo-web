@@ -3,7 +3,7 @@
 namespace App\Modules\Admin\Presenters;
 
 use App\Modules\Admin\Components\EventForm\EventFormFactory;
-use App\Modules\Admin\Components\NotApprovedEventsTable\NotApprovedEventsTableFactory;
+use App\Modules\Admin\Components\EventsTable\NotApprovedEventsTableFactory;
 use App\Modules\Admin\Model\SourceService;
 use App\Modules\Core\Model\EventModel;
 use Nette\Application\Request;

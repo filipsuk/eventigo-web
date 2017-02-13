@@ -9,10 +9,9 @@
 namespace App\Modules\Core\Model\Entity;
 
 
-use Nette\Object;
 use Nette\Utils\DateTime;
 
-class Event extends Object
+class Event
 {
 	/** @var int */
 	private $id;

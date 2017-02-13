@@ -3,10 +3,11 @@
 namespace App\Modules\Core\Presenters;
 
 use Nette;
+use Nette\Application\IPresenter;
 use Tracy\ILogger;
 
 
-class ErrorPresenter extends Nette\Object implements Nette\Application\IPresenter
+class ErrorPresenter implements IPresenter
 {
 	/** @var ILogger */
 	private $logger;
