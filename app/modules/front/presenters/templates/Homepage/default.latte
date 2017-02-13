@@ -11,26 +11,26 @@
 		<div class="container">
 			<nav class="navbar">
 				<div class="navbar-header">
-					<h1 class="logo">{_front.homepage.header.logo}</h1>
+					<h1 class="logo">{="front.homepage.header.logo"|translate}</h1>
 				</div>
 				<div>
 					<ul class="nav navbar-right">
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 								<i class="fa fa-user" aria-hidden="true"></i>
-								<span>{_front.nav.login}</span>
+								<span>{="front.nav.login"|translate}</span>
 							</a>
 							<ul class="dropdown-menu">
 								<li class="login-list-item">
 									<a n:href="fbLogin-open!">
 										<i class="fa fa-facebook-square" aria-hidden="true"></i>
-										{_front.nav.login.facebook}
+										{="front.nav.login.facebook"|translate}
 									</a>
 								</li>
 								<li class="login-list-item">
 									<a href="#" id="login-via-email-btn">
 										<i class="fa fa-envelope-o" aria-hidden="true"></i>
-										{_front.nav.login.email}
+										{="front.nav.login.email"|translate}
 									</a>
 								</li>
 								<li id="login-form">
@@ -47,18 +47,18 @@
 
 			{*<div class="row">
 				<div class="col-lg-12">
-					<h1 class="logo">{_front.homepage.header.logo}</h1>
+					<h1 class="logo">{="front.homepage.header.logo"|translate}</h1>
 				</div>
 			</div>*}
 			<div class="row header-box">
 				<div class="col-lg-12 text-center">
-					<h2>{_front.homepage.header.mainTitle}</h2>
-					<p>{_front.homepage.header.howItWorks|noescape}</p>
+					<h2>{="front.homepage.header.mainTitle"|translate}</h2>
+					<p>{="front.homepage.header.howItWorks"|translate|noescape}</p>
 					<a href="#homepage">
-						<img src="/img/eventigo-header.png" alt="{_front.homepage.header.mainTitle}" height="419"/>
+						<img src="/img/eventigo-header.png" alt="{="front.homepage.header.mainTitle"|translate}" height="419"/>
 					</a>
-					<p>{_front.homepage.header.subTitle}</p>
-					<a href="#homepage" class="btn btn-success">{_front.homepage.header.button}</a>
+					<p>{="front.homepage.header.subTitle"|translate}</p>
+					<a href="#homepage" class="btn btn-success">{="front.homepage.header.button"|translate}</a>
 				</div>
 			</div>
 		</div>
@@ -73,7 +73,7 @@
 			</div>
 			<div n:class="$user->isLoggedIn() ? 'col-lg-12' : 'col-lg-9'">
 				<div class="events-list-header" n:if="!$user->isLoggedIn()">
-					{_front.homepage.events.header}
+					{="front.homepage.events.header"|translate}
 				</div>
 				{control eventsList}
 			</div>

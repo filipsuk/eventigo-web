@@ -8,7 +8,7 @@
             </div>
             <div class="col-lg-9">
                 <div class="events-list-header" n:if="!$user->isLoggedIn()">
-                    {_front.homepage.events.header}
+                    {="front.homepage.events.header"|translate}
                 </div>
                 {control eventsList}
             </div>
