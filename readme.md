@@ -1,5 +1,8 @@
 # Eventigo
 
+[![Build Status](https://img.shields.io/travis/eventigo/eventigo-web/master.svg?style=flat-square)](https://travis-ci.org/eventigo/eventigo-web)
+
+
 ## Requirements
 
 - PHP 7+
