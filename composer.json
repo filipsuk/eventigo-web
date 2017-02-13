@@ -31,7 +31,8 @@
 		"nette/tester": "~1.7",
 		"robmorgan/phinx": "^0.7",
 		"phpstan/phpstan": "^0.6.3",
-		"phpstan/phpstan-nette": "^0.6.2"
+		"phpstan/phpstan-nette": "^0.6.2",
+		"friendsofphp/php-cs-fixer": "^2.1"
 	},
 	"autoload": {
 		"psr-4": {
@@ -39,6 +40,8 @@
 		}
 	},
 	"scripts": {
+		"check-cs": "vendor/bin/php-cs-fixer fix app --rules=declare_strict_types -v --allow-risky yes --diff --dry-run",
+		"fix-cs": "vendor/bin/php-cs-fixer fix app --rules=declare_strict_types -v --allow-risky yes",
 		"phpstan": "vendor/bin/phpstan analyse app --level=0 -c phpstan.neon"
 	}
 }
