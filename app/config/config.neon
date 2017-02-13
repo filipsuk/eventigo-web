@@ -12,9 +12,10 @@ php:
 
 application:
 	errorPresenter: Core:Error
+	scanComposer: false
+	scanDirs: false
 	mapping:
 		*: App\Modules\*\Presenters\*Presenter
-
 
 session:
 	expiration: 365 days
