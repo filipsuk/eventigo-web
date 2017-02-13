@@ -66,7 +66,7 @@ class NewsletterService
 	public $linkGenerator;
 
 	/** Path to css file used for css inline of newsletter texts html */
-	const CSS_FILE_PATH = __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'presenters' . DIRECTORY_SEPARATOR . 'templates' . DIRECTORY_SEPARATOR . 'Newsletter' . DIRECTORY_SEPARATOR . 'build.css';
+	const CSS_FILE_PATH = __DIR__ . DIRECTORY_SEPARATOR . DIRECTORY_SEPARATOR . 'templates' . DIRECTORY_SEPARATOR . 'Newsletter' . DIRECTORY_SEPARATOR . 'build.css';
 
 	const NEWSLETTER_UTM_PARAMETERS = ['utm_source'=>'newsletter', 'utm_medium' => 'email'];
 
@@ -224,7 +224,7 @@ class NewsletterService
 		
 		$this->template->newsletter = self::inlineCss($newsletter);
 
-		$templateFile = __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'presenters' . DIRECTORY_SEPARATOR .
+		$templateFile = __DIR__ . DIRECTORY_SEPARATOR . DIRECTORY_SEPARATOR .
 			'templates' . DIRECTORY_SEPARATOR . 'Newsletter' . DIRECTORY_SEPARATOR . 'dynamic.latte';
 		$this->template->setFile($templateFile);
 
