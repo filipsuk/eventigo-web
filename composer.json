@@ -30,6 +30,10 @@
 	},
 	"require-dev": {
 		"nette/tester": "~1.7",
-		"robmorgan/phinx": "^0.7"
+		"robmorgan/phinx": "^0.7",
+		"phpstan/phpstan": "^0.6.3"
+	},
+	"scripts": {
+		"phpstan": "vendor/bin/phpstan analyse app --level=0"
 	}
 }
