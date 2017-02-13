@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: filipsuk
- * Date: 12.05.16
- * Time: 20:31
- */
 
 namespace App\Modules\Core\Model\Entity;
 

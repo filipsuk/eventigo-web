@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: filipsuk
- * Date: 12.05.16
- * Time: 20:22
- */
 
 namespace App\Modules\Core\Model\EventSources\Facebook;
 
