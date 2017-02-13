@@ -3,13 +3,15 @@ language: php
 matrix:
   include:
     - php: 7.1
-      env: RUN_PHPSTAN=1
+      env: CHECK_CS=1 RUN_PHPSTAN=1
 
 install:
   # install composer dependencies
   - composer install
 
 script:
+  # check coding standard (defined in composer.json "scripts" section)
+  - if [[ $CHECK_CS = 1 ]]; then composer check-cs; fi
   # check with phpstan (defined in composer.json "scripts" section)
   - if [[ $RUN_PHPSTAN = 1 ]]; then composer phpstan; fi
 
