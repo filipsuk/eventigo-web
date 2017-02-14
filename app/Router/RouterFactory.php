@@ -3,6 +3,7 @@
 namespace App\Router;
 
 use Nette;
+use Nette\Application\IRouter;
 use Nette\Application\Routers\RouteList;
 use Nette\Application\Routers\Route;
 
@@ -10,10 +11,7 @@ use Nette\Application\Routers\Route;
 class RouterFactory
 {
 
-	/**
-	 * @return Nette\Application\IRouter
-	 */
-	public static function createRouter()
+	public static function createRouter(): IRouter
 	{
 		$router = new RouteList;
 

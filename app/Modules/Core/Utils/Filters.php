@@ -2,18 +2,17 @@
 
 namespace App\Modules\Core\Utils;
 
+use Kdyby\Translation\Translator;
 use Nette\Security\Identity;
+use Nette\Utils\DateTime;
 
 
 class Filters
 {
-	/** @var \Kdyby\Translation\Translator */
+	/** @var Translator */
 	public static $translator;
 
-	/**
-	 * @param \Kdyby\Translation\Translator $translator
-	 */
-	public static function setTranslator(\Kdyby\Translation\Translator $translator)
+	public static function setTranslator(Translator $translator)
 	{
 		self::$translator = $translator;
 	}
@@ -27,33 +26,21 @@ class Filters
 	}
 
 
-	/**
-	 * @param \Nette\Utils\DateTime $a
-	 * @param \Nette\Utils\DateTime|null $b
-	 * @return string
-	 */
-	public static function datetime(\Nette\Utils\DateTime $a, \Nette\Utils\DateTime $b = null) : string
+	public static function datetime(DateTime $a, DateTime $b = null): string
 	{
 		\App\Modules\Core\Utils\DateTime::setTranslator(self::$translator);
 		return \App\Modules\Core\Utils\DateTime::eventsDatetimeFilter($a, $b);
 	}
 
-	/**
-	 * @param Identity $identity
-	 * @return string
-	 */
-	public static function username(Identity $identity) : string
+	public static function username(Identity $identity): string
 	{
 		return $identity->fullname ?: $identity->email ?: self::$translator->translate('front.nav.user');
 	}
 
 	/**
 	 * Inline filter used for CSS inline and UTF8 to HTML entities conversion (email clients compatibility)
-	 * @param string $s
-	 * @param bool $stripTags
-	 * @return string
 	 */
-	public static function inline(string $s, bool $stripTags = true) : string
+	public static function inline(string $s, bool $stripTags = true): string
 	{
 		$output = Helper::utfToHtmlEntities($s);
 		if ($stripTags) {

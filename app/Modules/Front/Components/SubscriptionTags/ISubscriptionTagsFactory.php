@@ -5,8 +5,5 @@ namespace App\Modules\Front\Components\SubscriptionTags;
 
 interface ISubscriptionTagsFactory
 {
-	/**
-	 * @return SubscriptionTags
-	 */
-	public function create();
+	public function create(): SubscriptionTags;
 }

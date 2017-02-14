@@ -48,7 +48,7 @@ class OrganiserService
 	}
 
 
-	public function createOrganiser($name, $url) : ActiveRow
+	public function createOrganiser(string $name, string $url): ActiveRow
 	{
 		$organiser = $this->organiserModel->insert([
 			'name' => $name,

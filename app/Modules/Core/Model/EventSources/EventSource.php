@@ -8,7 +8,7 @@ use Nette\Http\Url;
 
 abstract class EventSource
 {
-	public static function isSource($url) : bool
+	public static function isSource($url): bool
 	{
 		try {
 			$host = (new Url($url))->getHost();
@@ -21,8 +21,7 @@ abstract class EventSource
 
 
 	/**
-	 * @param string $source
 	 * @return Event[]
 	 */
-	abstract public function getEvents(string $source);
+	abstract public function getEvents(string $source): array;
 }

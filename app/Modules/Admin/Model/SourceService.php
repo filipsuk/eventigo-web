@@ -30,7 +30,7 @@ class SourceService
 	public $eventModel;
 
 
-	public function crawlSources() : int
+	public function crawlSources(): int
 	{
 		$addedEvents = 0;
 
@@ -44,7 +44,7 @@ class SourceService
 	}
 
 
-	public function crawlSource(ActiveRow $source) : int
+	public function crawlSource(ActiveRow $source): int
 	{
 		$addedEvents = 0;
 

@@ -29,7 +29,7 @@ class Subscription extends BaseControl
 	}
 
 
-	public function createComponentForm()
+	protected function createComponentForm(): Form
 	{
 		$form = new Form;
 		$form->setTranslator($this->translator->domain('front.subscription.form'));

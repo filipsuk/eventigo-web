@@ -26,10 +26,9 @@ class MeetupEventSource extends EventSource
 
 	/**
 	 * Get upcoming events of the page
-	 * @param string $group
 	 * @return Event[]
 	 */
-	public function getEvents(string $group)
+	public function getEvents(string $group): array
 	{
 		$client = MeetupKeyAuthClient::factory(array('key' => $this->apiKey));
 		$groupEvents = $client->getGroupEvents(['urlname' => $group])->getData();

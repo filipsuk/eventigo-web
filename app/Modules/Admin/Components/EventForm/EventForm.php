@@ -49,7 +49,7 @@ class EventForm extends BaseControl
 	}
 
 
-	public function createComponentForm()
+	protected function createComponentForm(): Form
 	{
 		$form = new Form;
 		$form->setTranslator($this->translator->domain('admin.eventForm'));
@@ -160,7 +160,7 @@ class EventForm extends BaseControl
 	}
 
 
-	private function getEventRates()
+	private function getEventRates(): array
 	{
 		return [
 			1 => $this->translator->translate('admin.eventForm.rate.meetup'),
@@ -172,7 +172,7 @@ class EventForm extends BaseControl
 	}
 
 
-	private function getTagsRates()
+	private function getTagsRates(): array
 	{
 		return [
 			1 => $this->translator->translate('admin.eventForm.tag.rate.little'),

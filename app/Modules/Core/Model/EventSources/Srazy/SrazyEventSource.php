@@ -20,10 +20,9 @@ class SrazyEventSource extends EventSource
 
 	/**
 	 * Get upcoming events of the page
-	 * @param string $series
 	 * @return Event[]
 	 */
-	public function getEvents(string $series)
+	public function getEvents(string $series): array
 	{
 		$client = new Client();
 		/** @var \Webuni\Srazy\Model\Event[] $srazyEvents */

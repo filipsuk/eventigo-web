@@ -2,12 +2,10 @@
 
 namespace App\Modules\Core\Components\Form;
 
+use Nette\Application\UI\Form as NativeForm;
 
-class Form extends \Nette\Application\UI\Form
+class Form extends NativeForm
 {
-	/**
-	 * @inheritdoc
-	 */
 	public function __construct(\Nette\ComponentModel\IContainer $parent = NULL, $name = NULL)
 	{
 		parent::__construct($parent, $name);

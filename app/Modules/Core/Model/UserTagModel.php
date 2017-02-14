@@ -8,7 +8,7 @@ class UserTagModel extends BaseModel
 	const TABLE_NAME = 'users_tags';
 
 
-	public function getUsersTags(int $userId) : array
+	public function getUsersTags(int $userId): array
 	{
 		return $this->getAll()
 			->select('tag.tag_group.name AS tagGroupName')
@@ -20,11 +20,8 @@ class UserTagModel extends BaseModel
 
 	/**
 	 * Get ids of user's subscribed tags
-	 * 
-	 * @param int $userId
-	 * @return array
 	 */
-	public function getUserTagIds(int $userId) : array
+	public function getUserTagIds(int $userId): array
 	{
 		return $this->getAll()
 			->select('tag_id')

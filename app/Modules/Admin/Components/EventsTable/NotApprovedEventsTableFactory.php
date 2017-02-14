@@ -7,9 +7,5 @@ use Nette\Database\Table\Selection;
 
 interface NotApprovedEventsTableFactory
 {
-	/**
-	 * @param Selection $dataSource
-	 * @return NotApprovedEventsTable
-	 */
-	public function create(Selection $dataSource);
+	public function create(Selection $dataSource): NotApprovedEventsTable;
 }

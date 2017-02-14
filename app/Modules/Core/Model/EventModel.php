@@ -27,9 +27,8 @@ class EventModel extends BaseModel
 
 	/**
 	 * @param \Nette\Database\Table\IRow $event
-	 * @return string[]
 	 */
-	public function getEventTags(IRow $event)
+	public function getEventTags(IRow $event): array
 	{
 		$eventTags = [];
 
@@ -41,11 +40,7 @@ class EventModel extends BaseModel
 	}
 
 
-	/**
-	 * @param \Nette\Database\Table\IRow $event
-	 * @return array
-	 */
-	public function getRates(IRow $event)
+	public function getRates(IRow $event): array
 	{
 		$rates = [
 			'event' => $event->rate,
@@ -61,9 +56,9 @@ class EventModel extends BaseModel
 
 	/**
 	 * @param int[] $tagsIds
-	 * @param \Nette\Utils\DateTime|NULL $from
-	 * @param \Nette\Utils\DateTime|NULL $to
-	 * @param \Nette\Utils\DateTime|NULL $lastAccess
+	 * @param DateTime|NULL $from
+	 * @param DateTime|NULL $to
+	 * @param DateTime|NULL $lastAccess
 	 * @return array
 	 */
 	public function getAllWithDates(array $tagsIds, DateTime $from = NULL, DateTime $to = NULL, DateTime $lastAccess = null)
@@ -112,7 +107,6 @@ class EventModel extends BaseModel
 
 
 	/**
-	 * @param Event $event
 	 * @return bool|mixed|\Nette\Database\Table\IRow
 	 */
 	public function findExistingEvent(Event $event)
@@ -133,7 +127,6 @@ class EventModel extends BaseModel
 
 	/**
 	 * Find previous event in series with image
-	 * @param int $eventSeriesId
 	 * @return \Nette\Database\Table\IRow|null
 	 */
 	public function findPreviousEvent(int $eventSeriesId)

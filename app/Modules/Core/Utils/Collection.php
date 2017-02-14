@@ -7,10 +7,8 @@ class Collection
 {
 	/**
 	 * Get one level array of nested values
-	 * @param array $array
-	 * @return array
 	 */
-	public static function getNestedValues($array)
+	public static function getNestedValues(array $array): array
 	{
 		$values = [];
 		foreach ($array as $value) {
@@ -26,12 +24,7 @@ class Collection
 	}
 
 
-	/**
-	 * @param array $array
-	 * @param string $prefix
-	 * @return array
-	 */
-	public static function prefix(array $array, $prefix)
+	public static function prefix(array $array, string $prefix): array
 	{
 		foreach ($array as &$item) {
 			$item = $prefix . $item;

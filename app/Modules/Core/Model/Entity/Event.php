@@ -2,7 +2,6 @@
 
 namespace App\Modules\Core\Model\Entity;
 
-
 use Nette\Utils\DateTime;
 
 class Event
@@ -31,136 +30,83 @@ class Event
 	/** @var int Size of event */
 	private $rate;
 
-	/**
-	 * @return int
-	 */
-	public function getId()
+	public function getId(): int
 	{
 		return $this->id;
 	}
 	
-	/**
-	 * @return string
-	 */
-	public function getName()
+	public function getName(): string
 	{
 		return $this->name;
 	}
 
-	/**
-	 * @param string $name
-	 * @return Event
-	 */
-	public function setName($name)
+	public function setName(string $name): self
 	{
 		$this->name = $name;
 		return $this;
 	}
 
-	/**
-	 * @return string
-	 */
-	public function getDescription()
+	public function getDescription(): string
 	{
 		return $this->description;
 	}
 
-	/**
-	 * @param string $description
-	 * @return Event
-	 */
-	public function setDescription($description)
+	public function setDescription(string $description): self
 	{
 		$this->description = $description;
 		return $this;
 	}
 
-	/**
-	 * @return string
-	 */
-	public function getOriginUrl()
+	public function getOriginUrl(): string
 	{
 		return $this->originUrl;
 	}
 
-	/**
-	 * @param string $originUrl
-	 * @return Event
-	 */
-	public function setOriginUrl($originUrl)
+	public function setOriginUrl(string $originUrl): self
 	{
 		$this->originUrl = $originUrl;
 		return $this;
 	}
 
-	/**
-	 * @return DateTime
-	 */
-	public function getStart()
+	public function getStart(): DateTime
 	{
 		return $this->start;
 	}
 
-	/**
-	 * @param DateTime $start
-	 * @return Event
-	 */
-	public function setStart($start)
+	public function setStart(DateTime $start): self
 	{
 		$this->start = $start;
 		return $this;
 	}
 
-	/**
-	 * @return DateTime
-	 */
-	public function getEnd()
+	public function getEnd(): DateTime
 	{
 		return $this->end;
 	}
 
-	/**
-	 * @param DateTime $end
-	 * @return Event
-	 */
-	public function setEnd($end)
+	public function setEnd(DateTime $end): self
 	{
 		$this->end = $end;
 		return $this;
 	}
 
-	/**
-	 * @return string
-	 */
-	public function getImage()
+	public function getImage(): string
 	{
 		return $this->image;
 	}
 
-	/**
-	 * @param string $image Image URL
-	 * @return Event
-	 */
-	public function setImage($image)
+	public function setImage(string $image): self
 	{
 		$this->image = $image;
 		return $this;
 	}
 
-	/**
-	 * @return int
-	 */
-	public function getRate()
+	public function getRate(): int
 	{
 		return $this->rate;
 	}
 
-	/**
-	 * @param int $rate Event Size (1-5)
-	 * @return Event
-	 * @throws \InvalidArgumentException
-	 */
-	public function setRate($rate)
+	public function setRate(int $rate): self
 	{
 		if ($rate < 1 || $rate > 5) {
 			throw new \InvalidArgumentException('Rate value must be 1 to 5');
@@ -171,8 +117,6 @@ class Event
 
 	/**
 	 * Set event rate by number of attendees
-	 * 
-	 * @param int $count
 	 */
 	public function setRateByAttendeesCount(int $count)
 	{
@@ -182,6 +126,5 @@ class Event
 		elseif ($count <= 1000) { $this->setRate(4); }
 		else {$this->setRate(5);}
 	}
-	
-	
+
 }

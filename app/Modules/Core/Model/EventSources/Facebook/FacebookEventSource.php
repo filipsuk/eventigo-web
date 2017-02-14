@@ -23,24 +23,13 @@ class FacebookEventSource extends EventSource
 	public $facebook;
 
 
-	/**
-	 * FacebookEventSource constructor.
-	 * @param \Kdyby\Facebook\Facebook $facebook
-	 */
 	public function __construct(Facebook $facebook)
 	{
 		$this->facebook = $facebook;
 	}
 
 
-	/**
-	 * Get event by platform specific ID
-	 *
-	 * @param $id
-	 * @return Event
-	 * @throws \Kdyby\Facebook\FacebookApiException
-	 */
-	public function getEventById($id) : Event
+	public function getEventById(int $id): Event
 	{
 		try {
 			$response = $this->facebook->api(
@@ -68,11 +57,9 @@ class FacebookEventSource extends EventSource
 
 	/**
 	 * Get upcoming events of the page
-	 * @param string|int $pageId
 	 * @return Event[]
-	 * @throws FacebookApiException
 	 */
-	public function getEvents(string $pageId)
+	public function getEvents(string $pageId): array
 	{
 		$response = $this->facebook->api(
 			'/' . $pageId, 'GET', [

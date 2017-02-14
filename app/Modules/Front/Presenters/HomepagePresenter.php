@@ -94,7 +94,7 @@ class HomepagePresenter extends BasePresenter
 	}
 
 
-	public function createComponentSubscriptionTags()
+	protected function createComponentSubscriptionTags()
 	{
 		$control = $this->subscriptionTags->create();
 
@@ -142,7 +142,7 @@ class HomepagePresenter extends BasePresenter
 	}
 
 
-	public function createComponentEventsList()
+	protected function createComponentEventsList()
 	{
 		if (!$this->getUser()->getId() || $this->getAction() !== 'default') {
 			$section = $this->getSession($this->getAction() === 'discover' ? 'discover' : 'subscriptionTags');
@@ -277,7 +277,7 @@ class HomepagePresenter extends BasePresenter
 	}
 
 
-	public function createComponentSignIn()
+	protected function createComponentSignIn()
 	{
 		$control = $this->signInFactory->create();
 

@@ -57,7 +57,7 @@ class SubscriptionTags extends Subscription
 	}
 
 
-	public function createComponentForm()
+	protected function createComponentForm(): Form
 	{
 		$form = parent::createComponentForm();
 

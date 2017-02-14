@@ -30,77 +30,47 @@ class Email
 	 */
 	private $body;
 
-	/**
-	 * @return string
-	 */
-	public function getFrom()
+	public function getFrom(): string
 	{
 		return $this->from;
 	}
 
-	/**
-	 * @param string $from
-	 * @return Email
-	 */
-	public function setFrom($from)
+	public function setFrom(string $from): self
 	{
 		$this->from = $from;
 		return $this;
 	}
 
-	/**
-	 * @return string
-	 */
-	public function getTo()
+	public function getTo(): string
 	{
 		return $this->to;
 	}
 
-	/**
-	 * @param string $to
-	 * @return Email
-	 */
-	public function setTo($to)
+	public function setTo(string $to): self
 	{
 		$this->to = $to;
 		return $this;
 	}
 
-	/**
-	 * @return string
-	 */
-	public function getSubject()
+	public function getSubject(): string
 	{
 		return $this->subject;
 	}
 
-	/**
-	 * @param string $subject
-	 * @return Email
-	 */
-	public function setSubject($subject)
+	public function setSubject(string $subject): self
 	{
 		$this->subject = $subject;
 		return $this;
 	}
 
-	/**
-	 * @return string
-	 */
-	public function getBody()
+	public function getBody(): string
 	{
 		return $this->body;
 	}
 
-	/**
-	 * @param string $body
-	 * @return Email
-	 */
-	public function setBody($body)
+	public function setBody(string $body): self
 	{
 		$this->body = $body;
 		return $this;
 	}
-	
-	
 }

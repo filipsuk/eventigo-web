@@ -72,7 +72,7 @@ abstract class BasePresenter extends \App\Modules\Core\Presenters\BasePresenter
 	}
 
 
-	private function shouldSyncToDb(DateTime $sessionLastInDb = null, DateTime $lastInDb = null, string $syncToDb) : bool
+	private function shouldSyncToDb(DateTime $sessionLastInDb = null, DateTime $lastInDb = null, string $syncToDb): bool
 	{
 		return !$sessionLastInDb
 		|| ($lastInDb && $lastInDb > $sessionLastInDb)

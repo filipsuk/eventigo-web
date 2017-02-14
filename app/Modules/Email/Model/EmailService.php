@@ -30,7 +30,7 @@ class EmailService
 	private $apiKey;
 
 
-	public function setApiKey(string $apiKey) : self
+	public function setApiKey(string $apiKey): self
 	{
 		$this->apiKey = $apiKey;
 		return $this;
@@ -60,7 +60,7 @@ class EmailService
 	}
 
 
-	public function renderLoginEmail(string $token) : string
+	public function renderLoginEmail(string $token): string
 	{
 		$email = new BasicEmail;
 		$email->setIntroText($this->translator->translate('email.login.text'));

@@ -35,12 +35,11 @@ class UserModel extends BaseModel
 
 
 	/**
-	 * @param string $email
 	 * @return IRow|null
 	 * @throws EmailExistsException
 	 * @throws \PDOException
 	 */
-	public function subscribe($email)
+	public function subscribe(string $email)
 	{
 		if ($email) {
 			if ($this->emailExists($email)) {
@@ -63,17 +62,12 @@ class UserModel extends BaseModel
 	}
 
 
-	/**
-	 * @param string $email
-	 * @return bool
-	 */
-	public function emailExists($email)
+	public function emailExists(string $email): bool
 	{
-		return (bool)$this->getUserByEmail($email);
+		return (bool) $this->getUserByEmail($email);
 	}
 
 	/**
-	 * @param string $email
 	 * @return IRow|null
 	 */
 	public function getUserByEmail(string $email)
@@ -88,16 +82,14 @@ class UserModel extends BaseModel
 
 	/**
 	 * Hash the password
-	 * @param string $password
-	 * @return string
 	 */
-	public function hashAndEncrypt($password)
+	public function hashAndEncrypt(string $password): string
 	{
 		return Passwords::hash($password);
 	}
 
 
-	public function generateToken() : string
+	public function generateToken(): string
 	{
 		do {
 			$token = Random::generate(self::TOKEN_LENGTH);
@@ -108,20 +100,15 @@ class UserModel extends BaseModel
 
 
 	/**
-	 * @param string $facebookId
 	 * @return bool|IRow
 	 */
-	public function findByFacebookId($facebookId)
+	public function findByFacebookId(string $facebookId)
 	{
 		return $this->getAll()->where('facebook_id', $facebookId)->fetch();
 	}
 
 
-	/**
-	 * @param ArrayHash $me
-	 * @return IRow
-	 */
-	public function signInViaFacebook(ArrayHash $me)
+	public function signInViaFacebook(ArrayHash $me): IRow
 	{
 		if (isset($me->email) && $user = $this->getAll()->where('email', $me->email)->fetch()) {
 			$this->getAll()->wherePrimary($user->id)->update([
@@ -138,7 +125,7 @@ class UserModel extends BaseModel
 	}
 
 
-	public function updateFacebook(ArrayHash $me, string $token) : ActiveRow
+	public function updateFacebook(ArrayHash $me, string $token): ActiveRow
 	{
 		$user = $this->getAll()->where('facebook_id', $me->id)->fetch();
 
@@ -153,9 +140,8 @@ class UserModel extends BaseModel
 
 	/**
 	 * Get user token (hash).
-	 *
-	 * @param int $userId
-	 * @return FALSE|mixed
+	*
+	* @return FALSE|mixed
 	 */
 	public function getUserToken(int $userId)
 	{

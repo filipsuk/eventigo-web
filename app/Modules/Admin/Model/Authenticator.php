@@ -26,7 +26,7 @@ class Authenticator implements IAuthenticator
 	/**
 	 * @throws AuthenticationException
 	 */
-	public function authenticate(array $credentials) : Identity
+	public function authenticate(array $credentials): Identity
 	{
 		@list($type, $email, $password) = $credentials; // Password is optional, suppress the notice
 
@@ -50,7 +50,7 @@ class Authenticator implements IAuthenticator
 	}
 
 
-	private function logToAdmin(ActiveRow $user, string $password) : Identity
+	private function logToAdmin(ActiveRow $user, string $password): Identity
 	{
 		if (Passwords::verify($password, $user['password'])) {
 			return new Identity($user['id'], ['admin'], $user->toArray());

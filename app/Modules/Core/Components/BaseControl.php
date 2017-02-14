@@ -4,6 +4,7 @@ namespace App\Modules\Core\Components;
 
 use Kdyby\Translation\Translator;
 use Nette\Application\UI\Control;
+use Nette\Bridges\ApplicationLatte\Template;
 use Nette\Utils\DateTime;
 
 
@@ -19,8 +20,9 @@ abstract class BaseControl extends Control
 	}
 
 
-	protected function createTemplate()
+	protected function createTemplate(): Template
 	{
+	    /** @var Template $template */
 		$template = parent::createTemplate();
 
 		if ($file = $this->getTemplateDefaultFile()) {

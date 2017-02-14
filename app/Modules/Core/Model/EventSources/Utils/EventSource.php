@@ -16,7 +16,7 @@ class EventSource
 	];
 
 
-	public static function isCrawlable(string $url) : bool
+	public static function isCrawlable(string $url): bool
 	{
 		try {
 			$host = (new Url($url))->getHost();

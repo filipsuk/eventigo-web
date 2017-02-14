@@ -5,8 +5,5 @@ namespace App\Modules\Front\Components\Tags;
 
 interface ITagsFactory
 {
-	/**
-	 * @return Tags
-	 */
-	public function create();
+	public function create(): Tags;
 }

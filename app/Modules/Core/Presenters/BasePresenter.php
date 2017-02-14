@@ -38,7 +38,6 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter
 	/**
 	 * Log in the user by token (usually provided in url)
 	 *
-	 * @param $token
 	 * @throws BadRequestException
 	 */
 	protected function loginWithToken($token)

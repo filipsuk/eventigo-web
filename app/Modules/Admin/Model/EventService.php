@@ -8,6 +8,7 @@ use App\Modules\Core\Model\EventModel;
 use App\Modules\Core\Model\EventSources\Facebook\FacebookEventSource;
 use App\Modules\Core\Model\EventTagModel;
 use App\Modules\Core\Model\TagModel;
+use Nette\Utils\ArrayHash;
 use Nette\Utils\DateTime;
 
 class EventService
@@ -39,7 +40,7 @@ class EventService
 	}
 
 
-	public function createEvent($values)
+	public function createEvent(ArrayHash $values)
 	{
 		// Create event
 		$event = $this->eventModel->insert([
@@ -61,7 +62,7 @@ class EventService
 	}
 
 
-	public function updateEvent($values)
+	public function updateEvent(ArrayHash $values)
 	{
 		$event = $this->eventModel->getAll()->wherePrimary($values->id)->fetch();
 
@@ -92,12 +93,7 @@ class EventService
 	}
 
 
-	/**
-	 * Add tags for event
-	 * @param $tags
-	 * @param $eventId
-	 */
-	private function addTags($tags, $eventId)
+	private function addTags(array $tags, int $eventId)
 	{
 		foreach ($tags as $tagValues) {
 			if (!$tagValues->code) {
@@ -116,13 +112,10 @@ class EventService
 	/**
 	 * Get event by platform specific ID
 	 *
-	 * @param $id
-	 * @param $platform
-	 * @return Event
 	 * @throws \Kdyby\Facebook\FacebookApiException
 	 * @throws \InvalidArgumentException
 	 */
-	public function getEventFromPlatform($id, $platform) : Event
+	public function getEventFromPlatform(int $id, string $platform): Event
 	{
 		if ($platform === self::PLATFORM_FACEBOOK) {
 			return $this->facebookEventSource->getEventById($id);

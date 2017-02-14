@@ -66,7 +66,7 @@ class ProfilePresenter extends \App\Modules\Core\Presenters\BasePresenter
 	}
 
 
-	public function createComponentTags()
+	protected function createComponentTags()
 	{
 		$control = $this->tags->create();
 
@@ -79,7 +79,7 @@ class ProfilePresenter extends \App\Modules\Core\Presenters\BasePresenter
 	}
 
 
-	public function createComponentSettings()
+	protected function createComponentSettings()
 	{
 		return $this->settingsFactory->create();
 	}

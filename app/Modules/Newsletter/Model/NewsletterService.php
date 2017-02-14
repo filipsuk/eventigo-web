@@ -70,7 +70,7 @@ class NewsletterService
 
 	const NEWSLETTER_UTM_PARAMETERS = ['utm_source'=>'newsletter', 'utm_medium' => 'email'];
 
-	public function setApiKey(string $apiKey) : self
+	public function setApiKey(string $apiKey): self
 	{
 		$this->apiKey = $apiKey;
 		return $this;
@@ -80,11 +80,10 @@ class NewsletterService
 	/**
 	 * Creates new newsletter with content for giver user
 	 *
-	 * @param int $userId
 	 * @return bool|int|\Nette\Database\Table\IRow
 	 * @throws \App\Modules\Newsletter\Model\NoEventsFoundException
 	 */
-	public function createUserNewsletter($userId)
+	public function createUserNewsletter(int $userId)
 	{
 		/**
 		 * 1 Build array for template
@@ -106,11 +105,9 @@ class NewsletterService
 	/**
 	 * Build array with newsletter text and events for render in template
 	 *
-	 * @param int $userId
-	 * @return array
 	 * @throws \App\Modules\Newsletter\Model\NoEventsFoundException
 	 */
-	public function buildArrayForTemplate(int $userId) : array
+	public function buildArrayForTemplate(int $userId): array
 	{
 		$baseUrl = $this->context->parameters['baseUrl'];
 		$newsletterHash = $this->userNewsletterModel->generateUniqueHash();
@@ -160,11 +157,9 @@ class NewsletterService
 	 * Get events for user newsletter.
 	 * Events are in groups like 'Next week', 'You may like' etc.
 	 *
-	 * @param int $userId
-	 * @return array
 	 * @throws \App\Modules\Newsletter\Model\NoEventsFoundException
 	 */
-	private function getGroupedEvents(int $userId) : array
+	private function getGroupedEvents(int $userId): array
 	{
 		$from = new DateTime('next monday');
 		$to = $from->modifyClone('+ 1 week');
@@ -210,11 +205,8 @@ class NewsletterService
 
 	/**
 	 * Render newsletter content from template (same thing as NewsletterPreseneter:dynamic)
-	 *
-	 * @param $newsletter
-	 * @return string
 	 */
-	private function renderNewsletterContent($newsletter) : string
+	private function renderNewsletterContent(array $newsletter): string
 	{
 		$this->template = $this->templateFactory->createTemplate();
 		$this->template->addFilter('datetime', function (DateTime $a, DateTime $b = null) {
@@ -237,10 +229,10 @@ class NewsletterService
 	/**
 	 * Inline CSS styles of intro and outro text in newsletter
 	 * TODO: Move this to admin when saving new newsletter
-	 * @param $newsletter
 	 * @return mixed
 	 */
-	public static function inlineCss($newsletter) {
+	public static function inlineCss(array $newsletter)
+	{
 		$css = file_get_contents(self::CSS_FILE_PATH);
 		$emogrifier = new Emogrifier();
 		$emogrifier->setCss($css);

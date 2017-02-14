@@ -7,6 +7,7 @@ use App\Modules\Admin\Model\SourceModel;
 use App\Modules\Core\Model\EventModel;
 use App\Modules\Core\Model\EventSources\Facebook\FacebookEventSource;
 use Kdyby\Translation\Translator;
+use Nette\Database\Table\IRow;
 use Nette\Database\Table\Selection;
 use Nette\Utils\DateTime;
 use Nette\Utils\Html;
@@ -30,6 +31,9 @@ class NotApprovedEventsTable extends DataTable
 	}
 
 
+    /**
+     * @return array|IRow[]|Selection
+     */
 	public function getData()
 	{
 		return $this->dataSource
@@ -42,7 +46,7 @@ class NotApprovedEventsTable extends DataTable
 	}
 
 
-	public function generateJson()
+	public function generateJson(): array
 	{
 		$json = [
 			'aaData' => $this->getData(),
@@ -105,7 +109,7 @@ class NotApprovedEventsTable extends DataTable
 	}
 
 
-	public function handleSkip($eventId)
+	public function handleSkip(int $eventId)
 	{
 		$event = $this->eventModel->getAll()->wherePrimary($eventId)->fetch();
 		$this->eventModel->getAll()->wherePrimary($eventId)->update([

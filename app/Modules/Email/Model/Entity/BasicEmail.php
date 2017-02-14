@@ -32,73 +32,45 @@ class BasicEmail extends Email
 	 */
 	private $footerText;
 
-	/**
-	 * @return string
-	 */
-	public function getIntroText()
+	public function getIntroText(): string
 	{
 		return $this->introText;
 	}
 
-	/**
-	 * @param string $introText
-	 * @return BasicEmail
-	 */
-	public function setIntroText($introText)
+	public function setIntroText(string $introText): BasicEmail
 	{
 		$this->introText = $introText;
 		return $this;
 	}
 
-	/**
-	 * @return string
-	 */
-	public function getButtonText()
+	public function getButtonText(): string
 	{
 		return $this->buttonText;
 	}
 
-	/**
-	 * @param string $buttonText
-	 * @return BasicEmail
-	 */
-	public function setButtonText($buttonText)
+	public function setButtonText(string $buttonText): self
 	{
 		$this->buttonText = $buttonText;
 		return $this;
 	}
 
-	/**
-	 * @return Url
-	 */
-	public function getButtonUrl()
+	public function getButtonUrl(): Url
 	{
 		return $this->buttonUrl;
 	}
 
-	/**
-	 * @param Url $buttonUrl
-	 * @return BasicEmail
-	 */
-	public function setButtonUrl($buttonUrl)
+	public function setButtonUrl(Url $buttonUrl): self
 	{
 		$this->buttonUrl = $buttonUrl;
 		return $this;
 	}
 
-	/**
-	 * @return string
-	 */
-	public function getFooterText()
+	public function getFooterText(): string
 	{
 		return $this->footerText;
 	}
 
-	/**
-	 * @param string $footerText
-	 * @return BasicEmail
-	 */
-	public function setFooterText($footerText)
+	public function setFooterText(string $footerText): BasicEmail
 	{
 		$this->footerText = $footerText;
 		return $this;

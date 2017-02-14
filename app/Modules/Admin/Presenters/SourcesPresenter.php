@@ -36,7 +36,7 @@ class SourcesPresenter extends BasePresenter
 	}
 
 
-	public function createComponentSourceForm()
+	protected function createComponentSourceForm()
 	{
 		$control = $this->sourceFormFactory->create();
 
@@ -64,7 +64,7 @@ class SourcesPresenter extends BasePresenter
 	}
 
 
-	public function createComponentSourcesTable()
+	protected function createComponentSourcesTable()
 	{
 		return $this->sourcesTableFactory->create($this->sourceModel->getAll()->select('id, name, url'));
 	}

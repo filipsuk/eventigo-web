@@ -64,7 +64,7 @@ class EventsPresenter extends BasePresenter
 	}
 	
 
-	public function createComponentEventForm()
+	protected function createComponentEventForm()
 	{
 		$control = $this->eventFormFactory->create();
 
@@ -103,7 +103,7 @@ class EventsPresenter extends BasePresenter
 	}
 
 
-	public function createComponentNotApprovedEventsTable()
+	protected function createComponentNotApprovedEventsTable()
 	{
 		return $this->notApprovedEventsTableFactory->create(
 			$this->eventModel->getAll()

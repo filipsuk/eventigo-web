@@ -5,8 +5,5 @@ namespace App\Modules\Front\Components\Sign;
 
 interface SignInFactory
 {
-	/**
-	 * @return SignIn
-	 */
-	public function create();
+	public function create(): SignIn;
 }

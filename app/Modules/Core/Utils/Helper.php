@@ -10,11 +10,8 @@ class Helper
 	/**
 	 * Converts UTF-8 chars to HTML entities.
 	 * Note: String is surrounded by <p> tag.
-	 * 
-	 * @param string $input
-	 * @return string
 	 */
-	public static function utfToHtmlEntities(string $input)
+	public static function utfToHtmlEntities(string $input): string
 	{
 		$emogrifier = new Emogrifier();
 
@@ -29,11 +26,8 @@ class Helper
 
 	/**
 	 * Returns utm params from array of parameters.
-	 * 
-	 * @param array $params
-	 * @return array
 	 */
-	public static function extractUtmParameters(array $params)
+	public static function extractUtmParameters(array $params): array
 	{
 		$utmParams = ['utm_source', 'utm_campaign', 'utm_medium'];
 		return array_intersect_key($params, array_flip($utmParams));

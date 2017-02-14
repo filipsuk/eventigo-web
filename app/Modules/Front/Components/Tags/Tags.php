@@ -62,7 +62,7 @@ class Tags extends BaseControl
 	}
 
 
-	public function createComponentForm()
+	protected function createComponentForm(): Form
 	{
 		$form = new Form;
 

@@ -3,7 +3,6 @@
 namespace App\Modules\Admin\Console;
 
 use App\Modules\Admin\Model\SourceService;
-use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -17,7 +16,7 @@ class CrawlSourcesCommand extends Command
 			->setDescription('Crawl events from sources');
 	}
 
-	protected function execute(InputInterface $input, OutputInterface $output)
+	protected function execute(InputInterface $input, OutputInterface $output): int
 	{
 		/** @var SourceService $sourceService */
 		$sourceService = $this->getHelper('container')->getByType(SourceService::class);

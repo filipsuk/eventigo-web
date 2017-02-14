@@ -31,6 +31,9 @@ class SourcesTable extends DataTable
 	}
 
 
+	/**
+	 * @return array|\Nette\Database\Table\IRow[]|Selection
+	 */
 	public function getData()
 	{
 		return $this->dataSource
@@ -41,7 +44,7 @@ class SourcesTable extends DataTable
 	}
 
 
-	public function generateJson()
+	public function generateJson(): array
 	{
 		$json = [
 			'aaData' => $this->getData(),

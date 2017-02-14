@@ -21,10 +21,7 @@ abstract class BaseModel
 	}
 
 
-	/**
-	 * @return \Nette\Database\Table\Selection
-	 */
-	public function getAll()
+	public function getAll(): Selection
 	{
 		return $this->database->table($this::TABLE_NAME);
 	}
@@ -53,10 +50,6 @@ abstract class BaseModel
 	}
 
 
-	/**
-	 * Delete rows in a table
-	 * @param array $data
-	 */
 	public function delete(array $data)
 	{
 		$this->getAll()->where($data)->delete();

@@ -23,7 +23,7 @@ class SignPresenter extends Presenter
 	}
 
 
-	public function createComponentSignInForm()
+	protected function createComponentSignInForm()
 	{
 		$control = $this->signInFormFactory->create();
 

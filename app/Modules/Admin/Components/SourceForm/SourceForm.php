@@ -31,7 +31,7 @@ class SourceForm extends BaseControl
 	}
 
 
-	public function createComponentForm()
+	protected function createComponentForm(): Form
 	{
 		$form = new Form;
 		$form->setTranslator($this->translator->domain('admin.sourceForm'));

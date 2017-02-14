@@ -3,6 +3,8 @@
 namespace App\Modules\Core\Model;
 
 
+use Nette\Database\Table\Selection;
+
 class TagModel extends BaseModel
 {
 	const TABLE_NAME = 'tags';
@@ -10,9 +12,8 @@ class TagModel extends BaseModel
 
 	/**
 	 * Get tags with the most upcoming events
-	 * @return \Nette\Database\Table\Selection
 	 */
-	public function getByMostEvents()
+	public function getByMostEvents(): Selection
 	{
 		return $this->getAll()
 			->select('tags.code')
@@ -31,9 +32,8 @@ class TagModel extends BaseModel
 
 	/**
 	 * Get tags with the most upcoming events and all others
-	 * @return \Nette\Database\Table\Selection
 	 */
-	public function getAllByMostEvents()
+	public function getAllByMostEvents(): Selection
 	{
 		return $this->getAll()
 			->select('tags.code')

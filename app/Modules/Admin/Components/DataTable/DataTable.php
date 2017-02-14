@@ -4,6 +4,7 @@ namespace App\Modules\Admin\Components\DataTable;
 
 use App\Modules\Core\Components\BaseControl;
 use Kdyby\Translation\Translator;
+use Nette\Application\Responses\JsonResponse;
 use Nette\Database\Table\Selection;
 
 
@@ -23,20 +24,17 @@ abstract class DataTable extends BaseControl
 	}
 
 
-	/**
-	 * @return array
-	 */
-	abstract public function generateJson();
+	abstract public function generateJson(): array;
 
 
 	public function handleJson()
 	{
 		$json = $this->generateJson();
-		$this->presenter->sendResponse(new \Nette\Application\Responses\JsonResponse($json));
+		$this->presenter->sendResponse(new JsonResponse($json));
 	}
 
 
-	public function getLang() : string
+	public function getLang(): string
 	{
 		return '//cdn.datatables.net/plug-ins/1.10.11/i18n/Czech.json';
 	}

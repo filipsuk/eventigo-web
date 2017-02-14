@@ -42,7 +42,7 @@ class DateTime
 		self::$translator = $t;
 	}
 
-	public static function eventsDatetimeFilter (\Nette\Utils\DateTime $a, \Nette\Utils\DateTime $b = null) {
+	public static function eventsDatetimeFilter(\Nette\Utils\DateTime $a, \Nette\Utils\DateTime $b = null) {
 		// Translate name of day
 		$aDayName = self::$translator->translate('front.datetime.' . strtolower(strftime('%A', $a->getTimestamp())));
 

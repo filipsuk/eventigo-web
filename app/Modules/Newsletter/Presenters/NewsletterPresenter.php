@@ -38,7 +38,7 @@ class NewsletterPresenter extends BasePresenter
 	}
 
 
-	public function actionUnsubscribe($hash)
+	public function actionUnsubscribe(string $hash)
 	{
 		$userNewsletter = $this->userNewsletterModel->getAll()->where(['hash' => $hash])->fetch();
 		if ($userNewsletter) {
@@ -58,7 +58,7 @@ class NewsletterPresenter extends BasePresenter
 		}
 	}
 
-	public function renderDynamic($userId)
+	public function renderDynamic(int $userId)
 	{
 		$newsletter = $this->newsletterService->buildArrayForTemplate((int)$userId);
 		$this->template->newsletter = NewsletterService::inlineCss($newsletter);
