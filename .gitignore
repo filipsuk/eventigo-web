@@ -11,3 +11,5 @@ www/libs/*
 composer.phar
 phinx.yml
 composer.lock
+
+!temp/sessions/.gitkeep

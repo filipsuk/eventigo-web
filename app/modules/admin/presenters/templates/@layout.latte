@@ -78,7 +78,7 @@
                                 <ul class="menu">
                                     <li>
                                         <a n:href="Sign:out">
-                                            <i class="fa fa-power-off text-red"></i> {_admin.signOut}
+                                            <i class="fa fa-power-off text-red"></i> {="admin.signOut"|translate}
                                         </a>
                                     </li>
                                 </ul>
@@ -95,10 +95,10 @@
         <section class="sidebar">
             <ul class="sidebar-menu">
                 <li {ifCurrent Events:*}class="active"{/ifCurrent}>
-                    <a n:href="Events:"><i class="fa fa-calendar"></i>{_admin.menu.events}</a>
+                    <a n:href="Events:"><i class="fa fa-calendar"></i>{="admin.menu.events"|translate}</a>
                 </li>
                 <li {ifCurrent Sources:*}class="active"{/ifCurrent}>
-                    <a n:href="Sources:"><i class="fa fa-search-plus"></i>{_admin.menu.sources}</a>
+                    <a n:href="Sources:"><i class="fa fa-search-plus"></i>{="admin.menu.sources"|translate}</a>
                 </li>
             </ul>
         </section>
@@ -128,7 +128,7 @@
 
     {* footer *}
     <footer class="main-footer">
-        {_admin.footer.text |noescape}
+        {="admin.footer.text"|translate|noescape}
     </footer>
 </div>
 

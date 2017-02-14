@@ -1,12 +1,12 @@
 {form form, class => ajax}
     <div id="subscription" n:if="!$user->isLoggedIn()">
-        <span class="subscription-label">{_front.subscription.form.email.label |noescape}</span>
+        <span class="subscription-label">{="front.subscription.form.email.label"|translate|noescape}</span>
         {input email}
         {input real_subscribe}
         {input subscribe, class => ['btn','btn-success']}
     </div>
     <div class="tags-header" n:if="!$user->isLoggedIn()">
-        {_front.homepage.tags.header |noescape}
+        {="front.homepage.tags.header"|translate|noescape}
     </div>
     <div id="tags">
         {* Top tags group *}
@@ -28,7 +28,7 @@
                 {ifset $tagsGroups[$tagGroupName]}
                     <i class="fa fa-{$tagsGroups[$tagGroupName]}"></i>
                 {/ifset}
-                {_'tags.tagGroup.' . $tagGroupName}</h3>
+                {="tags.tagGroup." . $tagGroupName|translate}</h3>
             <ul>
                 <li n:foreach="$tagsGroup->items as $key => $label">
                     <label n:name="tags-$tagGroupName:$key" class="tag" data-tag="{$key}">

@@ -26,7 +26,7 @@
                         {ifset $tagsGroups[$tagGroupName]}
                             <i class="fa fa-{$tagsGroups[$tagGroupName]}"></i>
                         {/ifset}
-                        {_'tags.tagGroup.' . $tagGroupName}</h3>
+                        {="tags.tagGroup." . $tagGroupName|translate}</h3>
                     <ul>
                         <li n:foreach="$tagsGroup->items as $key => $label">
                             <label n:name="tags-$tagGroupName:$key" class="tag" data-tag="{$key}">

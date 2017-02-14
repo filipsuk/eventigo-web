@@ -4,16 +4,16 @@
             {foreach $events as $event}
                 {* Titles *}
                 <div n:if="$events->drawThisWeekTitle()" class="events-list-title col-sm-12">
-                    {_front.events.thisWeek.title}
+                    {="front.events.thisWeek.title"|translate}
                 </div>
                 <div n:if="$events->drawThisMonthTitle()" class="events-list-title col-sm-12">
-                    {_front.events.thisMonth.title}
+                    {="front.events.thisMonth.title"|translate}
                 </div>
                 <div n:if="$events->drawNextMonthTitle()" class="events-list-title col-sm-12">
-                    {_front.events.nextMonth.title}
+                    {="front.events.nextMonth.title"|translate}
                 </div>
                 <div n:if="$events->drawUpcomingTitle()" class="events-list-title col-sm-12">
-                    {_front.events.upcoming.title}
+                    {="front.events.upcoming.title"|translate}
                 </div>
 
                 {* Events *}
@@ -24,12 +24,12 @@
                                 $event->todayEvent ? 'label-today',
                                 $event->newEvent && !$event->todayEvent ? 'label-new',
                                 $event->recentlyAddedEvent && !$event->newEvent && !$event->todayEvent ? 'label-recently-added'">
-                            <div class="label" n:if="$event->todayEvent">{_front.eventList.label.today}</div>
+                            <div class="label" n:if="$event->todayEvent">{="front.eventList.label.today"|translate}</div>
                             <div class="label" n:if="$event->newEvent && !$event->todayEvent">
-                                {_front.eventList.label.new}
+                                {="front.eventList.label.new"|translate}
                             </div>
                             <div class="label" n:if="$event->recentlyAddedEvent && !$event->newEvent && !$event->todayEvent">
-                                {_front.eventList.label.recentlyAdded}
+                                {="front.eventList.label.recentlyAdded"|translate}
                             </div>
                             <div class="event-image">
                                 <img src="{$event->image}">
@@ -56,7 +56,7 @@
                 <div id="no-events-info">
                     <div class="header">
                         <i class="fa fa-calendar-times-o"></i>
-                        <h3>{_front.eventList.noEvents.title}</h3>
+                        <h3>{="front.eventList.noEvents.title"|translate}</h3>
                     </div>
                     <div class="fluid-row">
                         <div class="col-sm-5 col-sm-offset-1">
@@ -64,9 +64,9 @@
                                 <i class="fa fa-calendar"></i>
                             </a>
                             <div class="content">
-                                <p>{_front.eventList.noEvents.discoverInfo}</p>
+                                <p>{="front.eventList.noEvents.discoverInfo"|translate}</p>
                                 <a href="{plink Homepage:discover}" class="btn btn-info">
-                                    {_front.eventList.noEvents.linkToDiscover}
+                                    {="front.eventList.noEvents.linkToDiscover"|translate}
                                 </a>
                             </div>
                         </div>
@@ -75,9 +75,9 @@
                                 <i class="fa fa-wrench"></i>
                             </a>
                             <div class="content">
-                                <p>{_front.eventList.noEvents.settingsInfo}</p>
+                                <p>{="front.eventList.noEvents.settingsInfo"|translate}</p>
                                 <a href="{plink Profile:settings}" class="btn btn-info">
-                                    {_front.eventList.noEvents.linkToSettings}
+                                    {="front.eventList.noEvents.linkToSettings"|translate}
                                 </a>
                             </p>
                         </div>

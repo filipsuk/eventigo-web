@@ -2,9 +2,9 @@
 
 {block header}
     {if $presenter->getAction() === 'create'}
-        {_admin.sources.create.header}
+        {="admin.sources.create.header"|translate}
     {else}
-        {_admin.sources.update.header}
+        {="admin.sources.update.header"|translate}
     {/if}
 {/block}
 
