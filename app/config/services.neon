@@ -1,5 +1,5 @@
 services:
-	router: App\RouterFactory::createRouter
+	router: App\Router\RouterFactory::createRouter
 	- App\Modules\Core\Model\EventModel
 	- App\Modules\Core\Model\TagModel
 	- App\Modules\Core\Model\UserModel

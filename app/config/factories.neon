@@ -3,12 +3,12 @@ services:
 	- App\Modules\Front\Components\SubscriptionTags\ISubscriptionTagsFactory
 	- App\Modules\Front\Components\EventsList\EventsListFactory
 	- App\Modules\Admin\Components\EventForm\EventFormFactory
-	- App\Modules\Admin\Components\SignInFormFactory
+	- App\Modules\Admin\Components\SignIn\SignInFormFactory
 	- App\Modules\Front\Components\Tags\ITagsFactory
 	- App\Modules\Front\Components\Settings\SettingsFactory
 	-
 		implement: App\Modules\Admin\Components\SourceForm\SourceFormFactory
 		inject: yes
 	- App\Modules\Admin\Components\SourcesTable\SourcesTableFactory
-	- App\Modules\Admin\Components\NotApprovedEventsTable\NotApprovedEventsTableFactory
+	- App\Modules\Admin\Components\EventsTable\NotApprovedEventsTableFactory
 	- App\Modules\Front\Components\Sign\SignInFactory
