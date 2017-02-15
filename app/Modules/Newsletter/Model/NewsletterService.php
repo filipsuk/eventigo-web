@@ -220,8 +220,7 @@ class NewsletterService
 			'templates' . DIRECTORY_SEPARATOR . 'Newsletter' . DIRECTORY_SEPARATOR . 'dynamic.latte';
 		$this->template->setFile($templateFile);
 
-		$this->template->_control = $this->linkGenerator; // pro Latte 2.3
-//		$this->template->getLatte()->addProvider('uiControl', $this->linkGenerator); // pro Latte 2.4
+		$this->template->getLatte()->addProvider('uiControl', $this->linkGenerator); // pro Latte 2.4
 
 		return $this->template->getLatte()->renderToString($this->template->getFile(), $this->template->getParameters());
 	}
