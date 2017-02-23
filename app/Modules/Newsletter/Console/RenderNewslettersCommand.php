@@ -10,12 +10,12 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
 
-class CreateNewslettersCommand extends Command
+class RenderNewslettersCommand extends Command
 {
 	protected function configure()
 	{
-		$this->setName('newsletters:create')
-			->setDescription('Create newsletters');
+		$this->setName('newsletters:render')
+			->setDescription('Render users\' newsletters prepared to send');
 	}
 
 	protected function execute(InputInterface $input, OutputInterface $output): int

@@ -3,6 +3,7 @@
 namespace App\Modules\Newsletter\Model;
 
 use App\Modules\Core\Model\BaseModel;
+use App\Modules\Newsletter\Model\Entity\Newsletter;
 
 
 class NewsletterModel extends BaseModel
@@ -22,5 +23,16 @@ class NewsletterModel extends BaseModel
 		} else {
 			throw new \RuntimeException('No newsletters found');
 		}
+	}
+
+	public function createNewsletter(Newsletter $newsletter)
+	{
+		return $this->insert([
+			'subject' => $newsletter->getSubject(),
+			'from' => $newsletter->getFrom(),
+			'intro_text' => $newsletter->getIntroText(),
+			'outro_text' => $newsletter->getOutroText(),
+			'author' => $newsletter->getAuthor()
+		]);
 	}
 }

@@ -7,6 +7,7 @@ use App\Modules\Core\Model\EventModel;
 use App\Modules\Core\Model\EventTagModel;
 use App\Modules\Core\Model\UserModel;
 use App\Modules\Core\Model\UserTagModel;
+use App\Modules\Newsletter\Model\Entity\Newsletter;
 use Kdyby\Translation\Translator;
 use Nette\Application\IPresenterFactory;
 use Nette\Application\LinkGenerator;
@@ -76,6 +77,17 @@ class NewsletterService
 		return $this;
 	}
 
+	public function createDefaultNewsletter()
+	{
+		$parameters = $this->context->getParameters()['newsletter'];
+		$newsletter = new Newsletter();
+		$newsletter->setSubject($parameters['defaultSubject'] ?? '');
+		$newsletter->setFrom($parameters['defaultAuthor']['email'] ?? '');
+		$newsletter->setAuthor($parameters['defaultAuthor']['name'] ?? '');
+		$newsletter->setIntroText('');
+		$newsletter->setOutroText('');
+		return $this->newsletterModel->createNewsletter($newsletter);
+	}
 
 	/**
 	 * Creates new newsletter with content for giver user
@@ -185,7 +197,7 @@ class NewsletterService
 
 		$nextWeekEvents = $this->eventModel->getAllWithDates($userTags, $from, $to);
 		
-		if (!$this->context->parameters['sendNewsletterWithNoEvents'] && count($nextWeekEvents) === 0) {
+		if (!$this->context->parameters['newsletter']['sendNewsletterWithNoEvents'] && count($nextWeekEvents) === 0) {
 			throw new NoEventsFoundException("No events found for user $userId!");
 		}
 

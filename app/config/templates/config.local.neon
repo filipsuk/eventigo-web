@@ -5,7 +5,12 @@ parameters:
 	lastAccess:
 		syncToDb: 5 minutes
 
-	sendNewsletterWithNoEvents: true
+	newsletter:
+		sendNewsletterWithNoEvents: true
+		defaultSubject: Akce na příští týden
+		defaultAuthor:
+			name: Filip
+			email: filip@eventigo.cz
 
 #	googleAnalyticsKey: UA-XXXX
 
