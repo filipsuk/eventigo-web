@@ -14,6 +14,12 @@ parameters:
 
 #	googleAnalyticsKey: UA-XXXX
 
+	SendGrid:
+		ApiKey:
+
+	meetup:
+		apiKey:
+
 database:
 	dsn: 'mysql:host=127.0.0.1:8889;dbname=events'
 	user:
