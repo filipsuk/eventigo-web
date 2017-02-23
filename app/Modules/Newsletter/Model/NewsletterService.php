@@ -228,7 +228,7 @@ class NewsletterService
 		
 		$this->template->newsletter = self::inlineCss($newsletter);
 
-		$templateFile = __DIR__ . DIRECTORY_SEPARATOR . DIRECTORY_SEPARATOR .
+		$templateFile = __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'Presenters' . DIRECTORY_SEPARATOR .
 			'templates' . DIRECTORY_SEPARATOR . 'Newsletter' . DIRECTORY_SEPARATOR . 'dynamic.latte';
 		$this->template->setFile($templateFile);
 
