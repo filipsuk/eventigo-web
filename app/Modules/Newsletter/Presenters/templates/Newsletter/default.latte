@@ -2,6 +2,6 @@
 
 {block content}
     <article id="newsletter">
-        {!$userNewsletter->content}
+        {$userNewsletter['content']|noescape}
     </article>
 {/block}

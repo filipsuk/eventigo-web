@@ -34,7 +34,7 @@ class NewsletterPresenter extends BasePresenter
 	public function renderDefault()
 	{
 		$newsletter = $this->userNewsletter;
-		$this->template->userNewsletter = NewsletterService::inlineCss($newsletter);
+		$this->template->userNewsletter = NewsletterService::inlineCss($newsletter->toArray());
 	}
 
 
