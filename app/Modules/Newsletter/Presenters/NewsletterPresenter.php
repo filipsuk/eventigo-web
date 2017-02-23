@@ -7,6 +7,7 @@ use App\Modules\Core\Presenters\BasePresenter;
 use App\Modules\Newsletter\Model\NewsletterService;
 use App\Modules\Newsletter\Model\UserNewsletterModel;
 use Nette\Database\Table\ActiveRow;
+use Nette\Http\IResponse;
 
 
 class NewsletterPresenter extends BasePresenter
@@ -28,6 +29,10 @@ class NewsletterPresenter extends BasePresenter
 		$this->userNewsletter = $this->userNewsletterModel->getAll()->where([
 			'hash' => $hash,
 		])->fetch();
+
+		if (!$this->userNewsletter) {
+			$this->error(null, IResponse::S404_NOT_FOUND);
+		}
 	}
 
 
