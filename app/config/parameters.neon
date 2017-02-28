@@ -1,12 +1,6 @@
 parameters:
 	baseUrl: 'https://eventigo.cz'
 
-	SendGrid:
-		ApiKey: XXXX
-
-	meetup:
-		apiKey: XXXX
-
 	newsletter:
 		sendNewsletterWithNoEvents: true
 		defaultSubject: Akce na příští týden

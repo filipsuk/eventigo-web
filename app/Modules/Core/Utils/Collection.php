@@ -8,7 +8,7 @@ class Collection
 	/**
 	 * Get one level array of nested values
 	 */
-	public static function getNestedValues(array $array): array
+	public static function getNestedValues($array): array
 	{
 		$values = [];
 		foreach ($array as $value) {
