@@ -96,7 +96,10 @@ class Event
 		return $this->end;
 	}
 
-	public function setEnd(DateTime $end): self
+	/**
+	 * TODO set parameter type after upgrade to PHP 7.1
+	 */
+	public function setEnd($end): self
 	{
 		$this->end = $end;
 		return $this;

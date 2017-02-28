@@ -13,3 +13,4 @@ phinx.yml
 composer.lock
 
 !temp/sessions/.gitkeep
+/.php_cs.cache
