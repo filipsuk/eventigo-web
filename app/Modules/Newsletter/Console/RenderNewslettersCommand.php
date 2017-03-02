@@ -10,26 +10,31 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
 
-class CreateNewslettersCommand extends Command
+final class RenderNewslettersCommand extends Command
 {
+	private $newsletterService;
+	private $userModel;
+
+	public function __construct(NewsletterService $newsletterService, UserModel $userModel)
+	{
+		parent::__construct();
+		$this->newsletterService = $newsletterService;
+		$this->userModel = $userModel;
+	}
+
 	protected function configure()
 	{
-		$this->setName('newsletters:create')
-			->setDescription('Create newsletters');
+		$this->setName('newsletters:render')
+			->setDescription('Render users newsletters prepared to send');
 	}
 
 	protected function execute(InputInterface $input, OutputInterface $output): int
 	{
-		/** @var NewsletterService $newsletterService */
-		$newsletterService = $this->getHelper('container')->getByType(NewsletterService::class);
-		/** @var UserModel $userModel */
-		$userModel = $this->getHelper('container')->getByType(UserModel::class);
-
-		$users = $userModel->getAll()->where('newsletter', true)->fetchAll();
+		$users = $this->userModel->getAll()->where('newsletter', true)->fetchAll();
 		$createdCount = 0;
 		foreach($users as $user) {
 			try {
-				$newsletterService->createUserNewsletter($user->id);
+				$this->newsletterService->createUserNewsletter($user->getPrimary());
 				$createdCount++;
 			} catch (NoEventsFoundException $e) {
 				$output->writeln($e->getMessage());

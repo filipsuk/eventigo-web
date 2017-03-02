@@ -23,7 +23,7 @@
 
         {* Tags groups *}
         {foreach $form[tags]->getComponents() as $tagGroupName => $tagsGroup}
-            {? if ($tagGroupName === 'top') continue;}
+            {php if ($tagGroupName === 'top') continue;}
             <h3>
                 {ifset $tagsGroups[$tagGroupName]}
                     <i class="fa fa-{$tagsGroups[$tagGroupName]}"></i>

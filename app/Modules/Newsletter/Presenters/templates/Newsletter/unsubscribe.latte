@@ -2,6 +2,6 @@
 
 {block content}
     <p style="text-align: center;">
-        {!_newsletter.unsubscribe.unsubscribed, [email => $email]}
+        {_newsletter.unsubscribe.unsubscribed, [email => $email]|noescape}
     </p>
 {/block}

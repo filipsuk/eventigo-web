@@ -46,7 +46,11 @@ class Event
 		return $this;
 	}
 
-	public function getDescription(): string
+	/**
+	 * TODO set return type after upgrade to PHP 7.1
+	 * @return string|null
+	 */
+	public function getDescription()
 	{
 		return $this->description;
 	}
@@ -57,7 +61,11 @@ class Event
 		return $this;
 	}
 
-	public function getOriginUrl(): string
+	/**
+	 * TODO set return type after upgrade to PHP 7.1
+	 * @return string|null
+	 */
+	public function getOriginUrl()
 	{
 		return $this->originUrl;
 	}
@@ -79,18 +87,29 @@ class Event
 		return $this;
 	}
 
-	public function getEnd(): DateTime
+	/**
+	 * TODO set return type after upgrade to PHP 7.1
+	 * @return DateTime|null
+	 */
+	public function getEnd()
 	{
 		return $this->end;
 	}
 
-	public function setEnd(DateTime $end): self
+	/**
+	 * TODO set parameter type after upgrade to PHP 7.1
+	 */
+	public function setEnd($end): self
 	{
 		$this->end = $end;
 		return $this;
 	}
 
-	public function getImage(): string
+	/**
+	 * TODO set return type after upgrade to PHP 7.1
+	 * @return string|null
+	 */
+	public function getImage()
 	{
 		return $this->image;
 	}
@@ -101,7 +120,11 @@ class Event
 		return $this;
 	}
 
-	public function getRate(): int
+	/**
+	 * TODO set return type after upgrade to PHP 7.1
+	 * @return int|null
+	 */
+	public function getRate()
 	{
 		return $this->rate;
 	}

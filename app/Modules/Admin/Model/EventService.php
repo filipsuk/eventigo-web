@@ -58,7 +58,7 @@ class EventService
 			'event_series_id' => $values->event_series_id,
 		]);
 
-		$this->addTags($values->tags, $event->id);
+		$this->addTags($values->tags, (int) $event->id);
 	}
 
 
@@ -89,11 +89,11 @@ class EventService
 			->where(['event_id' => $values->id])
 			->delete();
 
-		$this->addTags($values->tags, $values->id);
+		$this->addTags($values->tags, (int)$values->id);
 	}
 
 
-	private function addTags(array $tags, int $eventId)
+	private function addTags(ArrayHash $tags, int $eventId)
 	{
 		foreach ($tags as $tagValues) {
 			if (!$tagValues->code) {
@@ -115,7 +115,7 @@ class EventService
 	 * @throws \Kdyby\Facebook\FacebookApiException
 	 * @throws \InvalidArgumentException
 	 */
-	public function getEventFromPlatform(int $id, string $platform): Event
+	public function getEventFromPlatform(string $id, string $platform): Event
 	{
 		if ($platform === self::PLATFORM_FACEBOOK) {
 			return $this->facebookEventSource->getEventById($id);

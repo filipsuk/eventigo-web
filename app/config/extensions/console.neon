@@ -4,14 +4,18 @@ extensions:
 console:
 	url: http://eventigo.cz
 	commands:
-		- App\Modules\Newsletter\Console\CreateNewslettersCommand
+		- App\Modules\Newsletter\Console\CreateNewsletterCommand
+		- App\Modules\Newsletter\Console\RenderNewslettersCommand
 		- App\Modules\Newsletter\Console\SendNewslettersCommand
 		- App\Modules\Admin\Console\GeneratePasswordCommand
 		- App\Modules\Admin\Console\CrawlSourcesCommand
 
 services:
 	createNewsletterCommand:
-		class: App\Modules\Newsletter\Console\CreateNewslettersCommand
+		class: App\Modules\Newsletter\Console\CreateNewsletterCommand
+		tags: [kdyby.console.command]
+	renderNewsletterCommand:
+		class: App\Modules\Newsletter\Console\RenderNewslettersCommand
 		tags: [kdyby.console.command]
 	sendNewsletterCommand:
 		class: App\Modules\Newsletter\Console\SendNewslettersCommand

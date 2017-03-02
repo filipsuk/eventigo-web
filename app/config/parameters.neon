@@ -1,11 +1,10 @@
 parameters:
 	baseUrl: 'https://eventigo.cz'
 
-	SendGrid:
-		ApiKey: XXXX
-
-	meetup:
-		apiKey: XXXX
-
-	sendNewsletterWithNoEvents: true
+	newsletter:
+		sendNewsletterWithNoEvents: true
+		defaultSubject: Akce na příští týden
+		defaultAuthor:
+			name: Filip
+			email: filip@eventigo.cz
 
