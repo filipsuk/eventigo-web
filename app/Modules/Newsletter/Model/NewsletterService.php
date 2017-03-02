@@ -14,7 +14,7 @@ use Nette\Application\LinkGenerator;
 use Nette\Application\UI\ITemplateFactory;
 use Nette\Application\UI\Presenter;
 use Nette\Bridges\ApplicationLatte\Template;
-use Nette\Bridges\ApplicationLatte\TemplateFactory;
+use Nette\Database\Table\IRow;
 use Nette\DI\Container;
 use Nette\Utils\DateTime;
 use Pelago\Emogrifier;
@@ -78,7 +78,7 @@ class NewsletterService
 		return $this;
 	}
 
-	public function createDefaultNewsletter()
+	public function createDefaultNewsletter(): IRow
 	{
 		$parameters = $this->context->getParameters()['newsletter'];
 		$newsletter = new Newsletter();

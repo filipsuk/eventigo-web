@@ -9,8 +9,18 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
 
-class SendNewslettersCommand extends Command
+final class SendNewslettersCommand extends Command
 {
+	private $newsletterService;
+	private $userNewsletterModel;
+
+	public function __construct(NewsletterService $newsletterService, UserNewsletterModel $userNewsletterModel)
+	{
+		parent::__construct();
+		$this->newsletterService = $newsletterService;
+		$this->userNewsletterModel = $userNewsletterModel;
+	}
+
 	protected function configure()
 	{
 		$this->setName('newsletters:send')
@@ -19,17 +29,13 @@ class SendNewslettersCommand extends Command
 
 	protected function execute(InputInterface $input, OutputInterface $output): int
 	{
-		/** @var UserNewsletterModel $userNewsletterModel */
-		$userNewsletterModel = $this->getHelper('container')->getByType(UserNewsletterModel::class);
-		$usersNewslettersIds = $userNewsletterModel->getAll()
+		$usersNewslettersIds = $this->userNewsletterModel->getAll()
 			->where('sent', null)
 			->fetchPairs(null, 'id');
 
-		/** @var NewsletterService $newsletterService */
-		$newsletterService = $this->getHelper('container')->getByType(NewsletterService::class);
-		$newsletterService->sendNewsletters($usersNewslettersIds);
+		$this->newsletterService->sendNewsletters($usersNewslettersIds);
 
-		$output->writeLn(count($usersNewslettersIds) . ' newsletters have been sent');
+		$output->writeln(count($usersNewslettersIds) . ' newsletters have been sent');
 		return 0;
 	}
 }

@@ -8,8 +8,16 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
 
-class CreateNewsletterCommand extends Command
+final class CreateNewsletterCommand extends Command
 {
+	private $newsletterService;
+
+	public function __construct(NewsletterService $newsletterService)
+	{
+		parent::__construct();
+		$this->newsletterService = $newsletterService;
+	}
+
 	protected function configure()
 	{
 		$this->setName('newsletters:create')
@@ -18,11 +26,13 @@ class CreateNewsletterCommand extends Command
 
 	protected function execute(InputInterface $input, OutputInterface $output): int
 	{
-		/** @var NewsletterService $newsletterService */
-		$newsletterService = $this->getHelper('container')->getByType(NewsletterService::class);
-
-		$result = $newsletterService->createDefaultNewsletter();
-		$output->writeln('Result: ' . $result);
-		return 0;
+		$result = $this->newsletterService->createDefaultNewsletter();
+		if ($result) {
+			$output->writeln('<info>New newsletter id: ' . $result . '</info>');
+			return 0;
+		} else {
+			$output->writeln('<error>Could not create newsletter </error>');
+			return 1;
+		}
 	}
 }
