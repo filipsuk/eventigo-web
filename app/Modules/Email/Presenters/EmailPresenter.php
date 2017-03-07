@@ -5,9 +5,7 @@ namespace App\Modules\Email\Presenters;
 use App\Modules\Core\Model\UserModel;
 use App\Modules\Core\Presenters\BasePresenter;
 use App\Modules\Email\Model\EmailService;
-use App\Modules\Email\Model\Entity\BasicEmail;
 use Latte\Loaders\StringLoader;
-use Nette\Http\Url;
 
 
 /**

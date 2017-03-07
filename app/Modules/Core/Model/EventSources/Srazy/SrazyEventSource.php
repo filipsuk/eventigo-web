@@ -5,9 +5,7 @@ namespace App\Modules\Core\Model\EventSources\Srazy;
 use App\Modules\Core\Model\Entity\Event;
 use App\Modules\Core\Model\EventSources\EventSource;
 use Nette\Utils\DateTime;
-use Webuni\Srazy\Api\SeriesApi;
 use Webuni\Srazy\Client;
-use Webuni\Srazy\Page\SeriesPage;
 
 
 class SrazyEventSource extends EventSource

@@ -40,7 +40,8 @@ class Event
 		return $this->name;
 	}
 
-	public function setName(string $name): self
+	/* TODO After upgrade to 7.1: setName(?string $name): self */
+	public function setName($name): self
 	{
 		$this->name = $name;
 		return $this;
@@ -70,7 +71,8 @@ class Event
 		return $this->originUrl;
 	}
 
-	public function setOriginUrl(string $originUrl): self
+	/* TODO After upgrade to 7.1: setOriginUrl(?string $originUrl): self */
+	public function setOriginUrl($originUrl): self
 	{
 		$this->originUrl = $originUrl;
 		return $this;
@@ -114,7 +116,8 @@ class Event
 		return $this->image;
 	}
 
-	public function setImage(string $image): self
+	/* TODO After upgrade to 7.1: setImage(?string $image): self */
+	public function setImage($image): self
 	{
 		$this->image = $image;
 		return $this;

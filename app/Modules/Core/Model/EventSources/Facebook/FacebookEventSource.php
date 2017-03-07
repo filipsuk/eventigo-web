@@ -29,7 +29,7 @@ class FacebookEventSource extends EventSource
 	}
 
 
-	public function getEventById(int $id): Event
+	public function getEventById(string $id): Event
 	{
 		try {
 			$response = $this->facebook->api(
