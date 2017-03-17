@@ -4,7 +4,6 @@ namespace App\Modules\Admin\Model;
 
 use App\Modules\Core\Model\EventModel;
 use App\Modules\Core\Model\EventSources\Meetup\MeetupEventSource;
-use App\Modules\Core\Model\EventSources\Utils\EventSource;
 use App\Modules\Core\Model\EventSources\Facebook\FacebookEventSource;
 use App\Modules\Core\Model\EventSources\Srazy\SrazyEventSource;
 use Nette\Database\Table\ActiveRow;
