@@ -2,7 +2,6 @@
 
 namespace App\Router;
 
-use Nette;
 use Nette\Application\IRouter;
 use Nette\Application\Routers\RouteList;
 use Nette\Application\Routers\Route;

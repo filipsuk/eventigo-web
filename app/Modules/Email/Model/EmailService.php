@@ -3,7 +3,6 @@
 namespace App\Modules\Email\Model;
 
 use App\Modules\Core\Utils\Filters;
-use App\Modules\Core\Utils\Helper;
 use App\Modules\Email\Model\Entity\BasicEmail;
 use App\Modules\Email\Presenters\EmailPresenter;
 use Kdyby\Translation\Translator;

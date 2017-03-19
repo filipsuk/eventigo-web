@@ -4,7 +4,7 @@ namespace App\Modules\Admin\Model;
 
 use App\Modules\Core\Model\EventSeriesModel;
 use App\Modules\Core\Model\OrganiserModel;
-use Nette\Database\Table\ActiveRow;
+use Nette\Database\Table\IRow;
 
 
 class OrganiserService
@@ -48,7 +48,7 @@ class OrganiserService
 	}
 
 
-	public function createOrganiser(string $name, string $url): ActiveRow
+	public function createOrganiser(string $name, string $url): IRow
 	{
 		$organiser = $this->organiserModel->insert([
 			'name' => $name,

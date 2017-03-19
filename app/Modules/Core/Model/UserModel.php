@@ -3,7 +3,6 @@
 namespace App\Modules\Core\Model;
 
 use App\Modules\Front\Model\Exceptions\Subscription\EmailExistsException;
-use CannotPerformOperationException;
 use Nette\Database\Context;
 use Nette\Database\Table\ActiveRow;
 use Nette\Database\Table\IRow;
@@ -125,7 +124,7 @@ class UserModel extends BaseModel
 	}
 
 
-	public function updateFacebook(ArrayHash $me, string $token): ActiveRow
+	public function updateFacebook(ArrayHash $me, string $token): IRow
 	{
 		$user = $this->getAll()->where('facebook_id', $me->id)->fetch();
 

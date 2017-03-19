@@ -5,8 +5,6 @@ namespace App\Modules\Front\Presenters;
 use App\Modules\Core\Model\TagModel;
 use App\Modules\Core\Model\UserModel;
 use App\Modules\Core\Model\UserTagModel;
-use App\Modules\Core\Utils\Collection;
-use Nette;
 use Nette\Utils\DateTime;
 
 

@@ -6,7 +6,7 @@ use App\Modules\Core\Model\EventModel;
 use App\Modules\Core\Model\EventSources\Meetup\MeetupEventSource;
 use App\Modules\Core\Model\EventSources\Facebook\FacebookEventSource;
 use App\Modules\Core\Model\EventSources\Srazy\SrazyEventSource;
-use Nette\Database\Table\ActiveRow;
+use Nette\Database\Table\IRow;
 use Nette\Database\UniqueConstraintViolationException;
 use Nette\Http\Url;
 
@@ -43,20 +43,20 @@ class SourceService
 	}
 
 
-	public function crawlSource(ActiveRow $source): int
+	public function crawlSource(IRow $source): int
 	{
 		$addedEvents = 0;
 
 		$events = [];
-		$sourceUrl = new Url($source->url);
-		if (FacebookEventSource::isSource($source->url)) {
+		$sourceUrl = new Url($source['url']);
+		if (FacebookEventSource::isSource($source['url'])) {
 			$pageId = trim($sourceUrl->getPath(), '/');
 			$events = $this->fbSource->getEvents($pageId);
-		} elseif (SrazyEventSource::isSource($source->url)) {
+		} elseif (SrazyEventSource::isSource($source['url'])) {
 			$pathParts = array_filter(explode('/', $sourceUrl->getPath()));
 			$series = reset($pathParts);
 			$events = $this->srazySource->getEvents($series);
-		} elseif (MeetupEventSource::isSource($source->url)) {
+		} elseif (MeetupEventSource::isSource($source['url'])) {
 			$pathParts = array_filter(explode('/', $sourceUrl->getPath()));
 			$group = reset($pathParts);
 			$events = $this->meetupSource->getEvents($group);
@@ -75,7 +75,7 @@ class SourceService
 						'origin_url' => $event->getOriginUrl(),
 						'image' => $event->getImage(),
 						'rate' => $event->getRate(),
-						'event_series_id' => $source->event_series_id,
+						'event_series_id' => $source['event_series_id'],
 					]);
 				} catch (UniqueConstraintViolationException $e) {
 					continue;
