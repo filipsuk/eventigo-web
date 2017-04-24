@@ -2,6 +2,7 @@
 
 namespace App\Router;
 
+use Drahak\Restful\Application\Routes\CrudRoute;
 use Nette\Application\IRouter;
 use Nette\Application\Routers\RouteList;
 use Nette\Application\Routers\Route;
@@ -30,6 +31,12 @@ class RouterFactory
 		$emailRouter = new RouteList('Email');
 		$emailRouter[] = new Route('email/login', 'Email:login');
 		$router[] = $emailRouter;
+
+		// Api
+		$router[] = new CrudRoute('api/v1/events[/<id>]', [
+			'module' => 'Api:V1',
+			'presenter' => 'Events'
+		]);
 
 		// Front
 		$router[] = new Route('profile/settings/<token>', 'Front:Profile:settings');
