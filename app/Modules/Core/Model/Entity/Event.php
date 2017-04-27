@@ -2,6 +2,7 @@
 
 namespace App\Modules\Core\Model\Entity;
 
+use Nette\Database\IRow;
 use Nette\Utils\DateTime;
 
 class Event
@@ -30,9 +31,31 @@ class Event
 	/** @var int Size of event */
 	private $rate;
 
+	public static function createFromRow(IRow $eventRow): Event
+	{
+		$event = new Event();
+		$event
+			->setId($eventRow['id'])
+			->setName($eventRow['name'])
+			->setDescription($eventRow['description'])
+			->setOriginUrl($eventRow['origin_url'])
+			->setStart($eventRow['start'])
+			->setEnd($eventRow['end'])
+			->setImage($eventRow['image'])
+			->setRate($eventRow['rate']);
+
+		return $event;
+	}
+
 	public function getId(): int
 	{
 		return $this->id;
+	}
+
+	public function setId(int $id): Event
+	{
+		$this->id = $id;
+		return $this;
 	}
 	
 	public function getName(): string

@@ -36,4 +36,6 @@ services:
 		class: App\Modules\Core\Model\EventSources\Meetup\MeetupEventSource
 		setup:
 			- setApiKey(%meetup.apiKey%)
+	- App\Modules\Api\V1\Model\EventApiService
+
 

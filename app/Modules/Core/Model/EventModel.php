@@ -3,6 +3,7 @@
 namespace App\Modules\Core\Model;
 
 use App\Modules\Core\Model\Entity\Event;
+use App\Modules\Core\Model\Entity\EventTag;
 use Nette\Database\Table\IRow;
 use Nette\Utils\DateTime;
 
@@ -26,16 +27,16 @@ class EventModel extends BaseModel
 
 
 	/**
-	 * @param \Nette\Database\Table\IRow $event
+	 * @param IRow $event
+	 * @return EventTag[]
 	 */
 	public function getEventTags(IRow $event): array
 	{
+		/** @var EventTag[] */
 		$eventTags = [];
-
-		foreach ($event->related('events_tags') as $eventTag) {
-			$eventTags[] = 'tag-' . $eventTag->tag->code;
+		foreach ($event->related('events_tags') as $tag) {
+			$eventTags[] = EventTag::createFromRow($tag);
 		}
-
 		return $eventTags;
 	}
 
