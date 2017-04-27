@@ -25,22 +25,28 @@
 
 Před vytvořením emailů je možný dynamický preview na adrese `/newsletter/dynamic/<users.id>`
 
-1. Vytvořit (nebo zkotrolovat) záznam v tabulce newsletters - zatím ručně. Použije se poslední podle parametru created. Obsahuje texty, předmět mailu atd.
+1. Vytvořit záznam v tabulce newsletters - `$ php www/index.php newsletters:create`. Použije se poslední podle parametru created. Obsahuje texty, předmět mailu atd.
 
-2. Kontrola možná na adrese https://eventigo.cz/newsletter/dynamic/<users.id>
+2. Do nového záznamu doplnit `intro_text` a `outro_text` (HTML formát)
 
-3. Vytvoření newsletterů pro všechny, kdo má nastavený flag users.newsletter _(true)_
+3. Kontrola možná na adrese `/newsletter/dynamic/<users.id>`
+
+4. Vyrenderování (přípravení) newsletterů pro všechny, kdo má nastavený flag users.newsletter _(true)_
 `
-newsletters:create
+$ php www/index.php newsletters:render
 `  
 
-4. Zobrazení newsletteru na webu přes link https://eventigo.cz/newsletter/<users_newsletter.hash>
-Unsubscribe newsletterů přes link https://eventigo.cz/newsletter/unsubscribe/<users_newsletter.hash>  
+5. Preview konkrétního newsletteru na adrese `/newsletter/<users_newsletter.hash>`
+Unsubscribe newsletterů přes link `/newsletter/unsubscribe/<users_newsletter.hash>` 
     
-5. Odeslání připravených newsletterů _(nemá nastavené datum odeslání user_newsletter.sent)_
+6. Odeslání připravených newsletterů _(nemá nastavené datum odeslání user_newsletter.sent)_
 `
-newsletters:send
+$ php www/index.php newsletters:send
 `
+
+## API
+
+Apiary docs: http://docs.eventigo.apiary.io/
 
 ## Exceptions
 
