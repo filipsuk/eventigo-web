@@ -7,9 +7,7 @@ services:
 	-
 		class: App\Modules\Newsletter\Model\NewsletterService
 		inject: yes
-	-
-		class: SendGrid
-		arguments: %SendGrid.ApiKey%
+	- SendGrid(%SendGrid.ApiKey%)
 	- App\Modules\Newsletter\Model\UserNewsletterModel
 	- App\Modules\Newsletter\Model\NewsletterModel
 	- App\Modules\Core\Model\EventTagModel
