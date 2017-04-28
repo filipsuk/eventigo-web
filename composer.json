@@ -1,9 +1,7 @@
 {
-	"name": "Eventigo",
-	"description": "Events to your email",
-	"type": "project",
+	"name": "eventigo/eventigo-web",
 	"require": {
-		"php": ">= 7.0.0",
+		"php": "^7.0",
 		"nette/application": "~2.4",
 		"nette/bootstrap": "~2.4",
 		"nette/caching": "~2.4",
@@ -31,9 +29,9 @@
 	"require-dev": {
 		"nette/tester": "~1.7",
 		"robmorgan/phinx": "^0.7",
-		"phpstan/phpstan": "^0.6.3",
+		"phpstan/phpstan": "^0.6",
 		"phpstan/phpstan-nette": "^0.6.2",
-		"friendsofphp/php-cs-fixer": "^2.1"
+		"friendsofphp/php-cs-fixer": "^2.3"
 	},
 	"autoload": {
 		"psr-4": {
