@@ -14,7 +14,7 @@ use SendGrid;
 use SendGrid\Email;
 
 
-class EmailService
+final class EmailService
 {
 	/** @var Translator @inject */
 	public $translator;
@@ -25,35 +25,25 @@ class EmailService
 	/** @var ITemplateFactory @inject */
 	public $templateFactory;
 
-	/** @var string */
-	private $apiKey;
-
-
-	public function setApiKey(string $apiKey): self
-	{
-		$this->apiKey = $apiKey;
-		return $this;
-	}
+	/** @var SendGrid @inject */
+	public $sendGrid;
 
 
 	public function sendLogin(string $emailTo, string $token)
 	{
-		$sendGrid = new SendGrid($this->apiKey);
-		$email = new Email;
+		$to = new Email(null, $emailTo);
+		$from = new Email('Eventigo.cz', 'prihlaseni@eventigo.cz');
+		$subject = $this->translator->translate('email.login.subject');
+		$content = new SendGrid\Content('text/plain', $this->renderLoginEmail($token));
 
-		$content = $this->renderLoginEmail($token);
+        $mail = new SendGrid\Mail($from, $subject, $to, $content);
 
-		$email->addTo($emailTo)
-			->setFrom('prihlaseni@eventigo.cz')
-			->setFromName('Eventigo.cz')
-			->setSubject($this->translator->translate('email.login.subject'))
-			->setCategory('emailLogin')
-			->setHtml($content);
+        // ->setCategory('emailLogin') @todo, what is this for?
 
 		try {
-			$sendGrid->send($email);
+			$this->sendGrid->client->mail()->send()->post($mail);
 
-		} catch (SendGrid\Exception $e) {
+		} catch (\Exception $e) {
 			// TODO log unsuccessful email send
 		}
 	}

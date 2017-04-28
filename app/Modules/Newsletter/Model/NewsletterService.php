@@ -2,7 +2,6 @@
 
 namespace App\Modules\Newsletter\Model;
 
-
 use App\Modules\Core\Model\EventModel;
 use App\Modules\Core\Model\EventTagModel;
 use App\Modules\Core\Model\UserModel;
@@ -22,7 +21,7 @@ use SendGrid;
 use SendGrid\Email;
 use Tracy\Debugger;
 
-class NewsletterService
+final class NewsletterService
 {
 	/** @var UserNewsletterModel @inject */
 	public $userNewsletterModel;
@@ -41,9 +40,6 @@ class NewsletterService
 
 	/** @var EventTagModel @inject */
 	public $eventTagModel;
-
-	/** @var string */
-	private $apiKey;
 
 	/** @var IPresenterFactory @inject */
 	public $presenterFactory;
@@ -66,17 +62,14 @@ class NewsletterService
 	/** @var  LinkGenerator @inject*/
 	public $linkGenerator;
 
+	/** @var SendGrid @inject*/
+	public $sendGrid;
+
 	/** Path to css file used for css inline of newsletter texts html */
 	const CSS_FILE_PATH = __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'Presenters' . DIRECTORY_SEPARATOR .
 	'templates' . DIRECTORY_SEPARATOR . 'Newsletter' . DIRECTORY_SEPARATOR . 'build.css';
 
 	const NEWSLETTER_UTM_PARAMETERS = ['utm_source'=>'newsletter', 'utm_medium' => 'email'];
-
-	public function setApiKey(string $apiKey): self
-	{
-		$this->apiKey = $apiKey;
-		return $this;
-	}
 
 	public function createDefaultNewsletter(): IRow
 	{
@@ -143,24 +136,25 @@ class NewsletterService
 	{
 		$usersNewsletters = $this->userNewsletterModel->getAll()->wherePrimary($usersNewslettersIds)->fetchAll();
 		foreach ($usersNewsletters as $userNewsletter) {
-			$sendGrid = new SendGrid($this->apiKey);
-			$email = new Email;
 
-			$email->addTo($userNewsletter->user->email)
-				->setFrom($userNewsletter->from)
-				->setFromName('Eventigo.cz')
-				->setSubject($userNewsletter->subject)
-				->setCategory('newsletter')
-				->setHtml($userNewsletter->content);
-				//TODO: setText() - we should also send text format
+
+			$to = new Email(null, $userNewsletter->user->email);
+			$from = new Email('Eventigo.cz', $userNewsletter->from);
+
+			$subject = $userNewsletter->subject;
+			$content = new SendGrid\Content('text/plain', $userNewsletter->content); // @todo: or html?
+			//	->setCategory('newsletter') // what is this for
+			// TODO: setText() - we should also send text format
+
+			$mail = new SendGrid\Mail($from, $subject, $to, $content);
 
 			try {
-				$sendGrid->send($email);
+				$this->sendGrid->client->mail()->send()->post($mail);
 				$this->userNewsletterModel->getAll()->wherePrimary($userNewsletter->id)->update([
 					'sent' => new DateTime,
 				]);
 
-			} catch (SendGrid\Exception $e) {
+			} catch (\Exception $e) {
 				// TODO log unsuccessful email send
 			}
 		}
