@@ -18,7 +18,7 @@
 
 		"kdyby/translation": "~2.2",
 		"kdyby/console": "^2.5",
-		"sendgrid/sendgrid": "5.0.0",
+		"sendgrid/sendgrid": "^5.4",
 		"kdyby/facebook": "2.0.x-dev",
 		"pelago/emogrifier": "@dev",
 		"greeny/nette-slack-logger": "^1.2",

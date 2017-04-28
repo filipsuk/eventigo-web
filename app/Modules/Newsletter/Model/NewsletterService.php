@@ -140,7 +140,6 @@ final class NewsletterService
 
 			$to = new Email(null, $userNewsletter->user->email);
 			$from = new Email('Eventigo.cz', $userNewsletter->from);
-
 			$subject = $userNewsletter->subject;
 			$content = new SendGrid\Content('text/plain', $userNewsletter->content); // @todo: or html?
 			//	->setCategory('newsletter') // what is this for
