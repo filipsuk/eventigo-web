@@ -30,17 +30,24 @@
 		"nette/tester": "~1.7",
 		"robmorgan/phinx": "^0.7",
 		"phpstan/phpstan": "^0.6",
-		"phpstan/phpstan-nette": "^0.6.2",
-		"friendsofphp/php-cs-fixer": "^2.3"
+		"phpstan/phpstan-nette": "^0.6",
+		"friendsofphp/php-cs-fixer": "^2.3",
+		"symplify/easy-coding-standard": "2.0-RC2",
+        "squizlabs/php_codesniffer": "3.0.0RC4 as 2.8.1"
 	},
 	"autoload": {
 		"psr-4": {
 			"App\\": "app"
 		}
 	},
+    "autoload-dev": {
+        "psr-4": {
+            "PHP_CodeSniffer\\": "vendor/squizlabs/php_codesniffer/src"
+        }
+    },
 	"scripts": {
-		"check-cs": "vendor/bin/php-cs-fixer fix app --rules=declare_strict_types,return_type_declaration -v --allow-risky yes --diff --dry-run",
-		"fix-cs": "vendor/bin/php-cs-fixer fix app --rules=declare_strict_types,return_type_declaration -v --allow-risky yes",
+		"check-cs": "vendor/bin/easy-coding-standard check app",
+		"fix-cs": "vendor/bin/easy-coding-standard check app --fix",
 		"phpstan": "vendor/bin/phpstan analyse app --level=0 -c phpstan.neon"
 	}
 }

@@ -1,0 +1,3 @@
+checkers:
+	- PhpCsFixer\Fixer\Strict\DeclareStrictTypesFixer
+	- PhpCsFixer\Fixer\FunctionNotation\ReturnTypeDeclarationFixer
