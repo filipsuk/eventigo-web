@@ -5,6 +5,7 @@ namespace App\Modules\Newsletter\Model;
 use App\Modules\Core\Model\BaseModel;
 use App\Modules\Newsletter\Model\Entity\Newsletter;
 use Nette\Database\Table\IRow;
+use RuntimeException;
 
 
 final class NewsletterModel extends BaseModel
@@ -17,17 +18,17 @@ final class NewsletterModel extends BaseModel
 	/**
 	 * Get latest newsletter texts
 	 *
-	 * @throws \RuntimeException
+	 * @throws RuntimeException
 	 */
 	public function getLatest(): array
 	{
 		$newsletter = $this->getAll()->order('created DESC')->limit(1);
 		if ($newsletter->count() !== 0) {
 			return $newsletter->fetch()->toArray();
-		} else {
-			throw new \RuntimeException('No newsletters found');
 		}
-	}
+
+        throw new RuntimeException('No newsletters found');
+    }
 
 	public function createNewsletter(Newsletter $newsletter): IRow
 	{

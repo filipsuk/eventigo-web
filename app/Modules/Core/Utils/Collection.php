@@ -2,7 +2,6 @@
 
 namespace App\Modules\Core\Utils;
 
-
 class Collection
 {
 	/**

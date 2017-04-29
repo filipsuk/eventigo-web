@@ -2,7 +2,6 @@
 
 namespace App\Modules\Admin\Components\EventForm;
 
-
 interface EventFormFactory
 {
 	public function create(): EventForm;

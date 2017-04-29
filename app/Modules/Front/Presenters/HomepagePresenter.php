@@ -10,11 +10,12 @@ use App\Modules\Email\Model\EmailService;
 use App\Modules\Front\Components\EventsList\EventsListFactory;
 use App\Modules\Front\Components\Sign\SignInFactory;
 use App\Modules\Front\Components\SubscriptionTags\ISubscriptionTagsFactory;
+use Nette\Security\Identity;
 use Nette\Utils\DateTime;
 use Nette\Utils\Html;
 
 
-class HomepagePresenter extends BasePresenter
+final class HomepagePresenter extends BasePresenter
 {
 	/**
 	 * @var EventModel @inject
@@ -267,7 +268,7 @@ class HomepagePresenter extends BasePresenter
 
 				$existing = $this->userModel->updateFacebook($me, $fb->getAccessToken());
 
-				$this->getUser()->login(new \Nette\Security\Identity($existing->id, null, $existing->toArray()));
+				$this->getUser()->login(new Identity($existing->id, null, $existing->toArray()));
 
 			} catch (\Kdyby\Facebook\FacebookApiException $e) {
 				\Tracy\Debugger::log($e, 'facebook');

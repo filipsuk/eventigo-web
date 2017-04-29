@@ -1,6 +1,5 @@
 <?php declare(strict_types=1);
 
-
 namespace App\Modules\Admin\Model;
 
 use App\Modules\Core\Model\UserModel;

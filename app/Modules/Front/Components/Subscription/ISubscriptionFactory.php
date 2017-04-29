@@ -2,7 +2,6 @@
 
 namespace App\Modules\Front\Components\Subscription;
 
-
 interface ISubscriptionFactory
 {
 	public function create(): Subscription;

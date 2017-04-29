@@ -2,6 +2,7 @@
 
 namespace App\Modules\Core\Model\Entity;
 
+use InvalidArgumentException;
 use Nette\Database\IRow;
 use Nette\Utils\DateTime;
 
@@ -158,23 +159,21 @@ final class Event
 		return $this->rate;
 	}
 
-	/**
-	 * @return DateTime|null
-	 */
-	public function getCreated()
-	{
-		return $this->created;
-	}
+	public function getCreated(): ?DateTime
+    {
+        return $this->created;
+    }
+
+    public function setRate(int $rate): void
+    {
+        if ($rate < 1 || $rate > 5) {
+            throw new InvalidArgumentException('Rate value must be 1 to 5');
+        }
+        $this->rate = $rate;
+    }
 
 	public static function calculateRateByAttendeesCount(int $count)
 	{
-<<<<<<< HEAD
-		if ($count <= 50) { return 1; }
-		elseif ($count <= 200) { return 2; }
-		elseif ($count <= 500) { return 3; }
-		elseif ($count <= 1000) { return 4; }
-		else {return 5;}
-=======
 		if ($count <= 50) {
 			$this->setRate(1);
 		} elseif ($count <= 200) {
@@ -186,6 +185,5 @@ final class Event
 		} else {
 			$this->setRate(5);
 		}
->>>>>>> cs fixes
 	}
 }

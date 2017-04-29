@@ -2,7 +2,6 @@
 
 namespace App\Modules\Core\Model;
 
-
 class UserTagModel extends BaseModel
 {
 	/**

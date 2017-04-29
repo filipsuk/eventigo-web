@@ -2,7 +2,6 @@
 
 namespace App\Modules\Front\Components\SubscriptionTags;
 
-
 interface ISubscriptionTagsFactory
 {
 	public function create(): SubscriptionTags;

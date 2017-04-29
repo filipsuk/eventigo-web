@@ -2,7 +2,6 @@
 
 namespace App\Modules\Email\Model\Entity;
 
-
 use Nette\Http\Url;
 
 /**

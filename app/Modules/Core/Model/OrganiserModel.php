@@ -2,7 +2,6 @@
 
 namespace App\Modules\Core\Model;
 
-
 final class OrganiserModel extends BaseModel
 {
 	/**

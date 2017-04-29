@@ -2,7 +2,6 @@
 
 namespace App\Modules\Front\Presenters;
 
-
 class SignPresenter extends \Nette\Application\UI\Presenter
 {
 	/**

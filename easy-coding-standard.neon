@@ -76,11 +76,11 @@ checkers:
     # Debug and dev
     - Symplify\CodingStandard\Sniffs\Debug\DebugFunctionCallSniff
     - Symplify\CodingStandard\Sniffs\Debug\CommentedOutCodeSniff
-#
-#    # Namespaces
-#    - Symplify\CodingStandard\Sniffs\Namespaces\ClassNamesWithoutPreSlashSniff
-#    - PhpCsFixer\Fixer\NamespaceNotation\SingleBlankLineBeforeNamespaceFixer
-#    - PhpCsFixer\Fixer\NamespaceNotation\BlankLineAfterNamespaceFixer
+
+    # Namespaces
+    - Symplify\CodingStandard\Sniffs\Namespaces\ClassNamesWithoutPreSlashSniff
+    - PhpCsFixer\Fixer\NamespaceNotation\SingleBlankLineBeforeNamespaceFixer
+    - PhpCsFixer\Fixer\NamespaceNotation\BlankLineAfterNamespaceFixer
 #
 #    # Naming
 #    - Symplify\CodingStandard\Sniffs\Naming\AbstractClassNameSniff

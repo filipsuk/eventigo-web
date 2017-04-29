@@ -2,12 +2,12 @@
 
 namespace App\Modules\Admin\Model;
 
-
 use App\Modules\Core\Model\Entity\Event;
 use App\Modules\Core\Model\EventModel;
 use App\Modules\Core\Model\EventSources\Facebook\FacebookEventSource;
 use App\Modules\Core\Model\EventTagModel;
 use App\Modules\Core\Model\TagModel;
+use InvalidArgumentException;
 use Nette\Utils\ArrayHash;
 use Nette\Utils\DateTime;
 
@@ -125,13 +125,13 @@ final class EventService
 	 * Get event by platform specific ID
 	 *
 	 * @throws \Kdyby\Facebook\FacebookApiException
-	 * @throws \InvalidArgumentException
+	 * @throws InvalidArgumentException
 	 */
 	public function getEventFromPlatform(string $id, string $platform): Event
 	{
 		if ($platform === self::PLATFORM_FACEBOOK) {
 			return $this->facebookEventSource->getEventById($id);
 		}
-		throw new \InvalidArgumentException('Invalid platform');
+		throw new InvalidArgumentException('Invalid platform');
 	}
 }

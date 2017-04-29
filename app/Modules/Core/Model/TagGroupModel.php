@@ -2,7 +2,6 @@
 
 namespace App\Modules\Core\Model;
 
-
 final class TagGroupModel extends BaseModel
 {
 	/**

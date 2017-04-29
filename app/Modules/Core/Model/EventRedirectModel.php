@@ -2,7 +2,6 @@
 
 namespace App\Modules\Core\Model;
 
-
 final class EventRedirectModel extends BaseModel
 {
 	/**
