@@ -8,7 +8,7 @@ use Nette\Utils\DateTime as NetteDateTime;
 
 final class DateTime
 {
-    /**
+	/**
 	 * @var string
 	 */
 	const DATETIME_FORMAT = 'd. m. Y H:i';
@@ -49,7 +49,7 @@ final class DateTime
 	public static $translator;
 
 	/**
-	 * Get maximum of given datetimes
+	 * Get maximum of given datetimes.
 	 *
 	 * @param NetteDateTime[]|DateTimeInterface[]|null[] $dateTimes
 	 * @return NetteDateTime|DateTimeInterface

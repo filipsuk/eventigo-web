@@ -12,7 +12,7 @@ final class TagModel extends AbstractBaseModel
 	const TABLE_NAME = 'tags';
 
 	/**
-	 * Get tags with the most upcoming events
+	 * Get tags with the most upcoming events.
 	 */
 	public function getByMostEvents(): Selection
 	{
@@ -31,7 +31,7 @@ final class TagModel extends AbstractBaseModel
 	}
 
 	/**
-	 * Get tags with the most upcoming events and all others
+	 * Get tags with the most upcoming events and all others.
 	 */
 	public function getAllByMostEvents(): Selection
 	{

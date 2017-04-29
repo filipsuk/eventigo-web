@@ -8,7 +8,7 @@ use Tracy\Debugger;
 
 final class Helper
 {
-    /**
+	/**
 	 * Converts UTF-8 chars to HTML entities.
 	 * Note: String is surrounded by <p> tag.
 	 */

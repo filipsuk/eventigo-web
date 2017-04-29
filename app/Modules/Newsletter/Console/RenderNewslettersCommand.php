@@ -41,7 +41,7 @@ final class RenderNewslettersCommand extends Command
 		foreach ($users as $user) {
 			try {
 				$this->newsletterService->createUserNewsletter($user->getPrimary());
-				$createdCount++;
+				++$createdCount;
 			} catch (NoEventsFoundException $e) {
 				$output->writeln($e->getMessage());
 			}

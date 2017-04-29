@@ -37,7 +37,7 @@ abstract class AbstractBasePresenter extends Presenter
 	}
 
 	/**
-	 * Log in the user by token (usually provided in url)
+	 * Log in the user by token (usually provided in url).
 	 *
 	 * @throws BadRequestException
 	 */

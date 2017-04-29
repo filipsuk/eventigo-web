@@ -41,7 +41,7 @@ abstract class AbstractBaseModel
 
 	/**
 	 * Updates all rows in result set.
-	 * Joins in UPDATE are supported only in MySQL
+	 * Joins in UPDATE are supported only in MySQL.
 	 * @param mixed[] ($column => $value)
 	 * @return int number of affected rows
 	 */

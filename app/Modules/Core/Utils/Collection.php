@@ -4,8 +4,8 @@ namespace App\Modules\Core\Utils;
 
 final class Collection
 {
-    /**
-	 * Get one level array of nested values
+	/**
+	 * Get one level array of nested values.
 	 *
 	 * @param mixed[] $array
 	 * @return mixed[]

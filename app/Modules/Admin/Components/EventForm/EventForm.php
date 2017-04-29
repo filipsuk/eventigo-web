@@ -143,7 +143,7 @@ final class EventForm extends AbstractBaseControl
 		$form->addGroup();
 		$tags = $this->tagModel->getAll()->fetchPairs('code', 'name');
 		$tagsContainer = $form->addContainer('tags');
-		for ($i = 0; $i < 5; $i++) {
+		for ($i = 0; $i < 5; ++$i) {
 			$tagContainer = $tagsContainer->addContainer($i);
 
 			$codeControl = $tagContainer->addSelect('code', $this->translator->translate('admin.eventForm.tag'), $tags)

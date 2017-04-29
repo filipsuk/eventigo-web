@@ -103,7 +103,7 @@ final class EventService
 	}
 
 	/**
-	 * Get event by platform specific ID
+	 * Get event by platform specific ID.
 	 *
 	 * @throws \Kdyby\Facebook\FacebookApiException
 	 * @throws InvalidArgumentException

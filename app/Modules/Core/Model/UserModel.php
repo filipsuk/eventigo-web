@@ -72,7 +72,7 @@ final class UserModel extends AbstractBaseModel
 	}
 
 	/**
-	 * Hash the password
+	 * Hash the password.
 	 */
 	public function hashAndEncrypt(string $password): string
 	{
@@ -128,8 +128,8 @@ final class UserModel extends AbstractBaseModel
 
 	/**
 	 * Get user token (hash).
-	*
-	* @return FALSE|mixed
+	 *
+	 * @return false|mixed
 	 */
 	public function getUserToken(int $userId)
 	{

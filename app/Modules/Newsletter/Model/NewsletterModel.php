@@ -15,7 +15,7 @@ final class NewsletterModel extends AbstractBaseModel
 	const TABLE_NAME = 'newsletters'; // TODO migrace
 
 	/**
-	 * Get latest newsletter texts
+	 * Get latest newsletter texts.
 	 *
 	 * @throws RuntimeException
 	 *

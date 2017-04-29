@@ -9,7 +9,7 @@ use Nette\Utils\DateTime;
 
 final class Filters
 {
-    /**
+	/**
 	 * @var Translator
 	 * */
 	public static $translator;
@@ -42,7 +42,7 @@ final class Filters
     }
 
 	/**
-	 * Inline filter used for CSS inline and UTF8 to HTML entities conversion (email clients compatibility)
+	 * Inline filter used for CSS inline and UTF8 to HTML entities conversion (email clients compatibility).
 	 */
 	public static function inline(string $s, bool $stripTags = true): string
 	{

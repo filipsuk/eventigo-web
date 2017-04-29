@@ -4,7 +4,7 @@ require __DIR__ . '/../vendor/autoload.php';
 
 $configurator = new Nette\Configurator;
 
-if (PHP_SAPI !== "cli") {
+if (PHP_SAPI !== 'cli') {
     $configurator->setDebugMode(in_array(
 		$_SERVER['HTTP_HOST'],
 		['localhost:8000', 'kuba.eventigo.cz', 'filip.eventigo.cz', 'eventigo.local', 'eventigo.local.cz'],

@@ -10,7 +10,7 @@ final class EventTagModel extends AbstractBaseModel
 	const TABLE_NAME = 'events_tags';
 
 	/**
-	 * Returns event's tags joined in string ("#tag1 #tag2 #tag3")
+	 * Returns event's tags joined in string ("#tag1 #tag2 #tag3").
 	 */
 	public function getEventTagsString(int $eventId): string
 	{

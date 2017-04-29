@@ -28,7 +28,7 @@ final class MeetupEventSource extends EventSource
 	}
 
 	/**
-	 * Get upcoming events of the page
+	 * Get upcoming events of the page.
 	 * @return Event[]
 	 */
 	public function getEvents(string $group): array

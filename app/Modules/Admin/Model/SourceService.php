@@ -88,7 +88,7 @@ final class SourceService
 					continue;
 				}
 
-				$addedEvents++;
+				++$addedEvents;
 			}
 		}
 

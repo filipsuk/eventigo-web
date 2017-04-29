@@ -14,7 +14,7 @@ final class ExceptionPresenter extends AbstractBasePresenter
 	public $eventModel;
 
 	/**
-	 * Renders html exception from log directory with provided filename
+	 * Renders html exception from log directory with provided filename.
 	 *
 	 * @throws \Nette\Application\AbortException
 	 */

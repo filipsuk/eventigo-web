@@ -61,7 +61,7 @@ final class FacebookEventSource extends AbstractEventSource
 	}
 
 	/**
-	 * Get upcoming events of the page
+	 * Get upcoming events of the page.
 	 * @return Event[]
 	 */
 	public function getEvents(string $pageId): array

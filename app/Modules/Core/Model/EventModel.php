@@ -15,7 +15,7 @@ final class EventModel extends AbstractBaseModel
 	const TABLE_NAME = 'events';
 
 	/**
-	 * Number of events per list
+	 * Number of events per list.
 	 *
 	 * @var int
 	 */
@@ -145,7 +145,7 @@ final class EventModel extends AbstractBaseModel
 	}
 
 	/**
-	 * Find previous event in series with image
+	 * Find previous event in series with image.
 	 */
 	public function findPreviousEvent(int $eventSeriesId): ?IRow
 	{

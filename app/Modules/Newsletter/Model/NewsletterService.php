@@ -127,7 +127,7 @@ final class NewsletterService
 	}
 
 	/**
-	 * Creates new newsletter with content for giver user
+	 * Creates new newsletter with content for giver user.
 	 *
 	 * @return bool|int|\Nette\Database\Table\IRow
 	 * @throws \App\Modules\Newsletter\Model\NoEventsFoundException
@@ -140,7 +140,7 @@ final class NewsletterService
 		 * 1.2 Get texts from NewsletterModel
 		 * 1.3 Get events (grouped)
 		 * 2. Render user's newsletter
-		 * 3. Save user's newsletter with UserNewsletterModel
+		 * 3. Save user's newsletter with UserNewsletterModel.
 		 */
 		$newsletter = $this->buildArrayForTemplate($userId); // TODO handle exception
 		$content = $this->renderNewsletterContent($newsletter);
@@ -151,7 +151,7 @@ final class NewsletterService
 	}
 
 	/**
-	 * Build array with newsletter text and events for render in template
+	 * Build array with newsletter text and events for render in template.
 	 *
 	 * @throws \App\Modules\Newsletter\Model\NoEventsFoundException
 	 * @return mixed[]
@@ -211,7 +211,7 @@ final class NewsletterService
 
 	/**
 	 * Inline CSS styles of intro and outro text in newsletter
-	 * TODO: Move this to admin when saving new newsletter
+	 * TODO: Move this to admin when saving new newsletter.
 	 *
 	 * @param mixed[] $newsletter
 	 * @return mixed
@@ -275,7 +275,7 @@ final class NewsletterService
 				'name' => $event->name,
 				'date' => $event->start,
 				'hashtags' => $hashtags,
-				'url' => $this->linkGenerator->link("Front:Redirect:", [$event->origin_url])
+				'url' => $this->linkGenerator->link('Front:Redirect:', [$event->origin_url])
 			];
 		}
 
@@ -283,7 +283,7 @@ final class NewsletterService
 	}
 
 	/**
-	 * Render newsletter content from template (same thing as NewsletterPreseneter:dynamic)
+	 * Render newsletter content from template (same thing as NewsletterPreseneter:dynamic).
 	 *
 	 * @param mixed[] $newsletter
 	 */

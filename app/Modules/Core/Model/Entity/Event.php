@@ -180,7 +180,7 @@ final class Event
 		$this->rate = $rate;
 	}
 
-	public static function calculateRateByAttendeesCount(int $count)
+	public function setRateByAttendeesCount(int $count): void
 	{
 		if ($count <= 50) {
 			$this->setRate(1);

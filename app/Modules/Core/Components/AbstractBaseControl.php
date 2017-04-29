@@ -10,7 +10,7 @@ use Nette\Utils\DateTime as NetteDateTime;
 
 abstract class AbstractBaseControl extends Control
 {
-    /**
+	/**
 	 * @var \Kdyby\Translation\Translator
 	 */
 	protected $translator;
@@ -27,7 +27,7 @@ abstract class AbstractBaseControl extends Control
 
     protected function createTemplate(): Template
     {
-        /** @var Template $template */
+		/** @var Template $template */
 		$template = parent::createTemplate();
 
         if ($file = $this->getTemplateDefaultFile()) {

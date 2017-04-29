@@ -23,7 +23,7 @@ final class UserTagModel extends AbstractBaseModel
 	}
 
 	/**
-	 * Get ids of user's subscribed tags
+	 * Get ids of user's subscribed tags.
 	 *
 	 * @return mixed[]
 	 */
