@@ -32,12 +32,10 @@ final class SourceForm extends AbstractBaseControl
 	 */
 	public $organiserService;
 
-
 	public function render(): void
 	{
 		$this['form']->render();
 	}
-
 
 	public function processForm(Form $form): void
 	{
@@ -66,7 +64,6 @@ final class SourceForm extends AbstractBaseControl
 			$this->onUpdate($source);
 		}
 	}
-
 
 	protected function createComponentForm(): Form
 	{

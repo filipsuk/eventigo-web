@@ -29,12 +29,10 @@ final class FacebookEventSource extends AbstractEventSource
 	 */
 	public $facebook;
 
-
 	public function __construct(Facebook $facebook)
 	{
 		$this->facebook = $facebook;
 	}
-
 
 	public function getEventById(string $id): Event
 	{
@@ -61,7 +59,6 @@ final class FacebookEventSource extends AbstractEventSource
 			throw $e;
 		}
 	}
-
 
 	/**
 	 * Get upcoming events of the page

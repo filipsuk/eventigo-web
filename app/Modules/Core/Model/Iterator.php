@@ -17,7 +17,6 @@ class Iterator implements PhpIterator
 	 */
 	protected $data;
 
-
 	/**
 	 * @param IRow[] $data
 	 */
@@ -26,12 +25,10 @@ class Iterator implements PhpIterator
 		$this->data = array_values($data);
 	}
 
-
 	public function current(): ?IRow
 	{
 		return $this->valid() ? $this->data[$this->index] : NULL;
 	}
-
 
 	public function next(): ?IRow
 	{
@@ -40,18 +37,15 @@ class Iterator implements PhpIterator
 		return $this->current();
 	}
 
-
 	public function key(): int
 	{
 		return $this->index;
 	}
 
-
 	public function valid(): bool
 	{
 		return array_key_exists($this->index, $this->data);
 	}
-
 
 	public function rewind(): void
 	{

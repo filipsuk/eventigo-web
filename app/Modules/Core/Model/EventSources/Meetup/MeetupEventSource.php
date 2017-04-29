@@ -22,12 +22,10 @@ final class MeetupEventSource extends EventSource
 	 */
 	private $apiKey;
 
-
 	public function setApiKey(string $apiKey): void
 	{
 		$this->apiKey = $apiKey;
 	}
-
 
 	/**
 	 * Get upcoming events of the page

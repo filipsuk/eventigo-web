@@ -31,14 +31,12 @@ final class SignIn extends AbstractBaseControl
 	 */
 	private $emailService;
 
-
 	public function __construct(Translator $translator, UserModel $userModel, EmailService $emailService)
 	{
 		parent::__construct($translator);
 		$this->userModel = $userModel;
 		$this->emailService = $emailService;
 	}
-
 
 	public function processForm(Form $form, ArrayHash $values): void
 	{
@@ -51,7 +49,6 @@ final class SignIn extends AbstractBaseControl
 		$this->emailService->sendLogin($values->email, $user->token);
 		$this->onSuccess($values->email);
 	}
-
 
 	protected function createComponentForm(): Form
 	{

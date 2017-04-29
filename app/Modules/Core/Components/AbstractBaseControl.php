@@ -15,18 +15,15 @@ abstract class AbstractBaseControl extends Control
 	 */
 	protected $translator;
 
-
     public function __construct(Translator $translator)
     {
         $this->translator = $translator;
     }
 
-
     public function render(): void
     {
         $this->template->render();
     }
-
 
     protected function createTemplate(): Template
     {
@@ -45,7 +42,6 @@ abstract class AbstractBaseControl extends Control
 
         return $template;
     }
-
 
 	/**
 	 * Derives template path from class name.

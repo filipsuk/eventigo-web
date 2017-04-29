@@ -45,7 +45,6 @@ final class EventModel extends AbstractBaseModel
 		self::STATE_SKIP,
 	];
 
-
 	/**
 	 * @return EventTag[]
 	 */
@@ -74,7 +73,6 @@ final class EventModel extends AbstractBaseModel
 
 		return $rates;
 	}
-
 
 	/**
 	 * @param int[] $tagsIds
@@ -128,7 +126,6 @@ final class EventModel extends AbstractBaseModel
 			->fetchPairs('id');
 	}
 
-
 	/**
 	 * @return bool|mixed|\Nette\Database\Table\IRow
 	 */
@@ -146,7 +143,6 @@ final class EventModel extends AbstractBaseModel
 				'//www.', str_replace('//www.', '//', $urlSlash)
 			)->fetch();
 	}
-
 
 	/**
 	 * Find previous event in series with image

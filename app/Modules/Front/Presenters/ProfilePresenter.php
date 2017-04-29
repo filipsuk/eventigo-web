@@ -58,7 +58,6 @@ final class ProfilePresenter extends AbstractBasePresenter
 		}
 	}
 
-
 	public function renderSettings(): void
 	{
 		$this->template->userData = $this->userModel->getAll()
@@ -81,7 +80,6 @@ final class ProfilePresenter extends AbstractBasePresenter
 		}
 	}
 
-
 	protected function createComponentTags(): Tags
 	{
 		$control = $this->tagsFactory->create();
@@ -93,7 +91,6 @@ final class ProfilePresenter extends AbstractBasePresenter
 
 		return $control;
 	}
-
 
 	protected function createComponentSettings(): Settings
 	{

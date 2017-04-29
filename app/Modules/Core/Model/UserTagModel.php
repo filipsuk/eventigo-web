@@ -9,7 +9,6 @@ final class UserTagModel extends AbstractBaseModel
 	 */
 	const TABLE_NAME = 'users_tags';
 
-
 	/**
 	 * @return mixed[]
 	 */

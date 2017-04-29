@@ -25,7 +25,6 @@ final class SourcesTable extends AbstractDataTable
 	 */
 	private $sourceService;
 
-
 	public function __construct(
 		Translator $translator,
 		Selection $dataSource,
@@ -36,7 +35,6 @@ final class SourcesTable extends AbstractDataTable
 		$this->sourceModel = $sourceModel;
 		$this->sourceService = $sourceService;
 	}
-
 
 	/**
 	 * @return array|\Nette\Database\Table\IRow[]|Selection
@@ -49,7 +47,6 @@ final class SourcesTable extends AbstractDataTable
 			->order('name ASC')
 			->fetchAll();
 	}
-
 
 	/**
 	 * @return mixed[]
@@ -96,7 +93,6 @@ final class SourcesTable extends AbstractDataTable
 
 		return $json;
 	}
-
 
 	public function handleCrawl(int $sourceId): void
 	{

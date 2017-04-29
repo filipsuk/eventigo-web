@@ -19,13 +19,11 @@ final class NotApprovedEventsTable extends AbstractDataTable
 	 */
 	private $eventModel;
 
-
 	public function __construct(Translator $translator, Selection $dataSource, EventModel $eventModel)
 	{
 		parent::__construct($translator, $dataSource);
 		$this->eventModel = $eventModel;
 	}
-
 
 	/**
 	 * @return array|IRow[]|Selection
@@ -106,7 +104,6 @@ final class NotApprovedEventsTable extends AbstractDataTable
 		return $json;
 	}
 
-
 	public function handleSkip(int $eventId): void
 	{
 		$event = $this->eventModel->getAll()->wherePrimary($eventId)->fetch();
@@ -119,7 +116,6 @@ final class NotApprovedEventsTable extends AbstractDataTable
 
 		$this->getPresenter()->redirect('this');
 	}
-
 
 	public function renderJs(): void
 	{

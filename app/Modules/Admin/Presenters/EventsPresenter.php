@@ -34,7 +34,6 @@ final class EventsPresenter extends AbstractBasePresenter
 	 */
 	public $notApprovedEventsTableFactory;
 
-
 	public function actionUpdate(int $id): void
 	{
 		$event = $this->eventModel->getAll()
@@ -69,12 +68,10 @@ final class EventsPresenter extends AbstractBasePresenter
 		$this['eventForm-form']->setDefaults($defaults);
 	}
 
-
 	public function renderUpdate(): void
 	{
 		$this->template->setFile(__DIR__ . '/templates/Events/create.latte');
 	}
-
 
 	public function handleCrawlSources(): void
 	{
@@ -90,12 +87,10 @@ final class EventsPresenter extends AbstractBasePresenter
 		$this->redirect('this');
 	}
 
-
 	public function actionApprove(int $id): void
 	{
 		$this->forward('update', $id);
 	}
-
 
 	protected function createComponentEventForm(): EventForm
 	{
@@ -113,7 +108,6 @@ final class EventsPresenter extends AbstractBasePresenter
 
 		return $control;
 	}
-
 
 	protected function createComponentNotApprovedEventsTable(): NotApprovedEventsTable
 	{

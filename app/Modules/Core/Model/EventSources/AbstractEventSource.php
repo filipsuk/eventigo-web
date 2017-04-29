@@ -20,7 +20,6 @@ abstract class AbstractEventSource
 		}
 	}
 
-
 	/**
 	 * @return Event[]
 	 */

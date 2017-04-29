@@ -52,7 +52,6 @@ final class HomepagePresenter extends AbstractBasePresenter
 	 */
 	public $emailService;
 
-
 	/**
 	 * @param string[] $tags
 	 * @param null $token User token for login
@@ -90,7 +89,6 @@ final class HomepagePresenter extends AbstractBasePresenter
 		$this['subscriptionTags']['form']->setDefaults(['tags' => $tags ?? []]);
 	}
 
-
 	public function renderDiscover(): void
 	{
 		$section = $this->getSession('discover');
@@ -110,7 +108,6 @@ final class HomepagePresenter extends AbstractBasePresenter
 
 		$this['subscriptionTags']['form']->setDefaults(['tags' => $tags]);
 	}
-
 
 	public function handleFollowTag(string $tagCode): void
 	{
@@ -136,7 +133,6 @@ final class HomepagePresenter extends AbstractBasePresenter
 		$this['eventsList']->redrawControl();
 	}
 
-
 	public function handleUnfollowTag(string $tagCode): void
 	{
 		$tag = $this->tagModel->getAll()->where(['code' => $tagCode]);
@@ -161,7 +157,6 @@ final class HomepagePresenter extends AbstractBasePresenter
 
 		$this['eventsList']->redrawControl();
 	}
-
 
 	protected function createComponentSubscriptionTags(): SubscriptionTags
 	{
@@ -210,7 +205,6 @@ final class HomepagePresenter extends AbstractBasePresenter
 		return $control;
 	}
 
-
 	protected function createComponentEventsList(): EventsList
 	{
 		if (! $this->user->getId() || $this->getAction() !== 'default') {
@@ -237,7 +231,6 @@ final class HomepagePresenter extends AbstractBasePresenter
 
 		return $this->eventsListFactory->create($events);
 	}
-
 
 	protected function createComponentFbLogin(): LoginDialog
 	{
@@ -293,7 +286,6 @@ final class HomepagePresenter extends AbstractBasePresenter
 
 		return $dialog;
 	}
-
 
 	protected function createComponentSignIn(): SignIn
 	{

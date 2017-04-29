@@ -37,7 +37,6 @@ final class SourceService
 	 */
 	public $eventModel;
 
-
 	public function crawlSources(): int
 	{
 		$addedEvents = 0;
@@ -50,7 +49,6 @@ final class SourceService
 
 		return $addedEvents;
 	}
-
 
 	public function crawlSource(IRow $source): int
 	{

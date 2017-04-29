@@ -31,14 +31,12 @@ abstract class AbstractBasePresenter extends CoreAbstractBasePresenter
 	 */
 	protected $lastAccess;
 
-
 	protected function startup(): void
 	{
 		parent::startup();
 
 		$this->updateAccess();
 	}
-
 
 	private function updateAccess(): void
 	{
@@ -74,7 +72,6 @@ abstract class AbstractBasePresenter extends CoreAbstractBasePresenter
 			$access->lastInDb = clone $now;
 		}
 	}
-
 
 	private function shouldSyncToDb(
 		?NetteDateTime $sessionLastInDb = null, ?NetteDateTime $lastInDb = null, string $syncToDb

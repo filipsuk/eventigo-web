@@ -39,7 +39,6 @@ final class EventForm extends AbstractBaseControl
 	 */
 	private $organiserService;
 
-
 	public function __construct(
 		Translator $translator,
 		TagModel $tagModel,
@@ -52,12 +51,10 @@ final class EventForm extends AbstractBaseControl
 		$this->organiserService = $organiserService;
 	}
 
-
 	public function render(): void
 	{
 		$this['form']->render();
 	}
-
 
 	public function processForm(Form $form): void
 	{
@@ -104,7 +101,6 @@ final class EventForm extends AbstractBaseControl
 			$this->onUpdate();
 		}
 	}
-
 
 	protected function createComponentForm(): Form
 	{
@@ -175,7 +171,6 @@ final class EventForm extends AbstractBaseControl
 		return $form;
 	}
 
-
 	/**
 	 * @return string[]
 	 */
@@ -189,7 +184,6 @@ final class EventForm extends AbstractBaseControl
 			$this->translator->translate('admin.eventForm.rate.extraConference'),
 		];
 	}
-
 
 	/**
 	 * @return string[]

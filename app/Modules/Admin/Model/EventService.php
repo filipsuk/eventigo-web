@@ -39,7 +39,6 @@ final class EventService
 	 */
 	private $facebookEventSource;
 
-
 	public function __construct(
 		EventModel $eventModel,
 		TagModel $tagModel,
@@ -51,7 +50,6 @@ final class EventService
 		$this->eventTagModel = $eventTagModel;
 		$this->facebookEventSource = $facebookEventSource;
 	}
-
 
 	public function createEvent(ArrayHash $values): void
 	{
@@ -73,7 +71,6 @@ final class EventService
 
 		$this->addTags($values->tags, (int) $event->id);
 	}
-
 
 	public function updateEvent(ArrayHash $values): void
 	{
@@ -118,7 +115,6 @@ final class EventService
 		}
 		throw new InvalidArgumentException('Invalid platform');
 	}
-
 
 	private function addTags(ArrayHash $tags, int $eventId): void
 	{

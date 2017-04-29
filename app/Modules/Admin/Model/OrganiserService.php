@@ -18,7 +18,6 @@ final class OrganiserService
 	 */
 	public $eventSeriesModel;
 
-
 	/**
 	 * @return array|\Nette\Database\Table\IRow[]
 	 */
@@ -30,7 +29,6 @@ final class OrganiserService
 			->select(':events_series.id AS seriesId')
 			->fetchAll();
 	}
-
 
 	/**
 	 * @param array|\Nette\Database\Table\IRow[] $series
@@ -49,7 +47,6 @@ final class OrganiserService
 
 		return $result;
 	}
-
 
 	public function createOrganiser(string $name, string $url): IRow
 	{

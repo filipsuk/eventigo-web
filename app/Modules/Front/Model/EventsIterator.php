@@ -27,7 +27,6 @@ final class EventsIterator extends Iterator implements Countable
 	 */
 	private $upcoming = FALSE;
 
-
 	public function drawThisWeekTitle(): bool
 	{
 		if (! $this->thisWeek && $this->current()->thisWeek) {
@@ -37,7 +36,6 @@ final class EventsIterator extends Iterator implements Countable
 		return FALSE;
 	}
 
-
 	public function drawThisMonthTitle(): bool
 	{
 		if (! $this->thisMonth && $this->current()->thisMonth && ! $this->current()->thisWeek) {
@@ -46,7 +44,6 @@ final class EventsIterator extends Iterator implements Countable
 
 		return FALSE;
 	}
-
 
 	public function drawNextMonthTitle(): bool
 	{
@@ -59,7 +56,6 @@ final class EventsIterator extends Iterator implements Countable
 		return FALSE;
 	}
 
-
 	public function drawUpcomingTitle(): bool
 	{
 		if (! $this->upcoming && ! $this->current()->thisWeek
@@ -70,7 +66,6 @@ final class EventsIterator extends Iterator implements Countable
 
 		return FALSE;
 	}
-
 
 	public function count(): int
 	{

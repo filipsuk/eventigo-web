@@ -36,7 +36,6 @@ final class EmailService
 	 */
 	public $sendGrid;
 
-
 	public function sendLogin(string $emailTo, string $token): void
 	{
 		$to = new Email(null, $emailTo);
@@ -55,7 +54,6 @@ final class EmailService
 			// TODO log unsuccessful email send
 		}
 	}
-
 
 	public function renderLoginEmail(string $token): string
 	{

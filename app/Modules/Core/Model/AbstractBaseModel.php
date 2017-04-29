@@ -18,18 +18,15 @@ abstract class AbstractBaseModel
 	 */
 	protected $database;
 
-
 	public function __construct(Context $database)
 	{
 		$this->database = $database;
 	}
 
-
 	public function getAll(): Selection
 	{
 		return $this->database->table($this::TABLE_NAME);
 	}
-
 
 	/**
 	 * Inserts row in a table.
@@ -42,7 +39,6 @@ abstract class AbstractBaseModel
 			->insert($data);
 	}
 
-
 	/**
 	 * Updates all rows in result set.
 	 * Joins in UPDATE are supported only in MySQL
@@ -54,7 +50,6 @@ abstract class AbstractBaseModel
 		return $this->getAll()
 			->update($data);
 	}
-
 
 	/**
 	 * @param mixed[] $data

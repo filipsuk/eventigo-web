@@ -19,7 +19,6 @@ final class Filters
         self::$translator = $translator;
     }
 
-
 	/**
 	 * @return mixed|void
 	 */
@@ -29,7 +28,6 @@ final class Filters
 	        return call_user_func_array(__CLASS__ . '::' . $helper, array_slice(func_get_args(), 1));
 	    }
 	}
-
 
     public static function datetime(DateTime $a, ?DateTime $b = null): string
     {

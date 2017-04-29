@@ -58,7 +58,6 @@ final class UserModel extends AbstractBaseModel
 
 	}
 
-
 	public function emailExists(string $email): bool
 	{
 		return (bool) $this->getUserByEmail($email);
@@ -73,7 +72,6 @@ final class UserModel extends AbstractBaseModel
 		return $user ?? null;
 	}
 
-
 	/**
 	 * Hash the password
 	 */
@@ -81,7 +79,6 @@ final class UserModel extends AbstractBaseModel
 	{
 		return Passwords::hash($password);
 	}
-
 
 	public function generateToken(): string
 	{
@@ -92,7 +89,6 @@ final class UserModel extends AbstractBaseModel
 		return $token;
 	}
 
-
 	/**
 	 * @return bool|IRow
 	 */
@@ -100,7 +96,6 @@ final class UserModel extends AbstractBaseModel
 	{
 		return $this->getAll()->where('facebook_id', $facebookId)->fetch();
 	}
-
 
 	public function signInViaFacebook(ArrayHash $me): IRow
 	{
@@ -118,7 +113,6 @@ final class UserModel extends AbstractBaseModel
 			'token' => $this->generateToken(),
 		]);
 	}
-
 
 	public function updateFacebook(ArrayHash $me, string $token): IRow
 	{

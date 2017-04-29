@@ -41,7 +41,6 @@ final class SubscriptionTags extends Subscription
 	 */
 	private $tagGroupModel;
 
-
 	public function __construct(
 		Translator $translator,
 		UserModel $userModel,
@@ -56,7 +55,6 @@ final class SubscriptionTags extends Subscription
 		$this->tags = $this->tagModel->getByMostEvents();
 	}
 
-
 	public function render(): void
 	{
 		$this->template->tags = $this->tags->fetchPairs('code');
@@ -65,7 +63,6 @@ final class SubscriptionTags extends Subscription
 			->fetchPairs('name', 'icon');
 		parent::render();
 	}
-
 
 	/**
 	 * @throws EmailExistsException
@@ -101,7 +98,6 @@ final class SubscriptionTags extends Subscription
 			$this->onChange();
 		}
 	}
-
 
 	protected function createComponentForm(): Form
 	{

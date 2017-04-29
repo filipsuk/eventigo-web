@@ -26,7 +26,6 @@ final class UserNewsletterModel extends AbstractBaseModel
 		]);
 	}
 
-
 	public function generateUniqueHash(): string
 	{
 		do {

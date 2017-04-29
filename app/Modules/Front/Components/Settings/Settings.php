@@ -25,7 +25,6 @@ final class Settings extends AbstractBaseControl
 	 */
 	private $userModel;
 
-
 	public function __construct(Translator $translator, UserModel $userModel, User $user)
 	{
 		parent::__construct($translator);
@@ -33,12 +32,10 @@ final class Settings extends AbstractBaseControl
 		$this->userModel = $userModel;
 	}
 
-
 	public function render(): void
 	{
 		$this['form']->render();
 	}
-
 
 	public function processForm(Form $form): void
 	{
@@ -50,7 +47,6 @@ final class Settings extends AbstractBaseControl
 
 		$this->onChange();
 	}
-
 
 	protected function createComponentForm(): Form
 	{

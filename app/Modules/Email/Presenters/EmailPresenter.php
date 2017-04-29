@@ -32,7 +32,6 @@ final class EmailPresenter extends AbstractBasePresenter
 	 */
 	public $emailService;
 
-
 	/**
 	 * Renders login email with provided user token.
 	 *

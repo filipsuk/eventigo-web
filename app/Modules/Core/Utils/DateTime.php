@@ -48,7 +48,6 @@ final class DateTime
 	 */
 	public static $translator;
 
-
 	/**
 	 * Get maximum of given datetimes
 	 *

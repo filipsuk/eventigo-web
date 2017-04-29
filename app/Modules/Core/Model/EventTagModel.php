@@ -21,5 +21,4 @@ final class EventTagModel extends AbstractBaseModel
 
 		return $hashtags;
 	}
-
 }

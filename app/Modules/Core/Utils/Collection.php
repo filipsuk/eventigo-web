@@ -26,7 +26,6 @@ final class Collection
 	    return $values;
 	}
 
-
 	/**
 	 * @param mixed[] $array
 	 * @return mixed[]

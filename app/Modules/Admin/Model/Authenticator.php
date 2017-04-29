@@ -16,13 +16,10 @@ final class Authenticator implements IAuthenticator
 	 */
 	private $userModel;
 
-
 	public function __construct(UserModel $userModel)
 	{
 		$this->userModel = $userModel;
 	}
-
-
 
 	/**
 	 * @param string[] $credentials
@@ -54,7 +51,6 @@ final class Authenticator implements IAuthenticator
 			);
 		}
 	}
-
 
 	private function logToAdmin(ActiveRow $user, string $password): Identity
 	{

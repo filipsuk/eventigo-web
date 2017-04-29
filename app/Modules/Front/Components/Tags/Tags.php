@@ -46,7 +46,6 @@ final class Tags extends AbstractBaseControl
 	 */
 	private $user;
 
-
 	public function __construct(
 		Translator $translator,
 		TagModel $tagModel,
@@ -62,7 +61,6 @@ final class Tags extends AbstractBaseControl
 		$this->user = $user;
 	}
 
-
 	public function render(): void
 	{
 		$this->template->tags = $this->tags->fetchPairs('code');
@@ -72,7 +70,6 @@ final class Tags extends AbstractBaseControl
 		$this->template->columnsPerRow = 4;
 		parent::render();
 	}
-
 
 	public function processForm(Form $form): void
 	{
@@ -110,7 +107,6 @@ final class Tags extends AbstractBaseControl
 
 		$this->onChange();
 	}
-
 
 	protected function createComponentForm(): Form
 	{

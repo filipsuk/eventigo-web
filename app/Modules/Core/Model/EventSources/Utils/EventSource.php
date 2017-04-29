@@ -18,7 +18,6 @@ class EventSource
 		'www.meetup.com',
 	];
 
-
 	public static function isCrawlable(string $url): bool
 	{
 		try {

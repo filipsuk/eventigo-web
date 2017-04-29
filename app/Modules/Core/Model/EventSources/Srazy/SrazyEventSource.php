@@ -17,7 +17,6 @@ final class SrazyEventSource extends EventSource
 		'www.srazy.info',
 	];
 
-
 	/**
 	 * Get upcoming events of the page
 	 * @return Event[]

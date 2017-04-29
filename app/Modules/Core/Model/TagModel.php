@@ -11,7 +11,6 @@ final class TagModel extends AbstractBaseModel
 	 */
 	const TABLE_NAME = 'tags';
 
-
 	/**
 	 * Get tags with the most upcoming events
 	 */
@@ -30,7 +29,6 @@ final class TagModel extends AbstractBaseModel
 			->order('eventsCount DESC')
 			->order('tags.name');
 	}
-
 
 	/**
 	 * Get tags with the most upcoming events and all others

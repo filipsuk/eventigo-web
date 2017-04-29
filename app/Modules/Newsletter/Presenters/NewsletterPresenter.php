@@ -31,7 +31,6 @@ final class NewsletterPresenter extends AbstractBasePresenter
 	 */
 	private $userNewsletter;
 
-
 	public function actionDefault(string $hash): void
 	{
 		$this->userNewsletter = $this->userNewsletterModel->getAll()->where([
@@ -43,13 +42,11 @@ final class NewsletterPresenter extends AbstractBasePresenter
 		}
 	}
 
-
 	public function renderDefault(): void
 	{
 		$newsletter = $this->userNewsletter;
 		$this->template->userNewsletter = NewsletterService::inlineCss($newsletter->toArray());
 	}
-
 
 	public function actionUnsubscribe(string $hash): void
 	{
@@ -76,5 +73,4 @@ final class NewsletterPresenter extends AbstractBasePresenter
 		$newsletter = $this->newsletterService->buildArrayForTemplate((int) $userId);
 		$this->template->newsletter = NewsletterService::inlineCss($newsletter);
 	}
-
 }

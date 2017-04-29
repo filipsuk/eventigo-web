@@ -26,7 +26,6 @@ final class SignPresenter extends Presenter
 	 */
 	public $translator;
 
-
 	public function actionOut(): void
 	{
 		if (! $this->getUser()->isLoggedIn()) {

@@ -19,7 +19,6 @@ final class RedirectPresenter extends AbstractBasePresenter
 	 */
 	public $eventRedirectModel;
 
-
 	public function renderDefault(string $url): void
 	{
 		// Find event with same url

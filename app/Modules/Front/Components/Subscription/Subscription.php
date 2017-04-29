@@ -26,13 +26,11 @@ class Subscription extends AbstractBaseControl
 	 */
 	private $userModel;
 
-
 	public function __construct(Translator $translator, UserModel $userModel)
 	{
 		parent::__construct($translator);
 		$this->userModel = $userModel;
 	}
-
 
 	/**
 	 * @throws EmailExistsException
@@ -43,7 +41,6 @@ class Subscription extends AbstractBaseControl
 		$user = $this->subscribe($values->email);
 		$this->onSuccess($user->email);
 	}
-
 
 	protected function createComponentForm(): Form
 	{
@@ -62,7 +59,6 @@ class Subscription extends AbstractBaseControl
 
 		return $form;
 	}
-
 
 	/**
 	 * @throws EmailExistsException

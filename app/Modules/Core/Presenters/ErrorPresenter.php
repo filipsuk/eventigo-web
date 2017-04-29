@@ -15,12 +15,10 @@ class ErrorPresenter implements IPresenter
 	 */
 	private $logger;
 
-
 	public function __construct(ILogger $logger)
 	{
 		$this->logger = $logger;
 	}
-
 
 	public function run(Request $request): IResponse
 	{
@@ -38,5 +36,4 @@ class ErrorPresenter implements IPresenter
 			require __DIR__ . '/templates/Error/500.phtml';
 		});
 	}
-
 }

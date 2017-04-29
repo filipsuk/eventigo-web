@@ -19,7 +19,6 @@ abstract class AbstractDataTable extends AbstractBaseControl
 	 */
 	protected $dataSource;
 
-
 	public function __construct(Translator $translator, Selection $dataSource)
 	{
 		parent::__construct($translator);
@@ -31,13 +30,11 @@ abstract class AbstractDataTable extends AbstractBaseControl
 	 */
 	abstract public function generateJson(): array;
 
-
 	public function handleJson(): void
 	{
 		$json = $this->generateJson();
 		$this->presenter->sendResponse(new JsonResponse($json));
 	}
-
 
 	public function getLang(): string
 	{

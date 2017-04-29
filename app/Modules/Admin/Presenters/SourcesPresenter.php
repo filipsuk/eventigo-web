@@ -34,7 +34,6 @@ final class SourcesPresenter extends AbstractBasePresenter
 	 */
 	public $sourceService;
 
-
 	public function actionCreate(): void
 	{
 		$defaults = [
@@ -44,7 +43,6 @@ final class SourcesPresenter extends AbstractBasePresenter
 		];
 		$this['sourceForm-form']->setDefaults($defaults);
 	}
-
 
 	protected function createComponentSourceForm(): SourceForm
 	{
@@ -72,7 +70,6 @@ final class SourcesPresenter extends AbstractBasePresenter
 
 		return $control;
 	}
-
 
 	protected function createComponentSourcesTable(): SourcesTable
 	{
