@@ -13,16 +13,24 @@ use Nette\Utils\DateTime;
 
 class EventsPresenter extends BasePresenter
 {
-	/** @var EventFormFactory @inject */
+	/**
+	 * @var EventFormFactory @inject
+	 */
 	public $eventFormFactory;
 
-	/** @var EventModel @inject */
+	/**
+	 * @var EventModel @inject
+	 */
 	public $eventModel;
 
-	/** @var SourceService @inject */
+	/**
+	 * @var SourceService @inject
+	 */
 	public $sourceService;
 
-	/** @var NotApprovedEventsTableFactory @inject */
+	/**
+	 * @var NotApprovedEventsTableFactory @inject
+	 */
 	public $notApprovedEventsTableFactory;
 
 

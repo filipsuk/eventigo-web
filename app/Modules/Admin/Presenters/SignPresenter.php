@@ -6,12 +6,16 @@ use App\Modules\Admin\Components\SignIn\SignInFormFactory;
 use Nette\Application\UI\Presenter;
 
 
-class SignPresenter extends Presenter
+final class SignPresenter extends Presenter
 {
-	/** @var \Kdyby\Translation\Translator @inject */
+	/**
+	 * @var \Kdyby\Translation\Translator @inject
+	 */
 	public $translator;
 
-	/** @var SignInFormFactory @inject */
+	/**
+	 * @var SignInFormFactory @inject
+	 */
 	public $signInFormFactory;
 
 

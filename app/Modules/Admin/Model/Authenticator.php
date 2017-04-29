@@ -13,7 +13,9 @@ use Nette\Security\Passwords;
 
 class Authenticator implements IAuthenticator
 {
-	/** @var UserModel */
+	/**
+	 * @var UserModel
+	 */
 	private $userModel;
 
 

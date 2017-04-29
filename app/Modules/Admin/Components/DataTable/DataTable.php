@@ -10,10 +10,14 @@ use Nette\Database\Table\Selection;
 
 abstract class DataTable extends BaseControl
 {
-	/** @var array */
+	/**
+	 * @var array
+	 */
 	protected $data = [];
 
-	/** @var Selection */
+	/**
+	 * @var Selection
+	 */
 	protected $dataSource;
 
 

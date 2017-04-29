@@ -7,28 +7,44 @@ use Nette\Utils\DateTime;
 
 final class Event
 {
-	/** @var int */
+	/**
+	 * @var int
+	 */
 	private $id;
 
-	/** @var string */
+	/**
+	 * @var string
+	 */
 	private $name;
 
-	/** @var string */
+	/**
+	 * @var string
+	 */
 	private $description;
 
-	/** @var string */
+	/**
+	 * @var string
+	 */
 	private $originUrl;
 
-	/** @var DateTime */
+	/**
+	 * @var DateTime
+	 */
 	private $start;
 
-	/** @var DateTime */
+	/**
+	 * @var DateTime
+	 */
 	private $end;
 
-	/** @var string */
+	/**
+	 * @var string
+	 */
 	private $image;
 
-	/** @var int Size of event */
+	/**
+	 * @var int Size of event
+	 */
 	private $rate;
 
 	/** @var DateTime */

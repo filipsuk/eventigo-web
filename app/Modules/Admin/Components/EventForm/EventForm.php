@@ -15,19 +15,29 @@ use Nette\Database\UniqueConstraintViolationException;
 
 class EventForm extends BaseControl
 {
-	/** @var TagModel */
+	/**
+	 * @var TagModel
+	 */
 	private $tagModel;
 
-	/** @var EventService */
+	/**
+	 * @var EventService
+	 */
 	private $eventService;
 
-	/** @var array */
+	/**
+	 * @var array
+	 */
 	public $onCreate = [];
 
-	/** @var array */
+	/**
+	 * @var array
+	 */
 	public $onUpdate = [];
 
-	/** @var OrganiserService */
+	/**
+	 * @var OrganiserService
+	 */
 	private $organiserService;
 
 

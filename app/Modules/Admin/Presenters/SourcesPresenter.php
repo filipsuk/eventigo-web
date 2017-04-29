@@ -12,16 +12,24 @@ use Nette\Utils\DateTime;
 
 class SourcesPresenter extends BasePresenter
 {
-	/** @var SourceFormFactory @inject  */
+	/**
+	 * @var SourceFormFactory @inject
+	 */
 	public $sourceFormFactory;
 
-	/** @var SourcesTableFactory @inject */
+	/**
+	 * @var SourcesTableFactory @inject
+	 */
 	public $sourcesTableFactory;
 
-	/** @var SourceModel @inject */
+	/**
+	 * @var SourceModel @inject
+	 */
 	public $sourceModel;
 
-	/** @var SourceService @inject */
+	/**
+	 * @var SourceService @inject
+	 */
 	public $sourceService;
 
 

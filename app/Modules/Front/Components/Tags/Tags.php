@@ -17,22 +17,34 @@ use Nette\Security\User;
 
 class Tags extends BaseControl
 {
-	/** @var TagModel */
+	/**
+	 * @var TagModel
+	 */
 	private $tagModel;
 
-	/** @var UserTagModel */
+	/**
+	 * @var UserTagModel
+	 */
 	private $userTagModel;
 
-	/** @var array */
+	/**
+	 * @var array
+	 */
 	public $onChange = [];
 
-	/** @var Selection */
+	/**
+	 * @var Selection
+	 */
 	private $tags;
 
-	/** @var TagGroupModel */
+	/**
+	 * @var TagGroupModel
+	 */
 	private $tagGroupModel;
 
-	/** @var User */
+	/**
+	 * @var User
+	 */
 	private $user;
 
 

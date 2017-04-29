@@ -8,7 +8,9 @@ use Nette\Utils\DateTime;
 
 class DashboardPresenter extends BasePresenter
 {
-	/** @var EventModel @inject */
+	/**
+	 * @var EventModel @inject
+	 */
 	public $eventModel;
 
 

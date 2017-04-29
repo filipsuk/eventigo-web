@@ -10,16 +10,24 @@ use Nette\Utils\DateTime;
 use Tracy\Debugger;
 
 
-class FacebookEventSource extends EventSource
+final class FacebookEventSource extends EventSource
 {
+	/**
+	 * @var string
+	 */
 	const EVENT_FIELDS = 'cover,end_time,start_time,name,description,interested_count,attending_count';
 
+	/**
+	 * @var string[]
+	 */
 	const URLS = [
 		'facebook.com',
 		'www.facebook.com',
 	];
 
-	/** @var \Kdyby\Facebook\Facebook*/
+	/**
+	 * @var \Kdyby\Facebook\Facebook
+	 */
 	public $facebook;
 
 

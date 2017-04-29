@@ -10,10 +10,14 @@ use Nette\Security\AuthenticationException;
 
 class SignInForm extends BaseControl
 {
-	/** @var array */
+	/**
+	 * @var array
+	 */
 	public $onLoggedIn = [];
 
-	/** @var array */
+	/**
+	 * @var array
+	 */
 	public $onIncorrectLogIn = [];
 
 

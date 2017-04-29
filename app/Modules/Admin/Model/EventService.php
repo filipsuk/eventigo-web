@@ -13,18 +13,29 @@ use Nette\Utils\DateTime;
 
 final class EventService
 {
-	/** @var EventModel */
+	/**
+	 * @var EventModel
+	 */
 	private $eventModel;
 
-	/** @var TagModel */
+	/**
+	 * @var TagModel
+	 */
 	private $tagModel;
 
-	/** @var EventTagModel */
+	/**
+	 * @var EventTagModel
+	 */
 	private $eventTagModel;
 
-	/** @var FacebookEventSource */
+	/**
+	 * @var FacebookEventSource
+	 */
 	private $facebookEventSource;
 
+	/**
+	 * @var string
+	 */
 	const PLATFORM_FACEBOOK = 'facebook';
 
 

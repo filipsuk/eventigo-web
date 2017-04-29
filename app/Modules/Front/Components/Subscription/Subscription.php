@@ -12,13 +12,19 @@ use Nette\Database\Table\IRow;
 
 class Subscription extends BaseControl
 {
-	/** @var UserModel */
+	/**
+	 * @var UserModel
+	 */
 	private $userModel;
 
-	/** @var array */
+	/**
+	 * @var array
+	 */
 	public $onEmailExists = [];
 
-	/** @var array */
+	/**
+	 * @var array
+	 */
 	public $onSuccess = [];
 
 

@@ -16,22 +16,34 @@ use Nette\Utils\Html;
 
 class HomepagePresenter extends BasePresenter
 {
-	/** @var EventModel @inject */
+	/**
+	 * @var EventModel @inject
+	 */
 	public $eventModel;
 
-	/** @var ISubscriptionTagsFactory @inject */
+	/**
+	 * @var ISubscriptionTagsFactory @inject
+	 */
 	public $subscriptionTags;
 
-	/** @var EventsListFactory @inject */
+	/**
+	 * @var EventsListFactory @inject
+	 */
 	public $eventsListFactory;
 
-	/** @var \Kdyby\Facebook\Facebook @inject */
+	/**
+	 * @var \Kdyby\Facebook\Facebook @inject
+	 */
 	public $facebook;
 
-	/** @var SignInFactory @inject */
+	/**
+	 * @var SignInFactory @inject
+	 */
 	public $signInFactory;
 
-	/** @var EmailService @inject */
+	/**
+	 * @var EmailService @inject
+	 */
 	public $emailService;
 
 

@@ -5,6 +5,9 @@ namespace App\Modules\Core\Model;
 
 class UserTagModel extends BaseModel
 {
+	/**
+	 * @var string
+	 */
 	const TABLE_NAME = 'users_tags';
 
 

@@ -17,19 +17,29 @@ use Nette\Database\Table\Selection;
 
 class SubscriptionTags extends Subscription
 {
-	/** @var TagModel */
+	/**
+	 * @var TagModel
+	 */
 	private $tagModel;
 
-	/** @var UserTagModel */
+	/**
+	 * @var UserTagModel
+	 */
 	private $userTagModel;
 
-	/** @var array */
+	/**
+	 * @var array
+	 */
 	public $onChange = [];
 
-	/** @var Selection */
+	/**
+	 * @var Selection
+	 */
 	private $tags;
 
-	/** @var TagGroupModel */
+	/**
+	 * @var TagGroupModel
+	 */
 	private $tagGroupModel;
 
 

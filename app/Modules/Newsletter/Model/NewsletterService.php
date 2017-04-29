@@ -24,54 +24,92 @@ use Tracy\Debugger;
 
 final class NewsletterService
 {
-	/** @var UserNewsletterModel @inject */
+	/**
+	 * @var UserNewsletterModel @inject
+	 */
 	public $userNewsletterModel;
 
-	/** @var NewsletterModel @inject */
+	/**
+	 * @var NewsletterModel @inject
+	 */
 	public $newsletterModel;
 
-	/** @var UserModel @inject */
+	/**
+	 * @var UserModel @inject
+	 */
 	public $userModel;
 
-	/** @var UserTagModel @inject */
+	/**
+	 * @var UserTagModel @inject
+	 */
 	public $userTagModel;
 
-	/** @var EventModel @inject */
+	/**
+	 * @var EventModel @inject
+	 */
 	public $eventModel;
 
-	/** @var EventTagModel @inject */
+	/**
+	 * @var EventTagModel @inject
+	 */
 	public $eventTagModel;
 
-	/** @var IPresenterFactory @inject */
+	/**
+	 * @var IPresenterFactory @inject
+	 */
 	public $presenterFactory;
 
-	/** @var ITemplateFactory @inject */
+	/**
+	 * @var ITemplateFactory @inject
+	 */
 	public $templateFactory;
 
-	/** @var  Template */
+	/**
+	 * @var  Template
+	 */
 	protected $template;
 
-	/** @var  Presenter */
+	/**
+	 * @var  Presenter
+	 */
 	protected $presenter;
 
-	/** @var  Container @inject */
+	/**
+	 * @var  Container @inject
+	 */
 	public $context;
 
-	/** @var  Translator @inject */
+	/**
+	 * @var  Translator @inject
+	 */
 	public $translator;
 
-	/** @var  LinkGenerator @inject*/
+	/**
+	 * @var  LinkGenerator @inject
+	 */
 	public $linkGenerator;
 
-	/** @var SendGrid @inject*/
+	/**
+	 * @var SendGrid @inject
+	 */
 	public $sendGrid;
 
-	/** Path to css file used for css inline of newsletter texts html */
+	/**
+	 * Path to css file used for css inline of newsletter texts html.
+	 *
+	 * @var string
+	 */
 	const CSS_FILE_PATH = __DIR__ . DIRECTORY_SEPARATOR . '..'
 		. DIRECTORY_SEPARATOR . 'Presenters' . DIRECTORY_SEPARATOR . 'templates'
 		. DIRECTORY_SEPARATOR . 'Newsletter' . DIRECTORY_SEPARATOR . 'build.css';
 
-	const NEWSLETTER_UTM_PARAMETERS = ['utm_source'=>'newsletter', 'utm_medium' => 'email'];
+	/**
+	 * @var string[]
+	 */
+	const NEWSLETTER_UTM_PARAMETERS = [
+		'utm_source' => 'newsletter',
+		'utm_medium' => 'email'
+	];
 
 	public function createDefaultNewsletter(): IRow
 	{

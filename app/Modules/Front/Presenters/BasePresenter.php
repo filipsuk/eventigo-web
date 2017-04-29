@@ -13,16 +13,24 @@ use Nette\Utils\DateTime;
  */
 abstract class BasePresenter extends \App\Modules\Core\Presenters\BasePresenter
 {
-	/** @var UserModel @inject */
+	/**
+	 * @var UserModel @inject
+	 */
 	public $userModel;
 
-	/** @var DateTime */
+	/**
+	 * @var DateTime
+	 */
 	protected $lastAccess;
 
-	/** @var UserTagModel @inject */
+	/**
+	 * @var UserTagModel @inject
+	 */
 	public $userTagModel;
 
-	/** @var TagModel @inject */
+	/**
+	 * @var TagModel @inject
+	 */
 	public $tagModel;
 
 

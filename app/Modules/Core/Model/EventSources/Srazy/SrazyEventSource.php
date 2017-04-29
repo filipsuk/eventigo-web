@@ -8,8 +8,11 @@ use Nette\Utils\DateTime;
 use Webuni\Srazy\Client;
 
 
-class SrazyEventSource extends EventSource
+final class SrazyEventSource extends EventSource
 {
+	/**
+	 * @var string[]
+	 */
 	const URLS = [
 		'srazy.info',
 		'www.srazy.info',

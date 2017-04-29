@@ -15,7 +15,9 @@ use Tracy\ILogger;
  */
 abstract class BasePresenter extends Nette\Application\UI\Presenter
 {
-	/** @var \Kdyby\Translation\Translator @inject */
+	/**
+	 * @var \Kdyby\Translation\Translator @inject
+	 */
 	public $translator;
 
 	protected function createTemplate()

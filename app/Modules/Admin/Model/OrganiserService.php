@@ -9,10 +9,14 @@ use Nette\Database\Table\IRow;
 
 class OrganiserService
 {
-	/** @var OrganiserModel @inject */
+	/**
+	 * @var OrganiserModel @inject
+	 */
 	public $organiserModel;
 
-	/** @var EventSeriesModel @inject */
+	/**
+	 * @var EventSeriesModel @inject
+	 */
 	public $eventSeriesModel;
 
 

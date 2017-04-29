@@ -67,11 +67,11 @@ checkers:
     - PHP_CodeSniffer\Standards\Squiz\Sniffs\WhiteSpace\ScopeKeywordSpacingSniff
     PHP_CodeSniffer\Standards\Squiz\Sniffs\WhiteSpace\SuperfluousWhitespaceSniff:
         ignoreBlankLines: false
-#
-#    # Commenting
-#    - Symplify\CodingStandard\Sniffs\Commenting\BlockPropertyCommentSniff
-#    - Symplify\CodingStandard\Sniffs\Commenting\VarPropertyCommentSniff
-#    - Symplify\CodingStandard\Sniffs\Commenting\VarConstantCommentSniff
+
+    # Commenting
+    - Symplify\CodingStandard\Sniffs\Commenting\BlockPropertyCommentSniff
+    - Symplify\CodingStandard\Sniffs\Commenting\VarPropertyCommentSniff
+    - Symplify\CodingStandard\Sniffs\Commenting\VarConstantCommentSniff
 #
 #    # Debug and dev
 #    - Symplify\CodingStandard\Sniffs\Debug\DebugFunctionCallSniff

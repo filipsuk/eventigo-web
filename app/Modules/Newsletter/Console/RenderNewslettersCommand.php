@@ -12,7 +12,14 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 final class RenderNewslettersCommand extends Command
 {
+	/**
+	 * @var NewsletterService
+	 */
 	private $newsletterService;
+
+	/**
+	 * @var UserModel
+	 */
 	private $userModel;
 
 	public function __construct(NewsletterService $newsletterService, UserModel $userModel)

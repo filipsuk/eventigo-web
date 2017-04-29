@@ -5,10 +5,16 @@ namespace App\Modules\Admin\Model;
 use App\Modules\Core\Model\BaseModel;
 
 
-class SourceModel extends BaseModel
+final class SourceModel extends BaseModel
 {
+	/**
+	 * @var string
+	 */
 	const TABLE_NAME = 'sources';
 
+	/**
+	 * @var int[]
+	 */
 	const FREQUENCY_TYPES = [
 		'daily' => 1,
 		'twiceAWeek' => 3,

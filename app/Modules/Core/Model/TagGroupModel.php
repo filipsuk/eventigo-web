@@ -3,7 +3,10 @@
 namespace App\Modules\Core\Model;
 
 
-class TagGroupModel extends BaseModel
+final class TagGroupModel extends BaseModel
 {
+	/**
+	 * @var string
+	 */
 	const TABLE_NAME = 'tags_groups';
 }

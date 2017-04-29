@@ -11,7 +11,14 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 final class SendNewslettersCommand extends Command
 {
+	/**
+	 * @var NewsletterService
+	 */
 	private $newsletterService;
+
+	/**
+	 * @var UserNewsletterModel
+	 */
 	private $userNewsletterModel;
 
 	public function __construct(NewsletterService $newsletterService, UserNewsletterModel $userNewsletterModel)

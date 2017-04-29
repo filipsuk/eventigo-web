@@ -8,13 +8,19 @@ use DMS\Service\Meetup\MeetupKeyAuthClient;
 use Nette\Utils\DateTime;
 
 
-class MeetupEventSource extends EventSource
+final class MeetupEventSource extends EventSource
 {
+	/**
+	 * @var string[]
+	 */
 	const URLS = [
 		'meetup.com',
 		'www.meetup.com',
 	];
 
+	/**
+	 * @var string
+	 */
 	private $apiKey;
 
 

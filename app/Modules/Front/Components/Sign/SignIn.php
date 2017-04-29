@@ -12,16 +12,24 @@ use Nette\Utils\ArrayHash;
 
 class SignIn extends BaseControl
 {
-	/** @var array */
+	/**
+	 * @var array
+	 */
 	public $onSuccess = [];
 
-	/** @var array */
+	/**
+	 * @var array
+	 */
 	public $onNonExists = [];
 
-	/** @var UserModel */
+	/**
+	 * @var UserModel
+	 */
 	private $userModel;
 
-	/** @var EmailService */
+	/**
+	 * @var EmailService
+	 */
 	private $emailService;
 
 

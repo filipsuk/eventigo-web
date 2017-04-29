@@ -13,19 +13,29 @@ use Nette\Http\Url;
 
 class SourceService
 {
-	/** @var SourceModel @inject */
+	/**
+	 * @var SourceModel @inject
+	 */
 	public $sourceModel;
 
-	/** @var FacebookEventSource @inject */
+	/**
+	 * @var FacebookEventSource @inject
+	 */
 	public $fbSource;
 
-	/** @var SrazyEventSource @inject */
+	/**
+	 * @var SrazyEventSource @inject
+	 */
 	public $srazySource;
 
-	/** @var MeetupEventSource @inject */
+	/**
+	 * @var MeetupEventSource @inject
+	 */
 	public $meetupSource;
 
-	/** @var EventModel @inject */
+	/**
+	 * @var EventModel @inject
+	 */
 	public $eventModel;
 
 

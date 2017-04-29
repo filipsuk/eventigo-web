@@ -9,10 +9,14 @@ use Nette\Http\Url;
 
 class RedirectPresenter extends \App\Modules\Core\Presenters\BasePresenter
 {
-	/** @var EventModel @inject */
+	/**
+	 * @var EventModel @inject
+	 */
 	public $eventModel;
 
-	/** @var EventRedirectModel @inject */
+	/**
+	 * @var EventRedirectModel @inject
+	 */
 	public $eventRedirectModel;
 
 

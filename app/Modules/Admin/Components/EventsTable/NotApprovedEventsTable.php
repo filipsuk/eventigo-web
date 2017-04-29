@@ -3,7 +3,6 @@
 namespace App\Modules\Admin\Components\EventsTable;
 
 use App\Modules\Admin\Components\DataTable\DataTable;
-use App\Modules\Admin\Model\SourceModel;
 use App\Modules\Core\Model\EventModel;
 use App\Modules\Core\Model\EventSources\Facebook\FacebookEventSource;
 use Kdyby\Translation\Translator;
@@ -15,7 +14,9 @@ use Nette\Utils\Html;
 
 final class NotApprovedEventsTable extends DataTable
 {
-	/** @var EventModel */
+	/**
+	 * @var EventModel
+	 */
 	private $eventModel;
 
 
@@ -26,9 +27,9 @@ final class NotApprovedEventsTable extends DataTable
 	}
 
 
-    /**
-     * @return array|IRow[]|Selection
-     */
+	/**
+	 * @return array|IRow[]|Selection
+	 */
 	public function getData()
 	{
 		return $this->dataSource

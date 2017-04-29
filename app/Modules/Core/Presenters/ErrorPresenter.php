@@ -11,7 +11,9 @@ use Tracy\ILogger;
 
 class ErrorPresenter implements IPresenter
 {
-	/** @var ILogger */
+	/**
+	 * @var ILogger
+	 */
 	private $logger;
 
 

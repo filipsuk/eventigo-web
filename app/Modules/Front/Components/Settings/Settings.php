@@ -11,13 +11,19 @@ use Nette\Security\User;
 
 class Settings extends BaseControl
 {
-	/** @var array */
+	/**
+	 * @var array
+	 */
 	public $onChange = [];
 
-	/** @var User */
+	/**
+	 * @var User
+	 */
 	private $user;
 
-	/** @var UserModel */
+	/**
+	 * @var UserModel
+	 */
 	private $userModel;
 
 

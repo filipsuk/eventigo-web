@@ -10,6 +10,9 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 final class CreateNewsletterCommand extends Command
 {
+	/**
+	 * @var NewsletterService
+	 */
 	private $newsletterService;
 
 	public function __construct(NewsletterService $newsletterService)

@@ -15,10 +15,14 @@ use Nette\Utils\Html;
 
 class SourcesTable extends DataTable
 {
-	/** @var SourceModel */
+	/**
+	 * @var SourceModel
+	 */
 	private $sourceModel;
 
-	/** @var SourceService */
+	/**
+	 * @var SourceService
+	 */
 	private $sourceService;
 
 

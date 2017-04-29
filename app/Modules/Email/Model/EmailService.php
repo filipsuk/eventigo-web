@@ -18,16 +18,24 @@ use Throwable;
 
 final class EmailService
 {
-	/** @var Translator @inject */
+	/**
+	 * @var Translator @inject
+	 */
 	public $translator;
 
-	/** @var LinkGenerator @inject */
+	/**
+	 * @var LinkGenerator @inject
+	 */
 	public $linkGenerator;
 
-	/** @var ITemplateFactory @inject */
+	/**
+	 * @var ITemplateFactory @inject
+	 */
 	public $templateFactory;
 
-	/** @var SendGrid @inject */
+	/**
+	 * @var SendGrid @inject
+	 */
 	public $sendGrid;
 
 

@@ -8,6 +8,9 @@ use Nette\Utils\Random;
 
 class UserNewsletterModel extends BaseModel
 {
+	/**
+	 * @var string
+	 */
 	const TABLE_NAME = 'users_newsletters';
 
 	/**

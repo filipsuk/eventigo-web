@@ -6,25 +6,39 @@ use Nette\Utils\DateTime;
 
 class Newsletter
 {
-	/** @var int */
+	/**
+	 * @var int
+	 */
 	private $id;
 
-	/** @var string */
+	/**
+	 * @var string
+	 */
 	private $subject;
 
-	/** @var string */
+	/**
+	 * @var string
+	 */
 	private $from;
 
-	/** @var string */
+	/**
+	 * @var string
+	 */
 	private $introText;
 
-	/** @var string */
+	/**
+	 * @var string
+	 */
 	private $outroText;
 
-	/** @var string */
+	/**
+	 * @var string
+	 */
 	private $author;
 
-	/** @var DateTime */
+	/**
+	 * @var DateTime
+	 */
 	private $created;
 
 	/**

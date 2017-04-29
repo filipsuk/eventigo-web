@@ -12,16 +12,24 @@ use Nette\Utils\DateTime;
 
 class SourceForm extends BaseControl
 {
-	/** @var array */
+	/**
+	 * @var array
+	 */
 	public $onCreate = [];
 
-	/** @var array */
+	/**
+	 * @var array
+	 */
 	public $onUpdate = [];
 
-	/** @var SourceModel @inject */
+	/**
+	 * @var SourceModel @inject
+	 */
 	public $sourceModel;
 
-	/** @var OrganiserService @inject */
+	/**
+	 * @var OrganiserService @inject
+	 */
 	public $organiserService;
 
 

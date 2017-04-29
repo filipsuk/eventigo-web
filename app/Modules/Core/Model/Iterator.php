@@ -7,10 +7,14 @@ use Nette\Database\Table\IRow;
 
 class Iterator implements \Iterator
 {
-	/** @var int */
+	/**
+	 * @var int
+	 */
 	protected $index;
 
-	/** @var IRow[] */
+	/**
+	 * @var IRow[]
+	 */
 	protected $data;
 
 

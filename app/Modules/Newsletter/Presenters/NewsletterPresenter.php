@@ -12,16 +12,24 @@ use Nette\Http\IResponse;
 
 class NewsletterPresenter extends BasePresenter
 {
-	/** @var UserNewsletterModel @inject */
+	/**
+	 * @var UserNewsletterModel @inject
+	 */
 	public $userNewsletterModel;
 
-	/** @var UserModel @inject */
+	/**
+	 * @var UserModel @inject
+	 */
 	public $userModel;
 
-	/** @var NewsletterService @inject */
+	/**
+	 * @var NewsletterService @inject
+	 */
 	public $newsletterService;
 
-	/** @var ActiveRow */
+	/**
+	 * @var ActiveRow
+	 */
 	private $userNewsletter;
 
 	public function actionDefault($hash)

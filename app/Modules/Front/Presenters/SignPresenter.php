@@ -5,9 +5,14 @@ namespace App\Modules\Front\Presenters;
 
 class SignPresenter extends \Nette\Application\UI\Presenter
 {
-	/** @var \Kdyby\Translation\Translator @inject */
+	/**
+	 * @var \Kdyby\Translation\Translator @inject
+	 */
 	public $translator;
 
+	/**
+	 * @var string[]
+	 */
 	const BYE = [
 		'Adiós',
 		'Aloha',

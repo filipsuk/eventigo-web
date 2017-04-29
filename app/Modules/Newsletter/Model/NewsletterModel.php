@@ -7,8 +7,11 @@ use App\Modules\Newsletter\Model\Entity\Newsletter;
 use Nette\Database\Table\IRow;
 
 
-class NewsletterModel extends BaseModel
+final class NewsletterModel extends BaseModel
 {
+	/**
+	 * @var string
+	 */
 	const TABLE_NAME = 'newsletters'; // TODO migrace
 
 	/**

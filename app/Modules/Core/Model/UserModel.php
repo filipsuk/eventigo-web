@@ -3,35 +3,38 @@
 namespace App\Modules\Core\Model;
 
 use App\Modules\Front\Model\Exceptions\Subscription\EmailExistsException;
-use Nette\Database\Context;
 use Nette\Database\Table\ActiveRow;
 use Nette\Database\Table\IRow;
-use Nette\DI\Container;
 use Nette\Security\Passwords;
 use Nette\Utils\ArrayHash;
 use Nette\Utils\Random;
 
 
-class UserModel extends BaseModel
+final class UserModel extends BaseModel
 {
+	/**
+	 * @var string
+	 */
 	const TABLE_NAME = 'users';
 
-	/** Login types */
+	/**
+	 * Login type.
+	 *
+	 * @var string
+	 */
 	const SUBSCRIPTION_LOGIN = 'subscription';
+
+	/**
+	 * Login Type.
+	 *
+	 * @var string
+	 */
 	const ADMIN_LOGIN = 'admin';
 
+	/**
+	 * @var int
+	 */
 	const TOKEN_LENGTH = 64;
-
-	/** @var Container */
-	private $container;
-
-
-	public function __construct(Context $database, Container $container)
-	{
-		parent::__construct($database);
-		$this->container = $container;
-	}
-
 
 	/**
 	 * @return IRow|null
@@ -43,22 +46,20 @@ class UserModel extends BaseModel
 		if ($email) {
 			if ($this->emailExists($email)) {
 				throw new EmailExistsException;
-
-			} else {
-				// Create user
-				/** @var ActiveRow $user */
-				$user = $this->insert([
-					'email' => $email,
-					'token' => $this->generateToken(),
-				]);
-
-				return $user;
 			}
 
-		} else {
-			return NULL;
-		}
-	}
+            // Create user
+            /** @var ActiveRow $user */
+            $user = $this->insert([
+                'email' => $email,
+                'token' => $this->generateToken(),
+            ]);
+
+            return $user;
+        }
+
+        return NULL;
+    }
 
 
 	public function emailExists(string $email): bool

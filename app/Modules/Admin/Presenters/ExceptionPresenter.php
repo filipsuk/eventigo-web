@@ -9,7 +9,9 @@ use Tracy\Debugger;
 
 class ExceptionPresenter extends BasePresenter
 {
-	/** @var EventModel @inject */
+	/**
+	 * @var EventModel @inject
+	 */
 	public $eventModel;
 
 	/**

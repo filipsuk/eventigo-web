@@ -8,17 +8,38 @@ use Nette\Database\Table\IRow;
 use Nette\Utils\DateTime;
 
 
-class EventModel extends BaseModel
+final class EventModel extends BaseModel
 {
+	/**
+	 * @var string
+	 */
 	const TABLE_NAME = 'events';
 
-	/** Number of events per list */
+	/**
+	 * Number of events per list
+	 *
+	 * @var int
+	 */
 	const EVENTS_LIMIT = 10;
 
+	/**
+	 * @var string
+	 */
 	const STATE_APPROVED = 'approved';
+
+	/**
+	 * @var string
+	 */
 	const STATE_NOT_APPROVED = 'not-approved';
+
+	/**
+	 * @var string
+	 */
 	const STATE_SKIP = 'skip';
 
+	/**
+	 * @var string[]
+	 */
 	const STATES = [
 		self::STATE_APPROVED,
 		self::STATE_NOT_APPROVED,
@@ -27,7 +48,6 @@ class EventModel extends BaseModel
 
 
 	/**
-	 * @param IRow $event
 	 * @return EventTag[]
 	 */
 	public function getEventTags(IRow $event): array
@@ -132,9 +152,8 @@ class EventModel extends BaseModel
 
 	/**
 	 * Find previous event in series with image
-	 * @return \Nette\Database\Table\IRow|null
 	 */
-	public function findPreviousEvent(int $eventSeriesId)
+	public function findPreviousEvent(int $eventSeriesId): ?IRow
 	{
 		return $this->getAll()
 			->where('event_series_id', $eventSeriesId)

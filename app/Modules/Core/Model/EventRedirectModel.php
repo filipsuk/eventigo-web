@@ -3,7 +3,10 @@
 namespace App\Modules\Core\Model;
 
 
-class EventRedirectModel extends BaseModel
+final class EventRedirectModel extends BaseModel
 {
+	/**
+	 * @var string
+	 */
 	const TABLE_NAME = 'events_redirects';
 }

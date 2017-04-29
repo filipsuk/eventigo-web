@@ -3,8 +3,11 @@
 namespace App\Modules\Core\Model;
 
 
-class EventTagModel extends BaseModel
+final class EventTagModel extends BaseModel
 {
+	/**
+	 * @var string
+	 */
 	const TABLE_NAME = 'events_tags';
 
 	/**

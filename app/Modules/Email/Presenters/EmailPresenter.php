@@ -14,13 +14,24 @@ use Latte\Loaders\StringLoader;
  */
 class EmailPresenter extends BasePresenter
 {
+	/**
+	 * @var string
+	 */
 	const TEMPLATE_DIR = __DIR__ . DIRECTORY_SEPARATOR . 'templates' . DIRECTORY_SEPARATOR . 'Email';
+
+	/**
+	 * @var string
+	 */
 	const BASIC_EMAIL_TEMPLATE_FILE = self::TEMPLATE_DIR . DIRECTORY_SEPARATOR . 'basic.latte';
 
-	/** @var UserModel @inject */
+	/**
+	 * @var UserModel @inject
+	 */
 	public $userModel;
 
-	/** @var EmailService @inject */
+	/**
+	 * @var EmailService @inject
+	 */
 	public $emailService;
 
 

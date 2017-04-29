@@ -10,12 +10,33 @@ final class DateTime
 	/** @var \Kdyby\Translation\Translator */
 	public static $translator;
 
+	/**
+	 * @var string
+	 */
 	const DATETIME_FORMAT = 'd. m. Y H:i';
+	/**
+	 * @var string
+	 */
 	const DATE_FORMAT = 'd. m. Y';
+	/**
+	 * @var string
+	 */
 	const NO_ZERO_DATE_FORMAT = 'j. n. Y';
+	/**
+	 * @var string
+	 */
 	const W3C_DATE = 'Y-m-d';
+	/**
+	 * @var string
+	 */
 	const W3C_DATETIME_MINUTES = 'Y-m-d H:i';
+	/**
+	 * @var string
+	 */
 	const W3C_DATETIME = 'Y-m-d H:i:s';
+	/**
+	 * @var string
+	 */
 	const TIME_MINUTES = 'H:i';
 
 

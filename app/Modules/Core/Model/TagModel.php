@@ -2,11 +2,13 @@
 
 namespace App\Modules\Core\Model;
 
-
 use Nette\Database\Table\Selection;
 
-class TagModel extends BaseModel
+final class TagModel extends BaseModel
 {
+	/**
+	 * @var string
+	 */
 	const TABLE_NAME = 'tags';
 
 

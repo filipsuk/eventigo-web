@@ -9,7 +9,9 @@ use Kdyby\Translation\Translator;
 
 class EventsList extends BaseControl
 {
-	/** @var array */
+	/**
+	 * @var array
+	 */
 	private $events;
 
 

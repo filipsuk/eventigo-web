@@ -13,25 +13,39 @@ use App\Modules\Front\Components\Tags\ITagsFactory;
 
 class ProfilePresenter extends \App\Modules\Core\Presenters\BasePresenter
 {
-	/** @var EventModel @inject */
+	/**
+	 * @var EventModel @inject
+	 */
 	public $eventModel;
 
-	/** @var TagModel @inject */
+	/**
+	 * @var TagModel @inject
+	 */
 	public $tagModel;
 
-	/** @var ITagsFactory @inject */
+	/**
+	 * @var ITagsFactory @inject
+	 */
 	public $tags;
 
-	/** @var EventsListFactory @inject */
+	/**
+	 * @var EventsListFactory @inject
+	 */
 	public $eventsListFactory;
 
-	/** @var SettingsFactory @inject */
+	/**
+	 * @var SettingsFactory @inject
+	 */
 	public $settingsFactory;
 
-	/** @var UserTagModel @inject */
+	/**
+	 * @var UserTagModel @inject
+	 */
 	public $userTagModel;
 
-	/** @var UserModel @inject */
+	/**
+	 * @var UserModel @inject
+	 */
 	public $userModel;
 
 	protected function startup()
