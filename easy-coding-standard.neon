@@ -85,7 +85,6 @@ checkers:
     # Naming
     - Symplify\CodingStandard\Sniffs\Naming\AbstractClassNameSniff
     - Symplify\CodingStandard\Sniffs\Naming\InterfaceNameSniff
-    - Symplify\CodingStandard\Sniffs\Naming\TraitNameSniff
 #
 #    # Slevomat
 #    - SlevomatCodingStandard\Sniffs\Classes\UnusedPrivateElementsSniff

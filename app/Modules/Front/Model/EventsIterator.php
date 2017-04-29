@@ -7,12 +7,24 @@ use App\Modules\Core\Model\Iterator;
 
 final class EventsIterator extends Iterator implements \Countable
 {
+	/**
+	 * @var bool
+	 */
 	private $thisWeek = FALSE;
 
+	/**
+	 * @var bool
+	 */
 	private $thisMonth = FALSE;
 
+	/**
+	 * @var bool
+	 */
 	private $nextMonth = FALSE;
 
+	/**
+	 * @var bool
+	 */
 	private $upcoming = FALSE;
 
 
@@ -20,9 +32,9 @@ final class EventsIterator extends Iterator implements \Countable
 	{
 		if (!$this->thisWeek && $this->current()->thisWeek) {
 			return $this->thisWeek = TRUE;
-		} else {
-			return FALSE;
 		}
+
+		return FALSE;
 	}
 
 
@@ -30,15 +42,17 @@ final class EventsIterator extends Iterator implements \Countable
 	{
 		if (!$this->thisMonth && $this->current()->thisMonth && !$this->current()->thisWeek) {
 			return $this->thisMonth = TRUE;
-		} else {
-			return FALSE;
 		}
+
+		return FALSE;
 	}
 
 
 	public function drawNextMonthTitle(): bool
 	{
-		if (!$this->nextMonth && $this->current()->nextMonth && !$this->current()->thisWeek && !$this->current()->thisMonth) {
+		if (! $this->nextMonth && $this->current()->nextMonth
+			&& ! $this->current()->thisWeek && ! $this->current()->thisMonth
+		) {
 			return $this->nextMonth = TRUE;
 		}
 
@@ -48,7 +62,9 @@ final class EventsIterator extends Iterator implements \Countable
 
 	public function drawUpcomingTitle(): bool
 	{
-		if (!$this->upcoming && !$this->current()->thisWeek && !$this->current()->thisMonth && !$this->current()->nextMonth) {
+		if (! $this->upcoming && !$this->current()->thisWeek
+			&& ! $this->current()->thisMonth && ! $this->current()->nextMonth
+		) {
 			return $this->upcoming = TRUE;
 		}
 
