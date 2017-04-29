@@ -10,7 +10,6 @@ use Nette\Database\Table\IRow;
 use Nette\Database\UniqueConstraintViolationException;
 use Nette\Http\Url;
 
-
 final class SourceService
 {
 	/**

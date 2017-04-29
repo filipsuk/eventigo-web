@@ -13,7 +13,6 @@ use App\Modules\Front\Components\Settings\SettingsFactoryInterface;
 use App\Modules\Front\Components\Tags\Tags;
 use App\Modules\Front\Components\Tags\TagsFactoryInterface;
 
-
 final class ProfilePresenter extends AbstractBasePresenter
 {
 	/**

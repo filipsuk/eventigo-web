@@ -14,7 +14,6 @@ use Nette\Database\Table\Selection;
 use Nette\Database\UniqueConstraintViolationException;
 use Nette\Security\User;
 
-
 final class Tags extends AbstractBaseControl
 {
 

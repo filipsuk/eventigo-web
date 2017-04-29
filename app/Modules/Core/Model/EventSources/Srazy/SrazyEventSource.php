@@ -7,7 +7,6 @@ use App\Modules\Core\Model\EventSources\Utils\EventSource;
 use Nette\Utils\DateTime;
 use Webuni\Srazy\Client;
 
-
 final class SrazyEventSource extends EventSource
 {
 	/**

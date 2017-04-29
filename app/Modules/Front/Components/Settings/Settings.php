@@ -8,7 +8,6 @@ use App\Modules\Core\Model\UserModel;
 use Kdyby\Translation\Translator;
 use Nette\Security\User;
 
-
 final class Settings extends AbstractBaseControl
 {
 	/**

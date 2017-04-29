@@ -12,7 +12,6 @@ use App\Modules\Core\Utils\DateTime;
 use Nette\Database\Table\ActiveRow;
 use Nette\Utils\DateTime as NetteDateTime;
 
-
 final class SourcesPresenter extends AbstractBasePresenter
 {
 	/**

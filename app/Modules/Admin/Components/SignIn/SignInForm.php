@@ -7,7 +7,6 @@ use App\Modules\Core\Components\Form\Form;
 use App\Modules\Core\Model\UserModel;
 use Nette\Security\AuthenticationException;
 
-
 final class SignInForm extends AbstractBaseControl
 {
 	/**

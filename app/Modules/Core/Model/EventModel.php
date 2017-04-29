@@ -7,7 +7,6 @@ use App\Modules\Core\Model\Entity\EventTag;
 use Nette\Database\Table\IRow;
 use Nette\Utils\DateTime;
 
-
 final class EventModel extends AbstractBaseModel
 {
 	/**

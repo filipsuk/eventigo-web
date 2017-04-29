@@ -20,7 +20,6 @@ use Nette\Utils\DateTime;
 use Nette\Utils\Html;
 use Tracy\Debugger;
 
-
 final class HomepagePresenter extends AbstractBasePresenter
 {
 	/**

@@ -6,7 +6,6 @@ use Nette\Database\Context;
 use Nette\Database\Table\IRow;
 use Nette\Database\Table\Selection;
 
-
 abstract class AbstractBaseModel
 {
 	/**

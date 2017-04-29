@@ -14,7 +14,6 @@ use Kdyby\Translation\Translator;
 use Nette\Database\Helpers;
 use Nette\Database\Table\Selection;
 
-
 final class SubscriptionTags extends Subscription
 {
 	/**

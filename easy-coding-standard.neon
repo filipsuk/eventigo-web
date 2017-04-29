@@ -134,34 +134,33 @@ checkers:
     - PhpCsFixer\Fixer\Strict\StrictComparisonFixer
     - PhpCsFixer\Fixer\Alias\EregToPregFixer
     - PhpCsFixer\Fixer\Phpdoc\GeneralPhpdocAnnotationRemoveFixer
-#
-#    # PHPUnit
-#    - PhpCsFixer\Fixer\PhpUnit\PhpUnitStrictFixer
-#    - PhpCsFixer\Fixer\PhpUnit\PhpUnitFqcnAnnotationFixer
-#    - Symplify\CodingStandard\Sniffs\PHPUnit\FinalTestCaseSniff
-#
-#    # PSR1 (official)
-#    - PhpCsFixer\Fixer\Basic\EncodingFixer
-#
-#    # PSR2 (official)
-#    - PhpCsFixer\Fixer\ControlStructure\ElseifFixer
-#    - PhpCsFixer\Fixer\FunctionNotation\FunctionDeclarationFixer
-#    - PhpCsFixer\Fixer\Whitespace\IndentationTypeFixer
-#    - PhpCsFixer\Fixer\Whitespace\LineEndingFixer
-#    - PhpCsFixer\Fixer\Casing\LowercaseKeywordsFixer
-#    - PhpCsFixer\Fixer\FunctionNotation\MethodArgumentSpaceFixer
-#    - PhpCsFixer\Fixer\PhpTag\NoClosingTagFixer
-#    - PhpCsFixer\Fixer\FunctionNotation\NoSpacesAfterFunctionNameFixer
-#    - PhpCsFixer\Fixer\Whitespace\NoSpacesInsideParenthesisFixer
-#    - PhpCsFixer\Fixer\Whitespace\NoTrailingWhitespaceFixer
-#    - PhpCsFixer\Fixer\Comment\NoTrailingWhitespaceInCommentFixer
-#    - PhpCsFixer\Fixer\Whitespace\SingleBlankLineAtEofFixer
-#    PhpCsFixer\Fixer\ClassNotation\SingleClassElementPerStatementFixer:
-#        - property
-#    - PhpCsFixer\Fixer\Import\SingleImportPerStatementFixer
-#    - PhpCsFixer\Fixer\Import\SingleLineAfterImportsFixer
-#    - PhpCsFixer\Fixer\ControlStructure\SwitchCaseSemicolonToColonFixer
-#    - PhpCsFixer\Fixer\ControlStructure\SwitchCaseSpaceFixer
+
+    # PHPUnit
+    - PhpCsFixer\Fixer\PhpUnit\PhpUnitStrictFixer
+    - PhpCsFixer\Fixer\PhpUnit\PhpUnitFqcnAnnotationFixer
+    - Symplify\CodingStandard\Sniffs\PHPUnit\FinalTestCaseSniff
+
+    # PSR2 (official)
+    - PhpCsFixer\Fixer\ControlStructure\ElseifFixer
+    - PhpCsFixer\Fixer\FunctionNotation\FunctionDeclarationFixer
+
+    # Fixes to spaces
+    # - PhpCsFixer\Fixer\Whitespace\IndentationTypeFixer
+    - PhpCsFixer\Fixer\Whitespace\LineEndingFixer
+    - PhpCsFixer\Fixer\Casing\LowercaseKeywordsFixer
+    - PhpCsFixer\Fixer\FunctionNotation\MethodArgumentSpaceFixer
+    - PhpCsFixer\Fixer\PhpTag\NoClosingTagFixer
+    - PhpCsFixer\Fixer\FunctionNotation\NoSpacesAfterFunctionNameFixer
+    - PhpCsFixer\Fixer\Whitespace\NoSpacesInsideParenthesisFixer
+    - PhpCsFixer\Fixer\Whitespace\NoTrailingWhitespaceFixer
+    - PhpCsFixer\Fixer\Comment\NoTrailingWhitespaceInCommentFixer
+    - PhpCsFixer\Fixer\Whitespace\SingleBlankLineAtEofFixer
+    PhpCsFixer\Fixer\ClassNotation\SingleClassElementPerStatementFixer:
+        - property
+    - PhpCsFixer\Fixer\Import\SingleImportPerStatementFixer
+    - PhpCsFixer\Fixer\Import\SingleLineAfterImportsFixer
+    - PhpCsFixer\Fixer\ControlStructure\SwitchCaseSemicolonToColonFixer
+    - PhpCsFixer\Fixer\ControlStructure\SwitchCaseSpaceFixer
 #
 #    # Symfony (official)
 #    PhpCsFixer\Fixer\Operator\BinaryOperatorSpacesFixer:

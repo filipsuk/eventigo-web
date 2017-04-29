@@ -12,7 +12,6 @@ use App\Modules\Core\Utils\DateTime as EventigoDateTime;
 use Nette\Application\Request;
 use Nette\Utils\DateTime;
 
-
 final class EventsPresenter extends AbstractBasePresenter
 {
 	/**

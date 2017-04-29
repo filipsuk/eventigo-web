@@ -12,7 +12,6 @@ use Kdyby\Facebook\FacebookApiException;
 use Kdyby\Translation\Translator;
 use Nette\Database\UniqueConstraintViolationException;
 
-
 final class EventForm extends AbstractBaseControl
 {
 	/**

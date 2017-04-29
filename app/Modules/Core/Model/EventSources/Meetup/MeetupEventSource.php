@@ -7,7 +7,6 @@ use App\Modules\Core\Model\EventSources\Utils\EventSource;
 use DMS\Service\Meetup\MeetupKeyAuthClient;
 use Nette\Utils\DateTime;
 
-
 final class MeetupEventSource extends EventSource
 {
 	/**

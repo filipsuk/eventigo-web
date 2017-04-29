@@ -9,7 +9,6 @@ use Kdyby\Facebook\FacebookApiException;
 use Nette\Utils\DateTime;
 use Tracy\Debugger;
 
-
 final class FacebookEventSource extends AbstractEventSource
 {
 	/**

@@ -9,7 +9,6 @@ use Nette\Security\IAuthenticator;
 use Nette\Security\Identity;
 use Nette\Security\Passwords;
 
-
 final class Authenticator implements IAuthenticator
 {
 	/**

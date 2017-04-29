@@ -9,7 +9,6 @@ use Nette\Security\Passwords;
 use Nette\Utils\ArrayHash;
 use Nette\Utils\Random;
 
-
 final class UserModel extends AbstractBaseModel
 {
 	/**

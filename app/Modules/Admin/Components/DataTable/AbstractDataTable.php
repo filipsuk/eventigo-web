@@ -7,7 +7,6 @@ use Kdyby\Translation\Translator;
 use Nette\Application\Responses\JsonResponse;
 use Nette\Database\Table\Selection;
 
-
 abstract class AbstractDataTable extends AbstractBaseControl
 {
 	/**

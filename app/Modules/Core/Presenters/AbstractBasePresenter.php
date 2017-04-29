@@ -11,7 +11,6 @@ use Nette\Security\Identity;
 use Tracy\Debugger;
 use Tracy\ILogger;
 
-
 abstract class AbstractBasePresenter extends Presenter
 {
 	/**

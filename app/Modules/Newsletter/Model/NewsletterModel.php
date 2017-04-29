@@ -7,7 +7,6 @@ use App\Modules\Newsletter\Model\Entity\Newsletter;
 use Nette\Database\Table\IRow;
 use RuntimeException;
 
-
 final class NewsletterModel extends AbstractBaseModel
 {
 	/**

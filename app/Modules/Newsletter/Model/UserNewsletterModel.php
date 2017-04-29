@@ -5,7 +5,6 @@ namespace App\Modules\Newsletter\Model;
 use App\Modules\Core\Model\AbstractBaseModel;
 use Nette\Utils\Random;
 
-
 final class UserNewsletterModel extends AbstractBaseModel
 {
 	/**

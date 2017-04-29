@@ -10,7 +10,6 @@ use App\Modules\Core\Utils\Collection;
 use App\Modules\Core\Utils\DateTime;
 use Nette\Utils\DateTime as NetteDateTime;
 
-
 final class SourceForm extends AbstractBaseControl
 {
 	/**

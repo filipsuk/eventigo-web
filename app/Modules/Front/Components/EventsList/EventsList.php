@@ -6,7 +6,6 @@ use App\Modules\Core\Components\AbstractBaseControl;
 use App\Modules\Front\Model\EventsIterator;
 use Kdyby\Translation\Translator;
 
-
 final class EventsList extends AbstractBaseControl
 {
 	/**

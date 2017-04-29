@@ -9,7 +9,6 @@ use App\Modules\Newsletter\Model\UserNewsletterModel;
 use Nette\Database\Table\ActiveRow;
 use Nette\Http\IResponse;
 
-
 final class NewsletterPresenter extends AbstractBasePresenter
 {
 	/**

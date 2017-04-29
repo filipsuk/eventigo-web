@@ -6,7 +6,6 @@ use App\Modules\Core\Model\EventSeriesModel;
 use App\Modules\Core\Model\OrganiserModel;
 use Nette\Database\Table\IRow;
 
-
 final class OrganiserService
 {
 	/**

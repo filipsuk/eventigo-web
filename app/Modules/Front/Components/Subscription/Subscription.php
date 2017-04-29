@@ -9,7 +9,6 @@ use App\Modules\Front\Model\Exceptions\Subscription\EmailExistsException;
 use Kdyby\Translation\Translator;
 use Nette\Database\Table\IRow;
 
-
 class Subscription extends AbstractBaseControl
 {
 	/**

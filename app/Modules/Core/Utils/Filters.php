@@ -7,7 +7,6 @@ use Kdyby\Translation\Translator;
 use Nette\Security\Identity;
 use Nette\Utils\DateTime;
 
-
 final class Filters
 {
 	/**

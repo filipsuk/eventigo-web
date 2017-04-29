@@ -4,7 +4,6 @@ namespace App\Modules\Core\Presenters;
 
 use Nette;
 
-
 final class Error4xxPresenter extends AbstractBasePresenter
 {
 

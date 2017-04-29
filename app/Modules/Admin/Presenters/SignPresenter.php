@@ -6,7 +6,6 @@ use App\Modules\Admin\Components\SignIn\SignInForm;
 use App\Modules\Admin\Components\SignIn\SignInFormFactoryInterface;
 use Nette\Application\UI\Presenter;
 
-
 final class SignPresenter extends Presenter
 {
 	/**

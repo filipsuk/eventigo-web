@@ -4,7 +4,6 @@ namespace App\Modules\Admin\Presenters;
 
 use App\Modules\Core\Presenters\AbstractBasePresenter as CoreAbstractBasePresenter;
 
-
 abstract class AbstractBasePresenter extends CoreAbstractBasePresenter
 {
 	protected function startup(): void

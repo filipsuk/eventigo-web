@@ -4,7 +4,6 @@ namespace App\Modules\Admin\Model;
 
 use App\Modules\Core\Model\AbstractBaseModel;
 
-
 final class SourceModel extends AbstractBaseModel
 {
 	/**

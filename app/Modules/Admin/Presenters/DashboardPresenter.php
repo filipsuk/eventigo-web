@@ -5,7 +5,6 @@ namespace App\Modules\Admin\Presenters;
 use App\Modules\Core\Model\EventModel;
 use Nette\Utils\DateTime;
 
-
 final class DashboardPresenter extends AbstractBasePresenter
 {
 	/**

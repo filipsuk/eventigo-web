@@ -12,7 +12,6 @@ use Nette\Database\Table\Selection;
 use Nette\Utils\DateTime as NetteDateTime;
 use Nette\Utils\Html;
 
-
 final class NotApprovedEventsTable extends AbstractDataTable
 {
 	/**

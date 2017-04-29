@@ -13,7 +13,7 @@ if (PHP_SAPI !== "cli") {
 }
 
 // Fix redirects to port 80 (https://forum.nette.org/cs/13896-openshift-redirect-z-https-pridava-port-80)
-if (! empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' ) {
+if (! empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') {
 	$_SERVER['SERVER_PORT'] = 443;
 }
 

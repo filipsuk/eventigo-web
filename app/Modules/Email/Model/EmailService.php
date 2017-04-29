@@ -14,7 +14,6 @@ use SendGrid;
 use SendGrid\Email;
 use Throwable;
 
-
 final class EmailService
 {
 	/**

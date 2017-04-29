@@ -7,7 +7,6 @@ use App\Modules\Core\Model\EventRedirectModel;
 use App\Modules\Core\Presenters\AbstractBasePresenter;
 use Nette\Http\Url;
 
-
 final class RedirectPresenter extends AbstractBasePresenter
 {
 	/**

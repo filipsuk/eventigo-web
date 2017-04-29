@@ -6,7 +6,6 @@ use App\Modules\Core\Model\Entity\Event;
 use Nette\Http\Url;
 use Throwable;
 
-
 abstract class AbstractEventSource
 {
 	public static function isSource(string $url): bool
