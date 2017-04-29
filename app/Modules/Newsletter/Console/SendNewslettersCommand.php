@@ -42,6 +42,7 @@ final class SendNewslettersCommand extends Command
 		$this->newsletterService->sendNewsletters($usersNewslettersIds);
 
 		$output->writeln(count($usersNewslettersIds) . ' newsletters have been sent');
+
 		return 0;
 	}
 }

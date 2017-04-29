@@ -56,6 +56,7 @@ final class MeetupEventSource extends EventSource
 				);
 			}
 		}
+
 		return $events;
 	}
 }

@@ -36,6 +36,7 @@ class Email
 	public function setFrom(string $from): self
 	{
 		$this->from = $from;
+
 		return $this;
 	}
 
@@ -47,6 +48,7 @@ class Email
 	public function setTo(string $to): self
 	{
 		$this->to = $to;
+
 		return $this;
 	}
 
@@ -58,6 +60,7 @@ class Email
 	public function setSubject(string $subject): self
 	{
 		$this->subject = $subject;
+
 		return $this;
 	}
 
@@ -69,6 +72,7 @@ class Email
 	public function setBody(string $body): self
 	{
 		$this->body = $body;
+
 		return $this;
 	}
 }

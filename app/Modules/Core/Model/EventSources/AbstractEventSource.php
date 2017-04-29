@@ -12,6 +12,7 @@ abstract class AbstractEventSource
 	{
 		try {
 			$host = (new Url($url))->getHost();
+
 			return in_array($host, static::URLS, true);
 
 		} catch (Throwable $throwable) {

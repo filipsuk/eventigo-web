@@ -66,6 +66,7 @@ final class SignIn extends AbstractBaseControl
 			->setAttribute('data-loading-text', $this->translator->translate('front.signIn.form.submit.sending'));
 
 		$form->onSuccess[] = [$this, 'processForm'];
+
 		return $form;
 	}
 }

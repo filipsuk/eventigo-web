@@ -8,7 +8,7 @@ use Nette\Utils\DateTime as NetteDateTime;
 
 final class DateTime
 {
-	/**
+    /**
 	 * @var string
 	 */
 	const DATETIME_FORMAT = 'd. m. Y H:i';
@@ -57,38 +57,40 @@ final class DateTime
 	 */
 	public static function max(...$dateTimes)
 	{
-        $dateTimes = array_filter($dateTimes); // filter out NULLs
+	    $dateTimes = array_filter($dateTimes); // filter out NULLs
 
 		$max = reset($dateTimes) ?: null;
-		foreach ($dateTimes as $dateTime) {
-			if ($max < $dateTime) {
-				$max = $dateTime;
-			}
-		}
-		return $max;
+	    foreach ($dateTimes as $dateTime) {
+	        if ($max < $dateTime) {
+	            $max = $dateTime;
+	        }
+	    }
+
+	    return $max;
 	}
 
-	public static function setTranslator(Translator $t): void
-	{
-		self::$translator = $t;
-	}
+    public static function setTranslator(Translator $t): void
+    {
+        self::$translator = $t;
+    }
 
-	public static function eventsDatetimeFilter(NetteDateTime $a, ?NetteDateTime $b = null): string
-	{
-		// Translate name of day
+    public static function eventsDatetimeFilter(NetteDateTime $a, ?NetteDateTime $b = null): string
+    {
+        // Translate name of day
 		$aDayName = self::$translator->translate('front.datetime.' . strtolower(strftime('%A', $a->getTimestamp())));
 
-		if ($b && ($a->format('dmy') !== $b->format('dmy'))) {
-			// Two day event
+        if ($b && ($a->format('dmy') !== $b->format('dmy'))) {
+            // Two day event
 			$result = $aDayName . $a->format(' j. n. ') . '&nbsp;&ndash;&nbsp;' . $b->format('j. n. Y');
-		} else {
-			// One day event
+        } else {
+            // One day event
 			$result = $aDayName . $a->format(' j. n. Y');
 			// Add Hour:minute time if its not 00:00
 			if ((int) $a->format('G') > 0) {
-				$result .= $a->format(' G:i');
+			    $result .= $a->format(' G:i');
 			}
-		}
-		return $result;
-	}
+        }
+
+        return $result;
+    }
 }

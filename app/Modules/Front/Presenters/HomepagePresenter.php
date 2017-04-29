@@ -249,6 +249,7 @@ final class HomepagePresenter extends AbstractBasePresenter
 
 			if (! $fb->getUser()) {
 				$this->flashMessage($this->translator->translate('front.homepage.fbLogin.failed'), 'danger');
+
 				return;
 			}
 

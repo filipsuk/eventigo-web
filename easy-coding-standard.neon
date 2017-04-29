@@ -161,15 +161,13 @@ checkers:
     - PhpCsFixer\Fixer\Import\SingleLineAfterImportsFixer
     - PhpCsFixer\Fixer\ControlStructure\SwitchCaseSemicolonToColonFixer
     - PhpCsFixer\Fixer\ControlStructure\SwitchCaseSpaceFixer
-#
-#    # Symfony (official)
-#    PhpCsFixer\Fixer\Operator\BinaryOperatorSpacesFixer:
-#        align_double_arrow: false
-#        align_equals: false
-#    - PhpCsFixer\Fixer\ReturnNotation\BlankLineBeforeReturnFixer
-#    PhpCsFixer\Fixer\Basic\BracesFixer:
-#        allow_single_line_closure: true
-#    - PhpCsFixer\Fixer\CastNotation\CastSpacesFixer
+
+    # Symfony (official)
+    - PhpCsFixer\Fixer\ReturnNotation\BlankLineBeforeReturnFixer
+    # requires spaces
+    # PhpCsFixer\Fixer\Basic\BracesFixer:
+    #    allow_single_line_closure: true
+    - PhpCsFixer\Fixer\CastNotation\CastSpacesFixer
 #    PhpCsFixer\Fixer\ClassNotation\ClassDefinitionFixer:
 #        singleLine: true
 #    - PhpCsFixer\Fixer\LanguageConstruct\DeclareEqualNormalizeFixer

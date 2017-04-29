@@ -74,6 +74,7 @@ final class EventForm extends AbstractBaseControl
 				$event = $this->eventService->getEventFromPlatform($id[0], EventService::PLATFORM_FACEBOOK);
 			} catch (FacebookApiException $e) {
 				$form->addError($e->getMessage());
+
 				return;
 			}
 
@@ -95,6 +96,7 @@ final class EventForm extends AbstractBaseControl
 				$this->onCreate();
 			} catch (UniqueConstraintViolationException $e) {
 				$form->addError($this->translator->trans('admin.eventForm.error.alreadyExists'));
+
 				return;
 			}
 		} else {

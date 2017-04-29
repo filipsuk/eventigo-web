@@ -48,6 +48,7 @@ final class RenderNewslettersCommand extends Command
 		}
 
 		$output->writeln($createdCount . ' newsletters have been created');
+
 		return 0;
 	}
 }

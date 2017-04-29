@@ -38,6 +38,7 @@ final class BasicEmail extends Email
 	public function setIntroText(string $introText): BasicEmail
 	{
 		$this->introText = $introText;
+
 		return $this;
 	}
 
@@ -49,6 +50,7 @@ final class BasicEmail extends Email
 	public function setButtonText(string $buttonText): self
 	{
 		$this->buttonText = $buttonText;
+
 		return $this;
 	}
 
@@ -60,6 +62,7 @@ final class BasicEmail extends Email
 	public function setButtonUrl(Url $buttonUrl): self
 	{
 		$this->buttonUrl = $buttonUrl;
+
 		return $this;
 	}
 
@@ -71,6 +74,7 @@ final class BasicEmail extends Email
 	public function setFooterText(string $footerText): BasicEmail
 	{
 		$this->footerText = $footerText;
+
 		return $this;
 	}
 }

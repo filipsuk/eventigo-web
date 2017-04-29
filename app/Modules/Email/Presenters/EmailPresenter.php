@@ -7,7 +7,6 @@ use App\Modules\Core\Presenters\AbstractBasePresenter;
 use App\Modules\Email\Model\EmailService;
 use Latte\Loaders\StringLoader;
 
-
 /**
  * EqmailPresenter is used for rendering different types of emails.
  */
@@ -37,12 +36,11 @@ final class EmailPresenter extends AbstractBasePresenter
 	/**
 	 * Renders login email with provided user token.
 	 *
-	 * @param $token string User's token used to log in the user.
 	 * @throws \InvalidArgumentException
 	 * @throws \Nette\Application\UI\InvalidLinkException
 	 * @throws \Nette\InvalidArgumentException
 	 */
-	public function renderLogin($token $token): void
+	public function renderLogin(string $token): void
 	{
 		$this->template->getLatte()->setLoader(new StringLoader); // @todo: what is this for?
 		$this->template->setFile($this->emailService->renderLoginEmail($token));

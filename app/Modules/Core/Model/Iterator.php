@@ -36,6 +36,7 @@ class Iterator implements PhpIterator
 	public function next(): ?IRow
 	{
 		++$this->index;
+
 		return $this->current();
 	}
 

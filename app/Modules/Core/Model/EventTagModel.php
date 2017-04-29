@@ -18,6 +18,7 @@ final class EventTagModel extends AbstractBaseModel
 		foreach ($this->getAll()->where('event_id', $eventId)->order('rate DESC')->fetchAll() as $eventTag) {
 			$hashtags .= '#' . $eventTag->ref('tags', 'tag_id')->code . ' ';
 		}
+
 		return $hashtags;
 	}
 

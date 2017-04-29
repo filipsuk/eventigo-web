@@ -31,9 +31,11 @@ final class CreateNewsletterCommand extends Command
 		$result = $this->newsletterService->createDefaultNewsletter();
 		if ($result) {
 			$output->writeln('<info>New newsletter id: ' . $result . '</info>');
+
 			return 0;
 		}
 			$output->writeln('<error>Could not create newsletter </error>');
+
 			return 1;
 
 	}

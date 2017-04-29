@@ -123,6 +123,7 @@ final class NewsletterService
 		$newsletter->setAuthor($parameters['defaultAuthor']['name'] ?? '');
 		$newsletter->setIntroText('');
 		$newsletter->setOutroText('');
+
 		return $this->newsletterModel->createNewsletter($newsletter);
 	}
 
@@ -241,6 +242,7 @@ final class NewsletterService
 		} catch (BadMethodCallException $e) {
 			Debugger::log($e->getMessage());
 		}
+
 		return $newsletter;
 	}
 
@@ -295,6 +297,7 @@ final class NewsletterService
 		$this->template = $this->templateFactory->createTemplate();
 		$this->template->addFilter('datetime', function (NetteDateTime $a, ?NetteDateTime $b = null) {
 			DateTime::setTranslator($this->translator);
+
 			return DateTime::eventsDatetimeFilter($a, $b);
 		});
 

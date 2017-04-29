@@ -108,6 +108,7 @@ final class UserModel extends AbstractBaseModel
 			$this->getAll()->wherePrimary($user->id)->update([
 				'facebook_id' => $me->id,
 			]);
+
 			return $this->findByFacebookId($me->id);
 		}
 

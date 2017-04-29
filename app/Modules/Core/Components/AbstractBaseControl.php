@@ -10,40 +10,41 @@ use Nette\Utils\DateTime as NetteDateTime;
 
 abstract class AbstractBaseControl extends Control
 {
-	/**
+    /**
 	 * @var \Kdyby\Translation\Translator
 	 */
 	protected $translator;
 
 
-	public function __construct(Translator $translator)
-	{
-		$this->translator = $translator;
-	}
+    public function __construct(Translator $translator)
+    {
+        $this->translator = $translator;
+    }
 
 
-	public function render(): void
-	{
-		$this->template->render();
-	}
+    public function render(): void
+    {
+        $this->template->render();
+    }
 
 
-	protected function createTemplate(): Template
-	{
-		/** @var Template $template */
+    protected function createTemplate(): Template
+    {
+        /** @var Template $template */
 		$template = parent::createTemplate();
 
-		if ($file = $this->getTemplateDefaultFile()) {
-			$template->setFile($file);
-		}
+        if ($file = $this->getTemplateDefaultFile()) {
+            $template->setFile($file);
+        }
 
-		$template->addFilter('datetime', function (NetteDateTime $a, ?NetteDateTime $b = null) {
-			DateTime::setTranslator($this->translator);
-			return DateTime::eventsDatetimeFilter($a, $b);
-		});
+        $template->addFilter('datetime', function (NetteDateTime $a, ?NetteDateTime $b = null) {
+            DateTime::setTranslator($this->translator);
 
-		return $template;
-	}
+            return DateTime::eventsDatetimeFilter($a, $b);
+        });
+
+        return $template;
+    }
 
 
 	/**
@@ -51,8 +52,9 @@ abstract class AbstractBaseControl extends Control
 	 */
 	protected function getTemplateDefaultFile(): ?string
 	{
-		$refl = $this->getReflection();
-		$file = dirname($refl->getFileName()) . '/' . $refl->getShortName() . '.latte';
-		return file_exists($file) ? $file : NULL;
+	    $refl = $this->getReflection();
+	    $file = dirname($refl->getFileName()) . '/' . $refl->getShortName() . '.latte';
+
+	    return file_exists($file) ? $file : NULL;
 	}
 }

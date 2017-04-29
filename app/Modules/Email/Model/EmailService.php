@@ -69,6 +69,7 @@ final class EmailService
 		$template = $this->templateFactory->createTemplate();
 		Filters::setTranslator($this->translator);
 		$template->addFilter(null, [Filters::class, 'loader']);
+
 		return $template->getLatte()->renderToString(EmailPresenter::BASIC_EMAIL_TEMPLATE_FILE, [
 			'email' => $email,
 		]);
