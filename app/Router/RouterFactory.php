@@ -4,8 +4,8 @@ namespace App\Router;
 
 use Drahak\Restful\Application\Routes\CrudRoute;
 use Nette\Application\IRouter;
-use Nette\Application\Routers\RouteList;
 use Nette\Application\Routers\Route;
+use Nette\Application\Routers\RouteList;
 
 
 final class RouterFactory

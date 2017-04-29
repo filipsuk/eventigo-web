@@ -2,8 +2,8 @@
 
 namespace App\Modules\Front\Presenters;
 
-use App\Modules\Core\Model\EventRedirectModel;
 use App\Modules\Core\Model\EventModel;
+use App\Modules\Core\Model\EventRedirectModel;
 use App\Modules\Core\Presenters\AbstractBasePresenter;
 use Nette\Http\Url;
 

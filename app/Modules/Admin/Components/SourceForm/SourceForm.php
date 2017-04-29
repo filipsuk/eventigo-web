@@ -7,7 +7,8 @@ use App\Modules\Admin\Model\SourceModel;
 use App\Modules\Core\Components\AbstractBaseControl;
 use App\Modules\Core\Components\Form\Form;
 use App\Modules\Core\Utils\Collection;
-use Nette\Utils\DateTime;
+use App\Modules\Core\Utils\DateTime;
+use Nette\Utils\DateTime as NetteDateTime;
 
 
 final class SourceForm extends AbstractBaseControl
@@ -85,7 +86,7 @@ final class SourceForm extends AbstractBaseControl
 				'url' => $values->url ?: null,
 				'check_frequency' => $checkFrequency = SourceModel::FREQUENCY_TYPES[$values->frequency],
 				'next_check' => $values->nextCheck
-					? DateTime::createFromFormat(\App\Modules\Core\Utils\DateTime::DATE_FORMAT, $values->nextCheck)
+					? NetteDateTime::createFromFormat(DateTime::DATE_FORMAT, $values->nextCheck)
 					: new DateTime('+' . $checkFrequency . ' days'),
 				'event_series_id' => $values->createOrganiser
 					? $organiser->related('events_series')->fetch()->id

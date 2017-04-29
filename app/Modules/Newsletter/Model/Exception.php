@@ -2,7 +2,9 @@
 
 namespace App\Modules\Newsletter\Model;
 
-class Exception extends \Exception
+use Exception as PhpException;
+
+class Exception extends PhpException
 {
 
 }

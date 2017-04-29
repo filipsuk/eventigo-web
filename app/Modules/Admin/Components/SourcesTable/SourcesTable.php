@@ -5,11 +5,11 @@ namespace App\Modules\Admin\Components\SourcesTable;
 use App\Modules\Admin\Components\DataTable\AbstractDataTable;
 use App\Modules\Admin\Model\SourceModel;
 use App\Modules\Admin\Model\SourceService;
-use App\Modules\Core\Model\EventSources\Utils\EventSource;
 use App\Modules\Core\Model\EventSources\Facebook\FacebookEventSource;
+use App\Modules\Core\Model\EventSources\Utils\EventSource;
+use App\Modules\Core\Utils\DateTime;
 use Kdyby\Translation\Translator;
 use Nette\Database\Table\Selection;
-use Nette\Utils\DateTime;
 use Nette\Utils\Html;
 
 
@@ -78,7 +78,7 @@ final class SourcesTable extends AbstractDataTable
 
 			$item['name'] = $name;
 			$item['nextCheck'] = DateTime::from($item['next_check'])
-				->format(\App\Modules\Core\Utils\DateTime::W3C_DATE);
+				->format(DateTime::W3C_DATE);
 
 			$actions = (string) Html::el('a', [
 				'href' => $this->link('crawl!', $item['id']),
@@ -119,7 +119,7 @@ final class SourcesTable extends AbstractDataTable
 
 		$this->getPresenter()->flashMessage($this->translator->translate('admin.sources.default.table.done', [
 			'source' => $source->name,
-			'nextCheck' => $nextCheck->format(\App\Modules\Core\Utils\DateTime::NO_ZERO_DATE_FORMAT),
+			'nextCheck' => $nextCheck->format(DateTime::NO_ZERO_DATE_FORMAT),
 		]));
 
 		$this->getPresenter()->redirect('Sources:');

@@ -2,6 +2,7 @@
 
 namespace App\Modules\Core\Utils;
 
+use BadMethodCallException;
 use Pelago\Emogrifier;
 use Tracy\Debugger;
 
@@ -18,7 +19,7 @@ final class Helper
 		try {
 			$emogrifier->setHtml($input);
 			return $emogrifier->emogrifyBodyContent();
-		} catch (\BadMethodCallException $e) {
+		} catch (BadMethodCallException $e) {
 			Debugger::log($e->getMessage());
 			return $input;
 		}

@@ -6,7 +6,9 @@ use App\Modules\Core\Model\EventModel;
 use App\Modules\Core\Model\EventTagModel;
 use App\Modules\Core\Model\UserModel;
 use App\Modules\Core\Model\UserTagModel;
+use App\Modules\Core\Utils\DateTime;
 use App\Modules\Newsletter\Model\Entity\Newsletter;
+use BadMethodCallException;
 use Kdyby\Translation\Translator;
 use Nette\Application\IPresenterFactory;
 use Nette\Application\LinkGenerator;
@@ -15,7 +17,6 @@ use Nette\Application\UI\Presenter;
 use Nette\Bridges\ApplicationLatte\Template;
 use Nette\Database\Table\IRow;
 use Nette\DI\Container;
-use Nette\Utils\DateTime;
 use Pelago\Emogrifier;
 use SendGrid;
 use SendGrid\Email;
@@ -259,8 +260,8 @@ final class NewsletterService
 	{
 		$this->template = $this->templateFactory->createTemplate();
 		$this->template->addFilter('datetime', function (DateTime $a, ?DateTime $b = null) {
-			\App\Modules\Core\Utils\DateTime::setTranslator($this->translator);
-			return \App\Modules\Core\Utils\DateTime::eventsDatetimeFilter($a, $b);
+			DateTime::setTranslator($this->translator);
+			return DateTime::eventsDatetimeFilter($a, $b);
 		});
 
 		$this->template->newsletter = self::inlineCss($newsletter);
@@ -304,7 +305,7 @@ final class NewsletterService
 				$newsletter['outro_text'] = $emogrifier->emogrifyBodyContent();
 			}
 
-		} catch (\BadMethodCallException $e) {
+		} catch (BadMethodCallException $e) {
 			Debugger::log($e->getMessage());
 		}
 		return $newsletter;

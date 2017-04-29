@@ -6,7 +6,8 @@ use App\Modules\Core\Model\TagModel;
 use App\Modules\Core\Model\UserModel;
 use App\Modules\Core\Model\UserTagModel;
 use App\Modules\Core\Presenters\AbstractBasePresenter as CoreAbstractBasePresenter;
-use Nette\Utils\DateTime;
+use Nette\Utils\DateTime as NetteDateTime;
+use App\Modules\Core\Utils\DateTime;
 
 abstract class AbstractBasePresenter extends CoreAbstractBasePresenter
 {
@@ -53,7 +54,7 @@ abstract class AbstractBasePresenter extends CoreAbstractBasePresenter
 		}
 
 		// Store the newest access
-		$this->lastAccess = \App\Modules\Core\Utils\DateTime::max($access->last ?? null, $lastInDb ?? null);
+		$this->lastAccess = DateTime::max($access->last ?? null, $lastInDb ?? null);
 
 		// Update last access
 		$access->last = clone $now;
@@ -76,10 +77,10 @@ abstract class AbstractBasePresenter extends CoreAbstractBasePresenter
 
 
 	private function shouldSyncToDb(
-		?DateTime $sessionLastInDb = null, ?DateTime $lastInDb = null, string $syncToDb
+		?NetteDateTime $sessionLastInDb = null, ?NetteDateTime $lastInDb = null, string $syncToDb
 	): bool {
 		return !$sessionLastInDb
 		|| ($lastInDb && $lastInDb > $sessionLastInDb)
-		|| $sessionLastInDb < new DateTime('-' . $syncToDb);
+		|| $sessionLastInDb < new NetteDateTime('-' . $syncToDb);
 	}
 }

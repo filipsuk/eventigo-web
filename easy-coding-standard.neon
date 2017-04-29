@@ -109,12 +109,12 @@ checkers:
             - @expectedException
             - @throws
         enableEachParameterAndReturnInspection: true
-#    - SlevomatCodingStandard\Sniffs\Namespaces\AlphabeticallySortedUsesSniff
-#    - SlevomatCodingStandard\Sniffs\Namespaces\DisallowGroupUseSniff
-#    - SlevomatCodingStandard\Sniffs\Namespaces\MultipleUsesPerLineSniff
-#    - SlevomatCodingStandard\Sniffs\Namespaces\ReferenceUsedNamesOnlySniff
-#    - SlevomatCodingStandard\Sniffs\Namespaces\UseDoesNotStartWithBackslashSniff
-#    - SlevomatCodingStandard\Sniffs\Namespaces\UseFromSameNamespaceSniff
+    - SlevomatCodingStandard\Sniffs\Namespaces\AlphabeticallySortedUsesSniff
+    - SlevomatCodingStandard\Sniffs\Namespaces\DisallowGroupUseSniff
+    - SlevomatCodingStandard\Sniffs\Namespaces\MultipleUsesPerLineSniff
+    - SlevomatCodingStandard\Sniffs\Namespaces\ReferenceUsedNamesOnlySniff
+    - SlevomatCodingStandard\Sniffs\Namespaces\UseDoesNotStartWithBackslashSniff
+    - SlevomatCodingStandard\Sniffs\Namespaces\UseFromSameNamespaceSniff
 #
 #    PhpCsFixer\Fixer\Operator\ConcatSpaceFixer:
 #        spacing: one

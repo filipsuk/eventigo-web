@@ -7,9 +7,9 @@ use App\Modules\Core\Model\EventModel;
 use App\Modules\Core\Model\EventSources\Facebook\FacebookEventSource;
 use App\Modules\Core\Model\EventTagModel;
 use App\Modules\Core\Model\TagModel;
+use App\Modules\Core\Utils\DateTime;
 use InvalidArgumentException;
 use Nette\Utils\ArrayHash;
-use Nette\Utils\DateTime;
 
 final class EventService
 {
@@ -59,9 +59,9 @@ final class EventService
 			'name' => $values->name,
 			'description' => $values->description ?: null,
 			'origin_url' => $values->origin_url ?: null,
-			'start' => DateTime::createFromFormat(\App\Modules\Core\Utils\DateTime::DATETIME_FORMAT, $values->start),
+			'start' => DateTime::createFromFormat(DateTime::DATETIME_FORMAT, $values->start),
 			'end' => $values->end
-				? DateTime::createFromFormat(\App\Modules\Core\Utils\DateTime::DATETIME_FORMAT, $values->end)
+				? DateTime::createFromFormat(DateTime::DATETIME_FORMAT, $values->end)
 				: null,
 			'image' => $values->image ?: null,
 			'rate' => $values->rate,
@@ -83,9 +83,9 @@ final class EventService
 			'name' => $values->name,
 			'description' => $values->description ?: null,
 			'origin_url' => $values->origin_url ?: null,
-			'start' => DateTime::createFromFormat(\App\Modules\Core\Utils\DateTime::DATETIME_FORMAT, $values->start),
+			'start' => DateTime::createFromFormat(DateTime::DATETIME_FORMAT, $values->start),
 			'end' => $values->end
-				? DateTime::createFromFormat(\App\Modules\Core\Utils\DateTime::DATETIME_FORMAT, $values->end)
+				? DateTime::createFromFormat(DateTime::DATETIME_FORMAT, $values->end)
 				: null,
 			'image' => $values->image ?: null,
 			'rate' => $values->rate,

@@ -2,10 +2,11 @@
 
 namespace App\Modules\Core\Model;
 
+use Iterator as PhpIterator;
 use Nette\Database\Table\IRow;
 
 
-class Iterator implements \Iterator
+class Iterator implements PhpIterator
 {
 	/**
 	 * @var int

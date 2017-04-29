@@ -3,9 +3,10 @@
 namespace App\Modules\Front\Model;
 
 use App\Modules\Core\Model\Iterator;
+use Countable;
 
 
-final class EventsIterator extends Iterator implements \Countable
+final class EventsIterator extends Iterator implements Countable
 {
 	/**
 	 * @var bool

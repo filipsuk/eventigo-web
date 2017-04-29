@@ -13,9 +13,12 @@ use App\Modules\Front\Components\Sign\SignIn;
 use App\Modules\Front\Components\Sign\SignInFactoryInterface;
 use App\Modules\Front\Components\SubscriptionTags\SubscriptionTags;
 use App\Modules\Front\Components\SubscriptionTags\SubscriptionTagsFactoryInterface;
+use Kdyby\Facebook\Dialog\LoginDialog;
+use Kdyby\Facebook\FacebookApiException;
 use Nette\Security\Identity;
 use Nette\Utils\DateTime;
 use Nette\Utils\Html;
+use Tracy\Debugger;
 
 
 final class HomepagePresenter extends AbstractBasePresenter
@@ -236,12 +239,12 @@ final class HomepagePresenter extends AbstractBasePresenter
 	}
 
 
-	protected function createComponentFbLogin(): \Kdyby\Facebook\Dialog\LoginDialog
+	protected function createComponentFbLogin(): LoginDialog
 	{
 		/** @var \Kdyby\Facebook\Dialog\LoginDialog $dialog */
 		$dialog = $this->facebook->createDialog('login');
 
-		$dialog->onResponse[] = function (\Kdyby\Facebook\Dialog\LoginDialog $dialog) {
+		$dialog->onResponse[] = function (LoginDialog $dialog) {
 			$fb = $dialog->getFacebook();
 
 			if (!$fb->getUser()) {
@@ -271,8 +274,8 @@ final class HomepagePresenter extends AbstractBasePresenter
 
 				$this->getUser()->login(new Identity($existing->id, null, $existing->toArray()));
 
-			} catch (\Kdyby\Facebook\FacebookApiException $e) {
-				\Tracy\Debugger::log($e, 'facebook');
+			} catch (FacebookApiException $exception) {
+				Debugger::log($exception, 'facebook');
 				$this->flashMessage($this->translator->translate('front.homepage.fbLogin.failed'), 'danger');
 				$this->redirect('this');
 			}

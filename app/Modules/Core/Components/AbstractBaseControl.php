@@ -2,10 +2,10 @@
 
 namespace App\Modules\Core\Components;
 
+use App\Modules\Core\Utils\DateTime;
 use Kdyby\Translation\Translator;
 use Nette\Application\UI\Control;
 use Nette\Bridges\ApplicationLatte\Template;
-use Nette\Utils\DateTime;
 
 
 abstract class AbstractBaseControl extends Control
@@ -32,8 +32,8 @@ abstract class AbstractBaseControl extends Control
 		}
 
 		$template->addFilter('datetime', function (DateTime $a, ?DateTime $b = null) {
-			\App\Modules\Core\Utils\DateTime::setTranslator($this->translator);
-			return \App\Modules\Core\Utils\DateTime::eventsDatetimeFilter($a, $b);
+			DateTime::setTranslator($this->translator);
+			return DateTime::eventsDatetimeFilter($a, $b);
 		});
 
 		return $template;

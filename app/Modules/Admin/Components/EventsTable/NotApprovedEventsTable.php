@@ -5,10 +5,10 @@ namespace App\Modules\Admin\Components\EventsTable;
 use App\Modules\Admin\Components\DataTable\AbstractDataTable;
 use App\Modules\Core\Model\EventModel;
 use App\Modules\Core\Model\EventSources\Facebook\FacebookEventSource;
+use App\Modules\Core\Utils\DateTime;
 use Kdyby\Translation\Translator;
 use Nette\Database\Table\IRow;
 use Nette\Database\Table\Selection;
-use Nette\Utils\DateTime;
 use Nette\Utils\Html;
 
 
@@ -77,15 +77,15 @@ final class NotApprovedEventsTable extends AbstractDataTable
 
 			$start = DateTime::from($item['start']);
 			$end = DateTime::from($item['end']);
-			$item['date'] = $start->format(\App\Modules\Core\Utils\DateTime::W3C_DATETIME_MINUTES)
+			$item['date'] = $start->format(DateTime::W3C_DATETIME_MINUTES)
 				. ($item['end'] && $item['start'] !== $item['end']
 					? ' - ' . ($start->format('Y-m-d') === $end->format('Y-m-d')
-						? $end->format(\App\Modules\Core\Utils\DateTime::TIME_MINUTES)
-						: $end->format(\App\Modules\Core\Utils\DateTime::W3C_DATETIME_MINUTES))
+						? $end->format(DateTime::TIME_MINUTES)
+						: $end->format(DateTime::W3C_DATETIME_MINUTES))
 					: '');
 
 			$item['created'] = DateTime::from($item['created'])
-				->format(\App\Modules\Core\Utils\DateTime::W3C_DATE);
+				->format(DateTime::W3C_DATE);
 
 			$actions = (string) Html::el('a', [
 				'href' => $this->getPresenter()->link('Events:approve', $item['id']),
