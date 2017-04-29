@@ -53,10 +53,12 @@ final class DateTime
 	 * Get maximum of given datetimes
 	 *
 	 * @param NetteDateTime[]|DateTimeInterface[]|null[] $dateTimes
-	 * @return NetteDateTime|DateTimeInterface|null
+	 * @return NetteDateTime|DateTimeInterface
 	 */
 	public static function max(...$dateTimes)
 	{
+        $dateTimes = array_filter($dateTimes); // filter out NULLs
+
 		$max = reset($dateTimes) ?: null;
 		foreach ($dateTimes as $dateTime) {
 			if ($max < $dateTime) {
