@@ -16,7 +16,6 @@ use Nette\Security\User;
 
 final class Tags extends AbstractBaseControl
 {
-
 	/**
 	 * @var callable[]
 	 */

@@ -6,7 +6,6 @@ use Nette\Application\UI\Presenter;
 
 final class SignPresenter extends Presenter
 {
-
 	/**
 	 * @var string[]
 	 */

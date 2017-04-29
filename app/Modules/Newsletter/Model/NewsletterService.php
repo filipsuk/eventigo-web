@@ -26,7 +26,6 @@ use Tracy\Debugger;
 
 final class NewsletterService
 {
-
 	/**
 	 * Path to css file used for css inline of newsletter texts html.
 	 *
