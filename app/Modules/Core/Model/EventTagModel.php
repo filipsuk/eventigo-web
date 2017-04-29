@@ -18,5 +18,5 @@ class EventTagModel extends BaseModel
 		}
 		return $hashtags;
 	}
-	
+
 }

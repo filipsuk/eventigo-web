@@ -48,7 +48,7 @@ class HomepagePresenter extends BasePresenter
 			$this->loginWithToken($token);
 			$this->redirect('Homepage:', Helper::extractUtmParameters($this->getParameters()));
 		}
-		
+
 		if (!$tags) {
 			$section = $this->getSession('subscriptionTags');
 			$tags = $section->tags;

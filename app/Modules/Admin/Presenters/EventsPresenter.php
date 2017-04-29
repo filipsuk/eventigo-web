@@ -63,7 +63,7 @@ class EventsPresenter extends BasePresenter
 	{
 		$this->template->setFile(__DIR__ . '/templates/Events/create.latte');
 	}
-	
+
 
 	protected function createComponentEventForm()
 	{

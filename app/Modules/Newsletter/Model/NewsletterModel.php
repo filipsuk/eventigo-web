@@ -16,7 +16,7 @@ class NewsletterModel extends BaseModel
 	 *
 	 * @throws \RuntimeException
 	 */
-	public function getLatest(): array 
+	public function getLatest(): array
 	{
 		$newsletter = $this->getAll()->order('created DESC')->limit(1);
 		if ($newsletter->count() !== 0) {

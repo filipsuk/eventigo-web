@@ -7,7 +7,7 @@ use Nette\Http\Url;
 
 /**
  * Class BasicEmail extends Email for use in transactional emails with intro text, link button and footer text.
- * 
+ *
  * @package App\Modules\Email\Model\Entity
  */
 class BasicEmail extends Email

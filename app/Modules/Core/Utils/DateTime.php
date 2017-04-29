@@ -9,7 +9,7 @@ final class DateTime
 {
 	/** @var \Kdyby\Translation\Translator */
 	public static $translator;
-	
+
 	const DATETIME_FORMAT = 'd. m. Y H:i';
 	const DATE_FORMAT = 'd. m. Y';
 	const NO_ZERO_DATE_FORMAT = 'j. n. Y';
@@ -36,7 +36,7 @@ final class DateTime
 		}
 		return $max;
 	}
-	
+
 	public static function setTranslator(Translator $t)
 	{
 		self::$translator = $t;

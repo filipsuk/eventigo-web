@@ -17,13 +17,13 @@ class NewsletterPresenter extends BasePresenter
 
 	/** @var UserModel @inject */
 	public $userModel;
-	
+
 	/** @var NewsletterService @inject */
 	public $newsletterService;
 
 	/** @var ActiveRow */
 	private $userNewsletter;
-	
+
 	public function actionDefault($hash)
 	{
 		$this->userNewsletter = $this->userNewsletterModel->getAll()->where([
@@ -68,5 +68,5 @@ class NewsletterPresenter extends BasePresenter
 		$newsletter = $this->newsletterService->buildArrayForTemplate((int) $userId);
 		$this->template->newsletter = NewsletterService::inlineCss($newsletter);
 	}
-	
+
 }

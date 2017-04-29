@@ -37,8 +37,8 @@ class SignInForm extends BaseControl
 
 		$form->addSubmit('signIn', 'signIn')->setAttribute('class', 'btn btn-success');
 		$form->onSuccess[] = [$this, 'processForm'];
-		
-		return  $form;
+
+		return $form;
 	}
 
 

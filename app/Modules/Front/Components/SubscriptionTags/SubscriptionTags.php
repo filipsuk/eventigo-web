@@ -40,7 +40,7 @@ class SubscriptionTags extends Subscription
         UserTagModel $userTagModel,
         TagGroupModel $tagGroupModel
 ) {
-	
+
 		parent::__construct($translator, $userModel);
 		$this->tagModel = $tagModel;
 		$this->userTagModel = $userTagModel;

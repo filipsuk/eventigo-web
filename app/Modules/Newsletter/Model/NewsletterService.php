@@ -101,7 +101,7 @@ final class NewsletterService
 		 * 2. Render user's newsletter
 		 * 3. Save user's newsletter with UserNewsletterModel
 		 */
-		
+
 		$newsletter = $this->buildArrayForTemplate($userId); // TODO handle exception
 		$content = $this->renderNewsletterContent($newsletter);
 		$subject = $newsletter['subject'];
@@ -120,7 +120,7 @@ final class NewsletterService
 		$baseUrl = $this->context->parameters['baseUrl'];
 		$newsletterHash = $this->userNewsletterModel->generateUniqueHash();
 		$userToken = $this->userModel->getUserToken($userId);
-		
+
 		$newsletter = $this->newsletterModel->getLatest();
 		$newsletter['hash'] = $newsletterHash;
 		$newsletter['eventGroups'] = $this->getGroupedEvents($userId);
@@ -148,7 +148,6 @@ final class NewsletterService
 	{
 		$usersNewsletters = $this->userNewsletterModel->getAll()->wherePrimary($usersNewslettersIds)->fetchAll();
 		foreach ($usersNewsletters as $userNewsletter) {
-
 
 			$to = new Email(null, $userNewsletter->user->email);
 			$from = new Email('Eventigo.cz', $userNewsletter->from);
@@ -202,7 +201,7 @@ final class NewsletterService
 		];
 
 		$nextWeekEvents = $this->eventModel->getAllWithDates($userTags, $from, $to);
-		
+
 		if (!$this->context->parameters['newsletter']['sendNewsletterWithNoEvents'] && count($nextWeekEvents) === 0) {
 			throw new NoEventsFoundException("No events found for user $userId!");
 		}
@@ -231,7 +230,7 @@ final class NewsletterService
 			\App\Modules\Core\Utils\DateTime::setTranslator($this->translator);
 			return \App\Modules\Core\Utils\DateTime::eventsDatetimeFilter($a, $b);
 		});
-		
+
 		$this->template->newsletter = self::inlineCss($newsletter);
 
 		$templateFile = __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'Presenters'

@@ -9,7 +9,7 @@ final class Event
 {
 	/** @var int */
 	private $id;
-	
+
 	/** @var string */
 	private $name;
 
@@ -18,7 +18,7 @@ final class Event
 
 	/** @var string */
 	private $originUrl;
-	
+
 	/** @var DateTime */
 	private $start;
 
@@ -27,7 +27,7 @@ final class Event
 
 	/** @var string */
 	private $image;
-	
+
 	/** @var int Size of event */
 	private $rate;
 
@@ -82,11 +82,11 @@ final class Event
 	{
 		if ($this->getId() && $this->getCreated()) {
 			return md5($this->getId() . $this->getCreated()->getTimestamp());
-		} else {
-			throw new \RuntimeException('Could not calculate hash, "id" or "created" field not set');
 		}
-	}
-	
+
+        throw new \RuntimeException('Could not calculate hash, "id" or "created" field not set');
+    }
+
 	public function getName(): string
 	{
 		return $this->name;

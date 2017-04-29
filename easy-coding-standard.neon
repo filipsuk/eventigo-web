@@ -44,45 +44,29 @@ checkers:
     # requires spaces probably
     # - PHP_CodeSniffer\Standards\Squiz\Sniffs\Functions\MultiLineFunctionDeclarationSniff
     - PHP_CodeSniffer\Standards\Squiz\Sniffs\Functions\LowercaseFunctionKeywordsSniff
-#
-#    # Metrics
-#    - PHP_CodeSniffer\Standards\Generic\Sniffs\Metrics\CyclomaticComplexitySniff
-#    PHP_CodeSniffer\Standards\Generic\Sniffs\Metrics\NestingLevelSniff:
-#        nestingLevel: 3
-#        absoluteNestingLevel: 6
-#    - PHP_CodeSniffer\Standards\PSR2\Sniffs\Methods\MethodDeclarationSniff
-#    - ObjectCalisthenics\Sniffs\Metrics\MaxNestingLevelSniff
-#    ObjectCalisthenics\Sniffs\Metrics\MethodPerClassLimitSniff:
-#        maxCount: 16 # 10 by default
-#    - ObjectCalisthenics\Sniffs\Metrics\PropertyPerClassLimitSniff
-#    - ObjectCalisthenics\Sniffs\Files\ClassTraitAndInterfaceLengthSniff
-#    - ObjectCalisthenics\Sniffs\Files\FunctionLengthSniff
-#    ObjectCalisthenics\Sniffs\CodeAnalysis\OneObjectOperatorPerLineSniff:
-#        variablesHoldingAFluentInterface:
-#            - $containerBuilder
-#            - $container
-#            - $kernel
-#            - $rootNode
-#            - $requestMock
-#            - $entityManagerMock
-#
-#    # Naming Conventions
-#    - PHP_CodeSniffer\Standards\Generic\Sniffs\NamingConventions\UpperCaseConstantNameSniff
-#    - PHP_CodeSniffer\Standards\Generic\Sniffs\NamingConventions\CamelCapsFunctionNameSniff
-#    - ObjectCalisthenics\Sniffs\NamingConventions\ElementNameMinimalLengthSniff
-#
-#    # PHP
-#    - PhpCsFixer\Fixer\PhpTag\FullOpeningTagFixer
-#    - PHP_CodeSniffer\Standards\MySource\Sniffs\PHP\EvalObjectFactorySniff
-#    - PHP_CodeSniffer\Standards\MySource\Sniffs\PHP\GetRequestDataSniff
-#    - PHP_CodeSniffer\Standards\Squiz\Sniffs\PHP\NonExecutableCodeSniff
-#
-#    # WhiteSpace
-#    - PHP_CodeSniffer\Standards\Generic\Sniffs\WhiteSpace\DisallowTabIndentSniff
-#    - PHP_CodeSniffer\Standards\Squiz\Sniffs\WhiteSpace\LanguageConstructSpacingSniff
-#    - PHP_CodeSniffer\Standards\Squiz\Sniffs\WhiteSpace\ScopeKeywordSpacingSniff
-#    PHP_CodeSniffer\Standards\Squiz\Sniffs\WhiteSpace\SuperfluousWhitespaceSniff:
-#        ignoreBlankLines: false
+
+    # Metrics
+    - PHP_CodeSniffer\Standards\Generic\Sniffs\Metrics\CyclomaticComplexitySniff
+    PHP_CodeSniffer\Standards\Generic\Sniffs\Metrics\NestingLevelSniff:
+        nestingLevel: 3
+        absoluteNestingLevel: 6
+    - PHP_CodeSniffer\Standards\PSR2\Sniffs\Methods\MethodDeclarationSniff
+
+    # Naming Conventions
+    - PHP_CodeSniffer\Standards\Generic\Sniffs\NamingConventions\UpperCaseConstantNameSniff
+    - PHP_CodeSniffer\Standards\Generic\Sniffs\NamingConventions\CamelCapsFunctionNameSniff
+
+    # PHP
+    - PhpCsFixer\Fixer\PhpTag\FullOpeningTagFixer
+    - PHP_CodeSniffer\Standards\Squiz\Sniffs\PHP\NonExecutableCodeSniff
+
+    # WhiteSpace
+    # prefer PSR-2 spaces, ask guys
+    # - PHP_CodeSniffer\Standards\Generic\Sniffs\WhiteSpace\DisallowTabIndentSniff
+    - PHP_CodeSniffer\Standards\Squiz\Sniffs\WhiteSpace\LanguageConstructSpacingSniff
+    - PHP_CodeSniffer\Standards\Squiz\Sniffs\WhiteSpace\ScopeKeywordSpacingSniff
+    PHP_CodeSniffer\Standards\Squiz\Sniffs\WhiteSpace\SuperfluousWhitespaceSniff:
+        ignoreBlankLines: false
 #
 #    # Commenting
 #    - Symplify\CodingStandard\Sniffs\Commenting\BlockPropertyCommentSniff
