@@ -52,7 +52,7 @@ final class SourceForm extends AbstractBaseControl
 				'check_frequency' => $checkFrequency = SourceModel::FREQUENCY_TYPES[$values->frequency],
 				'next_check' => $values->nextCheck
 					? NetteDateTime::createFromFormat(DateTime::DATE_FORMAT, $values->nextCheck)
-					: new DateTime('+' . $checkFrequency . ' days'),
+					: new NetteDateTime('+' . $checkFrequency . ' days'),
 				'event_series_id' => $values->createOrganiser
 					? $organiser->related('events_series')->fetch()->id
 					: null,

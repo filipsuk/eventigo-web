@@ -5,7 +5,7 @@ namespace App\Modules\Core\Model\EventSources\Utils;
 use Nette\Http\Url;
 use Throwable;
 
-class EventSource
+final class EventSource
 {
 	/**
 	 * @var string[]

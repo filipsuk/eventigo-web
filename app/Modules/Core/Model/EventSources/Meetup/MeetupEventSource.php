@@ -3,11 +3,11 @@
 namespace App\Modules\Core\Model\EventSources\Meetup;
 
 use App\Modules\Core\Model\Entity\Event;
-use App\Modules\Core\Model\EventSources\Utils\EventSource;
+use App\Modules\Core\Model\EventSources\AbstractEventSource;
 use DMS\Service\Meetup\MeetupKeyAuthClient;
 use Nette\Utils\DateTime;
 
-final class MeetupEventSource extends EventSource
+final class MeetupEventSource extends AbstractEventSource
 {
 	/**
 	 * @var string[]
