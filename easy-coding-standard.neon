@@ -23,13 +23,13 @@ checkers:
     - SlevomatCodingStandard\Sniffs\ControlStructures\YodaComparisonSniff
     - SlevomatCodingStandard\Sniffs\Exceptions\DeadCatchSniff
     - SlevomatCodingStandard\Sniffs\Exceptions\ReferenceThrowableOnlySniff
-#
-#    # Files
-#    - PHP_CodeSniffer\Standards\Generic\Sniffs\Files\ByteOrderMarkSniff
-#    PHP_CodeSniffer\Standards\Generic\Sniffs\Files\LineLengthSniff:
-#        lineLimit: 120
-#        absoluteLineLimit: 120
-#
+
+    # Files
+    - PHP_CodeSniffer\Standards\Generic\Sniffs\Files\ByteOrderMarkSniff
+    PHP_CodeSniffer\Standards\Generic\Sniffs\Files\LineLengthSniff:
+        lineLimit: 120
+        absoluteLineLimit: 120
+
 #    # PSR-4
 #    - PhpCsFixer\Fixer\Basic\Psr4Fixer
 #    - PHP_CodeSniffer\Standards\Generic\Sniffs\Files\OneClassPerFileSniff

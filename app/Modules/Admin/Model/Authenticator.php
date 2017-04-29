@@ -45,7 +45,10 @@ class Authenticator implements IAuthenticator
 					throw new AuthenticationException('Unsupported login type', IAuthenticator::FAILURE);
 			}
 		} else {
-			throw new AuthenticationException('User with this email and password has not been found', IAuthenticator::IDENTITY_NOT_FOUND);
+			throw new AuthenticationException(
+				'User with this email and password has not been found',
+				IAuthenticator::IDENTITY_NOT_FOUND
+			);
 		}
 	}
 

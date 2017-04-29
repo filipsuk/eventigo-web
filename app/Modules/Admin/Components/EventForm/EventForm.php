@@ -98,7 +98,11 @@ class EventForm extends BaseControl
 				->setPrompt($this->translator->translate('admin.eventForm.tag.prompt'))
 				->setTranslator(null);
 
-			$rateControl = $tagContainer->addSelect('rate', $this->translator->translate('admin.eventForm.tag.rate'), $this->getTagsRates())
+			$rateControl = $tagContainer->addSelect(
+					'rate',
+					$this->translator->translate('admin.eventForm.tag.rate'),
+					$this->getTagsRates()
+				)
 				->setPrompt($this->translator->translate('admin.eventForm.tag.rate.prompt'))
 				->setTranslator(null);
 			$rateControl->addConditionOn($codeControl, Form::FILLED)

@@ -72,8 +72,9 @@ class FacebookEventSource extends EventSource
 		if (isset($response->events)) {
 			$fbEvents = $response->events->data;
 			foreach ($fbEvents as $event) {
-				$start = isset($event->start_time) ? DateTime::createFromFormat(DATE_ISO8601, $event->start_time) : null;
+				$start = isset($event->start_time) ? $this->createIsoDateTime($event->start_time) : null;
 				if ($start && $start > new DateTime) {
+<<<<<<< HEAD
 					$events[] = new Event(
 						null,
 						$event->name,
@@ -84,10 +85,29 @@ class FacebookEventSource extends EventSource
 						$event->cover->source ?? null,
 						Event::calculateRateByAttendeesCount($event->interested_count + $event->attending_count)
 					);
+=======
+					$e = new Event;
+					$e->setName($event->name);
+					$e->setDescription($event->description ?? '');
+					$e->setStart($start);
+					$e->setEnd(isset($event->end_time) ? $this->createIsoDateTime($event->end_time) : null);
+					$e->setOriginUrl('https://facebook.com/events/' . $event->id . '/');
+					$e->setImage($event->cover->source ?? null);
+					$e->setRateByAttendeesCount($event->interested_count + $event->attending_count);
+					$events[] = $e;
+>>>>>>> fix cs: line limit
 				}
 			}
 		}
 
 		return $events;
+	}
+
+	/**
+	 * @return DateTime
+	 */
+	private function createIsoDateTime($time)
+	{
+		return DateTime::createFromFormat(DATE_ISO8601, $time);
 	}
 }

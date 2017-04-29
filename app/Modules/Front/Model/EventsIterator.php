@@ -40,9 +40,9 @@ class EventsIterator extends Iterator implements \Countable
 	{
 		if (!$this->nextMonth && $this->current()->nextMonth && !$this->current()->thisWeek && !$this->current()->thisMonth) {
 			return $this->nextMonth = TRUE;
-		} else {
-			return FALSE;
 		}
+
+		return FALSE;
 	}
 
 
@@ -50,10 +50,10 @@ class EventsIterator extends Iterator implements \Countable
 	{
 		if (!$this->upcoming && !$this->current()->thisWeek && !$this->current()->thisMonth && !$this->current()->nextMonth) {
 			return $this->upcoming = TRUE;
-		} else {
-			return FALSE;
 		}
-	}
+
+		return FALSE;
+	}s
 
 
 	public function count(): int

@@ -67,8 +67,9 @@ final class NewsletterService
 	public $sendGrid;
 
 	/** Path to css file used for css inline of newsletter texts html */
-	const CSS_FILE_PATH = __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'Presenters' . DIRECTORY_SEPARATOR .
-	'templates' . DIRECTORY_SEPARATOR . 'Newsletter' . DIRECTORY_SEPARATOR . 'build.css';
+	const CSS_FILE_PATH = __DIR__ . DIRECTORY_SEPARATOR . '..'
+		. DIRECTORY_SEPARATOR . 'Presenters' . DIRECTORY_SEPARATOR . 'templates'
+		. DIRECTORY_SEPARATOR . 'Newsletter' . DIRECTORY_SEPARATOR . 'build.css';
 
 	const NEWSLETTER_UTM_PARAMETERS = ['utm_source'=>'newsletter', 'utm_medium' => 'email'];
 
@@ -123,8 +124,18 @@ final class NewsletterService
 		$newsletter = $this->newsletterModel->getLatest();
 		$newsletter['hash'] = $newsletterHash;
 		$newsletter['eventGroups'] = $this->getGroupedEvents($userId);
-		$newsletter['updatePreferencesUrl'] = $this->linkGenerator->link('Front:Profile:settings', array_merge(['token' => $userToken, 'utm_campaign' => 'newsletterButton'], self::NEWSLETTER_UTM_PARAMETERS));
-		$newsletter['feedUrl'] = $this->linkGenerator->link('Front:Homepage:default', array_merge(['token' => $userToken, 'utm_campaign' => 'newsletterButton'], self::NEWSLETTER_UTM_PARAMETERS));
+		$newsletter['updatePreferencesUrl'] = $this->linkGenerator->link(
+			'Front:Profile:settings',
+			array_merge([
+				'token' => $userToken, 'utm_campaign' => 'newsletterButton'], self::NEWSLETTER_UTM_PARAMETERS
+			)
+		);
+		$newsletter['feedUrl'] = $this->linkGenerator->link(
+			'Front:Homepage:default',
+			array_merge([
+				'token' => $userToken, 'utm_campaign' => 'newsletterButton'], self::NEWSLETTER_UTM_PARAMETERS
+			)
+		);
 		$newsletter['unsubscribeUrl'] = $baseUrl . '/newsletter/unsubscribe/' . $newsletterHash;
 
 		return $newsletter;
@@ -223,13 +234,17 @@ final class NewsletterService
 		
 		$this->template->newsletter = self::inlineCss($newsletter);
 
-		$templateFile = __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'Presenters' . DIRECTORY_SEPARATOR .
-			'templates' . DIRECTORY_SEPARATOR . 'Newsletter' . DIRECTORY_SEPARATOR . 'dynamic.latte';
+		$templateFile = __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'Presenters'
+			. DIRECTORY_SEPARATOR . 'templates' . DIRECTORY_SEPARATOR . 'Newsletter'
+			. DIRECTORY_SEPARATOR . 'dynamic.latte';
 		$this->template->setFile($templateFile);
 
 		$this->template->getLatte()->addProvider('uiControl', $this->linkGenerator); // pro Latte 2.4
 
-		return $this->template->getLatte()->renderToString($this->template->getFile(), $this->template->getParameters());
+		// @todo: use latte directly
+		return $this->template->getLatte()->renderToString(
+			$this->template->getFile(), $this->template->getParameters()
+		);
 	}
 
 	/**

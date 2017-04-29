@@ -6,6 +6,7 @@ use App\Modules\Admin\Components\EventForm\EventFormFactory;
 use App\Modules\Admin\Components\EventsTable\NotApprovedEventsTableFactory;
 use App\Modules\Admin\Model\SourceService;
 use App\Modules\Core\Model\EventModel;
+use App\Modules\Core\Utils\DateTime as EventigoDateTime;
 use Nette\Application\Request;
 use Nette\Utils\DateTime;
 
@@ -30,9 +31,9 @@ class EventsPresenter extends BasePresenter
 		$event = $this->eventModel->getAll()->wherePrimary($id)->fetch();
 
 		$defaults = $event->toArray();
-		$defaults['start'] = DateTime::from($defaults['start'])->format(\App\Modules\Core\Utils\DateTime::DATETIME_FORMAT);
+		$defaults['start'] = DateTime::from($defaults['start'])->format(EventigoDateTime::DATETIME_FORMAT);
 		$defaults['end'] = $defaults['end']
-			? DateTime::from($defaults['end'])->format(\App\Modules\Core\Utils\DateTime::DATETIME_FORMAT)
+			? DateTime::from($defaults['end'])->format(EventigoDateTime::DATETIME_FORMAT)
 			: null;
 		$defaults['tags'] = [];
 		foreach ($event->related('events_tags') as $eventTag) {
