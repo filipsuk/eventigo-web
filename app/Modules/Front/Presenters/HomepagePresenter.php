@@ -267,7 +267,6 @@ final class HomepagePresenter extends AbstractBasePresenter
 				$existing = $this->userModel->updateFacebook($me, $fb->getAccessToken());
 
 				$this->getUser()->login(new Identity($existing->id, null, $existing->toArray()));
-
 			} catch (FacebookApiException $exception) {
 				Debugger::log($exception, 'facebook');
 				$this->flashMessage($this->translator->translate('front.homepage.fbLogin.failed'), 'danger');

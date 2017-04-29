@@ -74,7 +74,6 @@ class Subscription extends AbstractBaseControl
 			} else {
 				return $user;
 			}
-
 		} catch (EmailExistsException $e) {
 			$this->onEmailExists($email);
 		}

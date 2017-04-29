@@ -88,7 +88,6 @@ final class SubscriptionTags extends Subscription
 			}
 
 			$this->onSuccess($user->email);
-
 		} else {
 			// Store tags to session
 			$section = $this->presenter->getSession($this->getPresenter()->getAction() === 'discover'

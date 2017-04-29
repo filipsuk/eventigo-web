@@ -62,7 +62,6 @@ final class EventForm extends AbstractBaseControl
 
 		// Loading from Facebook
 		if ($form['facebook_load']->isSubmittedBy()) {
-
 			// Parse id from url
 			preg_match('/(?<=\/)\d{5,}/', $values['origin_url'], $id);
 

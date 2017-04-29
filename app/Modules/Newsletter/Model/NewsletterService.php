@@ -136,13 +136,12 @@ final class NewsletterService
 	{
 		/**
 		 * 1 Build array for template
-		 *  1.1 Generate UserNewsletter hash
-		 *  1.2 Get texts from NewsletterModel
-		 *  1.3 Get events (grouped)
+		 * 1.1 Generate UserNewsletter hash
+		 * 1.2 Get texts from NewsletterModel
+		 * 1.3 Get events (grouped)
 		 * 2. Render user's newsletter
 		 * 3. Save user's newsletter with UserNewsletterModel
 		 */
-
 		$newsletter = $this->buildArrayForTemplate($userId); // TODO handle exception
 		$content = $this->renderNewsletterContent($newsletter);
 		$subject = $newsletter['subject'];
@@ -190,7 +189,6 @@ final class NewsletterService
 	{
 		$usersNewsletters = $this->userNewsletterModel->getAll()->wherePrimary($usersNewslettersIds)->fetchAll();
 		foreach ($usersNewsletters as $userNewsletter) {
-
 			$to = new Email(null, $userNewsletter->user->email);
 			$from = new Email('Eventigo.cz', $userNewsletter->from);
 			$subject = $userNewsletter->subject;
@@ -205,7 +203,6 @@ final class NewsletterService
 				$this->userNewsletterModel->getAll()->wherePrimary($userNewsletter->id)->update([
 					'sent' => new DateTime,
 				]);
-
 			} catch (Throwable $throwable) {
 				// TODO log unsuccessful email send
 			}
@@ -237,7 +234,6 @@ final class NewsletterService
 				$emogrifier->setHtml($newsletter['outro_text']);
 				$newsletter['outro_text'] = $emogrifier->emogrifyBodyContent();
 			}
-
 		} catch (BadMethodCallException $e) {
 			Debugger::log($e->getMessage());
 		}

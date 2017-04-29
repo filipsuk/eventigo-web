@@ -55,7 +55,6 @@ final class UserModel extends AbstractBaseModel
 
 			return $user;
 		}
-
 	}
 
 	public function emailExists(string $email): bool

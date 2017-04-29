@@ -30,7 +30,6 @@ final class SignInForm extends AbstractBaseControl
 
 		try {
 			$this->getPresenter()->getUser()->login(UserModel::ADMIN_LOGIN, $values->email, $values->password);
-
 		} catch (AuthenticationException $e) {
 			$this->onIncorrectLogIn();
 		}

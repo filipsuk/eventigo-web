@@ -37,6 +37,5 @@ final class CreateNewsletterCommand extends Command
 			$output->writeln('<error>Could not create newsletter </error>');
 
 			return 1;
-
 	}
 }

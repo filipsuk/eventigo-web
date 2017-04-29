@@ -24,7 +24,6 @@ class EventSource
 			$host = (new Url($url))->getHost();
 
 			return in_array($host, self::SOURCES, true);
-
 		} catch (Throwable $throwable) {
 			return false;
 		}

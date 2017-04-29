@@ -49,7 +49,6 @@ final class EmailService
 
 		try {
 			$this->sendGrid->client->mail()->send()->post($mail);
-
 		} catch (Throwable $throwable) {
 			// TODO log unsuccessful email send
 		}
