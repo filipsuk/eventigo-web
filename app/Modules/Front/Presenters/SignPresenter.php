@@ -6,10 +6,6 @@ use Nette\Application\UI\Presenter;
 
 final class SignPresenter extends Presenter
 {
-	/**
-	 * @var \Kdyby\Translation\Translator @inject
-	 */
-	public $translator;
 
 	/**
 	 * @var string[]
@@ -25,11 +21,15 @@ final class SignPresenter extends Presenter
 		'Sayonara',
 		'Měj se',
 	];
+	/**
+	 * @var \Kdyby\Translation\Translator @inject
+	 */
+	public $translator;
 
 
 	public function actionOut(): void
 	{
-		if (!$this->getUser()->isLoggedIn()) {
+		if (! $this->getUser()->isLoggedIn()) {
 			$this->redirect('Homepage:');
 		}
 

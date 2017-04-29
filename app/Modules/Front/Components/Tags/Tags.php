@@ -17,6 +17,11 @@ use Nette\Security\User;
 
 final class Tags extends AbstractBaseControl
 {
+
+	/**
+	 * @var callable[]
+	 */
+	public $onChange = [];
 	/**
 	 * @var TagModel
 	 */
@@ -26,11 +31,6 @@ final class Tags extends AbstractBaseControl
 	 * @var UserTagModel
 	 */
 	private $userTagModel;
-
-	/**
-	 * @var callable[]
-	 */
-	public $onChange = [];
 
 	/**
 	 * @var Selection
@@ -75,24 +75,6 @@ final class Tags extends AbstractBaseControl
 	}
 
 
-	protected function createComponentForm(): Form
-	{
-		$form = new Form;
-
-		$tagsGroups = $this->tags->fetchAssoc('tagGroupName|id');
-		$tagsContainer = $form->addContainer('tags');
-		foreach ($tagsGroups as $tagGroupName => $tagsGroup) {
-			$tagsContainer->addCheckboxList($tagGroupName)
-				->setItems(Helpers::toPairs($tagsGroups[$tagGroupName], 'code', 'name'))
-				->setTranslator(NULL);
-		}
-
-		$form->onSuccess[] = [$this, 'processForm'];
-
-		return $form;
-	}
-
-
 	public function processForm(Form $form): void
 	{
 		$values = $form->getValues();
@@ -128,5 +110,23 @@ final class Tags extends AbstractBaseControl
 		}
 
 		$this->onChange();
+	}
+
+
+	protected function createComponentForm(): Form
+	{
+		$form = new Form;
+
+		$tagsGroups = $this->tags->fetchAssoc('tagGroupName|id');
+		$tagsContainer = $form->addContainer('tags');
+		foreach ($tagsGroups as $tagGroupName => $tagsGroup) {
+			$tagsContainer->addCheckboxList($tagGroupName)
+				->setItems(Helpers::toPairs($tagsGroups[$tagGroupName], 'code', 'name'))
+				->setTranslator(NULL);
+		}
+
+		$form->onSuccess[] = [$this, 'processForm'];
+
+		return $form;
 	}
 }

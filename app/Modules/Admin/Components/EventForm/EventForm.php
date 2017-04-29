@@ -16,16 +16,6 @@ use Nette\Database\UniqueConstraintViolationException;
 final class EventForm extends AbstractBaseControl
 {
 	/**
-	 * @var TagModel
-	 */
-	private $tagModel;
-
-	/**
-	 * @var EventService
-	 */
-	private $eventService;
-
-	/**
 	 * @var callable[]
 	 */
 	public $onCreate = [];
@@ -34,6 +24,16 @@ final class EventForm extends AbstractBaseControl
 	 * @var callable[]
 	 */
 	public $onUpdate = [];
+
+	/**
+	 * @var TagModel
+	 */
+	private $tagModel;
+
+	/**
+	 * @var EventService
+	 */
+	private $eventService;
 
 	/**
 	 * @var OrganiserService
@@ -57,6 +57,51 @@ final class EventForm extends AbstractBaseControl
 	public function render(): void
 	{
 		$this['form']->render();
+	}
+
+
+	public function processForm(Form $form): void
+	{
+		$values = $form->getValues();
+
+		// Loading from Facebook
+		if ($form['facebook_load']->isSubmittedBy()) {
+
+			// Parse id from url
+			preg_match('/(?<=\/)\d{5,}/', $values['origin_url'], $id);
+
+			// Get event from fb
+			try {
+				$event = $this->eventService->getEventFromPlatform($id[0], EventService::PLATFORM_FACEBOOK);
+			} catch (FacebookApiException $e) {
+				$form->addError($e->getMessage());
+				return;
+			}
+
+			// Set form values
+			$values['name'] = $event->getName();
+			$values['description'] = $event->getDescription();
+			$values['start'] = $event->getStart() ? $event->getStart()->format('d. m. Y H:i') : null;
+			$values['end'] = $event->getEnd() ? $event->getEnd()->format('d. m. Y H:i') : null;
+			$values['image'] = $event->getImage();
+			$values['rate'] = $event->getRate();
+			$form->setValues($values, true);
+
+			return;
+		}
+
+		if (! $values->id) {
+			try {
+				$this->eventService->createEvent($values);
+				$this->onCreate();
+			} catch (UniqueConstraintViolationException $e) {
+				$form->addError($this->translator->trans('admin.eventForm.error.alreadyExists'));
+				return;
+			}
+		} else {
+			$this->eventService->updateEvent($values);
+			$this->onUpdate();
+		}
 	}
 
 
@@ -127,51 +172,6 @@ final class EventForm extends AbstractBaseControl
 		$form->onSubmit[] = [$this, 'processForm'];
 
 		return $form;
-	}
-
-
-	public function processForm(Form $form): void
-	{
-		$values = $form->getValues();
-
-		// Loading from Facebook
-		if ($form['facebook_load']->isSubmittedBy()) {
-
-			// Parse id from url
-			preg_match('/(?<=\/)\d{5,}/', $values['origin_url'], $id);
-
-			// Get event from fb
-			try {
-				$event = $this->eventService->getEventFromPlatform($id[0], EventService::PLATFORM_FACEBOOK);
-			} catch (FacebookApiException $e) {
-				$form->addError($e->getMessage());
-				return;
-			}
-
-			// Set form values
-			$values['name'] = $event->getName();
-			$values['description'] = $event->getDescription();
-			$values['start'] = $event->getStart() ? $event->getStart()->format('d. m. Y H:i') : null;
-			$values['end'] = $event->getEnd() ? $event->getEnd()->format('d. m. Y H:i') : null;
-			$values['image'] = $event->getImage();
-			$values['rate'] = $event->getRate();
-			$form->setValues($values, true);
-
-			return;
-		}
-
-		if (!$values->id) {
-			try {
-				$this->eventService->createEvent($values);
-				$this->onCreate();
-			} catch (UniqueConstraintViolationException $e) {
-				$form->addError($this->translator->trans('admin.eventForm.error.alreadyExists'));
-				return;
-			}
-		} else {
-			$this->eventService->updateEvent($values);
-			$this->onUpdate();
-		}
 	}
 
 

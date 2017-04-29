@@ -28,6 +28,20 @@ final class SignPresenter extends Presenter
 	}
 
 
+	public function actionOut(): void
+	{
+		if (! $this->user->isLoggedIn()) {
+			$this->redirect('in');
+		}
+
+		if ($this->user->isInRole('admin')) {
+			$this->user->logout(true);
+		}
+
+		$this->redirect('in');
+	}
+
+
 	protected function createComponentSignInForm(): SignInForm
 	{
 		$control = $this->signInFormFactory->create();
@@ -42,19 +56,5 @@ final class SignPresenter extends Presenter
 		};
 
 		return $control;
-	}
-
-
-	public function actionOut(): void
-	{
-		if (!$this->user->isLoggedIn()) {
-			$this->redirect('in');
-		}
-
-		if ($this->user->isInRole('admin')) {
-			$this->user->logout(true);
-		}
-
-		$this->redirect('in');
 	}
 }

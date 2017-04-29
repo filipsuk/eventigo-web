@@ -57,7 +57,6 @@ final class UserModel extends AbstractBaseModel
 			return $user;
 		}
 
-		return NULL;
 	}
 
 

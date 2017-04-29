@@ -41,6 +41,19 @@ final class SignIn extends AbstractBaseControl
 	}
 
 
+	public function processForm(Form $form, ArrayHash $values): void
+	{
+		$user = $this->userModel->getUserByEmail($values->email);
+
+		if (! $user) {
+			$user = $this->userModel->subscribe($values->email);
+		}
+
+		$this->emailService->sendLogin($values->email, $user->token);
+		$this->onSuccess($values->email);
+	}
+
+
 	protected function createComponentForm(): Form
 	{
 		$form = new Form;
@@ -55,18 +68,5 @@ final class SignIn extends AbstractBaseControl
 
 		$form->onSuccess[] = [$this, 'processForm'];
 		return $form;
-	}
-
-
-	public function processForm(Form $form, ArrayHash $values): void
-	{
-		$user = $this->userModel->getUserByEmail($values->email);
-
-		if (!$user) {
-			$user = $this->userModel->subscribe($values->email);
-		}
-
-		$this->emailService->sendLogin($values->email, $user->token);
-		$this->onSuccess($values->email);
 	}
 }

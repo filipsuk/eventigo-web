@@ -75,7 +75,7 @@ final class SourceService
 		foreach ($events as $event) {
 			$existingEvent = $this->eventModel->findExistingEvent($event);
 
-			if (!$existingEvent) {
+			if (! $existingEvent) {
 				try {
 					$this->eventModel->insert([
 						'name' => $event->getName(),

@@ -41,7 +41,7 @@ final class TagModel extends AbstractBaseModel
 			->select('tags.code')
 			->select('tags.name')
 			->select('COUNT(IF(:events_tags.event_id IS NOT NULL AND :events_tags.event.start >= NOW(),'
-				.' TRUE, NULL)) AS eventsCount')
+				. ' TRUE, NULL)) AS eventsCount')
 			->select('tag_group_id')
 			->select('tag_group.name AS tagGroupName')
 			->select('tags.id')

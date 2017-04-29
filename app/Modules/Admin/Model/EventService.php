@@ -15,6 +15,11 @@ use Nette\Utils\DateTime as NetteDateTime;
 final class EventService
 {
 	/**
+	 * @var string
+	 */
+	const PLATFORM_FACEBOOK = 'facebook';
+
+	/**
 	 * @var EventModel
 	 */
 	private $eventModel;
@@ -33,11 +38,6 @@ final class EventService
 	 * @var FacebookEventSource
 	 */
 	private $facebookEventSource;
-
-	/**
-	 * @var string
-	 */
-	const PLATFORM_FACEBOOK = 'facebook';
 
 
 	public function __construct(
@@ -91,7 +91,7 @@ final class EventService
 			'image' => $values->image ?: null,
 			'rate' => $values->rate,
 			'state' => $values->state,
-			'approved' => $values->state === EventModel::STATE_APPROVED && !$event->approved
+			'approved' => $values->state === EventModel::STATE_APPROVED && ! $event->approved
 				? new DateTime : $event->approved,
 			'event_series_id' => $values->event_series_id,
 		]);
@@ -103,23 +103,6 @@ final class EventService
 			->delete();
 
 		$this->addTags($values->tags, (int) $values->id);
-	}
-
-
-	private function addTags(ArrayHash $tags, int $eventId): void
-	{
-		foreach ($tags as $tagValues) {
-			if (!$tagValues->code) {
-				continue;
-			}
-
-			$tag = $this->tagModel->getAll()->where(['code' => $tagValues->code])->fetch();
-			$this->eventTagModel->insert([
-				'event_id' => $eventId,
-				'tag_id' => $tag->id,
-				'rate' => $tagValues->rate,
-			]);
-		}
 	}
 
 	/**
@@ -134,5 +117,22 @@ final class EventService
 			return $this->facebookEventSource->getEventById($id);
 		}
 		throw new InvalidArgumentException('Invalid platform');
+	}
+
+
+	private function addTags(ArrayHash $tags, int $eventId): void
+	{
+		foreach ($tags as $tagValues) {
+			if (! $tagValues->code) {
+				continue;
+			}
+
+			$tag = $this->tagModel->getAll()->where(['code' => $tagValues->code])->fetch();
+			$this->eventTagModel->insert([
+				'event_id' => $eventId,
+				'tag_id' => $tag->id,
+				'rate' => $tagValues->rate,
+			]);
+		}
 	}
 }

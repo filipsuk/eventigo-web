@@ -9,8 +9,8 @@ use App\Modules\Core\Utils\DateTime;
 use Kdyby\Translation\Translator;
 use Nette\Database\Table\IRow;
 use Nette\Database\Table\Selection;
-use Nette\Utils\Html;
 use Nette\Utils\DateTime as NetteDateTime;
+use Nette\Utils\Html;
 
 
 final class NotApprovedEventsTable extends AbstractDataTable

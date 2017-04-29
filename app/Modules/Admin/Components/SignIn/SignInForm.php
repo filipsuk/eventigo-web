@@ -27,6 +27,21 @@ final class SignInForm extends AbstractBaseControl
 	}
 
 
+	public function processForm(Form $form): void
+	{
+		$values = $form->getValues();
+
+		try {
+			$this->getPresenter()->getUser()->login(UserModel::ADMIN_LOGIN, $values->email, $values->password);
+
+		} catch (AuthenticationException $e) {
+			$this->onIncorrectLogIn();
+		}
+
+		$this->onLoggedIn();
+	}
+
+
 	protected function createComponentForm(): Form
 	{
 		$form = new Form;
@@ -43,20 +58,5 @@ final class SignInForm extends AbstractBaseControl
 		$form->onSuccess[] = [$this, 'processForm'];
 
 		return $form;
-	}
-
-
-	public function processForm(Form $form): void
-	{
-		$values = $form->getValues();
-
-		try {
-			$this->getPresenter()->getUser()->login(UserModel::ADMIN_LOGIN, $values->email, $values->password);
-
-		} catch (AuthenticationException $e) {
-			$this->onIncorrectLogIn();
-		}
-
-		$this->onLoggedIn();
 	}
 }

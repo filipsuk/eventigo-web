@@ -51,16 +51,6 @@ final class ProfilePresenter extends AbstractBasePresenter
 	 */
 	public $userModel;
 
-	protected function startup(): void
-	{
-		parent::startup();
-
-		if (!$this->getUser()->isLoggedIn()) {
-			$this->flashMessage($this->translator->translate('front.profile.settings.notLoggedIn'));
-			$this->redirect('Homepage:default');
-		}
-	}
-
 	public function actionSettings(?string $token = null): void
 	{
 		// Try to log in the user with provided token
@@ -80,6 +70,16 @@ final class ProfilePresenter extends AbstractBasePresenter
 
 		$user = $this->userModel->getAll()->wherePrimary($this->getUser()->getId())->fetch();
 		$this['settings-form']->setDefaults(['newsletter' => $user->newsletter]);
+	}
+
+	protected function startup(): void
+	{
+		parent::startup();
+
+		if (! $this->getUser()->isLoggedIn()) {
+			$this->flashMessage($this->translator->translate('front.profile.settings.notLoggedIn'));
+			$this->redirect('Homepage:default');
+		}
 	}
 
 

@@ -33,9 +33,9 @@ final class CreateNewsletterCommand extends Command
 		if ($result) {
 			$output->writeln('<info>New newsletter id: ' . $result . '</info>');
 			return 0;
-		} else {
+		}
 			$output->writeln('<error>Could not create newsletter </error>');
 			return 1;
-		}
+
 	}
 }

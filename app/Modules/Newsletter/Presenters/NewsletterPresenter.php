@@ -39,7 +39,7 @@ final class NewsletterPresenter extends AbstractBasePresenter
 			'hash' => $hash,
 		])->fetch();
 
-		if (!$this->userNewsletter) {
+		if (! $this->userNewsletter) {
 			$this->error(null, IResponse::S404_NOT_FOUND);
 		}
 	}
@@ -67,7 +67,7 @@ final class NewsletterPresenter extends AbstractBasePresenter
 	public function actionDynamic(): void
 	{
 		// Allow newsletter preview only for admins
-		if (!$this->getUser()->isLoggedIn() || !$this->getUser()->isInRole('admin')) {
+		if (! $this->getUser()->isLoggedIn() || ! $this->getUser()->isInRole('admin')) {
 			$this->redirect(':Admin:Sign:in');
 		}
 	}

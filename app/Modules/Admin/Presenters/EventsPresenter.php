@@ -60,7 +60,7 @@ final class EventsPresenter extends AbstractBasePresenter
 		}
 
 		// Set image from previous event in series if none
-		if (!$defaults['image'] && $event['event_series_id']) {
+		if (! $defaults['image'] && $event['event_series_id']) {
 			$previousEvent = $this->eventModel->findPreviousEvent($event['event_series_id']);
 			if ($previousEvent) {
 				$defaults['image'] = $previousEvent->image;
@@ -74,24 +74,6 @@ final class EventsPresenter extends AbstractBasePresenter
 	public function renderUpdate(): void
 	{
 		$this->template->setFile(__DIR__ . '/templates/Events/create.latte');
-	}
-
-
-	protected function createComponentEventForm(): EventForm
-	{
-		$control = $this->eventFormFactory->create();
-
-		$control->onCreate[] = function () {
-			$this->flashMessage($this->translator->translate('admin.eventForm.success'), 'success');
-			$this->redirect('Events:default');
-		};
-
-		$control->onUpdate[] = function () {
-			$this->flashMessage($this->translator->translate('admin.eventForm.success'), 'success');
-			$this->redirect('Events:default');
-		};
-
-		return $control;
 	}
 
 
@@ -113,6 +95,24 @@ final class EventsPresenter extends AbstractBasePresenter
 	public function actionApprove(int $id): void
 	{
 		$this->forward('update', $id);
+	}
+
+
+	protected function createComponentEventForm(): EventForm
+	{
+		$control = $this->eventFormFactory->create();
+
+		$control->onCreate[] = function () {
+			$this->flashMessage($this->translator->translate('admin.eventForm.success'), 'success');
+			$this->redirect('Events:default');
+		};
+
+		$control->onUpdate[] = function () {
+			$this->flashMessage($this->translator->translate('admin.eventForm.success'), 'success');
+			$this->redirect('Events:default');
+		};
+
+		return $control;
 	}
 
 

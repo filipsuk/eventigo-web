@@ -31,7 +31,7 @@ final class EventsIterator extends Iterator implements Countable
 
 	public function drawThisWeekTitle(): bool
 	{
-		if (!$this->thisWeek && $this->current()->thisWeek) {
+		if (! $this->thisWeek && $this->current()->thisWeek) {
 			return $this->thisWeek = TRUE;
 		}
 
@@ -41,7 +41,7 @@ final class EventsIterator extends Iterator implements Countable
 
 	public function drawThisMonthTitle(): bool
 	{
-		if (!$this->thisMonth && $this->current()->thisMonth && !$this->current()->thisWeek) {
+		if (! $this->thisMonth && $this->current()->thisMonth && ! $this->current()->thisWeek) {
 			return $this->thisMonth = TRUE;
 		}
 
@@ -63,7 +63,7 @@ final class EventsIterator extends Iterator implements Countable
 
 	public function drawUpcomingTitle(): bool
 	{
-		if (! $this->upcoming && !$this->current()->thisWeek
+		if (! $this->upcoming && ! $this->current()->thisWeek
 			&& ! $this->current()->thisMonth && ! $this->current()->nextMonth
 		) {
 			return $this->upcoming = TRUE;

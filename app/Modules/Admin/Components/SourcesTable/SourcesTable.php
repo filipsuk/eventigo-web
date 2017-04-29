@@ -10,8 +10,8 @@ use App\Modules\Core\Model\EventSources\Utils\EventSource;
 use App\Modules\Core\Utils\DateTime;
 use Kdyby\Translation\Translator;
 use Nette\Database\Table\Selection;
-use Nette\Utils\Html;
 use Nette\Utils\DateTime as NetteDateTime;
+use Nette\Utils\Html;
 
 
 final class SourcesTable extends AbstractDataTable
@@ -114,7 +114,7 @@ final class SourcesTable extends AbstractDataTable
 			}
 		}
 
-        $nextCheck = new NetteDateTime('+' . $source->check_frequency . ' days');
+		$nextCheck = new NetteDateTime('+' . $source->check_frequency . ' days');
 		$this->sourceModel->getAll()->wherePrimary($sourceId)->update([
 			'next_check' => $nextCheck,
 		]);

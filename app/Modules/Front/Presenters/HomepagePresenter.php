@@ -68,7 +68,7 @@ final class HomepagePresenter extends AbstractBasePresenter
 			$this->redirect('Homepage:', Helper::extractUtmParameters($this->getParameters()));
 		}
 
-		if (!$tags) {
+		if (! $tags) {
 			$section = $this->getSession('subscriptionTags');
 			$tags = $section->tags;
 		}
@@ -82,7 +82,7 @@ final class HomepagePresenter extends AbstractBasePresenter
 		$activeTags = $this->tagModel->getByMostEvents()->fetchPairs(null, 'code');
 		foreach ($tags as $tagsGroupName => &$tagsGroup) {
 			foreach ($tagsGroup as $i => &$tag) {
-				if (!in_array($tag, $activeTags)) {
+				if (! in_array($tag, $activeTags)) {
 					unset($tags[$tagsGroupName][$i]);
 				}
 			}
@@ -103,89 +103,13 @@ final class HomepagePresenter extends AbstractBasePresenter
 		$activeTags = $this->tagModel->getByMostEvents()->fetchPairs(null, 'code');
 		foreach ($tags as $tagsGroupName => &$tagsGroup) {
 			foreach ($tagsGroup as $i => &$tag) {
-				if (!in_array($tag, $activeTags)) {
+				if (! in_array($tag, $activeTags)) {
 					unset($tags[$tagsGroupName][$i]);
 				}
 			}
 		}
 
 		$this['subscriptionTags']['form']->setDefaults(['tags' => $tags]);
-	}
-
-
-	protected function createComponentSubscriptionTags(): SubscriptionTags
-	{
-		$control = $this->subscriptionTags->create();
-
-		$control->onEmailExists[] = function ($email) {
-			// Send email with login
-			$user = $this->userModel->getUserByEmail($email);
-			$this->emailService->sendLogin($email, $user->token);
-
-			$this->flashMessage(
-				'<i class="fa fa-envelope"></i> ' .
-				$this->translator->translate('front.subscription.message.emailExists',
-					['email' => Html::el('strong')->setText($email)]),
-				'success');
-
-			$this->redrawControl('flash-messages');
-		};
-
-		$control->onSuccess[] = function ($email) {
-			$this->getUser()->login(UserModel::SUBSCRIPTION_LOGIN, $email);
-
-			$this->flashMessage(
-				'<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>' .
-				$this->translator->translate('front.subscription.message.success',
-					['email' => Html::el('strong')->setText($email)]),
-				'success');
-
-			// TODO refactor duplicate code
-			// Redirect to settings if no tags
-			$section = $this->getSession('subscriptionTags');
-			$chosenTags = Collection::getNestedValues($section->tags ?? []);
-			if (isset($chosenTags) && count($chosenTags) === 0) {
-				$this->flashMessage($this->translator->translate('front.profile.settings.afterLogin', 'info'));
-				$this->redirect('Profile:settings');
-			}
-
-			$this->redirect('Homepage:');
-		};
-
-		$control->onChange[] = function () {
-			$this['eventsList']->redrawControl();
-			$this->redrawControl('flash-messages');
-		};
-
-		return $control;
-	}
-
-
-	protected function createComponentEventsList(): EventsList
-	{
-		if (!$this->user->getId() || $this->getAction() !== 'default') {
-			$section = $this->getSession($this->getAction() === 'discover' ? 'discover' : 'subscriptionTags');
-			$tags = Collection::getNestedValues($section->tags ?? []);
-
-			// TODO do this more general
-			// Remove tags with no events
-			$activeTags = $this->tagModel->getByMostEvents()->fetchPairs(null, 'code');
-			foreach ($tags as $i => $tag) {
-				if (!in_array($tag, $activeTags)) {
-					unset($tags[$i]);
-				}
-			}
-
-			$tagsIds = $this->tagModel->getAll()->where('code', $tags)->fetchPairs(null, 'id');
-		} else {
-			$tagsIds = $this->userTagModel->getAll()
-				->where('user_id', $this->getUser()->getId())
-				->fetchPairs(null, 'id');
-		}
-
-		$events = $this->eventModel->getAllWithDates($tagsIds, new DateTime, null, $this->lastAccess);
-
-		return $this->eventsListFactory->create($events);
 	}
 
 
@@ -240,6 +164,82 @@ final class HomepagePresenter extends AbstractBasePresenter
 	}
 
 
+	protected function createComponentSubscriptionTags(): SubscriptionTags
+	{
+		$control = $this->subscriptionTags->create();
+
+		$control->onEmailExists[] = function ($email) {
+			// Send email with login
+			$user = $this->userModel->getUserByEmail($email);
+			$this->emailService->sendLogin($email, $user->token);
+
+			$this->flashMessage(
+				'<i class="fa fa-envelope"></i> ' .
+				$this->translator->translate('front.subscription.message.emailExists',
+					['email' => Html::el('strong')->setText($email)]),
+				'success');
+
+			$this->redrawControl('flash-messages');
+		};
+
+		$control->onSuccess[] = function ($email) {
+			$this->getUser()->login(UserModel::SUBSCRIPTION_LOGIN, $email);
+
+			$this->flashMessage(
+				'<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>' .
+				$this->translator->translate('front.subscription.message.success',
+					['email' => Html::el('strong')->setText($email)]),
+				'success');
+
+			// TODO refactor duplicate code
+			// Redirect to settings if no tags
+			$section = $this->getSession('subscriptionTags');
+			$chosenTags = Collection::getNestedValues($section->tags ?? []);
+			if (isset($chosenTags) && count($chosenTags) === 0) {
+				$this->flashMessage($this->translator->translate('front.profile.settings.afterLogin', 'info'));
+				$this->redirect('Profile:settings');
+			}
+
+			$this->redirect('Homepage:');
+		};
+
+		$control->onChange[] = function () {
+			$this['eventsList']->redrawControl();
+			$this->redrawControl('flash-messages');
+		};
+
+		return $control;
+	}
+
+
+	protected function createComponentEventsList(): EventsList
+	{
+		if (! $this->user->getId() || $this->getAction() !== 'default') {
+			$section = $this->getSession($this->getAction() === 'discover' ? 'discover' : 'subscriptionTags');
+			$tags = Collection::getNestedValues($section->tags ?? []);
+
+			// TODO do this more general
+			// Remove tags with no events
+			$activeTags = $this->tagModel->getByMostEvents()->fetchPairs(null, 'code');
+			foreach ($tags as $i => $tag) {
+				if (! in_array($tag, $activeTags)) {
+					unset($tags[$i]);
+				}
+			}
+
+			$tagsIds = $this->tagModel->getAll()->where('code', $tags)->fetchPairs(null, 'id');
+		} else {
+			$tagsIds = $this->userTagModel->getAll()
+				->where('user_id', $this->getUser()->getId())
+				->fetchPairs(null, 'id');
+		}
+
+		$events = $this->eventModel->getAllWithDates($tagsIds, new DateTime, null, $this->lastAccess);
+
+		return $this->eventsListFactory->create($events);
+	}
+
+
 	protected function createComponentFbLogin(): LoginDialog
 	{
 		/** @var \Kdyby\Facebook\Dialog\LoginDialog $dialog */
@@ -248,7 +248,7 @@ final class HomepagePresenter extends AbstractBasePresenter
 		$dialog->onResponse[] = function (LoginDialog $dialog) {
 			$fb = $dialog->getFacebook();
 
-			if (!$fb->getUser()) {
+			if (! $fb->getUser()) {
 				$this->flashMessage($this->translator->translate('front.homepage.fbLogin.failed'), 'danger');
 				return;
 			}
@@ -256,7 +256,7 @@ final class HomepagePresenter extends AbstractBasePresenter
 			try {
 				$me = $fb->api('/me?fields=email,first_name,name');
 
-				if (!$existing = $this->userModel->findByFacebookId($fb->getUser())) {
+				if (! $existing = $this->userModel->findByFacebookId($fb->getUser())) {
 					$user = $this->userModel->signInViaFacebook($me);
 
 					// TODO move to user tag service

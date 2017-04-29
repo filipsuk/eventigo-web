@@ -6,8 +6,8 @@ use App\Modules\Core\Model\TagModel;
 use App\Modules\Core\Model\UserModel;
 use App\Modules\Core\Model\UserTagModel;
 use App\Modules\Core\Presenters\AbstractBasePresenter as CoreAbstractBasePresenter;
-use Nette\Utils\DateTime as NetteDateTime;
 use App\Modules\Core\Utils\DateTime;
+use Nette\Utils\DateTime as NetteDateTime;
 
 abstract class AbstractBasePresenter extends CoreAbstractBasePresenter
 {
@@ -15,11 +15,6 @@ abstract class AbstractBasePresenter extends CoreAbstractBasePresenter
 	 * @var UserModel @inject
 	 */
 	public $userModel;
-
-	/**
-	 * @var NetteDateTime
-	 */
-	protected $lastAccess;
 
 	/**
 	 * @var UserTagModel @inject
@@ -30,6 +25,11 @@ abstract class AbstractBasePresenter extends CoreAbstractBasePresenter
 	 * @var TagModel @inject
 	 */
 	public $tagModel;
+
+	/**
+	 * @var NetteDateTime
+	 */
+	protected $lastAccess;
 
 
 	protected function startup(): void
@@ -79,7 +79,7 @@ abstract class AbstractBasePresenter extends CoreAbstractBasePresenter
 	private function shouldSyncToDb(
 		?NetteDateTime $sessionLastInDb = null, ?NetteDateTime $lastInDb = null, string $syncToDb
 	): bool {
-		return !$sessionLastInDb
+		return ! $sessionLastInDb
 		|| ($lastInDb && $lastInDb > $sessionLastInDb)
 		|| $sessionLastInDb < new NetteDateTime('-' . $syncToDb);
 	}

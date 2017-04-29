@@ -13,11 +13,6 @@ use Nette\Database\Table\IRow;
 class Subscription extends AbstractBaseControl
 {
 	/**
-	 * @var UserModel
-	 */
-	private $userModel;
-
-	/**
 	 * @var callable[]
 	 */
 	public $onEmailExists = [];
@@ -27,11 +22,27 @@ class Subscription extends AbstractBaseControl
 	 */
 	public $onSuccess = [];
 
+	/**
+	 * @var UserModel
+	 */
+	private $userModel;
+
 
 	public function __construct(Translator $translator, UserModel $userModel)
 	{
 		parent::__construct($translator);
 		$this->userModel = $userModel;
+	}
+
+
+	/**
+	 * @throws EmailExistsException
+	 */
+	public function processForm(Form $form): void
+	{
+		$values = $form->getValues();
+		$user = $this->subscribe($values->email);
+		$this->onSuccess($user->email);
 	}
 
 
@@ -51,17 +62,6 @@ class Subscription extends AbstractBaseControl
 		$form->onSuccess[] = [$this, 'processForm'];
 
 		return $form;
-	}
-
-
-	/**
-	 * @throws EmailExistsException
-	 */
-	public function processForm(Form $form): void
-	{
-		$values = $form->getValues();
-		$user = $this->subscribe($values->email);
-		$this->onSuccess($user->email);
 	}
 
 

@@ -10,14 +10,14 @@ use Nette\Database\Table\Selection;
 abstract class AbstractBaseModel
 {
 	/**
-	 * @var Context
-	 */
-	protected $database;
-
-	/**
 	 * @var string
 	 */
 	const TABLE_NAME = '';
+
+	/**
+	 * @var Context
+	 */
+	protected $database;
 
 
 	public function __construct(Context $database)

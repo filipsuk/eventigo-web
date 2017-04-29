@@ -36,7 +36,7 @@ final class MeetupEventSource extends EventSource
 	 */
 	public function getEvents(string $group): array
 	{
-		$client = MeetupKeyAuthClient::factory(array('key' => $this->apiKey));
+		$client = MeetupKeyAuthClient::factory(['key' => $this->apiKey]);
 		$groupEvents = $client->getGroupEvents(['urlname' => $group])->getData();
 
 		$groupData = $client->getGroup(['urlname' => $group])->getData();

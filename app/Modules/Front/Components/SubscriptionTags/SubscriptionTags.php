@@ -18,6 +18,11 @@ use Nette\Database\Table\Selection;
 final class SubscriptionTags extends Subscription
 {
 	/**
+	 * @var callable[]
+	 */
+	public $onChange = [];
+
+	/**
 	 * @var TagModel
 	 */
 	private $tagModel;
@@ -26,11 +31,6 @@ final class SubscriptionTags extends Subscription
 	 * @var UserTagModel
 	 */
 	private $userTagModel;
-
-	/**
-	 * @var callable[]
-	 */
-	public $onChange = [];
 
 	/**
 	 * @var Selection
@@ -68,23 +68,6 @@ final class SubscriptionTags extends Subscription
 	}
 
 
-	protected function createComponentForm(): Form
-	{
-		$form = parent::createComponentForm();
-
-		$tagsGroups = $this->tags->fetchAssoc('tagGroupName|id');
-		$tagsContainer = $form->addContainer('tags');
-		foreach ($tagsGroups as $tagGroupName => $tagsGroup) {
-			$tagsContainer->addCheckboxList($tagGroupName)
-				->setItems(Helpers::toPairs($tagsGroups[$tagGroupName], 'code', 'name'))
-				->setTranslator(NULL);
-		}
-		$form->addHidden('real_subscribe'); // For stupid Firefox not submitting "subscribe" input in POST
-
-		return $form;
-	}
-
-
 	/**
 	 * @throws EmailExistsException
 	 */
@@ -93,7 +76,7 @@ final class SubscriptionTags extends Subscription
 		$values = $form->getValues();
 		if (array_key_exists('real_subscribe', $values) && $values['real_subscribe'] === 'true') {
 			$user = $this->subscribe($values->email);
-			if (!$user) {
+			if (! $user) {
 				return;
 			}
 
@@ -118,5 +101,22 @@ final class SubscriptionTags extends Subscription
 			$section->tags = $values->tags;
 			$this->onChange();
 		}
+	}
+
+
+	protected function createComponentForm(): Form
+	{
+		$form = parent::createComponentForm();
+
+		$tagsGroups = $this->tags->fetchAssoc('tagGroupName|id');
+		$tagsContainer = $form->addContainer('tags');
+		foreach ($tagsGroups as $tagGroupName => $tagsGroup) {
+			$tagsContainer->addCheckboxList($tagGroupName)
+				->setItems(Helpers::toPairs($tagsGroups[$tagGroupName], 'code', 'name'))
+				->setTranslator(NULL);
+		}
+		$form->addHidden('real_subscribe'); // For stupid Firefox not submitting "subscribe" input in POST
+
+		return $form;
 	}
 }

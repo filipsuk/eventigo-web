@@ -11,7 +11,7 @@ final class Error4xxPresenter extends AbstractBasePresenter
 	public function startup(): void
 	{
 		parent::startup();
-		if (!$this->getRequest()->isMethod(Nette\Application\Request::FORWARD)) {
+		if (! $this->getRequest()->isMethod(Nette\Application\Request::FORWARD)) {
 			$this->error();
 		}
 	}

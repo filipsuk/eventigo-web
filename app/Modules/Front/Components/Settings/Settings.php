@@ -41,6 +41,18 @@ final class Settings extends AbstractBaseControl
 	}
 
 
+	public function processForm(Form $form): void
+	{
+		$values = $form->getValues();
+
+		$this->userModel->getAll()->wherePrimary($this->user->getId())->update([
+			'newsletter' => (bool) $values->newsletter,
+		]);
+
+		$this->onChange();
+	}
+
+
 	protected function createComponentForm(): Form
 	{
 		$form = new Form;
@@ -52,17 +64,5 @@ final class Settings extends AbstractBaseControl
 		$form->onSuccess[] = [$this, 'processForm'];
 
 		return $form;
-	}
-
-
-	public function processForm(Form $form): void
-	{
-		$values = $form->getValues();
-
-		$this->userModel->getAll()->wherePrimary($this->user->getId())->update([
-			'newsletter' => (bool) $values->newsletter,
-		]);
-
-		$this->onChange();
 	}
 }

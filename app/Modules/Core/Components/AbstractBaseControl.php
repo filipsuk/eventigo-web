@@ -22,6 +22,12 @@ abstract class AbstractBaseControl extends Control
 	}
 
 
+	public function render(): void
+	{
+		$this->template->render();
+	}
+
+
 	protected function createTemplate(): Template
 	{
 		/** @var Template $template */
@@ -48,11 +54,5 @@ abstract class AbstractBaseControl extends Control
 		$refl = $this->getReflection();
 		$file = dirname($refl->getFileName()) . '/' . $refl->getShortName() . '.latte';
 		return file_exists($file) ? $file : NULL;
-	}
-
-
-	public function render(): void
-	{
-		$this->template->render();
 	}
 }

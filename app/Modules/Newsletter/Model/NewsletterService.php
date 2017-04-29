@@ -17,15 +17,32 @@ use Nette\Application\UI\Presenter;
 use Nette\Bridges\ApplicationLatte\Template;
 use Nette\Database\Table\IRow;
 use Nette\DI\Container;
+use Nette\Utils\DateTime as NetteDateTime;
 use Pelago\Emogrifier;
 use SendGrid;
 use SendGrid\Email;
 use Throwable;
 use Tracy\Debugger;
-use Nette\Utils\DateTime as NetteDateTime;
 
 final class NewsletterService
 {
+
+	/**
+	 * Path to css file used for css inline of newsletter texts html.
+	 *
+	 * @var string
+	 */
+	const CSS_FILE_PATH = __DIR__ . DIRECTORY_SEPARATOR . '..'
+		. DIRECTORY_SEPARATOR . 'Presenters' . DIRECTORY_SEPARATOR . 'templates'
+		. DIRECTORY_SEPARATOR . 'Newsletter' . DIRECTORY_SEPARATOR . 'build.css';
+
+	/**
+	 * @var string[]
+	 */
+	const NEWSLETTER_UTM_PARAMETERS = [
+		'utm_source' => 'newsletter',
+		'utm_medium' => 'email'
+	];
 	/**
 	 * @var UserNewsletterModel @inject
 	 */
@@ -67,16 +84,6 @@ final class NewsletterService
 	public $templateFactory;
 
 	/**
-	 * @var  Template
-	 */
-	protected $template;
-
-	/**
-	 * @var  Presenter
-	 */
-	protected $presenter;
-
-	/**
 	 * @var  Container @inject
 	 */
 	public $context;
@@ -97,21 +104,14 @@ final class NewsletterService
 	public $sendGrid;
 
 	/**
-	 * Path to css file used for css inline of newsletter texts html.
-	 *
-	 * @var string
+	 * @var  Template
 	 */
-	const CSS_FILE_PATH = __DIR__ . DIRECTORY_SEPARATOR . '..'
-		. DIRECTORY_SEPARATOR . 'Presenters' . DIRECTORY_SEPARATOR . 'templates'
-		. DIRECTORY_SEPARATOR . 'Newsletter' . DIRECTORY_SEPARATOR . 'build.css';
+	protected $template;
 
 	/**
-	 * @var string[]
+	 * @var  Presenter
 	 */
-	const NEWSLETTER_UTM_PARAMETERS = [
-		'utm_source' => 'newsletter',
-		'utm_medium' => 'email'
-	];
+	protected $presenter;
 
 	public function createDefaultNewsletter(): IRow
 	{
@@ -213,6 +213,38 @@ final class NewsletterService
 	}
 
 	/**
+	 * Inline CSS styles of intro and outro text in newsletter
+	 * TODO: Move this to admin when saving new newsletter
+	 *
+	 * @param mixed[] $newsletter
+	 * @return mixed
+	 */
+	public static function inlineCss(array $newsletter)
+	{
+		$css = file_get_contents(self::CSS_FILE_PATH);
+		$emogrifier = new Emogrifier;
+		$emogrifier->setCss($css);
+
+		try {
+			// Inline CSS of intro text
+			if (! empty($newsletter['intro_text'])) {
+				$emogrifier->setHtml($newsletter['intro_text']);
+				$newsletter['intro_text'] = $emogrifier->emogrifyBodyContent();
+			}
+
+			// Inline CSS of outro text
+			if (! empty($newsletter['outro_text'])) {
+				$emogrifier->setHtml($newsletter['outro_text']);
+				$newsletter['outro_text'] = $emogrifier->emogrifyBodyContent();
+			}
+
+		} catch (BadMethodCallException $e) {
+			Debugger::log($e->getMessage());
+		}
+		return $newsletter;
+	}
+
+	/**
 	 * Get events for user newsletter.
 	 * Events are in groups like 'Next week', 'You may like' etc.
 	 *
@@ -235,7 +267,7 @@ final class NewsletterService
 
 		$nextWeekEvents = $this->eventModel->getAllWithDates($userTags, $from, $to);
 
-		if (!$this->context->parameters['newsletter']['sendNewsletterWithNoEvents'] && count($nextWeekEvents) === 0) {
+		if (! $this->context->parameters['newsletter']['sendNewsletterWithNoEvents'] && count($nextWeekEvents) === 0) {
 			throw new NoEventsFoundException("No events found for user $userId!");
 		}
 
@@ -279,37 +311,5 @@ final class NewsletterService
 		return $this->template->getLatte()->renderToString(
 			$this->template->getFile(), $this->template->getParameters()
 		);
-	}
-
-	/**
-	 * Inline CSS styles of intro and outro text in newsletter
-	 * TODO: Move this to admin when saving new newsletter
-	 *
-	 * @param mixed[] $newsletter
-	 * @return mixed
-	 */
-	public static function inlineCss(array $newsletter)
-	{
-		$css = file_get_contents(self::CSS_FILE_PATH);
-		$emogrifier = new Emogrifier;
-		$emogrifier->setCss($css);
-
-		try {
-			// Inline CSS of intro text
-			if (!empty($newsletter['intro_text'])) {
-				$emogrifier->setHtml($newsletter['intro_text']);
-				$newsletter['intro_text'] = $emogrifier->emogrifyBodyContent();
-			}
-
-			// Inline CSS of outro text
-			if (!empty($newsletter['outro_text'])) {
-				$emogrifier->setHtml($newsletter['outro_text']);
-				$newsletter['outro_text'] = $emogrifier->emogrifyBodyContent();
-			}
-
-		} catch (BadMethodCallException $e) {
-			Debugger::log($e->getMessage());
-		}
-		return $newsletter;
 	}
 }

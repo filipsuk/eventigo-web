@@ -48,9 +48,9 @@ abstract class AbstractBasePresenter extends Presenter
 			if ($token === null || ($user = $this->userModel->getAll()->where('token', $token)->fetch()) === false
 			) {
 				Debugger::log(sprintf(
-                    'Invalid user token "%s". Can not login.',
-                    $token
-                ));
+					'Invalid user token "%s". Can not login.',
+					$token
+				));
 				throw new BadRequestException;
 			}
 

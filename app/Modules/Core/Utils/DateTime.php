@@ -8,9 +8,6 @@ use Nette\Utils\DateTime as NetteDateTime;
 
 final class DateTime
 {
-	/** @var \Kdyby\Translation\Translator */
-	public static $translator;
-
 	/**
 	 * @var string
 	 */
@@ -46,11 +43,17 @@ final class DateTime
 	 */
 	const TIME_MINUTES = 'H:i';
 
+	/**
+	 * @var \Kdyby\Translation\Translator
+	 */
+	public static $translator;
+
 
 	/**
 	 * Get maximum of given datetimes
-     *
-     * @return NetteDateTime|DateTimeInterface|null
+	 *
+	 * @param NetteDateTime[]|DateTimeInterface[]|null[] $dateTimes
+	 * @return NetteDateTime|DateTimeInterface|null
 	 */
 	public static function max(...$dateTimes)
 	{

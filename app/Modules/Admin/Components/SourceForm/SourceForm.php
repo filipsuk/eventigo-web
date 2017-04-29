@@ -40,6 +40,35 @@ final class SourceForm extends AbstractBaseControl
 	}
 
 
+	public function processForm(Form $form): void
+	{
+		$values = $form->getValues();
+
+		if (! $values->id) {
+			if ($values->createOrganiser) {
+				$organiser = $this->organiserService->createOrganiser($values->name, $values->url);
+			}
+
+			$source = $this->sourceModel->insert([
+				'name' => $values->name ?: null,
+				'url' => $values->url ?: null,
+				'check_frequency' => $checkFrequency = SourceModel::FREQUENCY_TYPES[$values->frequency],
+				'next_check' => $values->nextCheck
+					? NetteDateTime::createFromFormat(DateTime::DATE_FORMAT, $values->nextCheck)
+					: new DateTime('+' . $checkFrequency . ' days'),
+				'event_series_id' => $values->createOrganiser
+					? $organiser->related('events_series')->fetch()->id
+					: null,
+			]);
+
+			$this->onCreate($source);
+		} else {
+			$source = $this->sourceModel->update($values);
+			$this->onUpdate($source);
+		}
+	}
+
+
 	protected function createComponentForm(): Form
 	{
 		$form = new Form;
@@ -69,34 +98,5 @@ final class SourceForm extends AbstractBaseControl
 		$form->onSubmit[] = [$this, 'processForm'];
 
 		return $form;
-	}
-
-
-	public function processForm(Form $form): void
-	{
-		$values = $form->getValues();
-
-		if (!$values->id) {
-			if ($values->createOrganiser) {
-				$organiser = $this->organiserService->createOrganiser($values->name, $values->url);
-			}
-
-			$source = $this->sourceModel->insert([
-				'name' => $values->name ?: null,
-				'url' => $values->url ?: null,
-				'check_frequency' => $checkFrequency = SourceModel::FREQUENCY_TYPES[$values->frequency],
-				'next_check' => $values->nextCheck
-					? NetteDateTime::createFromFormat(DateTime::DATE_FORMAT, $values->nextCheck)
-					: new DateTime('+' . $checkFrequency . ' days'),
-				'event_series_id' => $values->createOrganiser
-					? $organiser->related('events_series')->fetch()->id
-					: null,
-			]);
-
-			$this->onCreate($source);
-		} else {
-			$source = $this->sourceModel->update($values);
-			$this->onUpdate($source);
-		}
 	}
 }
