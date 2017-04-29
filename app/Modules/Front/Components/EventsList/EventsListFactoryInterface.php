@@ -4,5 +4,8 @@ namespace App\Modules\Front\Components\EventsList;
 
 interface EventsListFactoryInterface
 {
+	/**
+	 * @param callable[] $events
+	 */
 	public function create(array $events): EventsList;
 }

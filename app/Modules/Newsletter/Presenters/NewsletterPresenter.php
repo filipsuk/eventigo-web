@@ -3,14 +3,14 @@
 namespace App\Modules\Newsletter\Presenters;
 
 use App\Modules\Core\Model\UserModel;
-use App\Modules\Core\Presenters\BasePresenter;
+use App\Modules\Core\Presenters\AbstractBasePresenter;
 use App\Modules\Newsletter\Model\NewsletterService;
 use App\Modules\Newsletter\Model\UserNewsletterModel;
 use Nette\Database\Table\ActiveRow;
 use Nette\Http\IResponse;
 
 
-class NewsletterPresenter extends AbstractBasePresenter
+final class NewsletterPresenter extends AbstractBasePresenter
 {
 	/**
 	 * @var UserNewsletterModel @inject
@@ -32,7 +32,8 @@ class NewsletterPresenter extends AbstractBasePresenter
 	 */
 	private $userNewsletter;
 
-	public function actionDefault($hash): void
+
+	public function actionDefault(string $hash): void
 	{
 		$this->userNewsletter = $this->userNewsletterModel->getAll()->where([
 			'hash' => $hash,

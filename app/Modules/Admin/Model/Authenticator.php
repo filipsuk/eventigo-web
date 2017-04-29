@@ -24,7 +24,10 @@ final class Authenticator implements IAuthenticator
 	}
 
 
+
 	/**
+	 * @param string[] $credentials
+	 *
 	 * @throws AuthenticationException
 	 */
 	public function authenticate(array $credentials): Identity

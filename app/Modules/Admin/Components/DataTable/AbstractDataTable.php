@@ -3,7 +3,6 @@
 namespace App\Modules\Admin\Components\DataTable;
 
 use App\Modules\Core\Components\AbstractBaseControl;
-use App\Modules\Core\Components\BaseControl;
 use Kdyby\Translation\Translator;
 use Nette\Application\Responses\JsonResponse;
 use Nette\Database\Table\Selection;
@@ -12,7 +11,7 @@ use Nette\Database\Table\Selection;
 abstract class AbstractDataTable extends AbstractBaseControl
 {
 	/**
-	 * @var array
+	 * @var mixed[]
 	 */
 	protected $data = [];
 
@@ -28,7 +27,9 @@ abstract class AbstractDataTable extends AbstractBaseControl
 		$this->dataSource = $dataSource;
 	}
 
-
+	/**
+	 * @return mixed[]
+	 */
 	abstract public function generateJson(): array;
 
 

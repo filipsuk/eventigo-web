@@ -47,18 +47,18 @@ final class UserModel extends AbstractBaseModel
 				throw new EmailExistsException;
 			}
 
-            // Create user
-            /** @var ActiveRow $user */
-            $user = $this->insert([
-                'email' => $email,
-                'token' => $this->generateToken(),
-            ]);
+			// Create user
+			/** @var ActiveRow $user */
+			$user = $this->insert([
+				'email' => $email,
+				'token' => $this->generateToken(),
+			]);
 
-            return $user;
-        }
+			return $user;
+		}
 
-        return NULL;
-    }
+		return NULL;
+	}
 
 
 	public function emailExists(string $email): bool
@@ -113,12 +113,12 @@ final class UserModel extends AbstractBaseModel
 			return $this->findByFacebookId($me->id);
 		}
 
-        return $this->insert([
-            'email' => $me->email ?? null,
-            'facebook_id' => $me->id,
-            'token' => $this->generateToken(),
-        ]);
-    }
+		return $this->insert([
+			'email' => $me->email ?? null,
+			'facebook_id' => $me->id,
+			'token' => $this->generateToken(),
+		]);
+	}
 
 
 	public function updateFacebook(ArrayHash $me, string $token): IRow

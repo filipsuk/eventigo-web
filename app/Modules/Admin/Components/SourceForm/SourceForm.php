@@ -13,12 +13,12 @@ use Nette\Utils\DateTime;
 final class SourceForm extends AbstractBaseControl
 {
 	/**
-	 * @var array
+	 * @var callable[]
 	 */
 	public $onCreate = [];
 
 	/**
-	 * @var array
+	 * @var callable[]
 	 */
 	public $onUpdate = [];
 

@@ -10,11 +10,13 @@ use Kdyby\Translation\Translator;
 final class EventsList extends AbstractBaseControl
 {
 	/**
-	 * @var array
+	 * @var mixed[]
 	 */
 	private $events;
 
-
+	/**
+	 * @param mixed[] $events
+	 */
 	public function __construct(Translator $translator, array $events)
 	{
 		parent::__construct($translator);

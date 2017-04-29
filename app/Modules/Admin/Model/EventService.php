@@ -40,10 +40,10 @@ final class EventService
 
 
 	public function __construct(
-        EventModel $eventModel,
-        TagModel $tagModel,
-        EventTagModel $eventTagModel,
-        FacebookEventSource $facebookEventSource
+		EventModel $eventModel,
+		TagModel $tagModel,
+		EventTagModel $eventTagModel,
+		FacebookEventSource $facebookEventSource
 ) {
 		$this->eventModel = $eventModel;
 		$this->tagModel = $tagModel;

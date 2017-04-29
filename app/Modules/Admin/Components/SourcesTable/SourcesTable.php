@@ -13,7 +13,7 @@ use Nette\Utils\DateTime;
 use Nette\Utils\Html;
 
 
-class SourcesTable extends AbstractDataTable
+final class SourcesTable extends AbstractDataTable
 {
 	/**
 	 * @var SourceModel
@@ -27,11 +27,11 @@ class SourcesTable extends AbstractDataTable
 
 
 	public function __construct(
-        Translator $translator,
-        Selection $dataSource,
-        SourceModel $sourceModel,
+		Translator $translator,
+		Selection $dataSource,
+		SourceModel $sourceModel,
 		SourceService $sourceService
-    ) {
+	) {
 		parent::__construct($translator, $dataSource);
 		$this->sourceModel = $sourceModel;
 		$this->sourceService = $sourceService;
@@ -51,6 +51,9 @@ class SourcesTable extends AbstractDataTable
 	}
 
 
+	/**
+	 * @return mixed[]
+	 */
 	public function generateJson(): array
 	{
 		$json = [

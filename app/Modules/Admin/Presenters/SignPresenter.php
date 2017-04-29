@@ -2,6 +2,7 @@
 
 namespace App\Modules\Admin\Presenters;
 
+use App\Modules\Admin\Components\SignIn\SignInForm;
 use App\Modules\Admin\Components\SignIn\SignInFormFactoryInterface;
 use Nette\Application\UI\Presenter;
 
@@ -27,7 +28,7 @@ final class SignPresenter extends Presenter
 	}
 
 
-	protected function createComponentSignInForm()
+	protected function createComponentSignInForm(): SignInForm
 	{
 		$control = $this->signInFormFactory->create();
 

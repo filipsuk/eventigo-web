@@ -21,7 +21,7 @@ final class NotApprovedEventsTable extends AbstractDataTable
 
 
 	public function __construct(Translator $translator, Selection $dataSource, EventModel $eventModel)
-    {
+	{
 		parent::__construct($translator, $dataSource);
 		$this->eventModel = $eventModel;
 	}
@@ -41,7 +41,9 @@ final class NotApprovedEventsTable extends AbstractDataTable
 			->fetchAll();
 	}
 
-
+	/**
+	 * @return mixed[]
+	 */
 	public function generateJson(): array
 	{
 		$json = [

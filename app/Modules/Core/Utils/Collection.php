@@ -2,12 +2,15 @@
 
 namespace App\Modules\Core\Utils;
 
-class Collection
+final class Collection
 {
 	/**
 	 * Get one level array of nested values
+	 *
+	 * @param mixed[] $array
+	 * @return mixed[]
 	 */
-	public static function getNestedValues($array): array
+	public static function getNestedValues(array $array): array
 	{
 		$values = [];
 		foreach ($array as $value) {
@@ -23,6 +26,10 @@ class Collection
 	}
 
 
+	/**
+	 * @param mixed[] $array
+	 * @return mixed[]
+	 */
 	public static function prefix(array $array, string $prefix): array
 	{
 		foreach ($array as &$item) {

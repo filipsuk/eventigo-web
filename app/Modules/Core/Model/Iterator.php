@@ -18,32 +18,35 @@ class Iterator implements \Iterator
 	protected $data;
 
 
+	/**
+	 * @param IRow[] $data
+	 */
 	public function __construct(array $data)
 	{
 		$this->data = array_values($data);
 	}
 
 
-	public function current()
+	public function current(): ?IRow
 	{
 		return $this->valid() ? $this->data[$this->index] : NULL;
 	}
 
 
-	public function next()
+	public function next(): ?IRow
 	{
 		++$this->index;
 		return $this->current();
 	}
 
 
-	public function key()
+	public function key(): int
 	{
 		return $this->index;
 	}
 
 
-	public function valid()
+	public function valid(): bool
 	{
 		return array_key_exists($this->index, $this->data);
 	}

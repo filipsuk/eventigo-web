@@ -7,8 +7,11 @@ use App\Modules\Core\Model\UserModel;
 use App\Modules\Core\Utils\Collection;
 use App\Modules\Core\Utils\Helper;
 use App\Modules\Email\Model\EmailService;
+use App\Modules\Front\Components\EventsList\EventsList;
 use App\Modules\Front\Components\EventsList\EventsListFactoryInterface;
+use App\Modules\Front\Components\Sign\SignIn;
 use App\Modules\Front\Components\Sign\SignInFactoryInterface;
+use App\Modules\Front\Components\SubscriptionTags\SubscriptionTags;
 use App\Modules\Front\Components\SubscriptionTags\SubscriptionTagsFactoryInterface;
 use Nette\Security\Identity;
 use Nette\Utils\DateTime;
@@ -107,7 +110,7 @@ final class HomepagePresenter extends AbstractBasePresenter
 	}
 
 
-	protected function createComponentSubscriptionTags()
+	protected function createComponentSubscriptionTags(): SubscriptionTags
 	{
 		$control = $this->subscriptionTags->create();
 
@@ -155,9 +158,9 @@ final class HomepagePresenter extends AbstractBasePresenter
 	}
 
 
-	protected function createComponentEventsList()
+	protected function createComponentEventsList(): EventsList
 	{
-		if (!$this->getUser()->getId() || $this->getAction() !== 'default') {
+		if (!$this->user->getId() || $this->getAction() !== 'default') {
 			$section = $this->getSession($this->getAction() === 'discover' ? 'discover' : 'subscriptionTags');
 			$tags = Collection::getNestedValues($section->tags ?? []);
 
@@ -182,13 +185,14 @@ final class HomepagePresenter extends AbstractBasePresenter
 	}
 
 
-	public function handleFollowTag($tagCode): void
+	public function handleFollowTag(string $tagCode): void
 	{
 		$tag = $this->tagModel->getAll()->where(['code' => $tagCode]);
-		$section = $this->presenter->getSession('subscriptionTags');
+
+		$section = $this->session->getSection('subscriptionTags');
 
 		// Follow tag
-		if ($this->user->id) {
+		if ($this->user->getId()) {
 			$this->userTagModel->insert([
 				'user_id' => $this->user->id,
 				'tag_id' => $tag->id,
@@ -206,10 +210,10 @@ final class HomepagePresenter extends AbstractBasePresenter
 	}
 
 
-	public function handleUnfollowTag($tagCode): void
+	public function handleUnfollowTag(string $tagCode): void
 	{
 		$tag = $this->tagModel->getAll()->where(['code' => $tagCode]);
-		$section = $this->presenter->getSession('subscriptionTags');
+		$section = $this->session->getSection('subscriptionTags');
 
 		// Unfollow tag
 		if ($this->user->id) {
@@ -287,7 +291,7 @@ final class HomepagePresenter extends AbstractBasePresenter
 	}
 
 
-	protected function createComponentSignIn()
+	protected function createComponentSignIn(): SignIn
 	{
 		$control = $this->signInFactory->create();
 

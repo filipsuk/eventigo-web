@@ -2,7 +2,9 @@
 
 namespace App\Modules\Admin\Presenters;
 
+use App\Modules\Admin\Components\EventForm\EventForm;
 use App\Modules\Admin\Components\EventForm\EventFormFactoryInterface;
+use App\Modules\Admin\Components\EventsTable\NotApprovedEventsTable;
 use App\Modules\Admin\Components\EventsTable\NotApprovedEventsTableFactoryInterface;
 use App\Modules\Admin\Model\SourceService;
 use App\Modules\Core\Model\EventModel;
@@ -34,9 +36,11 @@ final class EventsPresenter extends AbstractBasePresenter
 	public $notApprovedEventsTableFactory;
 
 
-	public function actionUpdate($id): void
+	public function actionUpdate(int $id): void
 	{
-		$event = $this->eventModel->getAll()->wherePrimary($id)->fetch();
+		$event = $this->eventModel->getAll()
+			->wherePrimary($id)
+			->fetch();
 
 		$defaults = $event->toArray();
 		$defaults['start'] = DateTime::from($defaults['start'])->format(EventigoDateTime::DATETIME_FORMAT);
@@ -73,7 +77,7 @@ final class EventsPresenter extends AbstractBasePresenter
 	}
 
 
-	protected function createComponentEventForm()
+	protected function createComponentEventForm(): EventForm
 	{
 		$control = $this->eventFormFactory->create();
 
@@ -106,13 +110,13 @@ final class EventsPresenter extends AbstractBasePresenter
 	}
 
 
-	public function actionApprove($id): void
+	public function actionApprove(int $id): void
 	{
 		$this->forward('update', $id);
 	}
 
 
-	protected function createComponentNotApprovedEventsTable()
+	protected function createComponentNotApprovedEventsTable(): NotApprovedEventsTable
 	{
 		return $this->notApprovedEventsTableFactory->create(
 			$this->eventModel->getAll()

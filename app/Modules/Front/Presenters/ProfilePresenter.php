@@ -8,7 +8,9 @@ use App\Modules\Core\Model\UserModel;
 use App\Modules\Core\Model\UserTagModel;
 use App\Modules\Core\Presenters\AbstractBasePresenter;
 use App\Modules\Front\Components\EventsList\EventsListFactoryInterface;
+use App\Modules\Front\Components\Settings\Settings;
 use App\Modules\Front\Components\Settings\SettingsFactoryInterface;
+use App\Modules\Front\Components\Tags\Tags;
 use App\Modules\Front\Components\Tags\TagsFactoryInterface;
 
 
@@ -27,7 +29,7 @@ final class ProfilePresenter extends AbstractBasePresenter
 	/**
 	 * @var TagsFactoryInterface @inject
 	 */
-	public $tags;
+	public $tagsFactory;
 
 	/**
 	 * @var EventsListFactoryInterface @inject
@@ -59,7 +61,7 @@ final class ProfilePresenter extends AbstractBasePresenter
 		}
 	}
 
-	public function actionSettings($token = null): void
+	public function actionSettings(?string $token = null): void
 	{
 		// Try to log in the user with provided token
 		if ($token) {
@@ -81,9 +83,9 @@ final class ProfilePresenter extends AbstractBasePresenter
 	}
 
 
-	protected function createComponentTags()
+	protected function createComponentTags(): Tags
 	{
-		$control = $this->tags->create();
+		$control = $this->tagsFactory->create();
 
 		$control->onChange[] = function () {
 			$this['tags']->redrawControl();
@@ -94,7 +96,7 @@ final class ProfilePresenter extends AbstractBasePresenter
 	}
 
 
-	protected function createComponentSettings()
+	protected function createComponentSettings(): Settings
 	{
 		return $this->settingsFactory->create();
 	}

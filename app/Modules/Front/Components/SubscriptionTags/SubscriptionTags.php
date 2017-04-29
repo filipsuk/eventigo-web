@@ -28,7 +28,7 @@ final class SubscriptionTags extends Subscription
 	private $userTagModel;
 
 	/**
-	 * @var array
+	 * @var callable[]
 	 */
 	public $onChange = [];
 
@@ -44,13 +44,12 @@ final class SubscriptionTags extends Subscription
 
 
 	public function __construct(
-        Translator $translator,
-        UserModel $userModel,
-        TagModel $tagModel,
-        UserTagModel $userTagModel,
-        TagGroupModel $tagGroupModel
+		Translator $translator,
+		UserModel $userModel,
+		TagModel $tagModel,
+		UserTagModel $userTagModel,
+		TagGroupModel $tagGroupModel
 ) {
-
 		parent::__construct($translator, $userModel);
 		$this->tagModel = $tagModel;
 		$this->userTagModel = $userTagModel;

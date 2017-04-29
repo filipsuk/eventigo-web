@@ -28,7 +28,7 @@ final class Tags extends AbstractBaseControl
 	private $userTagModel;
 
 	/**
-	 * @var array
+	 * @var callable[]
 	 */
 	public $onChange = [];
 
@@ -49,11 +49,11 @@ final class Tags extends AbstractBaseControl
 
 
 	public function __construct(
-        Translator $translator,
-        TagModel $tagModel,
-        UserTagModel $userTagModel,
-        TagGroupModel $tagGroupModel,
-        User $user
+		Translator $translator,
+		TagModel $tagModel,
+		UserTagModel $userTagModel,
+		TagGroupModel $tagGroupModel,
+		User $user
 ) {
 		parent::__construct($translator);
 		$this->tagModel = $tagModel;

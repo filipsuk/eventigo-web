@@ -9,7 +9,7 @@ use Throwable;
 
 abstract class AbstractEventSource
 {
-	public static function isSource($url): bool
+	public static function isSource(string $url): bool
 	{
 		try {
 			$host = (new Url($url))->getHost();

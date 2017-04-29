@@ -152,6 +152,7 @@ final class NewsletterService
 	 * Build array with newsletter text and events for render in template
 	 *
 	 * @throws \App\Modules\Newsletter\Model\NoEventsFoundException
+	 * @return mixed[]
 	 */
 	public function buildArrayForTemplate(int $userId): array
 	{
@@ -213,6 +214,7 @@ final class NewsletterService
 	 * Events are in groups like 'Next week', 'You may like' etc.
 	 *
 	 * @throws \App\Modules\Newsletter\Model\NoEventsFoundException
+	 * @return mixed[][]
 	 */
 	private function getGroupedEvents(int $userId): array
 	{
@@ -225,7 +227,7 @@ final class NewsletterService
 				'title' => $this->translator->trans('newsletter.email.events.nextWeek'),
 				'events' => []
 			],
-            //TODO posilat dalsi akce
+			//TODO posilat dalsi akce
 		];
 
 		$nextWeekEvents = $this->eventModel->getAllWithDates($userTags, $from, $to);
@@ -250,6 +252,8 @@ final class NewsletterService
 
 	/**
 	 * Render newsletter content from template (same thing as NewsletterPreseneter:dynamic)
+	 *
+	 * @param mixed[] $newsletter
 	 */
 	private function renderNewsletterContent(array $newsletter): string
 	{
@@ -277,6 +281,8 @@ final class NewsletterService
 	/**
 	 * Inline CSS styles of intro and outro text in newsletter
 	 * TODO: Move this to admin when saving new newsletter
+	 *
+	 * @param mixed[] $newsletter
 	 * @return mixed
 	 */
 	public static function inlineCss(array $newsletter)

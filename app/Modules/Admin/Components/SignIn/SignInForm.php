@@ -11,12 +11,12 @@ use Nette\Security\AuthenticationException;
 final class SignInForm extends AbstractBaseControl
 {
 	/**
-	 * @var array
+	 * @var callable[]
 	 */
 	public $onLoggedIn = [];
 
 	/**
-	 * @var array
+	 * @var callable[]
 	 */
 	public $onIncorrectLogIn = [];
 

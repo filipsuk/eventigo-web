@@ -60,7 +60,9 @@ final class EventModel extends AbstractBaseModel
 		return $eventTags;
 	}
 
-
+	/**
+	 * @return int[]
+	 */
 	public function getRates(IRow $event): array
 	{
 		$rates = [
@@ -77,13 +79,13 @@ final class EventModel extends AbstractBaseModel
 
 	/**
 	 * @param int[] $tagsIds
-	 * @return array
+	 * @return mixed[]
 	 */
 	public function getAllWithDates(
 		array $tagsIds,
-        ?DateTime $from = NULL,
-        ?DateTime $to = NULL,
-        ?DateTime $lastAccess = null
+		?DateTime $from = NULL,
+		?DateTime $to = NULL,
+		?DateTime $lastAccess = null
 	): array {
 		$calculateFrom = $from ?: new DateTime;
 		$selection = $this->getAll()
@@ -136,7 +138,7 @@ final class EventModel extends AbstractBaseModel
 		$url = $event->getOriginUrl();
 
 		return $this->getAll()
-			->where('origin_url = ? OR origin_url =     ?
+			->where('origin_url = ? OR origin_url =	 ?
 					OR REPLACE(origin_url, ?, "//") = ?
 					OR REPLACE(origin_url, ?, "//") = ?',
 				$url = substr($url, -1) === '/' ? substr($url, 0, -1) : $url,

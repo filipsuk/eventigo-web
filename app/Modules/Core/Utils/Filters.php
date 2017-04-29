@@ -2,14 +2,17 @@
 
 namespace App\Modules\Core\Utils;
 
+use App\Modules\Core\Utils\DateTime as EventigoDateTime;
 use Kdyby\Translation\Translator;
 use Nette\Security\Identity;
 use Nette\Utils\DateTime;
 
 
-class Filters
+final class Filters
 {
-	/** @var Translator */
+	/**
+	 * @var Translator
+	 * */
 	public static $translator;
 
 	public static function setTranslator(Translator $translator): void
@@ -18,6 +21,9 @@ class Filters
 	}
 
 
+	/**
+	 * @return mixed|void
+	 */
 	public static function loader(string $helper)
 	{
 		if (method_exists(__CLASS__, $helper)) {
@@ -28,8 +34,8 @@ class Filters
 
 	public static function datetime(DateTime $a, ?DateTime $b = null): string
 	{
-		\App\Modules\Core\Utils\DateTime::setTranslator(self::$translator);
-		return \App\Modules\Core\Utils\DateTime::eventsDatetimeFilter($a, $b);
+		EventigoDateTime::setTranslator(self::$translator);
+		return EventigoDateTime::eventsDatetimeFilter($a, $b);
 	}
 
 	public static function username(Identity $identity): string

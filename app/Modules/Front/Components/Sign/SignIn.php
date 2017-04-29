@@ -13,12 +13,12 @@ use Nette\Utils\ArrayHash;
 final class SignIn extends AbstractBaseControl
 {
 	/**
-	 * @var array
+	 * @var callable[]
 	 */
 	public $onSuccess = [];
 
 	/**
-	 * @var array
+	 * @var callable[]
 	 */
 	public $onNonExists = [];
 

@@ -18,12 +18,12 @@ class Subscription extends AbstractBaseControl
 	private $userModel;
 
 	/**
-	 * @var array
+	 * @var callable[]
 	 */
 	public $onEmailExists = [];
 
 	/**
-	 * @var array
+	 * @var callable[]
 	 */
 	public $onSuccess = [];
 

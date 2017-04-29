@@ -2,7 +2,9 @@
 
 namespace App\Modules\Admin\Presenters;
 
+use App\Modules\Admin\Components\SourceForm\SourceForm;
 use App\Modules\Admin\Components\SourceForm\SourceFormFactoryInterface;
+use App\Modules\Admin\Components\SourcesTable\SourcesTable;
 use App\Modules\Admin\Components\SourcesTable\SourcesTableFactoryInterface;
 use App\Modules\Admin\Model\SourceModel;
 use App\Modules\Admin\Model\SourceService;
@@ -44,7 +46,7 @@ final class SourcesPresenter extends AbstractBasePresenter
 	}
 
 
-	protected function createComponentSourceForm()
+	protected function createComponentSourceForm(): SourceForm
 	{
 		$control = $this->sourceFormFactory->create();
 
@@ -72,7 +74,7 @@ final class SourcesPresenter extends AbstractBasePresenter
 	}
 
 
-	protected function createComponentSourcesTable()
+	protected function createComponentSourcesTable(): SourcesTable
 	{
 		return $this->sourcesTableFactory->create($this->sourceModel->getAll()->select('id, name, url'));
 	}

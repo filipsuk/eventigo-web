@@ -12,7 +12,7 @@ use Nette\Security\User;
 final class Settings extends AbstractBaseControl
 {
 	/**
-	 * @var array
+	 * @var callable[]
 	 */
 	public $onChange = [];
 
@@ -28,7 +28,7 @@ final class Settings extends AbstractBaseControl
 
 
 	public function __construct(Translator $translator, UserModel $userModel, User $user)
-    {
+	{
 		parent::__construct($translator);
 		$this->user = $user;
 		$this->userModel = $userModel;

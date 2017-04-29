@@ -105,24 +105,33 @@ final class Event
     }
 
 	public function getName(): string
+    {
+        return $this->name;
+    }
+
+	public function setName(?string $name): void
 	{
-		return $this->name;
+		$this->name = $name;
 	}
 
-	/**
-	 * TODO set return type after upgrade to PHP 7.1
-	 */
 	public function getDescription(): ?string
 	{
 		return $this->description;
 	}
 
-	/**
-	 * TODO set return type after upgrade to PHP 7.1
-	 */
+	public function setDescription(string $description): void
+	{
+		$this->description = $description;
+	}
+
 	public function getOriginUrl(): ?string
 	{
 		return $this->originUrl;
+	}
+
+	public function setOriginUrl(string $originUrl): void
+	{
+		$this->originUrl = $originUrl;
 	}
 
 	public function getStart(): DateTime
@@ -130,25 +139,31 @@ final class Event
 		return $this->start;
 	}
 
-	/**
-	 * TODO set return type after upgrade to PHP 7.1
-	 */
+	public function setStart(DateTime $start): void
+	{
+		$this->start = $start;
+	}
+
 	public function getEnd(): ?DateTime
 	{
 		return $this->end;
 	}
 
-	/**
-	 * TODO set return type after upgrade to PHP 7.1
-	 */
+	public function setEnd(DateTime $end): void
+	{
+		$this->end = $end;
+	}
+
 	public function getImage(): ?string
 	{
 		return $this->image;
 	}
 
-	/**
-	 * TODO set return type after upgrade to PHP 7.1
-	 */
+	public function setImage(?string $image): void
+	{
+		$this->image = $image;
+	}
+
 	public function getRate(): ?int
 	{
 		return $this->rate;
@@ -159,13 +174,11 @@ final class Event
         return $this->created;
     }
 
-    public function setRate(int $rate): void
-    {
-        if ($rate < 1 || $rate > 5) {
-            throw new InvalidArgumentException('Rate value must be 1 to 5');
-        }
-        $this->rate = $rate;
-    }
+	public function setRate(int $rate): void
+	{
+		$this->ensureRateIsValid($rate);
+		$this->rate = $rate;
+	}
 
 	public static function calculateRateByAttendeesCount(int $count)
 	{
@@ -179,6 +192,13 @@ final class Event
 			$this->setRate(4);
 		} else {
 			$this->setRate(5);
+		}
+	}
+
+	private function ensureRateIsValid(int $rate): void
+	{
+		if ($rate < 1 || $rate > 5) {
+			throw new InvalidArgumentException('Rate value must be 1 to 5');
 		}
 	}
 }

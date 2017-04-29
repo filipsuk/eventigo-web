@@ -16,7 +16,7 @@ abstract class AbstractBaseControl extends Control
 	protected $translator;
 
 
-	function __construct(Translator $translator)
+	public function __construct(Translator $translator)
 	{
 		$this->translator = $translator;
 	}
@@ -42,7 +42,6 @@ abstract class AbstractBaseControl extends Control
 
 	/**
 	 * Derives template path from class name.
-	 *
 	 */
 	protected function getTemplateDefaultFile(): ?string
 	{

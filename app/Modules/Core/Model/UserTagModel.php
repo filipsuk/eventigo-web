@@ -10,6 +10,9 @@ final class UserTagModel extends AbstractBaseModel
 	const TABLE_NAME = 'users_tags';
 
 
+	/**
+	 * @return mixed[]
+	 */
 	public function getUsersTags(int $userId): array
 	{
 		return $this->getAll()
@@ -22,6 +25,8 @@ final class UserTagModel extends AbstractBaseModel
 
 	/**
 	 * Get ids of user's subscribed tags
+	 *
+	 * @return mixed[]
 	 */
 	public function getUserTagIds(int $userId): array
 	{

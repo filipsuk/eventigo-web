@@ -5,7 +5,7 @@ namespace App\Modules\Core\Utils;
 use Pelago\Emogrifier;
 use Tracy\Debugger;
 
-class Helper
+final class Helper
 {
 	/**
 	 * Converts UTF-8 chars to HTML entities.
@@ -26,6 +26,9 @@ class Helper
 
 	/**
 	 * Returns utm params from array of parameters.
+	 *
+	 * @param string[] $params
+	 * @return string[]
 	 */
 	public static function extractUtmParameters(array $params): array
 	{

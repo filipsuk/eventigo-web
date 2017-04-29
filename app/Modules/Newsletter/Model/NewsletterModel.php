@@ -19,16 +19,21 @@ final class NewsletterModel extends AbstractBaseModel
 	 * Get latest newsletter texts
 	 *
 	 * @throws RuntimeException
+	 *
+	 * @return mixed[]
 	 */
 	public function getLatest(): array
 	{
-		$newsletter = $this->getAll()->order('created DESC')->limit(1);
+		$newsletter = $this->getAll()
+			->order('created DESC')
+			->limit(1);
+
 		if ($newsletter->count() !== 0) {
 			return $newsletter->fetch()->toArray();
 		}
 
-        throw new RuntimeException('No newsletters found');
-    }
+		throw new RuntimeException('No newsletters found');
+	}
 
 	public function createNewsletter(Newsletter $newsletter): IRow
 	{

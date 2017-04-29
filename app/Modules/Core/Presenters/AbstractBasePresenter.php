@@ -6,6 +6,7 @@ use App\Modules\Core\Utils\Filters;
 use Nette;
 use Nette\Application\BadRequestException;
 use Nette\Application\UI\Presenter;
+use Nette\Bridges\ApplicationLatte\Template;
 use Nette\Security\Identity;
 use Tracy\Debugger;
 use Tracy\ILogger;
@@ -18,8 +19,9 @@ abstract class AbstractBasePresenter extends Presenter
 	 */
 	public $translator;
 
-	protected function createTemplate()
+	protected function createTemplate(): Template
 	{
+		/** @var Template $template */
 		$template = parent::createTemplate();
 
 		Filters::setTranslator($this->translator);
@@ -40,9 +42,9 @@ abstract class AbstractBasePresenter extends Presenter
 	 *
 	 * @throws BadRequestException
 	 */
-	protected function loginWithToken($token): void
+	protected function loginWithToken(?string $token = null): void
 	{
-		if (!$this->getUser()->isLoggedIn()) {
+		if (! $this->getUser()->isLoggedIn()) {
 			if ($token === null || ($user = $this->userModel->getAll()->where('token', $token)->fetch()) === false
 			) {
 				Debugger::log("Invalid user token. Can't login. (token: $token)");

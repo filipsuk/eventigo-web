@@ -26,12 +26,12 @@ final class EventForm extends AbstractBaseControl
 	private $eventService;
 
 	/**
-	 * @var array
+	 * @var callable[]
 	 */
 	public $onCreate = [];
 
 	/**
-	 * @var array
+	 * @var callable[]
 	 */
 	public $onUpdate = [];
 
@@ -175,6 +175,9 @@ final class EventForm extends AbstractBaseControl
 	}
 
 
+	/**
+	 * @return string[]
+	 */
 	private function getEventRates(): array
 	{
 		return [
@@ -187,6 +190,9 @@ final class EventForm extends AbstractBaseControl
 	}
 
 
+	/**
+	 * @return string[]
+	 */
 	private function getTagsRates(): array
 	{
 		return [
