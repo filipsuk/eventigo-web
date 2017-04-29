@@ -19,6 +19,7 @@ use Nette\Utils\DateTime;
 use Pelago\Emogrifier;
 use SendGrid;
 use SendGrid\Email;
+use Throwable;
 use Tracy\Debugger;
 
 final class NewsletterService
@@ -74,7 +75,7 @@ final class NewsletterService
 	public function createDefaultNewsletter(): IRow
 	{
 		$parameters = $this->context->getParameters()['newsletter'];
-		$newsletter = new Newsletter();
+		$newsletter = new Newsletter;
 		$newsletter->setSubject($parameters['defaultSubject'] ?? '');
 		$newsletter->setFrom($parameters['defaultAuthor']['email'] ?? '');
 		$newsletter->setAuthor($parameters['defaultAuthor']['name'] ?? '');
@@ -153,7 +154,7 @@ final class NewsletterService
 					'sent' => new DateTime,
 				]);
 
-			} catch (\Exception $e) {
+			} catch (Throwable $throwable) {
 				// TODO log unsuccessful email send
 			}
 		}
@@ -239,7 +240,7 @@ final class NewsletterService
 	public static function inlineCss(array $newsletter)
 	{
 		$css = file_get_contents(self::CSS_FILE_PATH);
-		$emogrifier = new Emogrifier();
+		$emogrifier = new Emogrifier;
 		$emogrifier->setCss($css);
 
 		try {

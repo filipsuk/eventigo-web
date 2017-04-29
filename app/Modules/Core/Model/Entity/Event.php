@@ -152,11 +152,24 @@ final class Event
 
 	public static function calculateRateByAttendeesCount(int $count)
 	{
+<<<<<<< HEAD
 		if ($count <= 50) { return 1; }
 		elseif ($count <= 200) { return 2; }
 		elseif ($count <= 500) { return 3; }
 		elseif ($count <= 1000) { return 4; }
 		else {return 5;}
+=======
+		if ($count <= 50) {
+			$this->setRate(1);
+		} elseif ($count <= 200) {
+			$this->setRate(2);
+		} elseif ($count <= 500) {
+			$this->setRate(3);
+		} elseif ($count <= 1000) {
+			$this->setRate(4);
+		} else {
+			$this->setRate(5);
+		}
+>>>>>>> cs fixes
 	}
-
 }

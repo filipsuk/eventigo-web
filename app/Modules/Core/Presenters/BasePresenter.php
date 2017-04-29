@@ -43,11 +43,10 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter
 	protected function loginWithToken($token)
 	{
 		if (!$this->getUser()->isLoggedIn()) {
-			if ($token === null || ($user = $this->userModel->getAll()
-					->where('token', $token)->fetch()) === false
+			if ($token === null || ($user = $this->userModel->getAll()->where('token', $token)->fetch()) === false
 			) {
 				Debugger::log("Invalid user token. Can't login. (token: $token)");
-				throw new BadRequestException();
+				throw new BadRequestException;
 			}
 			try {
 				$this->getUser()->login(new Identity($user->id, null, $user->toArray()));

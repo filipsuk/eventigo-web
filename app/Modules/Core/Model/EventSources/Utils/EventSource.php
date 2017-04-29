@@ -3,6 +3,7 @@
 namespace App\Modules\Core\Model\EventSources\Utils;
 
 use Nette\Http\Url;
+use Throwable;
 
 
 class EventSource
@@ -22,7 +23,7 @@ class EventSource
 			$host = (new Url($url))->getHost();
 			return in_array($host, self::SOURCES, true);
 
-		} catch (\Exception $e) {
+		} catch (Throwable $throwable) {
 			return false;
 		}
 	}

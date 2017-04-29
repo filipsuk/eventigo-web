@@ -5,6 +5,7 @@ namespace App\Modules\Email\Model;
 use App\Modules\Core\Utils\Filters;
 use App\Modules\Email\Model\Entity\BasicEmail;
 use App\Modules\Email\Presenters\EmailPresenter;
+use App\Modules\Newsletter\Model\Exception;
 use Kdyby\Translation\Translator;
 use Nette\Application\LinkGenerator;
 use Nette\Application\UI\ITemplateFactory;
@@ -12,6 +13,7 @@ use Nette\Bridges\ApplicationLatte\Template;
 use Nette\Http\Url;
 use SendGrid;
 use SendGrid\Email;
+use Throwable;
 
 
 final class EmailService
@@ -43,7 +45,7 @@ final class EmailService
 		try {
 			$this->sendGrid->client->mail()->send()->post($mail);
 
-		} catch (\Exception $e) {
+		} catch (Throwable $throwable) {
 			// TODO log unsuccessful email send
 		}
 	}

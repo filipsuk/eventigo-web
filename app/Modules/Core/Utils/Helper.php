@@ -13,7 +13,7 @@ class Helper
 	 */
 	public static function utfToHtmlEntities(string $input): string
 	{
-		$emogrifier = new Emogrifier();
+		$emogrifier = new Emogrifier;
 
 		try {
 			$emogrifier->setHtml($input);

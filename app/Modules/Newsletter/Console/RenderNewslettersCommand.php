@@ -32,7 +32,7 @@ final class RenderNewslettersCommand extends Command
 	{
 		$users = $this->userModel->getAll()->where('newsletter', true)->fetchAll();
 		$createdCount = 0;
-		foreach($users as $user) {
+		foreach ($users as $user) {
 			try {
 				$this->newsletterService->createUserNewsletter($user->getPrimary());
 				$createdCount++;

@@ -22,7 +22,7 @@ class SrazyEventSource extends EventSource
 	 */
 	public function getEvents(string $series): array
 	{
-		$client = new Client();
+		$client = new Client;
 		/** @var \Webuni\Srazy\Model\Event[] $srazyEvents */
 		$srazyEvents = $client->series()->get($series)->getEvents();
 

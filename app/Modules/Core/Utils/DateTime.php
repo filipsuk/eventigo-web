@@ -46,12 +46,11 @@ class DateTime
 		// Translate name of day
 		$aDayName = self::$translator->translate('front.datetime.' . strtolower(strftime('%A', $a->getTimestamp())));
 
-		// Two day event
 		if ($b && ($a->format('dmy') !== $b->format('dmy'))) {
+			// Two day event
 			$result = $aDayName . $a->format(' j. n. ') . '&nbsp;&ndash;&nbsp;' . $b->format('j. n. Y');
-		}
-		// One day event
-		else {
+		} else {
+			// One day event
 			$result = $aDayName . $a->format(' j. n. Y');
 			// Add Hour:minute time if its not 00:00
 			if ((int)$a->format('G') > 0) {

@@ -35,7 +35,7 @@ class SourceService
 
 		// TODO Check sources by frequency
 		$sources = $this->sourceModel->getAll();
-		foreach($sources as $source) {
+		foreach ($sources as $source) {
 			$addedEvents += $this->crawlSource($source);
 		}
 
