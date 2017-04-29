@@ -2,13 +2,13 @@
 
 namespace App\Modules\Admin\Components\SignIn;
 
-use App\Modules\Core\Components\BaseControl;
+use App\Modules\Core\Components\AbstractBaseControl;
 use App\Modules\Core\Components\Form\Form;
 use App\Modules\Core\Model\UserModel;
 use Nette\Security\AuthenticationException;
 
 
-class SignInForm extends BaseControl
+final class SignInForm extends AbstractBaseControl
 {
 	/**
 	 * @var array

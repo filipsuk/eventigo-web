@@ -3,16 +3,15 @@
 namespace App\Modules\Email\Presenters;
 
 use App\Modules\Core\Model\UserModel;
-use App\Modules\Core\Presenters\BasePresenter;
+use App\Modules\Core\Presenters\AbstractBasePresenter;
 use App\Modules\Email\Model\EmailService;
 use Latte\Loaders\StringLoader;
 
 
 /**
- * EmailPresenter is used for rendering different types of emails.
- * @package App\Modules\Email\Presenters
+ * EqmailPresenter is used for rendering different types of emails.
  */
-class EmailPresenter extends BasePresenter
+final class EmailPresenter extends AbstractBasePresenter
 {
 	/**
 	 * @var string
@@ -45,8 +44,7 @@ class EmailPresenter extends BasePresenter
 	 */
 	public function renderLogin($token)
 	{
-		$this->template->getLatte()->setLoader(new StringLoader);
+		$this->template->getLatte()->setLoader(new StringLoader); // @todo: what is this for?
 		$this->template->setFile($this->emailService->renderLoginEmail($token));
 	}
-
 }

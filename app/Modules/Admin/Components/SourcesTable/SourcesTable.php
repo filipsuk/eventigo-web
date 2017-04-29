@@ -2,7 +2,7 @@
 
 namespace App\Modules\Admin\Components\SourcesTable;
 
-use App\Modules\Admin\Components\DataTable\DataTable;
+use App\Modules\Admin\Components\DataTable\AbstractDataTable;
 use App\Modules\Admin\Model\SourceModel;
 use App\Modules\Admin\Model\SourceService;
 use App\Modules\Core\Model\EventSources\Utils\EventSource;
@@ -13,7 +13,7 @@ use Nette\Utils\DateTime;
 use Nette\Utils\Html;
 
 
-class SourcesTable extends DataTable
+class SourcesTable extends AbstractDataTable
 {
 	/**
 	 * @var SourceModel

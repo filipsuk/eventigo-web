@@ -4,8 +4,7 @@ namespace App\Modules\Admin\Components\SourcesTable;
 
 use Nette\Database\Table\Selection;
 
-
-interface SourcesTableFactory
+interface SourcesTableFactoryInterface
 {
 	public function create(Selection $dataSource): SourcesTable;
 }

@@ -2,14 +2,14 @@
 
 namespace App\Modules\Front\Components\Settings;
 
-use App\Modules\Core\Components\BaseControl;
+use App\Modules\Core\Components\AbstractBaseControl;
 use App\Modules\Core\Components\Form\Form;
 use App\Modules\Core\Model\UserModel;
 use Kdyby\Translation\Translator;
 use Nette\Security\User;
 
 
-class Settings extends BaseControl
+final class Settings extends AbstractBaseControl
 {
 	/**
 	 * @var array

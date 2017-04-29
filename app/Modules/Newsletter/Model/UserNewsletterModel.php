@@ -2,11 +2,11 @@
 
 namespace App\Modules\Newsletter\Model;
 
-use App\Modules\Core\Model\BaseModel;
+use App\Modules\Core\Model\AbstractBaseModel;
 use Nette\Utils\Random;
 
 
-class UserNewsletterModel extends BaseModel
+final class UserNewsletterModel extends AbstractBaseModel
 {
 	/**
 	 * @var string

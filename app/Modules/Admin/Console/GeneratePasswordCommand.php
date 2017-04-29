@@ -9,7 +9,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
 
-class GeneratePasswordCommand extends Command
+final class GeneratePasswordCommand extends Command
 {
 	protected function configure()
 	{

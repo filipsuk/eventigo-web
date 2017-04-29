@@ -2,13 +2,13 @@
 
 namespace App\Modules\Newsletter\Model;
 
-use App\Modules\Core\Model\BaseModel;
+use App\Modules\Core\Model\AbstractBaseModel;
 use App\Modules\Newsletter\Model\Entity\Newsletter;
 use Nette\Database\Table\IRow;
 use RuntimeException;
 
 
-final class NewsletterModel extends BaseModel
+final class NewsletterModel extends AbstractBaseModel
 {
 	/**
 	 * @var string

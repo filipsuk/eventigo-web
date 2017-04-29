@@ -2,7 +2,7 @@
 
 namespace App\Modules\Front\Components\Subscription;
 
-use App\Modules\Core\Components\BaseControl;
+use App\Modules\Core\Components\AbstractBaseControl;
 use App\Modules\Core\Components\Form\Form;
 use App\Modules\Core\Model\UserModel;
 use App\Modules\Front\Model\Exceptions\Subscription\EmailExistsException;
@@ -10,7 +10,7 @@ use Kdyby\Translation\Translator;
 use Nette\Database\Table\IRow;
 
 
-class Subscription extends BaseControl
+class Subscription extends AbstractBaseControl
 {
 	/**
 	 * @var UserModel

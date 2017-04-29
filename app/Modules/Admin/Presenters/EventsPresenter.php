@@ -2,8 +2,8 @@
 
 namespace App\Modules\Admin\Presenters;
 
-use App\Modules\Admin\Components\EventForm\EventFormFactory;
-use App\Modules\Admin\Components\EventsTable\NotApprovedEventsTableFactory;
+use App\Modules\Admin\Components\EventForm\EventFormFactoryInterface;
+use App\Modules\Admin\Components\EventsTable\NotApprovedEventsTableFactoryInterface;
 use App\Modules\Admin\Model\SourceService;
 use App\Modules\Core\Model\EventModel;
 use App\Modules\Core\Utils\DateTime as EventigoDateTime;
@@ -11,10 +11,10 @@ use Nette\Application\Request;
 use Nette\Utils\DateTime;
 
 
-class EventsPresenter extends BasePresenter
+final class EventsPresenter extends AbstractBasePresenter
 {
 	/**
-	 * @var EventFormFactory @inject
+	 * @var EventFormFactoryInterface @inject
 	 */
 	public $eventFormFactory;
 
@@ -29,7 +29,7 @@ class EventsPresenter extends BasePresenter
 	public $sourceService;
 
 	/**
-	 * @var NotApprovedEventsTableFactory @inject
+	 * @var NotApprovedEventsTableFactoryInterface @inject
 	 */
 	public $notApprovedEventsTableFactory;
 

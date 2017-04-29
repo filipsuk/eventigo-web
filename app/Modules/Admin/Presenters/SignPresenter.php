@@ -2,7 +2,7 @@
 
 namespace App\Modules\Admin\Presenters;
 
-use App\Modules\Admin\Components\SignIn\SignInFormFactory;
+use App\Modules\Admin\Components\SignIn\SignInFormFactoryInterface;
 use Nette\Application\UI\Presenter;
 
 
@@ -14,14 +14,14 @@ final class SignPresenter extends Presenter
 	public $translator;
 
 	/**
-	 * @var SignInFormFactory @inject
+	 * @var SignInFormFactoryInterface @inject
 	 */
 	public $signInFormFactory;
 
 
 	public function actionIn()
 	{
-		if ($this->getUser()->isLoggedIn() && $this->getUser()->isInRole('admin')) {
+		if ($this->user->isLoggedIn() && $this->user->isInRole('admin')) {
 			$this->redirect('Dashboard:');
 		}
 	}
@@ -46,12 +46,12 @@ final class SignPresenter extends Presenter
 
 	public function actionOut()
 	{
-		if (!$this->getUser()->isLoggedIn()) {
+		if (!$this->user->isLoggedIn()) {
 			$this->redirect('in');
 		}
 
-		if ($this->getUser()->isInRole('admin')) {
-			$this->getUser()->logout(true);
+		if ($this->user->isInRole('admin')) {
+			$this->user->logout(true);
 		}
 
 		$this->redirect('in');

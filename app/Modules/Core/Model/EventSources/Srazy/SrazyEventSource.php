@@ -3,7 +3,7 @@
 namespace App\Modules\Core\Model\EventSources\Srazy;
 
 use App\Modules\Core\Model\Entity\Event;
-use App\Modules\Core\Model\EventSources\EventSource;
+use App\Modules\Core\Model\EventSources\Utils\EventSource;
 use Nette\Utils\DateTime;
 use Webuni\Srazy\Client;
 

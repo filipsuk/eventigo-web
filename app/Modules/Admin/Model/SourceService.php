@@ -11,7 +11,7 @@ use Nette\Database\UniqueConstraintViolationException;
 use Nette\Http\Url;
 
 
-class SourceService
+final class SourceService
 {
 	/**
 	 * @var SourceModel @inject

@@ -4,7 +4,7 @@ namespace App\Modules\Admin\Components\EventForm;
 
 use App\Modules\Admin\Model\EventService;
 use App\Modules\Admin\Model\OrganiserService;
-use App\Modules\Core\Components\BaseControl;
+use App\Modules\Core\Components\AbstractBaseControl;
 use App\Modules\Core\Components\Form\Form;
 use App\Modules\Core\Model\EventModel;
 use App\Modules\Core\Model\TagModel;
@@ -13,7 +13,7 @@ use Kdyby\Translation\Translator;
 use Nette\Database\UniqueConstraintViolationException;
 
 
-class EventForm extends BaseControl
+final class EventForm extends AbstractBaseControl
 {
 	/**
 	 * @var TagModel

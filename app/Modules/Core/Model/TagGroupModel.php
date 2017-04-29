@@ -2,7 +2,7 @@
 
 namespace App\Modules\Core\Model;
 
-final class TagGroupModel extends BaseModel
+final class TagGroupModel extends AbstractBaseModel
 {
 	/**
 	 * @var string

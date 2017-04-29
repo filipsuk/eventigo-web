@@ -2,7 +2,7 @@
 
 namespace App\Modules\Front\Components\EventsList;
 
-interface EventsListFactory
+interface EventsListFactoryInterface
 {
 	public function create(array $events): EventsList;
 }

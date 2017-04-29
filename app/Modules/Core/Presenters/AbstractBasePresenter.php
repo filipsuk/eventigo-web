@@ -5,15 +5,13 @@ namespace App\Modules\Core\Presenters;
 use App\Modules\Core\Utils\Filters;
 use Nette;
 use Nette\Application\BadRequestException;
+use Nette\Application\UI\Presenter;
 use Nette\Security\Identity;
 use Tracy\Debugger;
 use Tracy\ILogger;
 
 
-/**
- * Base presenter for all application presenters.
- */
-abstract class BasePresenter extends Nette\Application\UI\Presenter
+abstract class AbstractBasePresenter extends Presenter
 {
 	/**
 	 * @var \Kdyby\Translation\Translator @inject
@@ -50,6 +48,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter
 				Debugger::log("Invalid user token. Can't login. (token: $token)");
 				throw new BadRequestException;
 			}
+
 			try {
 				$this->getUser()->login(new Identity($user->id, null, $user->toArray()));
 			} catch (Nette\Security\AuthenticationException $e) {

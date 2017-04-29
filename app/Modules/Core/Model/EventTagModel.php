@@ -2,7 +2,7 @@
 
 namespace App\Modules\Core\Model;
 
-final class EventTagModel extends BaseModel
+final class EventTagModel extends AbstractBaseModel
 {
 	/**
 	 * @var string

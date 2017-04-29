@@ -7,7 +7,7 @@ use Nette\Http\Url;
 use Throwable;
 
 
-abstract class EventSource
+abstract class AbstractEventSource
 {
 	public static function isSource($url): bool
 	{

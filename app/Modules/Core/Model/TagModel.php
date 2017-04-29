@@ -4,7 +4,7 @@ namespace App\Modules\Core\Model;
 
 use Nette\Database\Table\Selection;
 
-final class TagModel extends BaseModel
+final class TagModel extends AbstractBaseModel
 {
 	/**
 	 * @var string

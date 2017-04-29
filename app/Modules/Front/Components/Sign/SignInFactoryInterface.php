@@ -2,7 +2,7 @@
 
 namespace App\Modules\Front\Components\Sign;
 
-interface SignInFactory
+interface SignInFactoryInterface
 {
 	public function create(): SignIn;
 }

@@ -10,7 +10,7 @@ use Nette\Security\Identity;
 use Nette\Security\Passwords;
 
 
-class Authenticator implements IAuthenticator
+final class Authenticator implements IAuthenticator
 {
 	/**
 	 * @var UserModel

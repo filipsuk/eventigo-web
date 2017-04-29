@@ -2,10 +2,10 @@
 
 namespace App\Modules\Admin\Model;
 
-use App\Modules\Core\Model\BaseModel;
+use App\Modules\Core\Model\AbstractBaseModel;
 
 
-final class SourceModel extends BaseModel
+final class SourceModel extends AbstractBaseModel
 {
 	/**
 	 * @var string

@@ -6,12 +6,13 @@ use App\Modules\Core\Model\EventModel;
 use App\Modules\Core\Model\TagModel;
 use App\Modules\Core\Model\UserModel;
 use App\Modules\Core\Model\UserTagModel;
-use App\Modules\Front\Components\EventsList\EventsListFactory;
-use App\Modules\Front\Components\Settings\SettingsFactory;
-use App\Modules\Front\Components\Tags\ITagsFactory;
+use App\Modules\Core\Presenters\AbstractBasePresenter;
+use App\Modules\Front\Components\EventsList\EventsListFactoryInterface;
+use App\Modules\Front\Components\Settings\SettingsFactoryInterface;
+use App\Modules\Front\Components\Tags\TagsFactoryInterface;
 
 
-class ProfilePresenter extends \App\Modules\Core\Presenters\BasePresenter
+final class ProfilePresenter extends AbstractBasePresenter
 {
 	/**
 	 * @var EventModel @inject
@@ -24,17 +25,17 @@ class ProfilePresenter extends \App\Modules\Core\Presenters\BasePresenter
 	public $tagModel;
 
 	/**
-	 * @var ITagsFactory @inject
+	 * @var TagsFactoryInterface @inject
 	 */
 	public $tags;
 
 	/**
-	 * @var EventsListFactory @inject
+	 * @var EventsListFactoryInterface @inject
 	 */
 	public $eventsListFactory;
 
 	/**
-	 * @var SettingsFactory @inject
+	 * @var SettingsFactoryInterface @inject
 	 */
 	public $settingsFactory;
 

@@ -2,7 +2,7 @@
 
 namespace App\Modules\Front\Components\Tags;
 
-use App\Modules\Core\Components\BaseControl;
+use App\Modules\Core\Components\AbstractBaseControl;
 use App\Modules\Core\Components\Form\Form;
 use App\Modules\Core\Model\TagGroupModel;
 use App\Modules\Core\Model\TagModel;
@@ -15,7 +15,7 @@ use Nette\Database\UniqueConstraintViolationException;
 use Nette\Security\User;
 
 
-class Tags extends BaseControl
+final class Tags extends AbstractBaseControl
 {
 	/**
 	 * @var TagModel

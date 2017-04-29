@@ -2,7 +2,7 @@
 
 namespace App\Modules\Core\Model;
 
-final class EventSeriesModel extends BaseModel
+final class EventSeriesModel extends AbstractBaseModel
 {
 	/**
 	 * @var string

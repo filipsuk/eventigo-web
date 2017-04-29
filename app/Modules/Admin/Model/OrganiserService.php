@@ -7,7 +7,7 @@ use App\Modules\Core\Model\OrganiserModel;
 use Nette\Database\Table\IRow;
 
 
-class OrganiserService
+final class OrganiserService
 {
 	/**
 	 * @var OrganiserModel @inject

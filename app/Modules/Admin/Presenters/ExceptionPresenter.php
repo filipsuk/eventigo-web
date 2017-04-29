@@ -7,7 +7,7 @@ use Nette\Application\Responses\FileResponse;
 use Tracy\Debugger;
 
 
-class ExceptionPresenter extends BasePresenter
+final class ExceptionPresenter extends AbstractBasePresenter
 {
 	/**
 	 * @var EventModel @inject

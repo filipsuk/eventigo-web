@@ -2,7 +2,7 @@
 
 namespace App\Modules\Core\Model;
 
-final class EventRedirectModel extends BaseModel
+final class EventRedirectModel extends AbstractBaseModel
 {
 	/**
 	 * @var string

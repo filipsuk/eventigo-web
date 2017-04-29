@@ -8,7 +8,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
 
-class CrawlSourcesCommand extends Command
+final class CrawlSourcesCommand extends Command
 {
 	protected function configure()
 	{

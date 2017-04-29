@@ -2,13 +2,14 @@
 
 namespace App\Modules\Admin\Components\DataTable;
 
+use App\Modules\Core\Components\AbstractBaseControl;
 use App\Modules\Core\Components\BaseControl;
 use Kdyby\Translation\Translator;
 use Nette\Application\Responses\JsonResponse;
 use Nette\Database\Table\Selection;
 
 
-abstract class DataTable extends BaseControl
+abstract class AbstractDataTable extends AbstractBaseControl
 {
 	/**
 	 * @var array

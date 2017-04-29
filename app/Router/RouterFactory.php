@@ -8,9 +8,8 @@ use Nette\Application\Routers\RouteList;
 use Nette\Application\Routers\Route;
 
 
-class RouterFactory
+final class RouterFactory
 {
-
 	public static function createRouter(): IRouter
 	{
 		$router = new RouteList;
@@ -48,5 +47,4 @@ class RouterFactory
 		]);
 		return $router;
 	}
-
 }

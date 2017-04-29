@@ -10,7 +10,7 @@ use Nette\Database\Table\ActiveRow;
 use Nette\Http\IResponse;
 
 
-class NewsletterPresenter extends BasePresenter
+class NewsletterPresenter extends AbstractBasePresenter
 {
 	/**
 	 * @var UserNewsletterModel @inject

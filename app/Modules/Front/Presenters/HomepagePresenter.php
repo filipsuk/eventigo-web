@@ -7,15 +7,15 @@ use App\Modules\Core\Model\UserModel;
 use App\Modules\Core\Utils\Collection;
 use App\Modules\Core\Utils\Helper;
 use App\Modules\Email\Model\EmailService;
-use App\Modules\Front\Components\EventsList\EventsListFactory;
-use App\Modules\Front\Components\Sign\SignInFactory;
-use App\Modules\Front\Components\SubscriptionTags\ISubscriptionTagsFactory;
+use App\Modules\Front\Components\EventsList\EventsListFactoryInterface;
+use App\Modules\Front\Components\Sign\SignInFactoryInterface;
+use App\Modules\Front\Components\SubscriptionTags\SubscriptionTagsFactoryInterface;
 use Nette\Security\Identity;
 use Nette\Utils\DateTime;
 use Nette\Utils\Html;
 
 
-final class HomepagePresenter extends BasePresenter
+final class HomepagePresenter extends AbstractBasePresenter
 {
 	/**
 	 * @var EventModel @inject
@@ -23,12 +23,12 @@ final class HomepagePresenter extends BasePresenter
 	public $eventModel;
 
 	/**
-	 * @var ISubscriptionTagsFactory @inject
+	 * @var SubscriptionTagsFactoryInterface @inject
 	 */
 	public $subscriptionTags;
 
 	/**
-	 * @var EventsListFactory @inject
+	 * @var EventsListFactoryInterface @inject
 	 */
 	public $eventsListFactory;
 
@@ -38,7 +38,7 @@ final class HomepagePresenter extends BasePresenter
 	public $facebook;
 
 	/**
-	 * @var SignInFactory @inject
+	 * @var SignInFactoryInterface @inject
 	 */
 	public $signInFactory;
 

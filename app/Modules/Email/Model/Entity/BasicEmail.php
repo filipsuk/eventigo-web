@@ -5,11 +5,10 @@ namespace App\Modules\Email\Model\Entity;
 use Nette\Http\Url;
 
 /**
- * Class BasicEmail extends Email for use in transactional emails with intro text, link button and footer text.
- *
- * @package App\Modules\Email\Model\Entity
+ * Class BasicEmail extends Email for use in transactional emails with intro text,
+ * link button and footer text.
  */
-class BasicEmail extends Email
+final class BasicEmail extends Email
 {
 	/**
 	 * @var string

@@ -5,8 +5,6 @@ namespace App\Modules\Email\Model\Entity;
 /**
  * Class Email represents data structure of general email.
  * Serves as a parent to different email types sent to users.
- *
- * @package App\Modules\Email\Model\Entity
  */
 class Email
 {

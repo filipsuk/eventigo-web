@@ -3,7 +3,7 @@
 namespace App\Modules\Core\Model\EventSources\Meetup;
 
 use App\Modules\Core\Model\Entity\Event;
-use App\Modules\Core\Model\EventSources\EventSource;
+use App\Modules\Core\Model\EventSources\Utils\EventSource;
 use DMS\Service\Meetup\MeetupKeyAuthClient;
 use Nette\Utils\DateTime;
 

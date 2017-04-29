@@ -2,7 +2,7 @@
 
 namespace App\Modules\Core\Model;
 
-final class OrganiserModel extends BaseModel
+final class OrganiserModel extends AbstractBaseModel
 {
 	/**
 	 * @var string

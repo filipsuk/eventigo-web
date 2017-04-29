@@ -2,7 +2,7 @@
 
 namespace App\Modules\Admin\Components\EventsTable;
 
-use App\Modules\Admin\Components\DataTable\DataTable;
+use App\Modules\Admin\Components\DataTable\AbstractDataTable;
 use App\Modules\Core\Model\EventModel;
 use App\Modules\Core\Model\EventSources\Facebook\FacebookEventSource;
 use Kdyby\Translation\Translator;
@@ -12,7 +12,7 @@ use Nette\Utils\DateTime;
 use Nette\Utils\Html;
 
 
-final class NotApprovedEventsTable extends DataTable
+final class NotApprovedEventsTable extends AbstractDataTable
 {
 	/**
 	 * @var EventModel

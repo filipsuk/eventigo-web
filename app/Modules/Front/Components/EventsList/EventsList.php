@@ -2,12 +2,12 @@
 
 namespace App\Modules\Front\Components\EventsList;
 
-use App\Modules\Core\Components\BaseControl;
+use App\Modules\Core\Components\AbstractBaseControl;
 use App\Modules\Front\Model\EventsIterator;
 use Kdyby\Translation\Translator;
 
 
-class EventsList extends BaseControl
+final class EventsList extends AbstractBaseControl
 {
 	/**
 	 * @var array

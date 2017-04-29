@@ -8,7 +8,7 @@ use Nette\Database\Table\IRow;
 use Nette\Utils\DateTime;
 
 
-final class EventModel extends BaseModel
+final class EventModel extends AbstractBaseModel
 {
 	/**
 	 * @var string

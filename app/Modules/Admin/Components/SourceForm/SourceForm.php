@@ -4,13 +4,13 @@ namespace App\Modules\Admin\Components\SourceForm;
 
 use App\Modules\Admin\Model\OrganiserService;
 use App\Modules\Admin\Model\SourceModel;
-use App\Modules\Core\Components\BaseControl;
+use App\Modules\Core\Components\AbstractBaseControl;
 use App\Modules\Core\Components\Form\Form;
 use App\Modules\Core\Utils\Collection;
 use Nette\Utils\DateTime;
 
 
-class SourceForm extends BaseControl
+final class SourceForm extends AbstractBaseControl
 {
 	/**
 	 * @var array

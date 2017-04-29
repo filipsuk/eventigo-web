@@ -2,7 +2,9 @@
 
 namespace App\Modules\Front\Presenters;
 
-class SignPresenter extends \Nette\Application\UI\Presenter
+use Nette\Application\UI\Presenter;
+
+final class SignPresenter extends Presenter
 {
 	/**
 	 * @var \Kdyby\Translation\Translator @inject

@@ -81,11 +81,11 @@ checkers:
     - Symplify\CodingStandard\Sniffs\Namespaces\ClassNamesWithoutPreSlashSniff
     - PhpCsFixer\Fixer\NamespaceNotation\SingleBlankLineBeforeNamespaceFixer
     - PhpCsFixer\Fixer\NamespaceNotation\BlankLineAfterNamespaceFixer
-#
-#    # Naming
-#    - Symplify\CodingStandard\Sniffs\Naming\AbstractClassNameSniff
-#    - Symplify\CodingStandard\Sniffs\Naming\InterfaceNameSniff
-#    - Symplify\CodingStandard\Sniffs\Naming\TraitNameSniff
+
+    # Naming
+    - Symplify\CodingStandard\Sniffs\Naming\AbstractClassNameSniff
+    - Symplify\CodingStandard\Sniffs\Naming\InterfaceNameSniff
+    - Symplify\CodingStandard\Sniffs\Naming\TraitNameSniff
 #
 #    # Slevomat
 #    - SlevomatCodingStandard\Sniffs\Classes\UnusedPrivateElementsSniff

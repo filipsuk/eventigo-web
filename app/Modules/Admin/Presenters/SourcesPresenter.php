@@ -2,23 +2,23 @@
 
 namespace App\Modules\Admin\Presenters;
 
-use App\Modules\Admin\Components\SourceForm\SourceFormFactory;
-use App\Modules\Admin\Components\SourcesTable\SourcesTableFactory;
+use App\Modules\Admin\Components\SourceForm\SourceFormFactoryInterface;
+use App\Modules\Admin\Components\SourcesTable\SourcesTableFactoryInterface;
 use App\Modules\Admin\Model\SourceModel;
 use App\Modules\Admin\Model\SourceService;
 use Nette\Database\Table\ActiveRow;
 use Nette\Utils\DateTime;
 
 
-class SourcesPresenter extends BasePresenter
+final class SourcesPresenter extends AbstractBasePresenter
 {
 	/**
-	 * @var SourceFormFactory @inject
+	 * @var SourceFormFactoryInterface @inject
 	 */
 	public $sourceFormFactory;
 
 	/**
-	 * @var SourcesTableFactory @inject
+	 * @var SourcesTableFactoryInterface @inject
 	 */
 	public $sourcesTableFactory;
 

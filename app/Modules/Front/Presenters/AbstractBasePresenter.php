@@ -5,13 +5,10 @@ namespace App\Modules\Front\Presenters;
 use App\Modules\Core\Model\TagModel;
 use App\Modules\Core\Model\UserModel;
 use App\Modules\Core\Model\UserTagModel;
+use App\Modules\Core\Presenters\AbstractBasePresenter as CoreAbstractBasePresenter;
 use Nette\Utils\DateTime;
 
-
-/**
- * Base presenter for all application presenters.
- */
-abstract class BasePresenter extends \App\Modules\Core\Presenters\BasePresenter
+abstract class AbstractBasePresenter extends CoreAbstractBasePresenter
 {
 	/**
 	 * @var UserModel @inject

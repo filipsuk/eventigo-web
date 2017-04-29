@@ -10,7 +10,7 @@ use Nette\Utils\ArrayHash;
 use Nette\Utils\Random;
 
 
-final class UserModel extends BaseModel
+final class UserModel extends AbstractBaseModel
 {
 	/**
 	 * @var string
@@ -115,14 +115,14 @@ final class UserModel extends BaseModel
 				'facebook_id' => $me->id,
 			]);
 			return $this->findByFacebookId($me->id);
-		} else {
-			return $this->insert([
-				'email' => $me->email ?? null,
-				'facebook_id' => $me->id,
-				'token' => $this->generateToken(),
-			]);
 		}
-	}
+
+        return $this->insert([
+            'email' => $me->email ?? null,
+            'facebook_id' => $me->id,
+            'token' => $this->generateToken(),
+        ]);
+    }
 
 
 	public function updateFacebook(ArrayHash $me, string $token): IRow

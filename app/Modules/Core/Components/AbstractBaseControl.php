@@ -8,7 +8,7 @@ use Nette\Bridges\ApplicationLatte\Template;
 use Nette\Utils\DateTime;
 
 
-abstract class BaseControl extends Control
+abstract class AbstractBaseControl extends Control
 {
 	/**
 	 * @var \Kdyby\Translation\Translator

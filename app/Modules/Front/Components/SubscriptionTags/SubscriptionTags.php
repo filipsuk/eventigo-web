@@ -15,7 +15,7 @@ use Nette\Database\Helpers;
 use Nette\Database\Table\Selection;
 
 
-class SubscriptionTags extends Subscription
+final class SubscriptionTags extends Subscription
 {
 	/**
 	 * @var TagModel

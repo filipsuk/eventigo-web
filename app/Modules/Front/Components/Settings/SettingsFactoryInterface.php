@@ -2,7 +2,7 @@
 
 namespace App\Modules\Front\Components\Settings;
 
-interface SettingsFactory
+interface SettingsFactoryInterface
 {
 	public function create(): Settings;
 }

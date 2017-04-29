@@ -6,7 +6,7 @@ use App\Modules\Core\Model\EventModel;
 use Nette\Utils\DateTime;
 
 
-class DashboardPresenter extends BasePresenter
+final class DashboardPresenter extends AbstractBasePresenter
 {
 	/**
 	 * @var EventModel @inject

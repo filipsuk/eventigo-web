@@ -1,14 +1,14 @@
 services:
-	- App\Modules\Front\Components\Subscription\ISubscriptionFactory
-	- App\Modules\Front\Components\SubscriptionTags\ISubscriptionTagsFactory
-	- App\Modules\Front\Components\EventsList\EventsListFactory
-	- App\Modules\Admin\Components\EventForm\EventFormFactory
-	- App\Modules\Admin\Components\SignIn\SignInFormFactory
-	- App\Modules\Front\Components\Tags\ITagsFactory
-	- App\Modules\Front\Components\Settings\SettingsFactory
+	- App\Modules\Front\Components\Subscription\SubscriptionFactoryInterface
+	- App\Modules\Front\Components\SubscriptionTags\SubscriptionTagsFactoryInterface
+	- App\Modules\Front\Components\EventsList\EventsListFactoryInterface
+	- App\Modules\Admin\Components\EventForm\EventFormFactoryInterface
+	- App\Modules\Admin\Components\SignIn\SignInFormFactoryInterface
+	- App\Modules\Front\Components\Tags\TagsFactoryInterface
+	- App\Modules\Front\Components\Settings\SettingsFactoryInterface
 	-
-		implement: App\Modules\Admin\Components\SourceForm\SourceFormFactory
+		implement: App\Modules\Admin\Components\SourceForm\SourceFormFactoryInterface
 		inject: yes
-	- App\Modules\Admin\Components\SourcesTable\SourcesTableFactory
-	- App\Modules\Admin\Components\EventsTable\NotApprovedEventsTableFactory
-	- App\Modules\Front\Components\Sign\SignInFactory
+	- App\Modules\Admin\Components\SourcesTable\SourcesTableFactoryInterface
+	- App\Modules\Admin\Components\EventsTable\NotApprovedEventsTableFactoryInterface
+	- App\Modules\Front\Components\Sign\SignInFactoryInterface
