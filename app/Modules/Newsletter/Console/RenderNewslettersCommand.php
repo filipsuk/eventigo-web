@@ -29,7 +29,7 @@ final class RenderNewslettersCommand extends Command
 		$this->userModel = $userModel;
 	}
 
-	protected function configure()
+	protected function configure(): void
 	{
 		$this->setName('newsletters:render')
 			->setDescription('Render users newsletters prepared to send');

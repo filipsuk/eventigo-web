@@ -11,7 +11,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 final class GeneratePasswordCommand extends Command
 {
-	protected function configure()
+	protected function configure(): void
 	{
 		$this->setName('admin:generatePassword')
 			->setDescription('Generate admin password')

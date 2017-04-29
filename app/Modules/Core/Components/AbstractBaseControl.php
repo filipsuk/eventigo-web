@@ -43,9 +43,8 @@ abstract class AbstractBaseControl extends Control
 	/**
 	 * Derives template path from class name.
 	 *
-	 * @return null|string
 	 */
-	protected function getTemplateDefaultFile()
+	protected function getTemplateDefaultFile(): ?string
 	{
 		$refl = $this->getReflection();
 		$file = dirname($refl->getFileName()) . '/' . $refl->getShortName() . '.latte';
@@ -53,7 +52,7 @@ abstract class AbstractBaseControl extends Control
 	}
 
 
-	public function render()
+	public function render(): void
 	{
 		$this->template->render();
 	}

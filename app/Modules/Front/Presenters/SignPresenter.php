@@ -27,7 +27,7 @@ final class SignPresenter extends Presenter
 	];
 
 
-	public function actionOut()
+	public function actionOut(): void
 	{
 		if (!$this->getUser()->isLoggedIn()) {
 			$this->redirect('Homepage:');

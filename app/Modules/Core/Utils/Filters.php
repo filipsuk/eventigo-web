@@ -12,7 +12,7 @@ class Filters
 	/** @var Translator */
 	public static $translator;
 
-	public static function setTranslator(Translator $translator)
+	public static function setTranslator(Translator $translator): void
 	{
 		self::$translator = $translator;
 	}

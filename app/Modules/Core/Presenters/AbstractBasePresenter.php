@@ -28,7 +28,7 @@ abstract class AbstractBasePresenter extends Presenter
 		return $template;
 	}
 
-	protected function beforeRender()
+	protected function beforeRender(): void
 	{
 		parent::beforeRender();
 
@@ -40,7 +40,7 @@ abstract class AbstractBasePresenter extends Presenter
 	 *
 	 * @throws BadRequestException
 	 */
-	protected function loginWithToken($token)
+	protected function loginWithToken($token): void
 	{
 		if (!$this->getUser()->isLoggedIn()) {
 			if ($token === null || ($user = $this->userModel->getAll()->where('token', $token)->fetch()) === false

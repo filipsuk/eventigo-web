@@ -7,7 +7,7 @@ use App\Modules\Core\Presenters\AbstractBasePresenter as CoreAbstractBasePresent
 
 abstract class AbstractBasePresenter extends CoreAbstractBasePresenter
 {
-	protected function startup()
+	protected function startup(): void
 	{
 		parent::startup();
 

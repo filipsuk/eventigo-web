@@ -21,7 +21,7 @@ final class CreateNewsletterCommand extends Command
 		$this->newsletterService = $newsletterService;
 	}
 
-	protected function configure()
+	protected function configure(): void
 	{
 		$this->setName('newsletters:create')
 			->setDescription('Creates default newsletter');

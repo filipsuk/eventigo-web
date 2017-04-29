@@ -59,7 +59,7 @@ final class SubscriptionTags extends Subscription
 	}
 
 
-	public function render()
+	public function render(): void
 	{
 		$this->template->tags = $this->tags->fetchPairs('code');
 		$this->template->tagsGroups = $this->tagGroupModel->getAll()
@@ -89,7 +89,7 @@ final class SubscriptionTags extends Subscription
 	/**
 	 * @throws EmailExistsException
 	 */
-	public function processForm(Form $form)
+	public function processForm(Form $form): void
 	{
 		$values = $form->getValues();
 		if (array_key_exists('real_subscribe', $values) && $values['real_subscribe'] === 'true') {

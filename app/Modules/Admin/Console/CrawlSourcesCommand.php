@@ -10,7 +10,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 final class CrawlSourcesCommand extends Command
 {
-	protected function configure()
+	protected function configure(): void
 	{
 		$this->setName('admin:crawlSources')
 			->setDescription('Crawl events from sources');

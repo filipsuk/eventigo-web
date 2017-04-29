@@ -33,7 +33,7 @@ final class SourcesPresenter extends AbstractBasePresenter
 	public $sourceService;
 
 
-	public function actionCreate()
+	public function actionCreate(): void
 	{
 		$defaults = [
 			'frequencyNumber' => 1,

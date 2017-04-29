@@ -64,7 +64,7 @@ final class Tags extends AbstractBaseControl
 	}
 
 
-	public function render()
+	public function render(): void
 	{
 		$this->template->tags = $this->tags->fetchPairs('code');
 		$this->template->tagsGroups = $this->tagGroupModel->getAll()
@@ -93,7 +93,7 @@ final class Tags extends AbstractBaseControl
 	}
 
 
-	public function processForm(Form $form)
+	public function processForm(Form $form): void
 	{
 		$values = $form->getValues();
 

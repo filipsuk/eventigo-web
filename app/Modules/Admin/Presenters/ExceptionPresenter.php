@@ -20,7 +20,7 @@ final class ExceptionPresenter extends AbstractBasePresenter
 	 * @param $filename string Filename of exception html file in log directory
 	 * @throws \Nette\Application\AbortException
 	 */
-	public function renderDefault($filename)
+	public function renderDefault($filename $filename): void
 	{
 		$file = Debugger::$logDirectory . DIRECTORY_SEPARATOR . $filename;
 		$this->sendResponse(new FileResponse($file, $filename, 'text/html', false));

@@ -34,7 +34,7 @@ final class EventsPresenter extends AbstractBasePresenter
 	public $notApprovedEventsTableFactory;
 
 
-	public function actionUpdate($id)
+	public function actionUpdate($id): void
 	{
 		$event = $this->eventModel->getAll()->wherePrimary($id)->fetch();
 
@@ -67,7 +67,7 @@ final class EventsPresenter extends AbstractBasePresenter
 	}
 
 
-	public function renderUpdate()
+	public function renderUpdate(): void
 	{
 		$this->template->setFile(__DIR__ . '/templates/Events/create.latte');
 	}
@@ -91,7 +91,7 @@ final class EventsPresenter extends AbstractBasePresenter
 	}
 
 
-	public function handleCrawlSources()
+	public function handleCrawlSources(): void
 	{
 		$addedEvents = $this->sourceService->crawlSources();
 
@@ -106,7 +106,7 @@ final class EventsPresenter extends AbstractBasePresenter
 	}
 
 
-	public function actionApprove($id)
+	public function actionApprove($id): void
 	{
 		$this->forward('update', $id);
 	}

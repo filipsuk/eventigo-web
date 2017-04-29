@@ -52,7 +52,7 @@ final class EventService
 	}
 
 
-	public function createEvent(ArrayHash $values)
+	public function createEvent(ArrayHash $values): void
 	{
 		// Create event
 		$event = $this->eventModel->insert([
@@ -74,7 +74,7 @@ final class EventService
 	}
 
 
-	public function updateEvent(ArrayHash $values)
+	public function updateEvent(ArrayHash $values): void
 	{
 		$event = $this->eventModel->getAll()->wherePrimary($values->id)->fetch();
 
@@ -105,7 +105,7 @@ final class EventService
 	}
 
 
-	private function addTags(ArrayHash $tags, int $eventId)
+	private function addTags(ArrayHash $tags, int $eventId): void
 	{
 		foreach ($tags as $tagValues) {
 			if (!$tagValues->code) {

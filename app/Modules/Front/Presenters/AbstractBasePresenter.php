@@ -31,7 +31,7 @@ abstract class AbstractBasePresenter extends CoreAbstractBasePresenter
 	public $tagModel;
 
 
-	protected function startup()
+	protected function startup(): void
 	{
 		parent::startup();
 
@@ -39,7 +39,7 @@ abstract class AbstractBasePresenter extends CoreAbstractBasePresenter
 	}
 
 
-	private function updateAccess()
+	private function updateAccess(): void
 	{
 		$access = $this->getSession('access');
 		$now = new DateTime;
@@ -75,8 +75,9 @@ abstract class AbstractBasePresenter extends CoreAbstractBasePresenter
 	}
 
 
-	private function shouldSyncToDb(?DateTime $sessionLastInDb = null, ?DateTime $lastInDb = null, string $syncToDb): bool
-	{
+	private function shouldSyncToDb(
+		?DateTime $sessionLastInDb = null, ?DateTime $lastInDb = null, string $syncToDb
+	): bool {
 		return !$sessionLastInDb
 		|| ($lastInDb && $lastInDb > $sessionLastInDb)
 		|| $sessionLastInDb < new DateTime('-' . $syncToDb);

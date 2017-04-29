@@ -37,11 +37,10 @@ final class UserModel extends AbstractBaseModel
 	const TOKEN_LENGTH = 64;
 
 	/**
-	 * @return IRow|null
 	 * @throws EmailExistsException
 	 * @throws \PDOException
 	 */
-	public function subscribe(string $email)
+	public function subscribe(string $email): ?IRow
 	{
 		if ($email) {
 			if ($this->emailExists($email)) {
@@ -67,10 +66,7 @@ final class UserModel extends AbstractBaseModel
 		return (bool) $this->getUserByEmail($email);
 	}
 
-	/**
-	 * @return IRow|null
-	 */
-	public function getUserByEmail(string $email)
+	public function getUserByEmail(string $email): ?IRow
 	{
 		$user = $this->getAll()
 			->where('email', $email)

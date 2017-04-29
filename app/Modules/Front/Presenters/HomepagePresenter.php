@@ -54,7 +54,7 @@ final class HomepagePresenter extends AbstractBasePresenter
 	 * @throws \Nette\Application\BadRequestException
 	 * @throws \Nette\Application\AbortException
 	 */
-	public function renderDefault(array $tags, $token = null)
+	public function renderDefault(array $tags, $token = null): void
 	{
 		// Try to log in the user with provided token
 		if ($token) {
@@ -86,7 +86,7 @@ final class HomepagePresenter extends AbstractBasePresenter
 	}
 
 
-	public function renderDiscover()
+	public function renderDiscover(): void
 	{
 		$section = $this->getSession('discover');
 		$tags = $section->tags ?: $section->tags = [];
@@ -182,7 +182,7 @@ final class HomepagePresenter extends AbstractBasePresenter
 	}
 
 
-	public function handleFollowTag($tagCode)
+	public function handleFollowTag($tagCode): void
 	{
 		$tag = $this->tagModel->getAll()->where(['code' => $tagCode]);
 		$section = $this->presenter->getSession('subscriptionTags');
@@ -206,7 +206,7 @@ final class HomepagePresenter extends AbstractBasePresenter
 	}
 
 
-	public function handleUnfollowTag($tagCode)
+	public function handleUnfollowTag($tagCode): void
 	{
 		$tag = $this->tagModel->getAll()->where(['code' => $tagCode]);
 		$section = $this->presenter->getSession('subscriptionTags');
@@ -232,10 +232,7 @@ final class HomepagePresenter extends AbstractBasePresenter
 	}
 
 
-	/**
-	 * @return \Kdyby\Facebook\Dialog\LoginDialog
-	 */
-	protected function createComponentFbLogin()
+	protected function createComponentFbLogin(): \Kdyby\Facebook\Dialog\LoginDialog
 	{
 		/** @var \Kdyby\Facebook\Dialog\LoginDialog $dialog */
 		$dialog = $this->facebook->createDialog('login');

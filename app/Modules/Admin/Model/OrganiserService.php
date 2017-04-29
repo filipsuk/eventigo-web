@@ -23,7 +23,7 @@ final class OrganiserService
 	/**
 	 * @return array|\Nette\Database\Table\IRow[]
 	 */
-	public function getOrganisersSeries()
+	public function getOrganisersSeries(): array
 	{
 		return $this->organiserModel->getAll()
 			->select('organisers.name AS organiser')
@@ -37,7 +37,7 @@ final class OrganiserService
 	 * @param array|\Nette\Database\Table\IRow[] $series
 	 * @return array|\Nette\Database\Table\IRow[]
 	 */
-	public static function formatSeriesForSelect(array $series)
+	public static function formatSeriesForSelect(array $series): array
 	{
 		$result = [];
 

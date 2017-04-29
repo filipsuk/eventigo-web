@@ -28,7 +28,7 @@ final class SendNewslettersCommand extends Command
 		$this->userNewsletterModel = $userNewsletterModel;
 	}
 
-	protected function configure()
+	protected function configure(): void
 	{
 		$this->setName('newsletters:send')
 			->setDescription('Send newsletters');

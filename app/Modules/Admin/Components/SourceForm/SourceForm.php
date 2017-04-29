@@ -33,7 +33,7 @@ final class SourceForm extends AbstractBaseControl
 	public $organiserService;
 
 
-	public function render()
+	public function render(): void
 	{
 		$this['form']->render();
 	}
@@ -71,7 +71,7 @@ final class SourceForm extends AbstractBaseControl
 	}
 
 
-	public function processForm(Form $form)
+	public function processForm(Form $form): void
 	{
 		$values = $form->getValues();
 

@@ -49,13 +49,13 @@ abstract class AbstractBaseModel
 	 * @param  array|\Traversable ($column => $value)
 	 * @return int number of affected rows
 	 */
-	public function update($data)
+	public function update($data): int
 	{
 		return $this->getAll()->update($data);
 	}
 
 
-	public function delete(array $data)
+	public function delete(array $data): void
 	{
 		$this->getAll()->where($data)->delete();
 	}

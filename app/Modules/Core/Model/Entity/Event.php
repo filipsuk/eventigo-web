@@ -111,18 +111,16 @@ final class Event
 
 	/**
 	 * TODO set return type after upgrade to PHP 7.1
-	 * @return string|null
 	 */
-	public function getDescription()
+	public function getDescription(): ?string
 	{
 		return $this->description;
 	}
 
 	/**
 	 * TODO set return type after upgrade to PHP 7.1
-	 * @return string|null
 	 */
-	public function getOriginUrl()
+	public function getOriginUrl(): ?string
 	{
 		return $this->originUrl;
 	}
@@ -134,27 +132,24 @@ final class Event
 
 	/**
 	 * TODO set return type after upgrade to PHP 7.1
-	 * @return DateTime|null
 	 */
-	public function getEnd()
+	public function getEnd(): ?DateTime
 	{
 		return $this->end;
 	}
 
 	/**
 	 * TODO set return type after upgrade to PHP 7.1
-	 * @return string|null
 	 */
-	public function getImage()
+	public function getImage(): ?string
 	{
 		return $this->image;
 	}
 
 	/**
 	 * TODO set return type after upgrade to PHP 7.1
-	 * @return int|null
 	 */
-	public function getRate()
+	public function getRate(): ?int
 	{
 		return $this->rate;
 	}

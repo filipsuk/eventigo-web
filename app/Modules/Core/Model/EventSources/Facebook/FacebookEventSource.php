@@ -111,10 +111,7 @@ final class FacebookEventSource extends AbstractEventSource
 		return $events;
 	}
 
-	/**
-	 * @return DateTime
-	 */
-	private function createIsoDateTime($time)
+	private function createIsoDateTime($time): DateTime
 	{
 		return DateTime::createFromFormat(DATE_ISO8601, $time);
 	}

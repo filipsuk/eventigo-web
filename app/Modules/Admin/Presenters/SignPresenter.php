@@ -19,7 +19,7 @@ final class SignPresenter extends Presenter
 	public $signInFormFactory;
 
 
-	public function actionIn()
+	public function actionIn(): void
 	{
 		if ($this->user->isLoggedIn() && $this->user->isInRole('admin')) {
 			$this->redirect('Dashboard:');
@@ -44,7 +44,7 @@ final class SignPresenter extends Presenter
 	}
 
 
-	public function actionOut()
+	public function actionOut(): void
 	{
 		if (!$this->user->isLoggedIn()) {
 			$this->redirect('in');

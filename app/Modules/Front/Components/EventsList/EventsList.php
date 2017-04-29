@@ -22,7 +22,7 @@ final class EventsList extends AbstractBaseControl
 	}
 
 
-	public function render()
+	public function render(): void
 	{
 		$this->template->events = new EventsIterator($this->events);
 		$this->template->render();

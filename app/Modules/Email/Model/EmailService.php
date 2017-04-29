@@ -38,7 +38,7 @@ final class EmailService
 	public $sendGrid;
 
 
-	public function sendLogin(string $emailTo, string $token)
+	public function sendLogin(string $emailTo, string $token): void
 	{
 		$to = new Email(null, $emailTo);
 		$from = new Email('Eventigo.cz', 'prihlaseni@eventigo.cz');

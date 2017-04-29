@@ -32,7 +32,7 @@ abstract class AbstractDataTable extends AbstractBaseControl
 	abstract public function generateJson(): array;
 
 
-	public function handleJson()
+	public function handleJson(): void
 	{
 		$json = $this->generateJson();
 		$this->presenter->sendResponse(new JsonResponse($json));

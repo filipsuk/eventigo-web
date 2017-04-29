@@ -32,7 +32,7 @@ class NewsletterPresenter extends AbstractBasePresenter
 	 */
 	private $userNewsletter;
 
-	public function actionDefault($hash)
+	public function actionDefault($hash): void
 	{
 		$this->userNewsletter = $this->userNewsletterModel->getAll()->where([
 			'hash' => $hash,
@@ -44,14 +44,14 @@ class NewsletterPresenter extends AbstractBasePresenter
 	}
 
 
-	public function renderDefault()
+	public function renderDefault(): void
 	{
 		$newsletter = $this->userNewsletter;
 		$this->template->userNewsletter = NewsletterService::inlineCss($newsletter->toArray());
 	}
 
 
-	public function actionUnsubscribe(string $hash)
+	public function actionUnsubscribe(string $hash): void
 	{
 		$userNewsletter = $this->userNewsletterModel->getAll()->where(['hash' => $hash])->fetch();
 		if ($userNewsletter) {
@@ -63,7 +63,7 @@ class NewsletterPresenter extends AbstractBasePresenter
 		}
 	}
 
-	public function actionDynamic()
+	public function actionDynamic(): void
 	{
 		// Allow newsletter preview only for admins
 		if (!$this->getUser()->isLoggedIn() || !$this->getUser()->isInRole('admin')) {
@@ -71,7 +71,7 @@ class NewsletterPresenter extends AbstractBasePresenter
 		}
 	}
 
-	public function renderDynamic(int $userId)
+	public function renderDynamic(int $userId): void
 	{
 		$newsletter = $this->newsletterService->buildArrayForTemplate((int) $userId);
 		$this->template->newsletter = NewsletterService::inlineCss($newsletter);

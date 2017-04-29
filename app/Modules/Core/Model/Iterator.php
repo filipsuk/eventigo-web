@@ -49,7 +49,7 @@ class Iterator implements \Iterator
 	}
 
 
-	public function rewind()
+	public function rewind(): void
 	{
 		$this->index = 0;
 	}

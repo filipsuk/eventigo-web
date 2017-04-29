@@ -21,7 +21,7 @@ final class SignInForm extends AbstractBaseControl
 	public $onIncorrectLogIn = [];
 
 
-	public function render()
+	public function render(): void
 	{
 		$this['form']->render();
 	}
@@ -46,7 +46,7 @@ final class SignInForm extends AbstractBaseControl
 	}
 
 
-	public function processForm(Form $form)
+	public function processForm(Form $form): void
 	{
 		$values = $form->getValues();
 

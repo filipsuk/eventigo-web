@@ -49,7 +49,7 @@ final class ProfilePresenter extends AbstractBasePresenter
 	 */
 	public $userModel;
 
-	protected function startup()
+	protected function startup(): void
 	{
 		parent::startup();
 
@@ -59,7 +59,7 @@ final class ProfilePresenter extends AbstractBasePresenter
 		}
 	}
 
-	public function actionSettings($token = null)
+	public function actionSettings($token = null): void
 	{
 		// Try to log in the user with provided token
 		if ($token) {
@@ -68,7 +68,7 @@ final class ProfilePresenter extends AbstractBasePresenter
 	}
 
 
-	public function renderSettings()
+	public function renderSettings(): void
 	{
 		$this->template->userData = $this->userModel->getAll()
 			->wherePrimary($this->getUser()->getId())->fetch();

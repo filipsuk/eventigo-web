@@ -14,7 +14,7 @@ final class DashboardPresenter extends AbstractBasePresenter
 	public $eventModel;
 
 
-	public function actionDefault()
+	public function actionDefault(): void
 	{
 		$this->template->approvedEventsCounts = $this->eventModel->getAll()
 			->select('COUNT(*) AS all')

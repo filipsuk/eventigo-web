@@ -57,7 +57,7 @@ class Subscription extends AbstractBaseControl
 	/**
 	 * @throws EmailExistsException
 	 */
-	public function processForm(Form $form)
+	public function processForm(Form $form): void
 	{
 		$values = $form->getValues();
 		$user = $this->subscribe($values->email);
@@ -66,12 +66,10 @@ class Subscription extends AbstractBaseControl
 
 
 	/**
-	 * @param string $email
-	 * @return IRow|null
 	 * @throws EmailExistsException
 	 * @throws \PDOException
 	 */
-	protected function subscribe($email)
+	protected function subscribe(string $email): ?IRow
 	{
 		try {
 			$user = $this->userModel->subscribe($email);

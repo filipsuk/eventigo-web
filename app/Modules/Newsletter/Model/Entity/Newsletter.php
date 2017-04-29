@@ -41,98 +41,62 @@ class Newsletter
 	 */
 	private $created;
 
-	/**
-	 * @return int
-	 */
-	public function getId()
+	public function getId(): int
 	{
 		return $this->id;
 	}
 
-	/**
-	 * @return string
-	 */
-	public function getSubject()
+	public function getSubject(): string
 	{
 		return $this->subject;
 	}
 
-	/**
-	 * @return string
-	 */
-	public function getFrom()
+	public function getFrom(): string
 	{
 		return $this->from;
 	}
 
-	/**
-	 * @return string
-	 */
-	public function getIntroText()
+	public function getIntroText(): string
 	{
 		return $this->introText;
 	}
 
-	/**
-	 * @return string
-	 */
-	public function getOutroText()
+	public function getOutroText(): string
 	{
 		return $this->outroText;
 	}
 
-	/**
-	 * @return string
-	 */
-	public function getAuthor()
+	public function getAuthor(): string
 	{
 		return $this->author;
 	}
 
-	/**
-	 * @return DateTime
-	 */
-	public function getCreated()
+	public function getCreated(): DateTime
 	{
 		return $this->created;
 	}
 
-	/**
-	 * @param string $subject
-	 */
-	public function setSubject(string $subject)
+	public function setSubject(string $subject): void
 	{
 		$this->subject = $subject;
 	}
 
-	/**
-	 * @param string $from
-	 */
-	public function setFrom(string $from)
+	public function setFrom(string $from): void
 	{
 		$this->from = $from;
 	}
 
-	/**
-	 * @param string $introText
-	 */
-	public function setIntroText(string $introText)
+	public function setIntroText(string $introText): void
 	{
 		$this->introText = $introText;
 	}
 
-	/**
-	 * @param string $outroText
-	 */
-	public function setOutroText(string $outroText)
+	public function setOutroText(string $outroText): void
 	{
 		$this->outroText = $outroText;
 	}
 
-	/**
-	 * @param string $author
-	 */
-	public function setAuthor(string $author)
+	public function setAuthor(string $author): void
 	{
 		$this->author = $author;
 	}

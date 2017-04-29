@@ -105,7 +105,7 @@ final class NotApprovedEventsTable extends AbstractDataTable
 	}
 
 
-	public function handleSkip(int $eventId)
+	public function handleSkip(int $eventId): void
 	{
 		$event = $this->eventModel->getAll()->wherePrimary($eventId)->fetch();
 		$this->eventModel->getAll()->wherePrimary($eventId)->update([
@@ -118,7 +118,7 @@ final class NotApprovedEventsTable extends AbstractDataTable
 	}
 
 
-	public function renderJs()
+	public function renderJs(): void
 	{
 		$this->template->setFile(__DIR__ . '/js.latte');
 		$this->template->render();

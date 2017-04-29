@@ -182,7 +182,7 @@ final class NewsletterService
 	/**
 	 * @param int[] $usersNewslettersIds
 	 */
-	public function sendNewsletters(array $usersNewslettersIds)
+	public function sendNewsletters(array $usersNewslettersIds): void
 	{
 		$usersNewsletters = $this->userNewsletterModel->getAll()->wherePrimary($usersNewslettersIds)->fetchAll();
 		foreach ($usersNewsletters as $userNewsletter) {

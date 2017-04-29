@@ -95,7 +95,7 @@ class SourcesTable extends AbstractDataTable
 	}
 
 
-	public function handleCrawl(int $sourceId)
+	public function handleCrawl(int $sourceId): void
 	{
 		$source = $this->sourceModel->getAll()->wherePrimary($sourceId)->fetch();
 

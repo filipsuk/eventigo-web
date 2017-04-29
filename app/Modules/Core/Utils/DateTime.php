@@ -43,9 +43,8 @@ final class DateTime
 	/**
 	 * Get maximum of given datetimes
 	 * @param DateTime|null
-	 * @return NetteDateTime|null
 	 */
-	public static function max()
+	public static function max(): ?NetteDateTime
 	{
 		$dateTimes = array_filter(func_get_args());
 
@@ -58,7 +57,7 @@ final class DateTime
 		return $max;
 	}
 
-	public static function setTranslator(Translator $t)
+	public static function setTranslator(Translator $t): void
 	{
 		self::$translator = $t;
 	}

@@ -101,13 +101,14 @@ checkers:
     - SlevomatCodingStandard\Sniffs\TypeHints\LongTypeHintsSniff
     - SlevomatCodingStandard\Sniffs\TypeHints\ParameterTypeHintSpacingSniff
     - SlevomatCodingStandard\Sniffs\TypeHints\NullableTypeForNullDefaultValueSniff
-#    - SlevomatCodingStandard\Sniffs\TypeHints\ReturnTypeHintSpacingSniff
-#    SlevomatCodingStandard\Sniffs\TypeHints\TypeHintDeclarationSniff:
-#        usefulAnnotations:
-#            - @todo
-#            - @dataProvider
-#            - @expectedException
-#        enableEachParameterAndReturnInspection: true
+    - SlevomatCodingStandard\Sniffs\TypeHints\ReturnTypeHintSpacingSniff
+    SlevomatCodingStandard\Sniffs\TypeHints\TypeHintDeclarationSniff:
+        usefulAnnotations:
+            - @todo
+            - @dataProvider
+            - @expectedException
+            - @throws
+        enableEachParameterAndReturnInspection: true
 #    - SlevomatCodingStandard\Sniffs\Namespaces\AlphabeticallySortedUsesSniff
 #    - SlevomatCodingStandard\Sniffs\Namespaces\DisallowGroupUseSniff
 #    - SlevomatCodingStandard\Sniffs\Namespaces\MultipleUsesPerLineSniff

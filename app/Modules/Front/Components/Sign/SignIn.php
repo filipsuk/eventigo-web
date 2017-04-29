@@ -58,7 +58,7 @@ final class SignIn extends AbstractBaseControl
 	}
 
 
-	public function processForm(Form $form, ArrayHash $values)
+	public function processForm(Form $form, ArrayHash $values): void
 	{
 		$user = $this->userModel->getUserByEmail($values->email);
 

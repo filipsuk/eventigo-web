@@ -42,7 +42,7 @@ final class EmailPresenter extends AbstractBasePresenter
 	 * @throws \Nette\Application\UI\InvalidLinkException
 	 * @throws \Nette\InvalidArgumentException
 	 */
-	public function renderLogin($token)
+	public function renderLogin($token $token): void
 	{
 		$this->template->getLatte()->setLoader(new StringLoader); // @todo: what is this for?
 		$this->template->setFile($this->emailService->renderLoginEmail($token));
