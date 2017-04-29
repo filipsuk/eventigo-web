@@ -11,6 +11,7 @@ use App\Modules\Core\Utils\DateTime;
 use Kdyby\Translation\Translator;
 use Nette\Database\Table\Selection;
 use Nette\Utils\Html;
+use Nette\Utils\DateTime as NetteDateTime;
 
 
 final class SourcesTable extends AbstractDataTable
@@ -77,7 +78,7 @@ final class SourcesTable extends AbstractDataTable
 			}
 
 			$item['name'] = $name;
-			$item['nextCheck'] = DateTime::from($item['next_check'])
+			$item['nextCheck'] = NetteDateTime::from($item['next_check'])
 				->format(DateTime::W3C_DATE);
 
 			$actions = (string) Html::el('a', [
@@ -113,8 +114,9 @@ final class SourcesTable extends AbstractDataTable
 			}
 		}
 
+        $nextCheck = new NetteDateTime('+' . $source->check_frequency . ' days');
 		$this->sourceModel->getAll()->wherePrimary($sourceId)->update([
-			'next_check' => $nextCheck = new DateTime('+' . $source->check_frequency . ' days'),
+			'next_check' => $nextCheck,
 		]);
 
 		$this->getPresenter()->flashMessage($this->translator->translate('admin.sources.default.table.done', [

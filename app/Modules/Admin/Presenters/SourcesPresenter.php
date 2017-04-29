@@ -10,6 +10,7 @@ use App\Modules\Admin\Model\SourceModel;
 use App\Modules\Admin\Model\SourceService;
 use App\Modules\Core\Utils\DateTime;
 use Nette\Database\Table\ActiveRow;
+use Nette\Utils\DateTime as NetteDateTime;
 
 
 final class SourcesPresenter extends AbstractBasePresenter
@@ -39,7 +40,7 @@ final class SourcesPresenter extends AbstractBasePresenter
 	{
 		$defaults = [
 			'frequencyNumber' => 1,
-			'nextCheck' => (new DateTime('+1 days'))->format(DateTime::DATE_FORMAT),
+			'nextCheck' => (new NetteDateTime('+1 days'))->format(DateTime::DATE_FORMAT),
 			'createOrganiser' => true,
 		];
 		$this['sourceForm-form']->setDefaults($defaults);

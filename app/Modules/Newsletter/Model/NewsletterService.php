@@ -22,6 +22,7 @@ use SendGrid;
 use SendGrid\Email;
 use Throwable;
 use Tracy\Debugger;
+use Nette\Utils\DateTime as NetteDateTime;
 
 final class NewsletterService
 {
@@ -115,6 +116,7 @@ final class NewsletterService
 	public function createDefaultNewsletter(): IRow
 	{
 		$parameters = $this->context->getParameters()['newsletter'];
+		// @todo: refactor to use immutability with static ctor or factory
 		$newsletter = new Newsletter;
 		$newsletter->setSubject($parameters['defaultSubject'] ?? '');
 		$newsletter->setFrom($parameters['defaultAuthor']['email'] ?? '');
@@ -219,7 +221,7 @@ final class NewsletterService
 	 */
 	private function getGroupedEvents(int $userId): array
 	{
-		$from = new DateTime('next monday');
+		$from = new NetteDateTime('next monday');
 		$to = $from->modifyClone('+ 1 week');
 		$userTags = $this->userTagModel->getUserTagIds($userId);
 
@@ -259,7 +261,7 @@ final class NewsletterService
 	private function renderNewsletterContent(array $newsletter): string
 	{
 		$this->template = $this->templateFactory->createTemplate();
-		$this->template->addFilter('datetime', function (DateTime $a, ?DateTime $b = null) {
+		$this->template->addFilter('datetime', function (NetteDateTime $a, ?NetteDateTime $b = null) {
 			DateTime::setTranslator($this->translator);
 			return DateTime::eventsDatetimeFilter($a, $b);
 		});

@@ -10,6 +10,7 @@ use Kdyby\Translation\Translator;
 use Nette\Database\Table\IRow;
 use Nette\Database\Table\Selection;
 use Nette\Utils\Html;
+use Nette\Utils\DateTime as NetteDateTime;
 
 
 final class NotApprovedEventsTable extends AbstractDataTable
@@ -75,8 +76,8 @@ final class NotApprovedEventsTable extends AbstractDataTable
 				'title' => $this->translator->translate('admin.notApprovedEventsTable.approve.title'),
 			])->setHtml($name);
 
-			$start = DateTime::from($item['start']);
-			$end = DateTime::from($item['end']);
+			$start = NetteDateTime::from($item['start']);
+			$end = NetteDateTime::from($item['end']);
 			$item['date'] = $start->format(DateTime::W3C_DATETIME_MINUTES)
 				. ($item['end'] && $item['start'] !== $item['end']
 					? ' - ' . ($start->format('Y-m-d') === $end->format('Y-m-d')
@@ -84,7 +85,7 @@ final class NotApprovedEventsTable extends AbstractDataTable
 						: $end->format(DateTime::W3C_DATETIME_MINUTES))
 					: '');
 
-			$item['created'] = DateTime::from($item['created'])
+			$item['created'] = NetteDateTime::from($item['created'])
 				->format(DateTime::W3C_DATE);
 
 			$actions = (string) Html::el('a', [
@@ -116,6 +117,7 @@ final class NotApprovedEventsTable extends AbstractDataTable
 
 		$this->getPresenter()->flashMessage($this->translator->translate('admin.notApprovedEventsTable.skip.success',
 			['name' => $event->name]));
+
 		$this->getPresenter()->redirect('this');
 	}
 

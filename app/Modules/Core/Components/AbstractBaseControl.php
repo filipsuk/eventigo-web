@@ -6,7 +6,7 @@ use App\Modules\Core\Utils\DateTime;
 use Kdyby\Translation\Translator;
 use Nette\Application\UI\Control;
 use Nette\Bridges\ApplicationLatte\Template;
-
+use Nette\Utils\DateTime as NetteDateTime;
 
 abstract class AbstractBaseControl extends Control
 {
@@ -31,7 +31,7 @@ abstract class AbstractBaseControl extends Control
 			$template->setFile($file);
 		}
 
-		$template->addFilter('datetime', function (DateTime $a, ?DateTime $b = null) {
+		$template->addFilter('datetime', function (NetteDateTime $a, ?NetteDateTime $b = null) {
 			DateTime::setTranslator($this->translator);
 			return DateTime::eventsDatetimeFilter($a, $b);
 		});
