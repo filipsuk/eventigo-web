@@ -31,11 +31,12 @@ class EventForm extends BaseControl
 	private $organiserService;
 
 
-	public function __construct(Translator $translator,
-	                            TagModel $tagModel,
-	                            EventService $eventService,
-	                            OrganiserService $organiserService)
-	{
+	public function __construct(
+		Translator $translator,
+		TagModel $tagModel,
+		EventService $eventService,
+		OrganiserService $organiserService
+	) {
 		parent::__construct($translator);
 		$this->tagModel = $tagModel;
 		$this->eventService = $eventService;
@@ -127,7 +128,7 @@ class EventForm extends BaseControl
 		if ($form['facebook_load']->isSubmittedBy()) {
 
 			// Parse id from url
-			preg_match( '/(?<=\/)\d{5,}/' , $values['origin_url'], $id);
+			preg_match('/(?<=\/)\d{5,}/', $values['origin_url'], $id);
 
 			// Get event from fb
 			try {

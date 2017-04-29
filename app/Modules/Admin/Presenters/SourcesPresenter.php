@@ -40,7 +40,7 @@ class SourcesPresenter extends BasePresenter
 	{
 		$control = $this->sourceFormFactory->create();
 
-		$control->onCreate[] = function(ActiveRow $source) {
+		$control->onCreate[] = function (ActiveRow $source) {
 			$this->flashMessage($this->translator->translate('admin.sourceForm.success'), 'success');
 
 			// Crawl recently added source
@@ -55,7 +55,7 @@ class SourcesPresenter extends BasePresenter
 			$this->redirect('Sources:default');
 		};
 
-		$control->onUpdate[] = function(ActiveRow $source) {
+		$control->onUpdate[] = function (ActiveRow $source) {
 			$this->flashMessage($this->translator->translate('admin.sourceForm.success'), 'success');
 			$this->redirect('Sources:update', ['id' => $source->id]);
 		};

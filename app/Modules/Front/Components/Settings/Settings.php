@@ -21,10 +21,8 @@ class Settings extends BaseControl
 	private $userModel;
 
 
-	public function __construct(Translator $translator,
-	                            UserModel $userModel,
-	                            User $user)
-	{
+	public function __construct(Translator $translator, UserModel $userModel, User $user)
+    {
 		parent::__construct($translator);
 		$this->user = $user;
 		$this->userModel = $userModel;
@@ -56,7 +54,7 @@ class Settings extends BaseControl
 		$values = $form->getValues();
 
 		$this->userModel->getAll()->wherePrimary($this->user->getId())->update([
-			'newsletter' => (bool)$values->newsletter,
+			'newsletter' => (bool) $values->newsletter,
 		]);
 
 		$this->onChange();

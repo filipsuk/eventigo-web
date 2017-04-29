@@ -22,9 +22,12 @@ class SourcesTable extends DataTable
 	private $sourceService;
 
 
-	public function __construct(Translator $translator, Selection $dataSource, SourceModel $sourceModel,
-		SourceService $sourceService)
-	{
+	public function __construct(
+        Translator $translator,
+        Selection $dataSource,
+        SourceModel $sourceModel,
+		SourceService $sourceService
+    ) {
 		parent::__construct($translator, $dataSource);
 		$this->sourceModel = $sourceModel;
 		$this->sourceService = $sourceService;
@@ -56,7 +59,7 @@ class SourcesTable extends DataTable
 
 			$i = Html::el('i', ['class' => 'fa fa-external-link']);
 			$name = $item['name'] . '&nbsp; '
-				. (string)Html::el('a', [
+				. (string) Html::el('a', [
 					'href' => $item['url'],
 					'target' => '_blank',
 					'data-toggle' => 'tooltip',
@@ -70,7 +73,7 @@ class SourcesTable extends DataTable
 			$item['nextCheck'] = DateTime::from($item['next_check'])
 				->format(\App\Modules\Core\Utils\DateTime::W3C_DATE);
 
-			$actions = (string)Html::el('a', [
+			$actions = (string) Html::el('a', [
 				'href' => $this->link('crawl!', $item['id']),
 				'class' => 'btn btn-primary btn-xs',
 				'data-toggle' => 'tooltip',

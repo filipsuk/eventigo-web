@@ -63,7 +63,10 @@ class EventModel extends BaseModel
 	 * @return array
 	 */
 	public function getAllWithDates(
-		array $tagsIds, DateTime $from = NULL, DateTime $to = NULL, DateTime $lastAccess = null
+		array $tagsIds,
+        DateTime $from = NULL,
+        DateTime $to = NULL,
+        DateTime $lastAccess = null
 	) {
 		$calculateFrom = $from ?: new DateTime;
 		$selection = $this->getAll()

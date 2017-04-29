@@ -36,12 +36,13 @@ class Tags extends BaseControl
 	private $user;
 
 
-	public function __construct(Translator $translator,
-	                            TagModel $tagModel,
-	                            UserTagModel $userTagModel,
-	                            TagGroupModel $tagGroupModel,
-	                            User $user)
-	{
+	public function __construct(
+        Translator $translator,
+        TagModel $tagModel,
+        UserTagModel $userTagModel,
+        TagGroupModel $tagGroupModel,
+        User $user
+) {
 		parent::__construct($translator);
 		$this->tagModel = $tagModel;
 		$this->userTagModel = $userTagModel;

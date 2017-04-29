@@ -27,11 +27,11 @@ class SignPresenter extends Presenter
 	{
 		$control = $this->signInFormFactory->create();
 
-		$control->onLoggedIn[] = function() {
+		$control->onLoggedIn[] = function () {
 			$this->redirect('Dashboard:');
 		};
 
-		$control->onIncorrectLogIn[] = function() {
+		$control->onIncorrectLogIn[] = function () {
 			$this->flashMessage($this->translator->translate('admin.signInForm.incorrectLogIn'), 'danger');
 			$this->redirect('this');
 		};

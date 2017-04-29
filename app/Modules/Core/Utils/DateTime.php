@@ -2,10 +2,10 @@
 
 namespace App\Modules\Core\Utils;
 
-
 use Kdyby\Translation\Translator;
+use Nette\Utils\DateTime as NetteDateTime;
 
-class DateTime
+final class DateTime
 {
 	/** @var \Kdyby\Translation\Translator */
 	public static $translator;
@@ -22,7 +22,7 @@ class DateTime
 	/**
 	 * Get maximum of given datetimes
 	 * @param DateTime|null
-	 * @return \Nette\Utils\DateTime|null
+	 * @return NetteDateTime|null
 	 */
 	public static function max()
 	{
@@ -42,7 +42,8 @@ class DateTime
 		self::$translator = $t;
 	}
 
-	public static function eventsDatetimeFilter(\Nette\Utils\DateTime $a, \Nette\Utils\DateTime $b = null) {
+	public static function eventsDatetimeFilter(NetteDateTime $a, NetteDateTime $b = null)
+    {
 		// Translate name of day
 		$aDayName = self::$translator->translate('front.datetime.' . strtolower(strftime('%A', $a->getTimestamp())));
 
@@ -53,7 +54,7 @@ class DateTime
 			// One day event
 			$result = $aDayName . $a->format(' j. n. Y');
 			// Add Hour:minute time if its not 00:00
-			if ((int)$a->format('G') > 0) {
+			if ((int) $a->format('G') > 0) {
 				$result .= $a->format(' G:i');
 			}
 		}

@@ -11,7 +11,7 @@ use App\Modules\Core\Model\TagModel;
 use Nette\Utils\ArrayHash;
 use Nette\Utils\DateTime;
 
-class EventService
+final class EventService
 {
 	/** @var EventModel */
 	private $eventModel;
@@ -28,11 +28,12 @@ class EventService
 	const PLATFORM_FACEBOOK = 'facebook';
 
 
-	public function __construct(EventModel $eventModel,
-	                            TagModel $tagModel,
-	                            EventTagModel $eventTagModel,
-								FacebookEventSource $facebookEventSource)
-	{
+	public function __construct(
+        EventModel $eventModel,
+        TagModel $tagModel,
+        EventTagModel $eventTagModel,
+        FacebookEventSource $facebookEventSource
+) {
 		$this->eventModel = $eventModel;
 		$this->tagModel = $tagModel;
 		$this->eventTagModel = $eventTagModel;
@@ -89,7 +90,7 @@ class EventService
 			->where(['event_id' => $values->id])
 			->delete();
 
-		$this->addTags($values->tags, (int)$values->id);
+		$this->addTags($values->tags, (int) $values->id);
 	}
 
 

@@ -24,7 +24,7 @@ class GeneratePasswordCommand extends Command
 
 	protected function execute(InputInterface $input, OutputInterface $output): int
 	{
-		$password = (string)$input->getArgument('password');
+		$password = (string) $input->getArgument('password');
 
 		/** @var UserModel $userModel */
 		$userModel = $this->getHelper('container')->getByType(UserModel::class);

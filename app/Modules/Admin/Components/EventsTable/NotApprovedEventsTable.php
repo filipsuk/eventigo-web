@@ -13,20 +13,15 @@ use Nette\Utils\DateTime;
 use Nette\Utils\Html;
 
 
-class NotApprovedEventsTable extends DataTable
+final class NotApprovedEventsTable extends DataTable
 {
-	/** @var SourceModel */
-	private $sourceModel;
-
 	/** @var EventModel */
 	private $eventModel;
 
 
-	public function __construct(Translator $translator, Selection $dataSource, SourceModel $sourceModel,
-	                            EventModel $eventModel)
-	{
+	public function __construct(Translator $translator, Selection $dataSource, EventModel $eventModel)
+    {
 		parent::__construct($translator, $dataSource);
-		$this->sourceModel = $sourceModel;
 		$this->eventModel = $eventModel;
 	}
 
@@ -62,7 +57,7 @@ class NotApprovedEventsTable extends DataTable
 
 			$i = Html::el('i', ['class' => 'fa fa-external-link']);
 			$name = $item['name'] . '&nbsp; '
-				. (string)Html::el('a', [
+				. (string) Html::el('a', [
 					'href' => $item['origin_url'],
 					'target' => '_blank',
 					'data-toggle' => 'tooltip',
@@ -71,7 +66,7 @@ class NotApprovedEventsTable extends DataTable
 			if (FacebookEventSource::isSource($item['origin_url'])) {
 				$name = Html::el('i', ['class' => 'fa fa-facebook-square']) . '&nbsp;' . $name;
 			}
-			$item['name'] = (string)Html::el('a', [
+			$item['name'] = (string) Html::el('a', [
 				'href' => $this->getPresenter()->link('Events:approve', $item['id']),
 				'data-toggle' => 'tooltip',
 				'title' => $this->translator->translate('admin.notApprovedEventsTable.approve.title'),
@@ -89,13 +84,13 @@ class NotApprovedEventsTable extends DataTable
 			$item['created'] = DateTime::from($item['created'])
 				->format(\App\Modules\Core\Utils\DateTime::W3C_DATE);
 
-			$actions = (string)Html::el('a', [
+			$actions = (string) Html::el('a', [
 				'href' => $this->getPresenter()->link('Events:approve', $item['id']),
 				'class' => 'btn btn-primary btn-xs',
 				'data-toggle' => 'tooltip',
 				'title' => $this->translator->translate('admin.notApprovedEventsTable.approve.title'),
 			])->setHtml('<i class="fa fa-pencil"></i>');
-			$actions .= (string)Html::el('a', [
+			$actions .= (string) Html::el('a', [
 				'href' => $this->link('skip!', $item['id']),
 				'class' => 'btn btn-default btn-xs',
 				'data-toggle' => 'tooltip',

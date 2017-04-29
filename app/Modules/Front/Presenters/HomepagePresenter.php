@@ -77,7 +77,7 @@ class HomepagePresenter extends BasePresenter
 	{
 		$section = $this->getSession('discover');
 		$tags = $section->tags ?: $section->tags = [];
-		$tags = (array)$tags;
+		$tags = (array) $tags;
 
 		// TODO do this more general
 		// Remove tags with no events

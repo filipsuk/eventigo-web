@@ -65,7 +65,7 @@ class NewsletterPresenter extends BasePresenter
 
 	public function renderDynamic(int $userId)
 	{
-		$newsletter = $this->newsletterService->buildArrayForTemplate((int)$userId);
+		$newsletter = $this->newsletterService->buildArrayForTemplate((int) $userId);
 		$this->template->newsletter = NewsletterService::inlineCss($newsletter);
 	}
 	
