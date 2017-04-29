@@ -72,10 +72,10 @@ checkers:
     - Symplify\CodingStandard\Sniffs\Commenting\BlockPropertyCommentSniff
     - Symplify\CodingStandard\Sniffs\Commenting\VarPropertyCommentSniff
     - Symplify\CodingStandard\Sniffs\Commenting\VarConstantCommentSniff
-#
-#    # Debug and dev
-#    - Symplify\CodingStandard\Sniffs\Debug\DebugFunctionCallSniff
-#    - Symplify\CodingStandard\Sniffs\Debug\CommentedOutCodeSniff
+
+    # Debug and dev
+    - Symplify\CodingStandard\Sniffs\Debug\DebugFunctionCallSniff
+    - Symplify\CodingStandard\Sniffs\Debug\CommentedOutCodeSniff
 #
 #    # Namespaces
 #    - Symplify\CodingStandard\Sniffs\Namespaces\ClassNamesWithoutPreSlashSniff

@@ -225,17 +225,7 @@ final class NewsletterService
 				'title' => $this->translator->trans('newsletter.email.events.nextWeek'),
 				'events' => []
 			],
-//			[
-//				'title' => 'Další nově přidané akce', //TODO posilat dalsi akce
-//				'events' => [
-//					[
-//						'name' => 'Skrz DEV cirkus',
-//						'date' => 'Pondělí 25. 4. 2016, 18:00',
-//						'hashtags' => '#programovani #php #nette',
-//						'url' => '#'
-//					],
-//				]
-//			]
+            //TODO posilat dalsi akce
 		];
 
 		$nextWeekEvents = $this->eventModel->getAllWithDates($userTags, $from, $to);
