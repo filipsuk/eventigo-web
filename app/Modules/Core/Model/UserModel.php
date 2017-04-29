@@ -14,26 +14,26 @@ final class UserModel extends AbstractBaseModel
 	/**
 	 * @var string
 	 */
-	const TABLE_NAME = 'users';
+	protected const TABLE_NAME = 'users';
 
 	/**
 	 * Login type.
 	 *
 	 * @var string
 	 */
-	const SUBSCRIPTION_LOGIN = 'subscription';
+	public const SUBSCRIPTION_LOGIN = 'subscription';
 
 	/**
 	 * Login Type.
 	 *
 	 * @var string
 	 */
-	const ADMIN_LOGIN = 'admin';
+	public const ADMIN_LOGIN = 'admin';
 
 	/**
 	 * @var int
 	 */
-	const TOKEN_LENGTH = 64;
+	private const TOKEN_LENGTH = 64;
 
 	/**
 	 * @throws EmailExistsException

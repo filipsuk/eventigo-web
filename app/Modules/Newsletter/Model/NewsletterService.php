@@ -31,17 +31,18 @@ final class NewsletterService
 	 *
 	 * @var string
 	 */
-	const CSS_FILE_PATH = __DIR__ . DIRECTORY_SEPARATOR . '..'
+	private const CSS_FILE_PATH = __DIR__ . DIRECTORY_SEPARATOR . '..'
 		. DIRECTORY_SEPARATOR . 'Presenters' . DIRECTORY_SEPARATOR . 'templates'
 		. DIRECTORY_SEPARATOR . 'Newsletter' . DIRECTORY_SEPARATOR . 'build.css';
 
 	/**
 	 * @var string[]
 	 */
-	const NEWSLETTER_UTM_PARAMETERS = [
+	private const NEWSLETTER_UTM_PARAMETERS = [
 		'utm_source' => 'newsletter',
 		'utm_medium' => 'email'
 	];
+
 	/**
 	 * @var UserNewsletterModel @inject
 	 */

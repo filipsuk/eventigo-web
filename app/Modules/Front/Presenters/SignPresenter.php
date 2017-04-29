@@ -9,7 +9,7 @@ final class SignPresenter extends Presenter
 	/**
 	 * @var string[]
 	 */
-	const BYE = [
+	private const BYE = [
 		'Adiós',
 		'Aloha',
 		'Arrivederci',
@@ -20,6 +20,7 @@ final class SignPresenter extends Presenter
 		'Sayonara',
 		'Měj se',
 	];
+
 	/**
 	 * @var \Kdyby\Translation\Translator @inject
 	 */

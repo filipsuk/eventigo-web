@@ -12,7 +12,7 @@ final class MeetupEventSource extends EventSource
 	/**
 	 * @var string[]
 	 */
-	const URLS = [
+	protected const URLS = [
 		'meetup.com',
 		'www.meetup.com',
 	];

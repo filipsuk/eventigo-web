@@ -7,5 +7,5 @@ final class EventSeriesModel extends AbstractBaseModel
 	/**
 	 * @var string
 	 */
-	const TABLE_NAME = 'events_series';
+	protected const TABLE_NAME = 'events_series';
 }

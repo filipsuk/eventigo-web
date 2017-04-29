@@ -7,5 +7,5 @@ final class TagGroupModel extends AbstractBaseModel
 	/**
 	 * @var string
 	 */
-	const TABLE_NAME = 'tags_groups';
+	protected const TABLE_NAME = 'tags_groups';
 }

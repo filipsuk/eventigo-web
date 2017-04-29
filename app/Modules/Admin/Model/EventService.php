@@ -17,7 +17,7 @@ final class EventService
 	/**
 	 * @var string
 	 */
-	const PLATFORM_FACEBOOK = 'facebook';
+	public const PLATFORM_FACEBOOK = 'facebook';
 
 	/**
 	 * @var EventModel

@@ -12,7 +12,7 @@ final class SrazyEventSource extends EventSource
 	/**
 	 * @var string[]
 	 */
-	const URLS = [
+	protected const URLS = [
 		'srazy.info',
 		'www.srazy.info',
 	];

@@ -7,5 +7,5 @@ final class EventRedirectModel extends AbstractBaseModel
 	/**
 	 * @var string
 	 */
-	const TABLE_NAME = 'events_redirects';
+	protected const TABLE_NAME = 'events_redirects';
 }

@@ -7,7 +7,7 @@ final class EventTagModel extends AbstractBaseModel
 	/**
 	 * @var string
 	 */
-	const TABLE_NAME = 'events_tags';
+	protected const TABLE_NAME = 'events_tags';
 
 	/**
 	 * Returns event's tags joined in string ("#tag1 #tag2 #tag3").

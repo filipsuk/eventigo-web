@@ -10,7 +10,7 @@ class EventSource
 	/**
 	 * @var string[]
 	 */
-	const SOURCES = [
+	private const SOURCES = [
 		'facebook.com',
 		'www.facebook.com',
 		'srazy.info',

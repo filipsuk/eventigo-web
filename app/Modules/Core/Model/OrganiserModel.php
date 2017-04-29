@@ -7,5 +7,5 @@ final class OrganiserModel extends AbstractBaseModel
 	/**
 	 * @var string
 	 */
-	const TABLE_NAME = 'organisers';
+	protected const TABLE_NAME = 'organisers';
 }

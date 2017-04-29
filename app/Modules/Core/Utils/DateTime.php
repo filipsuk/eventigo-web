@@ -11,37 +11,37 @@ final class DateTime
 	/**
 	 * @var string
 	 */
-	const DATETIME_FORMAT = 'd. m. Y H:i';
+	public const DATETIME_FORMAT = 'd. m. Y H:i';
 
 	/**
 	 * @var string
 	 */
-	const DATE_FORMAT = 'd. m. Y';
+	public const DATE_FORMAT = 'd. m. Y';
 
 	/**
 	 * @var string
 	 */
-	const NO_ZERO_DATE_FORMAT = 'j. n. Y';
+	public const NO_ZERO_DATE_FORMAT = 'j. n. Y';
 
 	/**
 	 * @var string
 	 */
-	const W3C_DATE = 'Y-m-d';
+	public const W3C_DATE = 'Y-m-d';
 
 	/**
 	 * @var string
 	 */
-	const W3C_DATETIME_MINUTES = 'Y-m-d H:i';
+	public const W3C_DATETIME_MINUTES = 'Y-m-d H:i';
 
 	/**
 	 * @var string
 	 */
-	const W3C_DATETIME = 'Y-m-d H:i:s';
+	public const W3C_DATETIME = 'Y-m-d H:i:s';
 
 	/**
 	 * @var string
 	 */
-	const TIME_MINUTES = 'H:i';
+	public const TIME_MINUTES = 'H:i';
 
 	/**
 	 * @var \Kdyby\Translation\Translator

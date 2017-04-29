@@ -11,7 +11,7 @@ abstract class AbstractBaseModel
 	/**
 	 * @var string
 	 */
-	const TABLE_NAME = '';
+	protected const TABLE_NAME = '';
 
 	/**
 	 * @var Context

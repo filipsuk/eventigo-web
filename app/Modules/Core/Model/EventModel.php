@@ -12,34 +12,27 @@ final class EventModel extends AbstractBaseModel
 	/**
 	 * @var string
 	 */
-	const TABLE_NAME = 'events';
-
-	/**
-	 * Number of events per list.
-	 *
-	 * @var int
-	 */
-	const EVENTS_LIMIT = 10;
+	protected const TABLE_NAME = 'events';
 
 	/**
 	 * @var string
 	 */
-	const STATE_APPROVED = 'approved';
+	public const STATE_APPROVED = 'approved';
 
 	/**
 	 * @var string
 	 */
-	const STATE_NOT_APPROVED = 'not-approved';
+	public const STATE_NOT_APPROVED = 'not-approved';
 
 	/**
 	 * @var string
 	 */
-	const STATE_SKIP = 'skip';
+	public const STATE_SKIP = 'skip';
 
 	/**
 	 * @var string[]
 	 */
-	const STATES = [
+	public const STATES = [
 		self::STATE_APPROVED,
 		self::STATE_NOT_APPROVED,
 		self::STATE_SKIP,

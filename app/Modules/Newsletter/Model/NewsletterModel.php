@@ -12,7 +12,7 @@ final class NewsletterModel extends AbstractBaseModel
 	/**
 	 * @var string
 	 */
-	const TABLE_NAME = 'newsletters'; // TODO migrace
+	protected const TABLE_NAME = 'newsletters'; // TODO migrace
 
 	/**
 	 * Get latest newsletter texts.

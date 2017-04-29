@@ -10,7 +10,7 @@ final class UserNewsletterModel extends AbstractBaseModel
 	/**
 	 * @var string
 	 */
-	const TABLE_NAME = 'users_newsletters';
+	protected const TABLE_NAME = 'users_newsletters';
 
 	/**
 	 * @return bool|int|\Nette\Database\Table\IRow

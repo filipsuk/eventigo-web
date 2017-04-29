@@ -11,20 +11,20 @@ use Tracy\Debugger;
 
 final class FacebookEventSource extends AbstractEventSource
 {
-	/**
-	 * @var string
-	 */
-	const EVENT_FIELDS = 'cover,end_time,start_time,name,description,interested_count,attending_count';
-
-	/**
+    /**
 	 * @var string[]
 	 */
-	const URLS = [
+	protected const URLS = [
 		'facebook.com',
 		'www.facebook.com',
 	];
 
-	/**
+    /**
+     * @var string
+     */
+    private const EVENT_FIELDS = 'cover,end_time,start_time,name,description,interested_count,attending_count';
+
+    /**
 	 * @var \Kdyby\Facebook\Facebook
 	 */
 	public $facebook;

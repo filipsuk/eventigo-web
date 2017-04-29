@@ -8,8 +8,8 @@ final class TagModel extends AbstractBaseModel
 {
 	/**
 	 * @var string
-	 */
-	const TABLE_NAME = 'tags';
+     */
+	protected const TABLE_NAME = 'tags';
 
 	/**
 	 * Get tags with the most upcoming events.
