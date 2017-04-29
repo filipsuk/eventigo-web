@@ -254,7 +254,7 @@ final class NewsletterService
 	private function renderNewsletterContent(array $newsletter): string
 	{
 		$this->template = $this->templateFactory->createTemplate();
-		$this->template->addFilter('datetime', function (DateTime $a, DateTime $b = null) {
+		$this->template->addFilter('datetime', function (DateTime $a, ?DateTime $b = null) {
 			\App\Modules\Core\Utils\DateTime::setTranslator($this->translator);
 			return \App\Modules\Core\Utils\DateTime::eventsDatetimeFilter($a, $b);
 		});

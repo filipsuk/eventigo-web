@@ -26,7 +26,7 @@ class Filters
 	}
 
 
-	public static function datetime(DateTime $a, DateTime $b = null): string
+	public static function datetime(DateTime $a, ?DateTime $b = null): string
 	{
 		\App\Modules\Core\Utils\DateTime::setTranslator(self::$translator);
 		return \App\Modules\Core\Utils\DateTime::eventsDatetimeFilter($a, $b);

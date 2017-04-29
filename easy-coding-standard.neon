@@ -86,22 +86,21 @@ checkers:
     - Symplify\CodingStandard\Sniffs\Naming\AbstractClassNameSniff
     - Symplify\CodingStandard\Sniffs\Naming\InterfaceNameSniff
 #
-#    # Slevomat
-#    - SlevomatCodingStandard\Sniffs\Classes\UnusedPrivateElementsSniff
-#    SlevomatCodingStandard\Sniffs\Commenting\ForbiddenAnnotationsSniff:
-#        forbiddenAnnotations:
-#            - @author
-#            - @created
-#            - @copyright
-#            - @license
-#            - @package
-#            - @throws
-#            - @version
-#
-#    # Type Hints
-#    - SlevomatCodingStandard\Sniffs\TypeHints\LongTypeHintsSniff
-#    - SlevomatCodingStandard\Sniffs\TypeHints\ParameterTypeHintSpacingSniff
-#    - SlevomatCodingStandard\Sniffs\TypeHints\NullableTypeForNullDefaultValueSniff
+    # Slevomat
+    - SlevomatCodingStandard\Sniffs\Classes\UnusedPrivateElementsSniff
+    SlevomatCodingStandard\Sniffs\Commenting\ForbiddenAnnotationsSniff:
+        forbiddenAnnotations:
+            - @author
+            - @created
+            - @copyright
+            - @license
+            - @package
+            - @version
+
+    # Type Hints
+    - SlevomatCodingStandard\Sniffs\TypeHints\LongTypeHintsSniff
+    - SlevomatCodingStandard\Sniffs\TypeHints\ParameterTypeHintSpacingSniff
+    - SlevomatCodingStandard\Sniffs\TypeHints\NullableTypeForNullDefaultValueSniff
 #    - SlevomatCodingStandard\Sniffs\TypeHints\ReturnTypeHintSpacingSniff
 #    SlevomatCodingStandard\Sniffs\TypeHints\TypeHintDeclarationSniff:
 #        usefulAnnotations:

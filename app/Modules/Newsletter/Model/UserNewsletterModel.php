@@ -16,7 +16,7 @@ final class UserNewsletterModel extends AbstractBaseModel
 	/**
 	 * @return bool|int|\Nette\Database\Table\IRow
 	 */
-	public function createNewsletter(int $userId, string $from, string $subject, string $content, string $hash = null)
+	public function createNewsletter(int $userId, string $from, string $subject, string $content, ?string $hash = null)
 	{
 		return $this->insert([
 			'user_id' => $userId,

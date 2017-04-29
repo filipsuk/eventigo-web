@@ -31,7 +31,7 @@ abstract class AbstractBaseControl extends Control
 			$template->setFile($file);
 		}
 
-		$template->addFilter('datetime', function (DateTime $a, DateTime $b = null) {
+		$template->addFilter('datetime', function (DateTime $a, ?DateTime $b = null) {
 			\App\Modules\Core\Utils\DateTime::setTranslator($this->translator);
 			return \App\Modules\Core\Utils\DateTime::eventsDatetimeFilter($a, $b);
 		});
