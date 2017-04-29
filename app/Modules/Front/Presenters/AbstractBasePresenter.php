@@ -17,7 +17,7 @@ abstract class AbstractBasePresenter extends CoreAbstractBasePresenter
 	public $userModel;
 
 	/**
-	 * @var DateTime
+	 * @var NetteDateTime
 	 */
 	protected $lastAccess;
 
@@ -43,7 +43,7 @@ abstract class AbstractBasePresenter extends CoreAbstractBasePresenter
 	private function updateAccess(): void
 	{
 		$access = $this->getSession('access');
-		$now = new DateTime;
+		$now = new NetteDateTime;
 
 		// Get last access stored in DB
 		if ($this->getUser()->isLoggedIn()) {

@@ -115,25 +115,25 @@ checkers:
     - SlevomatCodingStandard\Sniffs\Namespaces\ReferenceUsedNamesOnlySniff
     - SlevomatCodingStandard\Sniffs\Namespaces\UseDoesNotStartWithBackslashSniff
     - SlevomatCodingStandard\Sniffs\Namespaces\UseFromSameNamespaceSniff
-#
-#    PhpCsFixer\Fixer\Operator\ConcatSpaceFixer:
-#        spacing: one
-#    PhpCsFixer\Fixer\ArrayNotation\ArraySyntaxFixer:
-#        syntax: short
-#    - PhpCsFixer\Fixer\ClassNotation\OrderedClassElementsFixer
-#    - PhpCsFixer\Fixer\LanguageConstruct\DirConstantFixer
-#    - PhpCsFixer\Fixer\CastNotation\ModernizeTypesCastingFixer
-#    - PhpCsFixer\Fixer\Strict\DeclareStrictTypesFixer
-#    - PhpCsFixer\Fixer\Semicolon\SemicolonAfterInstructionFixer
-#    - PhpCsFixer\Fixer\ReturnNotation\SimplifiedNullReturnFixer
-#    - PhpCsFixer\Fixer\Operator\NotOperatorWithSuccessorSpaceFixer
-#    - PhpCsFixer\Fixer\ControlStructure\NoUselessElseFixer
-#    - PhpCsFixer\Fixer\ReturnNotation\NoUselessReturnFixer
-#    - PhpCsFixer\Fixer\Import\OrderedImportsFixer
-#    - PhpCsFixer\Fixer\LanguageConstruct\CombineConsecutiveUnsetsFixer
-#    - PhpCsFixer\Fixer\Strict\StrictComparisonFixer
-#    - PhpCsFixer\Fixer\Alias\EregToPregFixer
-#    - PhpCsFixer\Fixer\Phpdoc\GeneralPhpdocAnnotationRemoveFixer
+
+    PhpCsFixer\Fixer\Operator\ConcatSpaceFixer:
+        spacing: one
+    PhpCsFixer\Fixer\ArrayNotation\ArraySyntaxFixer:
+        syntax: short
+    - PhpCsFixer\Fixer\ClassNotation\OrderedClassElementsFixer
+    - PhpCsFixer\Fixer\LanguageConstruct\DirConstantFixer
+    - PhpCsFixer\Fixer\CastNotation\ModernizeTypesCastingFixer
+    - PhpCsFixer\Fixer\Strict\DeclareStrictTypesFixer
+    - PhpCsFixer\Fixer\Semicolon\SemicolonAfterInstructionFixer
+    - PhpCsFixer\Fixer\ReturnNotation\SimplifiedNullReturnFixer
+    - PhpCsFixer\Fixer\Operator\NotOperatorWithSuccessorSpaceFixer
+    - PhpCsFixer\Fixer\ControlStructure\NoUselessElseFixer
+    - PhpCsFixer\Fixer\ReturnNotation\NoUselessReturnFixer
+    - PhpCsFixer\Fixer\Import\OrderedImportsFixer
+    - PhpCsFixer\Fixer\LanguageConstruct\CombineConsecutiveUnsetsFixer
+    - PhpCsFixer\Fixer\Strict\StrictComparisonFixer
+    - PhpCsFixer\Fixer\Alias\EregToPregFixer
+    - PhpCsFixer\Fixer\Phpdoc\GeneralPhpdocAnnotationRemoveFixer
 #
 #    # PHPUnit
 #    - PhpCsFixer\Fixer\PhpUnit\PhpUnitStrictFixer

@@ -184,6 +184,7 @@ final class HomepagePresenter extends AbstractBasePresenter
 		}
 
 		$events = $this->eventModel->getAllWithDates($tagsIds, new DateTime, null, $this->lastAccess);
+
 		return $this->eventsListFactory->create($events);
 	}
 

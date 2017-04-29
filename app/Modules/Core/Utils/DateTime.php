@@ -2,6 +2,7 @@
 
 namespace App\Modules\Core\Utils;
 
+use DateTimeInterface;
 use Kdyby\Translation\Translator;
 use Nette\Utils\DateTime as NetteDateTime;
 
@@ -48,12 +49,11 @@ final class DateTime
 
 	/**
 	 * Get maximum of given datetimes
-	 * @param DateTime|null
+     *
+     * @return NetteDateTime|DateTimeInterface|null
 	 */
-	public static function max(): ?NetteDateTime
+	public static function max(...$dateTimes)
 	{
-		$dateTimes = array_filter(func_get_args());
-
 		$max = reset($dateTimes) ?: null;
 		foreach ($dateTimes as $dateTime) {
 			if ($max < $dateTime) {
