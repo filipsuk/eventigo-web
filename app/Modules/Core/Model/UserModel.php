@@ -12,11 +12,6 @@ use Nette\Utils\Random;
 final class UserModel extends AbstractBaseModel
 {
 	/**
-	 * @var string
-	 */
-	protected const TABLE_NAME = 'users';
-
-	/**
 	 * Login type.
 	 *
 	 * @var string
@@ -29,6 +24,10 @@ final class UserModel extends AbstractBaseModel
 	 * @var string
 	 */
 	public const ADMIN_LOGIN = 'admin';
+	/**
+	 * @var string
+	 */
+	protected const TABLE_NAME = 'users';
 
 	/**
 	 * @var int

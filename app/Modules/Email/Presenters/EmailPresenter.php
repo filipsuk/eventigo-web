@@ -12,7 +12,7 @@ use Latte\Loaders\StringLoader;
  */
 final class EmailPresenter extends AbstractBasePresenter
 {
-    /**
+	/**
 	 * @var string
 	 */
 	public const BASIC_EMAIL_TEMPLATE_FILE = self::TEMPLATE_DIR . DIRECTORY_SEPARATOR . 'basic.latte';
@@ -22,7 +22,7 @@ final class EmailPresenter extends AbstractBasePresenter
      */
     private const TEMPLATE_DIR = __DIR__ . DIRECTORY_SEPARATOR . 'templates' . DIRECTORY_SEPARATOR . 'Email';
 
-    /**
+	/**
 	 * @var UserModel @inject
 	 */
 	public $userModel;

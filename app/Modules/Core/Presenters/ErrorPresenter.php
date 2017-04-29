@@ -8,7 +8,7 @@ use Nette\Application\IResponse;
 use Nette\Application\Request;
 use Tracy\ILogger;
 
-class ErrorPresenter implements IPresenter
+final class ErrorPresenter implements IPresenter
 {
 	/**
 	 * @var ILogger

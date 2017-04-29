@@ -8,7 +8,7 @@ final class TagModel extends AbstractBaseModel
 {
 	/**
 	 * @var string
-     */
+	 */
 	protected const TABLE_NAME = 'tags';
 
 	/**

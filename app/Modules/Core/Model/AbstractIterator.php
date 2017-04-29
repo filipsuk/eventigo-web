@@ -5,7 +5,7 @@ namespace App\Modules\Core\Model;
 use Iterator as PhpIterator;
 use Nette\Database\Table\IRow;
 
-class Iterator implements PhpIterator
+abstract class AbstractIterator implements PhpIterator
 {
 	/**
 	 * @var int

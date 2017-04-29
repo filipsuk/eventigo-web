@@ -2,10 +2,10 @@
 
 namespace App\Modules\Front\Model;
 
-use App\Modules\Core\Model\Iterator;
+use App\Modules\Core\Model\AbstractIterator;
 use Countable;
 
-final class EventsIterator extends Iterator implements Countable
+final class EventsIterator extends AbstractIterator implements Countable
 {
 	/**
 	 * @var bool

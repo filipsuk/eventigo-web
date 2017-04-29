@@ -20,7 +20,7 @@ final class SourceModel extends AbstractBaseModel
         'yearly' => 365,
     ];
 
-    /**
+	/**
 	 * @var string
 	 */
 	protected const TABLE_NAME = 'sources';

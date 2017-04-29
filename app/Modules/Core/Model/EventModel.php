@@ -12,11 +12,6 @@ final class EventModel extends AbstractBaseModel
 	/**
 	 * @var string
 	 */
-	protected const TABLE_NAME = 'events';
-
-	/**
-	 * @var string
-	 */
 	public const STATE_APPROVED = 'approved';
 
 	/**
@@ -37,6 +32,10 @@ final class EventModel extends AbstractBaseModel
 		self::STATE_NOT_APPROVED,
 		self::STATE_SKIP,
 	];
+	/**
+	 * @var string
+	 */
+	protected const TABLE_NAME = 'events';
 
 	/**
 	 * @return EventTag[]
