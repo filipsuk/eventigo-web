@@ -33,7 +33,7 @@ class RouterFactory
 		$router[] = $emailRouter;
 
 		// Api
-		$router[] = new CrudRoute('api/v1/events[/<id>]', [
+		$router[] = new CrudRoute('api/v1/events', [
 			'module' => 'Api:V1',
 			'presenter' => 'Events'
 		]);
