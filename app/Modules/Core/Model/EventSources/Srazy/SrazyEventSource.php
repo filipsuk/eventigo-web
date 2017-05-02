@@ -30,15 +30,18 @@ class SrazyEventSource extends EventSource
 		foreach ($srazyEvents as $event) {
 			$start = $event->getStart() ? DateTime::from($event->getStart()) : null;
 			if ($start && $start > new DateTime) {
-				$e = new Event;
-				$e->setName($event->getName());
-				$e->setDescription($event->getDescription() ?? '');
-				$e->setStart($start);
-				$e->setEnd($event->getEnd() ? DateTime::from($event->getEnd()) : null);
-				$e->setOriginUrl($event->getUri());
-				// TODO $e->setImage() Get image from community page
-				$e->setRateByAttendeesCount(count($event->getConfirmedAttendees()) + count($event->getUnconfirmedAttendees()));
-				$events[] = $e;
+				$events[] = new Event(
+					null,
+					$event->getName() ?? '',
+					$event->getDescription() ?? '',
+					$event->getUri(),
+					$start,
+					$event->getEnd() ? DateTime::from($event->getEnd()) : null,
+					null, // TODO $e->setImage() Get image from community page
+					Event::calculateRateByAttendeesCount(
+						count($event->getConfirmedAttendees()) + count($event->getUnconfirmedAttendees())
+					)
+				);
 			}
 		}
 

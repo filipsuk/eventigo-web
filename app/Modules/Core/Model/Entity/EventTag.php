@@ -15,14 +15,20 @@ final class EventTag
 	/** @var int */
 	private $rate;
 
-	public static function createFromRow(ActiveRow $eventTagRow)
+	public function __construct(Event $event, Tag $tag, int $rate = null)
 	{
-		$eventTag = new EventTag();
-		$eventTag
-			->setTag(Tag::createFromRow($eventTagRow->ref('tags', 'tag_id')))
-			->setEvent(Event::createFromRow($eventTagRow->ref('events', 'event_id')))
-			->setRate($eventTagRow['rate']);
-		return $eventTag;
+		$this->event = $event;
+		$this->tag = $tag;
+		$this->rate = $rate;
+	}
+
+	public static function createFromRow(ActiveRow $eventTagRow): EventTag
+	{
+		return new EventTag(
+			Event::createFromRow($eventTagRow->ref('events', 'event_id')),
+			Tag::createFromRow($eventTagRow->ref('tags', 'tag_id')),
+			$eventTagRow['rate']
+		);
 	}
 
 	/**
@@ -34,16 +40,6 @@ final class EventTag
 	}
 
 	/**
-	 * @param Event $event
-	 * @return EventTag
-	 */
-	public function setEvent(Event $event): EventTag
-	{
-		$this->event = $event;
-		return $this;
-	}
-
-	/**
 	 * @return Tag
 	 */
 	public function getTag(): Tag
@@ -52,31 +48,11 @@ final class EventTag
 	}
 
 	/**
-	 * @param Tag $tag
-	 * @return EventTag
-	 */
-	public function setTag(Tag $tag): EventTag
-	{
-		$this->tag = $tag;
-		return $this;
-	}
-
-	/**
 	 * @return int
 	 */
 	public function getRate(): int
 	{
 		return $this->rate;
-	}
-
-	/**
-	 * @param int $rate
-	 * @return EventTag
-	 */
-	public function setRate(int $rate): EventTag
-	{
-		$this->rate = $rate;
-		return $this;
 	}
 
 }

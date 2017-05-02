@@ -15,13 +15,16 @@ class Tag
 	/** @var string */
 	private $code;
 
-	public static function createFromRow(IRow $tagRow)
+	public function __construct(int $id, string $name, string $code)
 	{
-		$tag = new Tag();
-		$tag->setId($tagRow['id'])
-			->setName($tagRow['name'])
-			->setCode($tagRow['code']);
-		return $tag;
+		$this->id = $id;
+		$this->name = $name;
+		$this->code = $code;
+	}
+
+	public static function createFromRow(IRow $tagRow): Tag
+	{
+		return new Tag($tagRow['id'], $tagRow['name'], $tagRow['code']);
 	}
 
 	/**
@@ -33,16 +36,6 @@ class Tag
 	}
 
 	/**
-	 * @param int $id
-	 * @return Tag
-	 */
-	public function setId(int $id): Tag
-	{
-		$this->id = $id;
-		return $this;
-	}
-
-	/**
 	 * @return string
 	 */
 	public function getName(): string
@@ -51,31 +44,11 @@ class Tag
 	}
 
 	/**
-	 * @param string $name
-	 * @return Tag
-	 */
-	public function setName(string $name): Tag
-	{
-		$this->name = $name;
-		return $this;
-	}
-
-	/**
 	 * @return string
 	 */
 	public function getCode(): string
 	{
 		return $this->code;
-	}
-
-	/**
-	 * @param string $code
-	 * @return Tag
-	 */
-	public function setCode(string $code): Tag
-	{
-		$this->code = $code;
-		return $this;
 	}
 
 }

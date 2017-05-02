@@ -38,15 +38,16 @@ class FacebookEventSource extends EventSource
 				['fields' => self::EVENT_FIELDS]
 			);
 
-			$e = new Event();
-			$e->setName($response->name);
-			$e->setDescription($response->description ?? '');
-			$e->setStart(isset($response->start_time) ? DateTime::createFromFormat(DATE_ISO8601, $response->start_time) : null);
-			$e->setEnd(isset($response->end_time) ? DateTime::createFromFormat(DATE_ISO8601, $response->end_time) : null);
-			$e->setOriginUrl('https://facebook.com/events/' . $id . '/');
-			$e->setImage($response->cover->source ?? null);
-			$e->setRateByAttendeesCount($response->interested_count + $response->attending_count);
-			return $e;
+			return new Event(
+				null,
+				$response->name,
+				$response->description ?? '',
+				'https://facebook.com/events/' . $id . '/',
+				isset($response->start_time) ? DateTime::createFromFormat(DATE_ISO8601, $response->start_time) : null,
+				isset($response->end_time) ? DateTime::createFromFormat(DATE_ISO8601, $response->end_time) : null,
+				$response->cover->source ?? null,
+				Event::calculateRateByAttendeesCount($response->interested_count + $response->attending_count)
+			);
 
 		} catch (FacebookApiException $e) {
 			Debugger::log($e, Debugger::EXCEPTION);
@@ -73,15 +74,16 @@ class FacebookEventSource extends EventSource
 			foreach ($fbEvents as $event) {
 				$start = isset($event->start_time) ? DateTime::createFromFormat(DATE_ISO8601, $event->start_time) : null;
 				if ($start && $start > new DateTime) {
-					$e = new Event;
-					$e->setName($event->name);
-					$e->setDescription($event->description ?? '');
-					$e->setStart($start);
-					$e->setEnd(isset($event->end_time) ? DateTime::createFromFormat(DATE_ISO8601, $event->end_time) : null);
-					$e->setOriginUrl('https://facebook.com/events/' . $event->id . '/');
-					$e->setImage($event->cover->source ?? null);
-					$e->setRateByAttendeesCount($event->interested_count + $event->attending_count);
-					$events[] = $e;
+					$events[] = new Event(
+						null,
+						$event->name,
+						$event->description ?? '',
+						'https://facebook.com/events/' . $event->id . '/',
+						$start,
+						isset($event->end_time) ? DateTime::createFromFormat(DATE_ISO8601, $event->end_time) : null,
+						$event->cover->source ?? null,
+						Event::calculateRateByAttendeesCount($event->interested_count + $event->attending_count)
+					);
 				}
 			}
 		}
