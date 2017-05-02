@@ -30,14 +30,13 @@ class EventApiService
 			$eventTags = [];
 			foreach ($this->eventModel->getEventTags($eventRow) as $eventTag) {
 				$eventTags[] = [
-					'id' => $eventTag->getTag()->getId(),
-					'rate' => $eventTag->getRate(),
-					'name' => $eventTag->getTag()->getName(),
 					'code' => $eventTag->getTag()->getCode(),
+					'name' => $eventTag->getTag()->getName(),
+					'rate' => $eventTag->getRate()
 				];
 			};
 			$events[] = [
-				'id' => $event->getId(),
+				'id' => $event->getHash(),
 				'name' => $event->getName(),
 				'description' => $event->getDescription(),
 				'url' => $this->linkGenerator->link("Front:Redirect:", [$event->getOriginUrl()]),

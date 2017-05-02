@@ -31,6 +31,9 @@ class Event
 	/** @var int Size of event */
 	private $rate;
 
+	/** @var DateTime */
+	private $created;
+
 	public function __construct(
 		int $id = null,
 		string $name,
@@ -39,7 +42,8 @@ class Event
 		DateTime $start,
 		DateTime $end = null,
 		string $image = null,
-		int $rate = null
+		int $rate = null,
+		DateTime $created = null
 	)
 	{
 		$this->id = $id;
@@ -50,6 +54,7 @@ class Event
 		$this->end = $end;
 		$this->image = $image;
 		$this->rate = $rate;
+		$this->created = $created;
 	}
 
 
@@ -63,13 +68,23 @@ class Event
 			$eventRow['start'],
 			$eventRow['end'],
 			$eventRow['image'],
-			$eventRow['rate']
+			$eventRow['rate'],
+			$eventRow['created']
 		);
 	}
 
 	public function getId(): int
 	{
 		return $this->id;
+	}
+
+	public function getHash(): string
+	{
+		if ($this->getId() && $this->getCreated()) {
+			return md5($this->getId() . $this->getCreated()->getTimestamp());
+		} else {
+			throw new \RuntimeException('Could not calculate hash, "id" or "created" field not set');
+		}
 	}
 	
 	public function getName(): string
@@ -125,6 +140,14 @@ class Event
 	public function getRate()
 	{
 		return $this->rate;
+	}
+
+	/**
+	 * @return DateTime|null
+	 */
+	public function getCreated()
+	{
+		return $this->created;
 	}
 
 	public static function calculateRateByAttendeesCount(int $count)
