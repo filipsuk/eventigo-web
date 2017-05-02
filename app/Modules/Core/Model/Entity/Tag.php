@@ -4,7 +4,7 @@ namespace App\Modules\Core\Model\Entity;
 
 use Nette\Database\IRow;
 
-class Tag
+final class Tag
 {
 	/** @var int */
 	private $id;

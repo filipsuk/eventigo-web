@@ -6,7 +6,7 @@ use App\Modules\Api\V1\Model\EventApiService;
 use Drahak\Restful\Application\UI\ResourcePresenter;
 use Drahak\Restful\IResource;
 
-class EventsPresenter extends ResourcePresenter
+final class EventsPresenter extends ResourcePresenter
 {
 	/** @var EventApiService */
 	private $eventApiService;

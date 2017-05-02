@@ -7,7 +7,7 @@ use App\Modules\Core\Model\EventModel;
 use Nette\Application\LinkGenerator;
 use Nette\Utils\DateTime;
 
-class EventApiService
+final class EventApiService
 {
 	/** @var EventModel */
 	private $eventModel;

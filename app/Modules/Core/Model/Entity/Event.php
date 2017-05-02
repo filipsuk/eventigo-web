@@ -5,7 +5,7 @@ namespace App\Modules\Core\Model\Entity;
 use Nette\Database\IRow;
 use Nette\Utils\DateTime;
 
-class Event
+final class Event
 {
 	/** @var int */
 	private $id;
