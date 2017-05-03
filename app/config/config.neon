@@ -5,6 +5,7 @@ includes:
 	- extensions/translation.neon
 	- extensions/console.neon
 	- extensions/facebook.neon
+	- extensions/restful.neon
 
 php:
 	date.timezone: Europe/Prague

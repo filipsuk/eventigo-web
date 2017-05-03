@@ -2,9 +2,10 @@
 
 namespace App\Modules\Core\Model\Entity;
 
+use Nette\Database\IRow;
 use Nette\Utils\DateTime;
 
-class Event
+final class Event
 {
 	/** @var int */
 	private $id;
@@ -30,21 +31,65 @@ class Event
 	/** @var int Size of event */
 	private $rate;
 
+	/** @var DateTime */
+	private $created;
+
+	public function __construct(
+		int $id = null,
+		string $name,
+		string $description = null,
+		string $originUrl = null,
+		DateTime $start,
+		DateTime $end = null,
+		string $image = null,
+		int $rate = null,
+		DateTime $created = null
+	)
+	{
+		$this->id = $id;
+		$this->name = $name;
+		$this->description = $description;
+		$this->originUrl = $originUrl;
+		$this->start = $start;
+		$this->end = $end;
+		$this->image = $image;
+		$this->rate = $rate;
+		$this->created = $created;
+	}
+
+
+	public static function createFromRow(IRow $eventRow): Event
+	{
+		return new Event(
+			$eventRow['id'],
+			$eventRow['name'],
+			$eventRow['description'],
+			$eventRow['origin_url'],
+			$eventRow['start'],
+			$eventRow['end'],
+			$eventRow['image'],
+			$eventRow['rate'],
+			$eventRow['created']
+		);
+	}
+
 	public function getId(): int
 	{
 		return $this->id;
+	}
+
+	public function getHash(): string
+	{
+		if ($this->getId() && $this->getCreated()) {
+			return md5($this->getId() . $this->getCreated()->getTimestamp());
+		} else {
+			throw new \RuntimeException('Could not calculate hash, "id" or "created" field not set');
+		}
 	}
 	
 	public function getName(): string
 	{
 		return $this->name;
-	}
-
-	/* TODO After upgrade to 7.1: setName(?string $name): self */
-	public function setName($name): self
-	{
-		$this->name = $name;
-		return $this;
 	}
 
 	/**
@@ -56,12 +101,6 @@ class Event
 		return $this->description;
 	}
 
-	public function setDescription(string $description): self
-	{
-		$this->description = $description;
-		return $this;
-	}
-
 	/**
 	 * TODO set return type after upgrade to PHP 7.1
 	 * @return string|null
@@ -71,22 +110,9 @@ class Event
 		return $this->originUrl;
 	}
 
-	/* TODO After upgrade to 7.1: setOriginUrl(?string $originUrl): self */
-	public function setOriginUrl($originUrl): self
-	{
-		$this->originUrl = $originUrl;
-		return $this;
-	}
-
 	public function getStart(): DateTime
 	{
 		return $this->start;
-	}
-
-	public function setStart(DateTime $start): self
-	{
-		$this->start = $start;
-		return $this;
 	}
 
 	/**
@@ -99,28 +125,12 @@ class Event
 	}
 
 	/**
-	 * TODO set parameter type after upgrade to PHP 7.1
-	 */
-	public function setEnd($end): self
-	{
-		$this->end = $end;
-		return $this;
-	}
-
-	/**
 	 * TODO set return type after upgrade to PHP 7.1
 	 * @return string|null
 	 */
 	public function getImage()
 	{
 		return $this->image;
-	}
-
-	/* TODO After upgrade to 7.1: setImage(?string $image): self */
-	public function setImage($image): self
-	{
-		$this->image = $image;
-		return $this;
 	}
 
 	/**
@@ -132,25 +142,21 @@ class Event
 		return $this->rate;
 	}
 
-	public function setRate(int $rate): self
+	/**
+	 * @return DateTime|null
+	 */
+	public function getCreated()
 	{
-		if ($rate < 1 || $rate > 5) {
-			throw new \InvalidArgumentException('Rate value must be 1 to 5');
-		}
-		$this->rate = $rate;
-		return $this;
+		return $this->created;
 	}
 
-	/**
-	 * Set event rate by number of attendees
-	 */
-	public function setRateByAttendeesCount(int $count)
+	public static function calculateRateByAttendeesCount(int $count)
 	{
-		if ($count <= 50) { $this->setRate(1); }
-		elseif ($count <= 200) { $this->setRate(2); }
-		elseif ($count <= 500) { $this->setRate(3); }
-		elseif ($count <= 1000) { $this->setRate(4); }
-		else {$this->setRate(5);}
+		if ($count <= 50) { return 1; }
+		elseif ($count <= 200) { return 2; }
+		elseif ($count <= 500) { return 3; }
+		elseif ($count <= 1000) { return 4; }
+		else {return 5;}
 	}
 
 }

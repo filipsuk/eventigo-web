@@ -39,16 +39,16 @@ class MeetupEventSource extends EventSource
 		$events = [];
 		foreach ($groupEvents as $event) {
 			if ($event['status'] === 'upcoming') {
-				$e = new Event;
-				$e->setName($event['name']);
-				$e->setDescription($event['description'] ?? '');
-				$e->setStart(DateTime::from($event['time'] / 1000));
-				$e->setOriginUrl($event['link']);
-				if ($groupPhoto) {
-					$e->setImage($groupPhoto);
-				}
-				$e->setRateByAttendeesCount($event['yes_rsvp_count'] + $event['waitlist_count']);
-				$events[] = $e;
+				$events[] = new Event(
+					null,
+					$event['name'],
+					$event['description'] ?? '',
+					$event['link'],
+					DateTime::from($event['time'] / 1000),
+					null,
+					$groupPhoto ?? null,
+					Event::calculateRateByAttendeesCount($event['yes_rsvp_count'] + $event['waitlist_count'])
+				);
 			}
 		}
 		return $events;
