@@ -5,7 +5,7 @@
 
 ## Requirements
 
-- PHP 7+
+- PHP 7.1+
 - MySQL 5.6.5+, [5.7 not supported](http://stackoverflow.com/questions/34691059/select-distinct-and-order-by-in-mysql)
 - Composer, Bower
 
