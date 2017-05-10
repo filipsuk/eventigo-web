@@ -46,9 +46,8 @@ $ php www/index.php newsletters:send
 
 ## API
 
-Apiary docs: http://docs.eventigo.apiary.io/
+[Apiary docs:](http://docs.eventigo.apiary.io) 
 
 ## Exceptions
 
 Html exceptions lze číst jako admin na url `/admin/exception/[exception-file.html]`
-
