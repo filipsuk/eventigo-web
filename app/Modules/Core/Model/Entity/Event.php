@@ -182,19 +182,25 @@ final class Event
         $this->rate = $rate;
     }
 
-    public function setRateByAttendeesCount(int $count): void
+    public static function calculateRateByAttendeesCount(int $count): int
     {
         if ($count <= 50) {
-            $this->setRate(1);
-        } elseif ($count <= 200) {
-            $this->setRate(2);
-        } elseif ($count <= 500) {
-            $this->setRate(3);
-        } elseif ($count <= 1000) {
-            $this->setRate(4);
-        } else {
-            $this->setRate(5);
+            return 1;
         }
+
+        if ($count <= 200) {
+            return 2;
+        }
+
+        if ($count <= 500) {
+            return 3;
+        }
+
+        if ($count <= 1000) {
+            return 4;
+        }
+
+        return 5;
     }
 
     private function ensureRateIsValid(int $rate): void
