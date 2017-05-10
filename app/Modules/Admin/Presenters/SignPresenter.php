@@ -8,49 +8,49 @@ use Nette\Application\UI\Presenter;
 
 final class SignPresenter extends Presenter
 {
-	/**
-	 * @var \Kdyby\Translation\Translator @inject
-	 */
-	public $translator;
+    /**
+     * @var \Kdyby\Translation\Translator @inject
+     */
+    public $translator;
 
-	/**
-	 * @var SignInFormFactoryInterface @inject
-	 */
-	public $signInFormFactory;
+    /**
+     * @var SignInFormFactoryInterface @inject
+     */
+    public $signInFormFactory;
 
-	public function actionIn(): void
-	{
-		if ($this->user->isLoggedIn() && $this->user->isInRole('admin')) {
-			$this->redirect('Dashboard:');
-		}
-	}
+    public function actionIn(): void
+    {
+        if ($this->user->isLoggedIn() && $this->user->isInRole('admin')) {
+            $this->redirect('Dashboard:');
+        }
+    }
 
-	public function actionOut(): void
-	{
-		if (! $this->user->isLoggedIn()) {
-			$this->redirect('in');
-		}
+    public function actionOut(): void
+    {
+        if (! $this->user->isLoggedIn()) {
+            $this->redirect('in');
+        }
 
-		if ($this->user->isInRole('admin')) {
-			$this->user->logout(true);
-		}
+        if ($this->user->isInRole('admin')) {
+            $this->user->logout(true);
+        }
 
-		$this->redirect('in');
-	}
+        $this->redirect('in');
+    }
 
-	protected function createComponentSignInForm(): SignInForm
-	{
-		$control = $this->signInFormFactory->create();
+    protected function createComponentSignInForm(): SignInForm
+    {
+        $control = $this->signInFormFactory->create();
 
-		$control->onLoggedIn[] = function () {
-			$this->redirect('Dashboard:');
-		};
+        $control->onLoggedIn[] = function () {
+            $this->redirect('Dashboard:');
+        };
 
-		$control->onIncorrectLogIn[] = function () {
-			$this->flashMessage($this->translator->translate('admin.signInForm.incorrectLogIn'), 'danger');
-			$this->redirect('this');
-		};
+        $control->onIncorrectLogIn[] = function () {
+            $this->flashMessage($this->translator->translate('admin.signInForm.incorrectLogIn'), 'danger');
+            $this->redirect('this');
+        };
 
-		return $control;
-	}
+        return $control;
+    }
 }

@@ -10,28 +10,28 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 final class GeneratePasswordCommand extends Command
 {
-	protected function configure(): void
-	{
-		$this->setName('admin:generatePassword')
-			->setDescription('Generate admin password')
-			->addArgument(
-				'password',
-				InputArgument::REQUIRED,
-				'Raw password'
-			);
-	}
+    protected function configure(): void
+    {
+        $this->setName('admin:generatePassword')
+            ->setDescription('Generate admin password')
+            ->addArgument(
+                'password',
+                InputArgument::REQUIRED,
+                'Raw password'
+            );
+    }
 
-	protected function execute(InputInterface $input, OutputInterface $output): int
-	{
-		$password = (string) $input->getArgument('password');
+    protected function execute(InputInterface $input, OutputInterface $output): int
+    {
+        $password = (string) $input->getArgument('password');
 
-		/** @var UserModel $userModel */
-		$userModel = $this->getHelper('container')->getByType(UserModel::class);
+        /** @var UserModel $userModel */
+        $userModel = $this->getHelper('container')->getByType(UserModel::class);
 
-		$hash = $userModel->hashAndEncrypt($password);
+        $hash = $userModel->hashAndEncrypt($password);
 
-		$output->writeln($hash);
+        $output->writeln($hash);
 
-		return 0;
-	}
+        return 0;
+    }
 }

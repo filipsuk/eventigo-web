@@ -7,31 +7,31 @@ use Nette\Utils\Random;
 
 final class UserNewsletterModel extends AbstractBaseModel
 {
-	/**
-	 * @var string
-	 */
-	protected const TABLE_NAME = 'users_newsletters';
+    /**
+     * @var string
+     */
+    protected const TABLE_NAME = 'users_newsletters';
 
-	/**
-	 * @return bool|int|\Nette\Database\Table\IRow
-	 */
-	public function createNewsletter(int $userId, string $from, string $subject, string $content, ?string $hash = null)
-	{
-		return $this->insert([
-			'user_id' => $userId,
-			'from' => $from,
-			'subject' => $subject,
-			'content' => $content,
-			'hash' => $hash ?? $this->generateUniqueHash(),
-		]);
-	}
+    /**
+     * @return bool|int|\Nette\Database\Table\IRow
+     */
+    public function createNewsletter(int $userId, string $from, string $subject, string $content, ?string $hash = null)
+    {
+        return $this->insert([
+            'user_id' => $userId,
+            'from' => $from,
+            'subject' => $subject,
+            'content' => $content,
+            'hash' => $hash ?? $this->generateUniqueHash(),
+        ]);
+    }
 
-	public function generateUniqueHash(): string
-	{
-		do {
-			$hash = Random::generate(32);
-		} while ($this->getAll()->where(['hash' => $hash])->fetch());
+    public function generateUniqueHash(): string
+    {
+        do {
+            $hash = Random::generate(32);
+        } while ($this->getAll()->where(['hash' => $hash])->fetch());
 
-		return $hash;
-	}
+        return $hash;
+    }
 }

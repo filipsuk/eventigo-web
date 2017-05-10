@@ -6,5 +6,5 @@ use Nette\Database\Table\Selection;
 
 interface SourcesTableFactoryInterface
 {
-	public function create(Selection $dataSource): SourcesTable;
+    public function create(Selection $dataSource): SourcesTable;
 }

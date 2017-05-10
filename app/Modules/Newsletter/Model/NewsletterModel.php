@@ -9,39 +9,39 @@ use RuntimeException;
 
 final class NewsletterModel extends AbstractBaseModel
 {
-	/**
-	 * @var string
-	 */
-	protected const TABLE_NAME = 'newsletters'; // TODO migrace
+    /**
+     * @var string
+     */
+    protected const TABLE_NAME = 'newsletters'; // TODO migrace
 
-	/**
-	 * Get latest newsletter texts.
-	 *
-	 * @throws RuntimeException
-	 *
-	 * @return mixed[]
-	 */
-	public function getLatest(): array
-	{
-		$newsletter = $this->getAll()
-			->order('created DESC')
-			->limit(1);
+    /**
+     * Get latest newsletter texts.
+     *
+     * @throws RuntimeException
+     *
+     * @return mixed[]
+     */
+    public function getLatest(): array
+    {
+        $newsletter = $this->getAll()
+            ->order('created DESC')
+            ->limit(1);
 
-		if ($newsletter->count() !== 0) {
-			return $newsletter->fetch()->toArray();
-		}
+        if ($newsletter->count() !== 0) {
+            return $newsletter->fetch()->toArray();
+        }
 
-		throw new RuntimeException('No newsletters found');
-	}
+        throw new RuntimeException('No newsletters found');
+    }
 
-	public function createNewsletter(Newsletter $newsletter): IRow
-	{
-		return $this->insert([
-			'subject' => $newsletter->getSubject(),
-			'from' => $newsletter->getFrom(),
-			'intro_text' => $newsletter->getIntroText(),
-			'outro_text' => $newsletter->getOutroText(),
-			'author' => $newsletter->getAuthor()
-		]);
-	}
+    public function createNewsletter(Newsletter $newsletter): IRow
+    {
+        return $this->insert([
+            'subject' => $newsletter->getSubject(),
+            'from' => $newsletter->getFrom(),
+            'intro_text' => $newsletter->getIntroText(),
+            'outro_text' => $newsletter->getOutroText(),
+            'author' => $newsletter->getAuthor()
+        ]);
+    }
 }

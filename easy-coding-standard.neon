@@ -116,6 +116,8 @@ checkers:
     - SlevomatCodingStandard\Sniffs\Namespaces\UseDoesNotStartWithBackslashSniff
     - SlevomatCodingStandard\Sniffs\Namespaces\UseFromSameNamespaceSniff
 
+    # spaces
+    - PhpCsFixer\Fixer\Whitespace\IndentationTypeFixer
     PhpCsFixer\Fixer\Operator\ConcatSpaceFixer:
         spacing: one
     PhpCsFixer\Fixer\ArrayNotation\ArraySyntaxFixer:

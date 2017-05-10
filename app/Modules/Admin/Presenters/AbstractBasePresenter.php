@@ -6,13 +6,13 @@ use App\Modules\Core\Presenters\AbstractBasePresenter as CoreAbstractBasePresent
 
 abstract class AbstractBasePresenter extends CoreAbstractBasePresenter
 {
-	protected function startup(): void
-	{
-		parent::startup();
+    protected function startup(): void
+    {
+        parent::startup();
 
-		// @todo: use event subscriber
-		if (! $this->user->isLoggedIn() || ! $this->user->isInRole('admin')) {
-			$this->redirect('Sign:in');
-		}
-	}
+        // @todo: use event subscriber
+        if (! $this->user->isLoggedIn() || ! $this->user->isInRole('admin')) {
+            $this->redirect('Sign:in');
+        }
+    }
 }

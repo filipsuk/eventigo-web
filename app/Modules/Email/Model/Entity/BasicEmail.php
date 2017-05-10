@@ -10,71 +10,71 @@ use Nette\Http\Url;
  */
 final class BasicEmail extends Email
 {
-	/**
-	 * @var string
-	 */
-	private $introText;
+    /**
+     * @var string
+     */
+    private $introText;
 
-	/**
-	 * @var string
-	 */
-	private $buttonText;
+    /**
+     * @var string
+     */
+    private $buttonText;
 
-	/**
-	 * @var Url
-	 */
-	private $buttonUrl;
+    /**
+     * @var Url
+     */
+    private $buttonUrl;
 
-	/**
-	 * @var string
-	 */
-	private $footerText;
+    /**
+     * @var string
+     */
+    private $footerText;
 
-	public function getIntroText(): string
-	{
-		return $this->introText;
-	}
+    public function getIntroText(): string
+    {
+        return $this->introText;
+    }
 
-	public function setIntroText(string $introText): BasicEmail
-	{
-		$this->introText = $introText;
+    public function setIntroText(string $introText): BasicEmail
+    {
+        $this->introText = $introText;
 
-		return $this;
-	}
+        return $this;
+    }
 
-	public function getButtonText(): string
-	{
-		return $this->buttonText;
-	}
+    public function getButtonText(): string
+    {
+        return $this->buttonText;
+    }
 
-	public function setButtonText(string $buttonText): self
-	{
-		$this->buttonText = $buttonText;
+    public function setButtonText(string $buttonText): self
+    {
+        $this->buttonText = $buttonText;
 
-		return $this;
-	}
+        return $this;
+    }
 
-	public function getButtonUrl(): Url
-	{
-		return $this->buttonUrl;
-	}
+    public function getButtonUrl(): Url
+    {
+        return $this->buttonUrl;
+    }
 
-	public function setButtonUrl(Url $buttonUrl): self
-	{
-		$this->buttonUrl = $buttonUrl;
+    public function setButtonUrl(Url $buttonUrl): self
+    {
+        $this->buttonUrl = $buttonUrl;
 
-		return $this;
-	}
+        return $this;
+    }
 
-	public function getFooterText(): string
-	{
-		return $this->footerText;
-	}
+    public function getFooterText(): string
+    {
+        return $this->footerText;
+    }
 
-	public function setFooterText(string $footerText): BasicEmail
-	{
-		$this->footerText = $footerText;
+    public function setFooterText(string $footerText): BasicEmail
+    {
+        $this->footerText = $footerText;
 
-		return $this;
-	}
+        return $this;
+    }
 }

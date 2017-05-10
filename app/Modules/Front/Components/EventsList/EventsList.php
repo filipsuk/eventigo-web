@@ -8,23 +8,23 @@ use Kdyby\Translation\Translator;
 
 final class EventsList extends AbstractBaseControl
 {
-	/**
-	 * @var mixed[]
-	 */
-	private $events;
+    /**
+     * @var mixed[]
+     */
+    private $events;
 
-	/**
-	 * @param mixed[] $events
-	 */
-	public function __construct(Translator $translator, array $events)
-	{
-		parent::__construct($translator);
-		$this->events = $events;
-	}
+    /**
+     * @param mixed[] $events
+     */
+    public function __construct(Translator $translator, array $events)
+    {
+        parent::__construct($translator);
+        $this->events = $events;
+    }
 
-	public function render(): void
-	{
-		$this->template->events = new EventsIterator($this->events);
-		$this->template->render();
-	}
+    public function render(): void
+    {
+        $this->template->events = new EventsIterator($this->events);
+        $this->template->render();
+    }
 }

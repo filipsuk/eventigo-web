@@ -15,85 +15,85 @@ use App\Modules\Front\Components\Tags\TagsFactoryInterface;
 
 final class ProfilePresenter extends AbstractBasePresenter
 {
-	/**
-	 * @var EventModel @inject
-	 */
-	public $eventModel;
+    /**
+     * @var EventModel @inject
+     */
+    public $eventModel;
 
-	/**
-	 * @var TagModel @inject
-	 */
-	public $tagModel;
+    /**
+     * @var TagModel @inject
+     */
+    public $tagModel;
 
-	/**
-	 * @var TagsFactoryInterface @inject
-	 */
-	public $tagsFactory;
+    /**
+     * @var TagsFactoryInterface @inject
+     */
+    public $tagsFactory;
 
-	/**
-	 * @var EventsListFactoryInterface @inject
-	 */
-	public $eventsListFactory;
+    /**
+     * @var EventsListFactoryInterface @inject
+     */
+    public $eventsListFactory;
 
-	/**
-	 * @var SettingsFactoryInterface @inject
-	 */
-	public $settingsFactory;
+    /**
+     * @var SettingsFactoryInterface @inject
+     */
+    public $settingsFactory;
 
-	/**
-	 * @var UserTagModel @inject
-	 */
-	public $userTagModel;
+    /**
+     * @var UserTagModel @inject
+     */
+    public $userTagModel;
 
-	/**
-	 * @var UserModel @inject
-	 */
-	public $userModel;
+    /**
+     * @var UserModel @inject
+     */
+    public $userModel;
 
-	public function actionSettings(?string $token = null): void
-	{
-		// Try to log in the user with provided token
-		if ($token) {
-			$this->loginWithToken($token);
-		}
-	}
+    public function actionSettings(?string $token = null): void
+    {
+        // Try to log in the user with provided token
+        if ($token) {
+            $this->loginWithToken($token);
+        }
+    }
 
-	public function renderSettings(): void
-	{
-		$this->template->userData = $this->userModel->getAll()
-			->wherePrimary($this->getUser()->getId())->fetch();
+    public function renderSettings(): void
+    {
+        $this->template->userData = $this->userModel->getAll()
+            ->wherePrimary($this->getUser()->getId())->fetch();
 
-		$userTags = $this->userTagModel->getUsersTags($this->user->getId());
-		$this['tags']['form']->setDefaults(['tags' => $userTags]);
+        $userTags = $this->userTagModel->getUsersTags($this->user->getId());
+        $this['tags']['form']->setDefaults(['tags' => $userTags]);
 
-		$user = $this->userModel->getAll()->wherePrimary($this->getUser()->getId())->fetch();
-		$this['settings-form']->setDefaults(['newsletter' => $user->newsletter]);
-	}
+        $user = $this->userModel->getAll()->wherePrimary($this->getUser()->getId())->fetch();
+        $this['settings-form']->setDefaults(['newsletter' => $user->newsletter]);
+    }
 
-	protected function startup(): void
-	{
-		parent::startup();
+    protected function startup(): void
+    {
+        parent::startup();
 
-		if (! $this->getUser()->isLoggedIn()) {
-			$this->flashMessage($this->translator->translate('front.profile.settings.notLoggedIn'));
-			$this->redirect('Homepage:default');
-		}
-	}
+        if (! $this->getUser()->isLoggedIn()) {
+            $this->flashMessage($this->translator->translate('front.profile.settings.notLoggedIn'));
+            $this->redirect('Homepage:default');
+        }
+    }
 
-	protected function createComponentTags(): Tags
-	{
-		$control = $this->tagsFactory->create();
+    protected function createComponentTags(): Tags
+    {
+        $control = $this->tagsFactory->create();
 
-		$control->onChange[] = function () {
-			$this['tags']->redrawControl();
-			$this->redrawControl('flash-messages');
-		};
+        $control->onChange[] = function () {
+            $this['tags']->redrawControl();
+            $this->redrawControl('flash-messages');
+        };
 
-		return $control;
-	}
+        return $control;
+    }
 
-	protected function createComponentSettings(): Settings
-	{
-		return $this->settingsFactory->create();
-	}
+    protected function createComponentSettings(): Settings
+    {
+        return $this->settingsFactory->create();
+    }
 }

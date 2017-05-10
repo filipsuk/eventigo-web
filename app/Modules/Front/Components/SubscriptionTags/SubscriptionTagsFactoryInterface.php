@@ -4,5 +4,5 @@ namespace App\Modules\Front\Components\SubscriptionTags;
 
 interface SubscriptionTagsFactoryInterface
 {
-	public function create(): SubscriptionTags;
+    public function create(): SubscriptionTags;
 }

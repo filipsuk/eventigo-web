@@ -4,5 +4,5 @@ namespace App\Modules\Front\Components\Settings;
 
 interface SettingsFactoryInterface
 {
-	public function create(): Settings;
+    public function create(): Settings;
 }

@@ -10,39 +10,39 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 final class SendNewslettersCommand extends Command
 {
-	/**
-	 * @var NewsletterService
-	 */
-	private $newsletterService;
+    /**
+     * @var NewsletterService
+     */
+    private $newsletterService;
 
-	/**
-	 * @var UserNewsletterModel
-	 */
-	private $userNewsletterModel;
+    /**
+     * @var UserNewsletterModel
+     */
+    private $userNewsletterModel;
 
-	public function __construct(NewsletterService $newsletterService, UserNewsletterModel $userNewsletterModel)
-	{
-		parent::__construct();
-		$this->newsletterService = $newsletterService;
-		$this->userNewsletterModel = $userNewsletterModel;
-	}
+    public function __construct(NewsletterService $newsletterService, UserNewsletterModel $userNewsletterModel)
+    {
+        parent::__construct();
+        $this->newsletterService = $newsletterService;
+        $this->userNewsletterModel = $userNewsletterModel;
+    }
 
-	protected function configure(): void
-	{
-		$this->setName('newsletters:send')
-			->setDescription('Send newsletters');
-	}
+    protected function configure(): void
+    {
+        $this->setName('newsletters:send')
+            ->setDescription('Send newsletters');
+    }
 
-	protected function execute(InputInterface $input, OutputInterface $output): int
-	{
-		$usersNewslettersIds = $this->userNewsletterModel->getAll()
-			->where('sent', null)
-			->fetchPairs(null, 'id');
+    protected function execute(InputInterface $input, OutputInterface $output): int
+    {
+        $usersNewslettersIds = $this->userNewsletterModel->getAll()
+            ->where('sent', null)
+            ->fetchPairs(null, 'id');
 
-		$this->newsletterService->sendNewsletters($usersNewslettersIds);
+        $this->newsletterService->sendNewsletters($usersNewslettersIds);
 
-		$output->writeln(count($usersNewslettersIds) . ' newsletters have been sent');
+        $output->writeln(count($usersNewslettersIds) . ' newsletters have been sent');
 
-		return 0;
-	}
+        return 0;
+    }
 }

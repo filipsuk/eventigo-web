@@ -7,48 +7,48 @@ use Nette\Database\Table\IRow;
 
 abstract class AbstractIterator implements PhpIterator
 {
-	/**
-	 * @var int
-	 */
-	protected $index;
+    /**
+     * @var int
+     */
+    protected $index;
 
-	/**
-	 * @var IRow[]
-	 */
-	protected $data;
+    /**
+     * @var IRow[]
+     */
+    protected $data;
 
-	/**
-	 * @param IRow[] $data
-	 */
-	public function __construct(array $data)
-	{
-		$this->data = array_values($data);
-	}
+    /**
+     * @param IRow[] $data
+     */
+    public function __construct(array $data)
+    {
+        $this->data = array_values($data);
+    }
 
-	public function current(): ?IRow
-	{
-		return $this->valid() ? $this->data[$this->index] : NULL;
-	}
+    public function current(): ?IRow
+    {
+        return $this->valid() ? $this->data[$this->index] : NULL;
+    }
 
-	public function next(): ?IRow
-	{
-		++$this->index;
+    public function next(): ?IRow
+    {
+        ++$this->index;
 
-		return $this->current();
-	}
+        return $this->current();
+    }
 
-	public function key(): int
-	{
-		return $this->index;
-	}
+    public function key(): int
+    {
+        return $this->index;
+    }
 
-	public function valid(): bool
-	{
-		return array_key_exists($this->index, $this->data);
-	}
+    public function valid(): bool
+    {
+        return array_key_exists($this->index, $this->data);
+    }
 
-	public function rewind(): void
-	{
-		$this->index = 0;
-	}
+    public function rewind(): void
+    {
+        $this->index = 0;
+    }
 }

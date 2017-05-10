@@ -7,13 +7,13 @@ use Nette\Forms\Rendering\DefaultFormRenderer;
 
 final class Form extends NativeForm
 {
-	public function __construct()
-	{
-		parent::__construct();
+    public function __construct()
+    {
+        parent::__construct();
 
-		/** @var DefaultFormRenderer $renderer */
-		$renderer = $this->getRenderer();
-		$renderer->wrappers['label']['container'] = 'th class="th-label"';
-		$renderer->wrappers['control']['container'] = 'td class="td-control"';
-	}
+        /** @var DefaultFormRenderer $renderer */
+        $renderer = $this->getRenderer();
+        $renderer->wrappers['label']['container'] = 'th class="th-label"';
+        $renderer->wrappers['control']['container'] = 'td class="td-control"';
+    }
 }

@@ -16,59 +16,59 @@ use Throwable;
 
 final class EmailService
 {
-	/**
-	 * @var Translator @inject
-	 */
-	public $translator;
+    /**
+     * @var Translator @inject
+     */
+    public $translator;
 
-	/**
-	 * @var LinkGenerator @inject
-	 */
-	public $linkGenerator;
+    /**
+     * @var LinkGenerator @inject
+     */
+    public $linkGenerator;
 
-	/**
-	 * @var ITemplateFactory @inject
-	 */
-	public $templateFactory;
+    /**
+     * @var ITemplateFactory @inject
+     */
+    public $templateFactory;
 
-	/**
-	 * @var SendGrid @inject
-	 */
-	public $sendGrid;
+    /**
+     * @var SendGrid @inject
+     */
+    public $sendGrid;
 
-	public function sendLogin(string $emailTo, string $token): void
-	{
-		$to = new Email(null, $emailTo);
-		$from = new Email('Eventigo.cz', 'prihlaseni@eventigo.cz');
-		$subject = $this->translator->translate('email.login.subject');
-		$content = new SendGrid\Content('text/plain', $this->renderLoginEmail($token));
+    public function sendLogin(string $emailTo, string $token): void
+    {
+        $to = new Email(null, $emailTo);
+        $from = new Email('Eventigo.cz', 'prihlaseni@eventigo.cz');
+        $subject = $this->translator->translate('email.login.subject');
+        $content = new SendGrid\Content('text/plain', $this->renderLoginEmail($token));
 
-		$mail = new SendGrid\Mail($from, $subject, $to, $content);
+        $mail = new SendGrid\Mail($from, $subject, $to, $content);
 
-		// ->setCategory('emailLogin') @todo, what is this for?
+        // ->setCategory('emailLogin') @todo, what is this for?
 
-		try {
-			$this->sendGrid->client->mail()->send()->post($mail);
-		} catch (Throwable $throwable) {
-			// TODO log unsuccessful email send
-		}
-	}
+        try {
+            $this->sendGrid->client->mail()->send()->post($mail);
+        } catch (Throwable $throwable) {
+            // TODO log unsuccessful email send
+        }
+    }
 
-	public function renderLoginEmail(string $token): string
-	{
-		$email = new BasicEmail;
-		$email->setIntroText($this->translator->translate('email.login.text'));
-		$email->setButtonText($this->translator->translate('email.login.loginButton'));
-		$email->setButtonUrl(new Url($this->linkGenerator->link('Front:Homepage:default', ['token' => $token])));
-		$email->setFooterText($this->translator->translate('email.login.footerText'));
+    public function renderLoginEmail(string $token): string
+    {
+        $email = new BasicEmail;
+        $email->setIntroText($this->translator->translate('email.login.text'));
+        $email->setButtonText($this->translator->translate('email.login.loginButton'));
+        $email->setButtonUrl(new Url($this->linkGenerator->link('Front:Homepage:default', ['token' => $token])));
+        $email->setFooterText($this->translator->translate('email.login.footerText'));
 
-		/** @var Template $template */
-		$template = $this->templateFactory->createTemplate();
-		Filters::setTranslator($this->translator);
-		$template->addFilter(null, [Filters::class, 'loader']);
+        /** @var Template $template */
+        $template = $this->templateFactory->createTemplate();
+        Filters::setTranslator($this->translator);
+        $template->addFilter(null, [Filters::class, 'loader']);
 
-		return $template->getLatte()->renderToString(EmailPresenter::BASIC_EMAIL_TEMPLATE_FILE, [
-			'email' => $email,
-		]);
-	}
+        return $template->getLatte()->renderToString(EmailPresenter::BASIC_EMAIL_TEMPLATE_FILE, [
+            'email' => $email,
+        ]);
+    }
 }

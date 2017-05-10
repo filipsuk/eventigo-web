@@ -9,33 +9,33 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 final class CreateNewsletterCommand extends Command
 {
-	/**
-	 * @var NewsletterService
-	 */
-	private $newsletterService;
+    /**
+     * @var NewsletterService
+     */
+    private $newsletterService;
 
-	public function __construct(NewsletterService $newsletterService)
-	{
-		parent::__construct();
-		$this->newsletterService = $newsletterService;
-	}
+    public function __construct(NewsletterService $newsletterService)
+    {
+        parent::__construct();
+        $this->newsletterService = $newsletterService;
+    }
 
-	protected function configure(): void
-	{
-		$this->setName('newsletters:create')
-			->setDescription('Creates default newsletter');
-	}
+    protected function configure(): void
+    {
+        $this->setName('newsletters:create')
+            ->setDescription('Creates default newsletter');
+    }
 
-	protected function execute(InputInterface $input, OutputInterface $output): int
-	{
-		$result = $this->newsletterService->createDefaultNewsletter();
-		if ($result) {
-			$output->writeln('<info>New newsletter id: ' . $result . '</info>');
+    protected function execute(InputInterface $input, OutputInterface $output): int
+    {
+        $result = $this->newsletterService->createDefaultNewsletter();
+        if ($result) {
+            $output->writeln('<info>New newsletter id: ' . $result . '</info>');
 
-			return 0;
-		}
-			$output->writeln('<error>Could not create newsletter </error>');
+            return 0;
+        }
+            $output->writeln('<error>Could not create newsletter </error>');
 
-			return 1;
-	}
+            return 1;
+    }
 }

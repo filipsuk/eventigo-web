@@ -4,8 +4,8 @@ namespace App\Modules\Core\Model;
 
 final class OrganiserModel extends AbstractBaseModel
 {
-	/**
-	 * @var string
-	 */
-	protected const TABLE_NAME = 'organisers';
+    /**
+     * @var string
+     */
+    protected const TABLE_NAME = 'organisers';
 }

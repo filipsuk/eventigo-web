@@ -9,52 +9,52 @@ use Nette\Utils\DateTime;
 
 final class MeetupEventSource extends AbstractEventSource
 {
-	/**
-	 * @var string[]
-	 */
-	protected const URLS = [
-		'meetup.com',
-		'www.meetup.com',
-	];
+    /**
+     * @var string[]
+     */
+    protected const URLS = [
+        'meetup.com',
+        'www.meetup.com',
+    ];
 
-	/**
-	 * @var string
-	 */
-	private $apiKey;
+    /**
+     * @var string
+     */
+    private $apiKey;
 
-	public function setApiKey(string $apiKey): void
-	{
-		$this->apiKey = $apiKey;
-	}
+    public function setApiKey(string $apiKey): void
+    {
+        $this->apiKey = $apiKey;
+    }
 
-	/**
-	 * Get upcoming events of the page.
-	 * @return Event[]
-	 */
-	public function getEvents(string $group): array
-	{
-		$client = MeetupKeyAuthClient::factory(['key' => $this->apiKey]);
-		$groupEvents = $client->getGroupEvents(['urlname' => $group])->getData();
+    /**
+     * Get upcoming events of the page.
+     * @return Event[]
+     */
+    public function getEvents(string $group): array
+    {
+        $client = MeetupKeyAuthClient::factory(['key' => $this->apiKey]);
+        $groupEvents = $client->getGroupEvents(['urlname' => $group])->getData();
 
-		$groupData = $client->getGroup(['urlname' => $group])->getData();
-		$groupPhoto = isset($groupData['group_photo']) ? $groupData['group_photo']['photo_link'] : null;
+        $groupData = $client->getGroup(['urlname' => $group])->getData();
+        $groupPhoto = isset($groupData['group_photo']) ? $groupData['group_photo']['photo_link'] : null;
 
-		$events = [];
-		foreach ($groupEvents as $event) {
-			if ($event['status'] === 'upcoming') {
-				$events[] = new Event(
-					null,
-					$event['name'],
-					$event['description'] ?? '',
-					$event['link'],
-					DateTime::from($event['time'] / 1000),
-					null,
-					$groupPhoto ?? null,
-					Event::calculateRateByAttendeesCount($event['yes_rsvp_count'] + $event['waitlist_count'])
-				);
-			}
-		}
+        $events = [];
+        foreach ($groupEvents as $event) {
+            if ($event['status'] === 'upcoming') {
+                $events[] = new Event(
+                    null,
+                    $event['name'],
+                    $event['description'] ?? '',
+                    $event['link'],
+                    DateTime::from($event['time'] / 1000),
+                    null,
+                    $groupPhoto ?? null,
+                    Event::calculateRateByAttendeesCount($event['yes_rsvp_count'] + $event['waitlist_count'])
+                );
+            }
+        }
 
-		return $events;
-	}
+        return $events;
+    }
 }

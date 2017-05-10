@@ -10,54 +10,54 @@ use Nette\Security\User;
 
 final class Settings extends AbstractBaseControl
 {
-	/**
-	 * @var callable[]
-	 */
-	public $onChange = [];
+    /**
+     * @var callable[]
+     */
+    public $onChange = [];
 
-	/**
-	 * @var User
-	 */
-	private $user;
+    /**
+     * @var User
+     */
+    private $user;
 
-	/**
-	 * @var UserModel
-	 */
-	private $userModel;
+    /**
+     * @var UserModel
+     */
+    private $userModel;
 
-	public function __construct(Translator $translator, UserModel $userModel, User $user)
-	{
-		parent::__construct($translator);
-		$this->user = $user;
-		$this->userModel = $userModel;
-	}
+    public function __construct(Translator $translator, UserModel $userModel, User $user)
+    {
+        parent::__construct($translator);
+        $this->user = $user;
+        $this->userModel = $userModel;
+    }
 
-	public function render(): void
-	{
-		$this['form']->render();
-	}
+    public function render(): void
+    {
+        $this['form']->render();
+    }
 
-	public function processForm(Form $form): void
-	{
-		$values = $form->getValues();
+    public function processForm(Form $form): void
+    {
+        $values = $form->getValues();
 
-		$this->userModel->getAll()->wherePrimary($this->user->getId())->update([
-			'newsletter' => (bool) $values->newsletter,
-		]);
+        $this->userModel->getAll()->wherePrimary($this->user->getId())->update([
+            'newsletter' => (bool) $values->newsletter,
+        ]);
 
-		$this->onChange();
-	}
+        $this->onChange();
+    }
 
-	protected function createComponentForm(): Form
-	{
-		$form = new Form;
-		$form->setTranslator($this->translator->domain('front.profile.settings.main'));
-		$form->getElementPrototype()->addClass('ajax');
+    protected function createComponentForm(): Form
+    {
+        $form = new Form;
+        $form->setTranslator($this->translator->domain('front.profile.settings.main'));
+        $form->getElementPrototype()->addClass('ajax');
 
-		$form->addCheckbox('newsletter', 'newsletter');
+        $form->addCheckbox('newsletter', 'newsletter');
 
-		$form->onSuccess[] = [$this, 'processForm'];
+        $form->onSuccess[] = [$this, 'processForm'];
 
-		return $form;
-	}
+        return $form;
+    }
 }

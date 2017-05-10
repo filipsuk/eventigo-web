@@ -4,5 +4,5 @@ namespace App\Modules\Admin\Components\SignIn;
 
 interface SignInFormFactoryInterface
 {
-	public function create(): SignInForm;
+    public function create(): SignInForm;
 }

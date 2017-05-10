@@ -4,5 +4,5 @@ namespace App\Modules\Front\Components\Subscription;
 
 interface SubscriptionFactoryInterface
 {
-	public function create(): Subscription;
+    public function create(): Subscription;
 }

@@ -4,5 +4,5 @@ namespace App\Modules\Front\Components\Tags;
 
 interface TagsFactoryInterface
 {
-	public function create(): Tags;
+    public function create(): Tags;
 }
