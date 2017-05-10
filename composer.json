@@ -17,7 +17,6 @@
         "latte/latte": "~2.4",
         "tracy/tracy": "~2.4",
         "kdyby/translation": "~2.2",
-        "kdyby/console": "^2.5",
         "sendgrid/sendgrid": "^5.4",
         "kdyby/facebook": "2.0.x-dev",
         "pelago/emogrifier": "@dev",
