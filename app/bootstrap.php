@@ -10,6 +10,8 @@ if (PHP_SAPI !== 'cli') {
         ['localhost:8000', 'kuba.eventigo.cz', 'filip.eventigo.cz', 'eventigo.local', 'eventigo.local.cz'],
         true
     ));
+} else {
+    $configurator->setDebugMode(true);
 }
 
 // Fix redirects to port 80 (https://forum.nette.org/cs/13896-openshift-redirect-z-https-pridava-port-80)
