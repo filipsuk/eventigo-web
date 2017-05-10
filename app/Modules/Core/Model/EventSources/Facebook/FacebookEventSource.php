@@ -53,7 +53,6 @@ final class FacebookEventSource extends AbstractEventSource
 				$response->cover->source ?? null,
 				Event::calculateRateByAttendeesCount($response->interested_count + $response->attending_count)
 			);
-
 		} catch (FacebookApiException $e) {
 			Debugger::log($e, Debugger::EXCEPTION);
 			throw $e;

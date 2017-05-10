@@ -51,7 +51,7 @@ final class Tags extends AbstractBaseControl
 		UserTagModel $userTagModel,
 		TagGroupModel $tagGroupModel,
 		User $user
-) {
+    ) {
 		parent::__construct($translator);
 		$this->tagModel = $tagModel;
 		$this->userTagModel = $userTagModel;

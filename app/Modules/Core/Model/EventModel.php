@@ -47,6 +47,7 @@ final class EventModel extends AbstractBaseModel
 		foreach ($event->related('events_tags') as $tag) {
 			$eventTags[] = EventTag::createFromRow($tag);
 		}
+
 		return $eventTags;
 	}
 

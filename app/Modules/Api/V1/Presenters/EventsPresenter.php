@@ -8,7 +8,9 @@ use Drahak\Restful\IResource;
 
 final class EventsPresenter extends ResourcePresenter
 {
-	/** @var EventApiService */
+	/**
+	 * @var EventApiService
+	 */
 	private $eventApiService;
 
 	public function __construct(EventApiService $eventApiService)
@@ -17,10 +19,9 @@ final class EventsPresenter extends ResourcePresenter
 		$this->eventApiService = $eventApiService;
 	}
 
-	public function actionRead()
+	public function actionRead(): void
 	{
 		$this->resource = $this->eventApiService->getEvents();
 		$this->sendResource(IResource::JSON);
 	}
-
 }

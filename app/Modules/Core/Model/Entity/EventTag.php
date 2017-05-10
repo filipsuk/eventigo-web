@@ -6,16 +6,22 @@ use Nette\Database\Table\ActiveRow;
 
 final class EventTag
 {
-	/** @var Event */
+	/**
+	 * @var Event
+	 */
 	private $event;
 
-	/** @var Tag */
+	/**
+	 * @var Tag
+	 */
 	private $tag;
 
-	/** @var int */
+	/**
+	 * @var int
+	 */
 	private $rate;
 
-	public function __construct(Event $event, Tag $tag, int $rate = null)
+	public function __construct(Event $event, Tag $tag, ?int $rate = null)
 	{
 		$this->event = $event;
 		$this->tag = $tag;
@@ -31,28 +37,18 @@ final class EventTag
 		);
 	}
 
-	/**
-	 * @return Event
-	 */
 	public function getEvent(): Event
 	{
 		return $this->event;
 	}
 
-	/**
-	 * @return Tag
-	 */
 	public function getTag(): Tag
 	{
 		return $this->tag;
 	}
 
-	/**
-	 * @return int
-	 */
 	public function getRate(): int
 	{
 		return $this->rate;
 	}
-
 }

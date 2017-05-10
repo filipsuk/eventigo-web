@@ -47,7 +47,7 @@ final class SubscriptionTags extends Subscription
 		TagModel $tagModel,
 		UserTagModel $userTagModel,
 		TagGroupModel $tagGroupModel
-) {
+    ) {
 		parent::__construct($translator, $userModel);
 		$this->tagModel = $tagModel;
 		$this->userTagModel = $userTagModel;

@@ -9,10 +9,14 @@ use Nette\Utils\DateTime;
 
 final class EventApiService
 {
-	/** @var EventModel */
+	/**
+	 * @var EventModel
+	 */
 	private $eventModel;
 
-	/** @var LinkGenerator */
+	/**
+	 * @var LinkGenerator
+	 */
 	private $linkGenerator;
 
 	public function __construct(EventModel $eventModel, LinkGenerator $linkGenerator)
@@ -21,11 +25,14 @@ final class EventApiService
 		$this->linkGenerator = $linkGenerator;
 	}
 
-	public function getEvents()
+	/**
+	 * @return Event[]
+	 */
+	public function getEvents(): array
 	{
 		$events = [];
 
-		foreach ($this->eventModel->getAllWithDates([], new DateTime()) as $eventRow) {
+		foreach ($this->eventModel->getAllWithDates([], new DateTime) as $eventRow) {
 			$event = Event::createFromRow($eventRow);
 			$eventTags = [];
 			foreach ($this->eventModel->getEventTags($eventRow) as $eventTag) {
@@ -39,7 +46,7 @@ final class EventApiService
 				'id' => $event->getHash(),
 				'name' => $event->getName(),
 				'description' => $event->getDescription(),
-				'url' => $this->linkGenerator->link("Front:Redirect:", [$event->getOriginUrl()]),
+				'url' => $this->linkGenerator->link('Front:Redirect:', [$event->getOriginUrl()]),
 				'start' => $event->getStart()->jsonSerialize(),
 				'end' => $event->getEnd() ? $event->getEnd()->jsonSerialize() : null,
 				'image' => $event->getImage(),

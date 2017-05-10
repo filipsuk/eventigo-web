@@ -5,6 +5,7 @@ namespace App\Modules\Core\Model\Entity;
 use InvalidArgumentException;
 use Nette\Database\IRow;
 use Nette\Utils\DateTime;
+use RuntimeException;
 
 final class Event
 {
@@ -48,19 +49,21 @@ final class Event
 	 */
 	private $rate;
 
-	/** @var DateTime */
+	/**
+	 * @var DateTime
+	 */
 	private $created;
 
 	public function __construct(
-		int $id = null,
+		?int $id = null,
 		string $name,
-		string $description = null,
-		string $originUrl = null,
+		?string $description = null,
+		?string $originUrl = null,
 		DateTime $start,
-		DateTime $end = null,
-		string $image = null,
-		int $rate = null,
-		DateTime $created = null
+		?DateTime $end = null,
+		?string $image = null,
+		?int $rate = null,
+		?DateTime $created = null
 	)
 	{
 		$this->id = $id;
@@ -73,7 +76,6 @@ final class Event
 		$this->rate = $rate;
 		$this->created = $created;
 	}
-
 
 	public static function createFromRow(IRow $eventRow): Event
 	{
@@ -101,7 +103,7 @@ final class Event
 			return md5($this->getId() . $this->getCreated()->getTimestamp());
 		}
 
-        throw new \RuntimeException('Could not calculate hash, "id" or "created" field not set');
+        throw new RuntimeException('Could not calculate hash, "id" or "created" field not set');
     }
 
 	public function getName(): string

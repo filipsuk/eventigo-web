@@ -193,10 +193,8 @@ final class NewsletterService
 			$to = new Email(null, $userNewsletter->user->email);
 			$from = new Email('Eventigo.cz', $userNewsletter->from);
 			$subject = $userNewsletter->subject;
-			$content = new SendGrid\Content('text/plain', $userNewsletter->content); // @todo: or html?
+			$content = new SendGrid\Content('text/html', $userNewsletter->content);
 			//	->setCategory('newsletter') // what is this for
-			// TODO: setText() - we should also send text format
-
 			$mail = new SendGrid\Mail($from, $subject, $to, $content);
 
 			try {
