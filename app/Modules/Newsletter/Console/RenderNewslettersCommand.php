@@ -23,9 +23,9 @@ final class RenderNewslettersCommand extends Command
 
     public function __construct(NewsletterService $newsletterService, UserModel $userModel)
     {
-        parent::__construct();
         $this->newsletterService = $newsletterService;
         $this->userModel = $userModel;
+        parent::__construct();
     }
 
     protected function configure(): void

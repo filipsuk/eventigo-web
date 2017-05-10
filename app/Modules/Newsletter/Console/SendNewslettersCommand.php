@@ -22,9 +22,9 @@ final class SendNewslettersCommand extends Command
 
     public function __construct(NewsletterService $newsletterService, UserNewsletterModel $userNewsletterModel)
     {
-        parent::__construct();
         $this->newsletterService = $newsletterService;
         $this->userNewsletterModel = $userNewsletterModel;
+        parent::__construct();
     }
 
     protected function configure(): void

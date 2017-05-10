@@ -16,8 +16,8 @@ final class CreateNewsletterCommand extends Command
 
     public function __construct(NewsletterService $newsletterService)
     {
-        parent::__construct();
         $this->newsletterService = $newsletterService;
+        parent::__construct();
     }
 
     protected function configure(): void
@@ -34,8 +34,9 @@ final class CreateNewsletterCommand extends Command
 
             return 0;
         }
-            $output->writeln('<error>Could not create newsletter </error>');
 
-            return 1;
+        $output->writeln('<error>Could not create newsletter </error>');
+
+        return 1;
     }
 }

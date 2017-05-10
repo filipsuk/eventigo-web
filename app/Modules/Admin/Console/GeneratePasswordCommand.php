@@ -10,6 +10,17 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 final class GeneratePasswordCommand extends Command
 {
+    /**
+     * @var UserModel
+     */
+    private $userModel;
+
+    public function __construct(UserModel $userModel)
+    {
+        $this->userModel = $userModel;
+        parent::__construct();
+    }
+
     protected function configure(): void
     {
         $this->setName('admin:generatePassword')
@@ -25,10 +36,7 @@ final class GeneratePasswordCommand extends Command
     {
         $password = (string) $input->getArgument('password');
 
-        /** @var UserModel $userModel */
-        $userModel = $this->getHelper('container')->getByType(UserModel::class);
-
-        $hash = $userModel->hashAndEncrypt($password);
+        $hash = $this->userModel->hashAndEncrypt($password);
 
         $output->writeln($hash);
 
