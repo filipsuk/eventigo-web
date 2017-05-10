@@ -4,12 +4,6 @@
 /** @var Nette\DI\Container $container */
 $container = require __DIR__ . '/../app/bootstrap.php';
 
-var_dump('EEE');
-
 /** @var Symfony\Component\Console\Application $consoleApplication */
-$consoleApplication = $container->getService(Symfony\Component\Console\Application::class);
-
-var_dump($consoleApplication);
-die;
-
+$consoleApplication = $container->getByType(Symfony\Component\Console\Application::class);
 $consoleApplication->run();
