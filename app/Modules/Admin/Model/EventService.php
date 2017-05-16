@@ -44,7 +44,7 @@ final class EventService
         TagModel $tagModel,
         EventTagModel $eventTagModel,
         FacebookEventSource $facebookEventSource
-) {
+    ) {
         $this->eventModel = $eventModel;
         $this->tagModel = $tagModel;
         $this->eventTagModel = $eventTagModel;
@@ -65,7 +65,7 @@ final class EventService
             'image' => $values->image ?: null,
             'rate' => $values->rate,
             'state' => $values->state,
-            'approved' => $values->state === EventModel::STATE_APPROVED ? new DateTime : null,
+            'approved' => $values->state === EventModel::STATE_APPROVED ? new NetteDateTime : null,
             'event_series_id' => $values->event_series_id,
         ]);
 
@@ -89,7 +89,7 @@ final class EventService
             'rate' => $values->rate,
             'state' => $values->state,
             'approved' => $values->state === EventModel::STATE_APPROVED && ! $event->approved
-                ? new DateTime : $event->approved,
+                ? new NetteDateTime : $event->approved,
             'event_series_id' => $values->event_series_id,
         ]);
 
