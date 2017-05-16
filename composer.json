@@ -1,48 +1,56 @@
 {
-	"name": "Eventigo",
-	"description": "Events to your email",
-	"type": "project",
-	"require": {
-		"php": ">= 7.0.0",
-		"nette/application": "~2.4",
-		"nette/bootstrap": "~2.4",
-		"nette/caching": "~2.4",
-		"nette/database": "~2.4",
-		"nette/di": "~2.4",
-		"nette/finder": "~2.4",
-		"nette/forms": "~2.4",
-		"nette/http": "~2.4",
-		"nette/mail": "~2.4",
-		"nette/security": "~2.4",
-		"nette/utils": "~2.4",
-		"latte/latte": "~2.4",
-		"tracy/tracy": "~2.4",
-
-		"kdyby/translation": "~2.2",
-		"kdyby/console": "^2.5",
-		"sendgrid/sendgrid": "^4.0",
-		"kdyby/facebook": "2.0.x-dev",
-		"pelago/emogrifier": "@dev",
-		"greeny/nette-slack-logger": "^1.2",
-		"webuni/srazy-api-client": "1.0.x-dev",
-		"dms/meetup-api-client": "2.0.x-dev",
-		"drahak/restful": "@dev"
-	},
-	"require-dev": {
-		"nette/tester": "~1.7",
-		"robmorgan/phinx": "^0.7",
-		"phpstan/phpstan": "^0.6.3",
-		"phpstan/phpstan-nette": "^0.6.2",
-		"friendsofphp/php-cs-fixer": "^2.1"
-	},
-	"autoload": {
-		"psr-4": {
-			"App\\": "app"
-		}
-	},
-	"scripts": {
-		"check-cs": "vendor/bin/php-cs-fixer fix app --rules=declare_strict_types,return_type_declaration -v --allow-risky yes --diff --dry-run",
-		"fix-cs": "vendor/bin/php-cs-fixer fix app --rules=declare_strict_types,return_type_declaration -v --allow-risky yes",
-		"phpstan": "vendor/bin/phpstan analyse app --level=0 -c phpstan.neon"
-	}
+    "name": "eventigo/eventigo-web",
+    "require": {
+        "php": "^7.1",
+        "nette/application": "~2.4",
+        "nette/bootstrap": "~2.4",
+        "nette/caching": "~2.4",
+        "nette/database": "~2.4",
+        "nette/di": "~2.4",
+        "nette/finder": "~2.4",
+        "nette/forms": "~2.4",
+        "nette/http": "~2.4",
+        "nette/mail": "~2.4",
+        "nette/robot-loader": "3.0 as 2.4",
+        "nette/security": "~2.4",
+        "nette/utils": "~2.4",
+        "latte/latte": "~2.4",
+        "tracy/tracy": "~2.4",
+        "kdyby/translation": "~2.2",
+        "kdyby/console": "^2.5",
+        "sendgrid/sendgrid": "^5.4",
+        "kdyby/facebook": "2.0.x-dev",
+        "pelago/emogrifier": "@dev",
+        "greeny/nette-slack-logger": "^1.2",
+        "webuni/srazy-api-client": "1.0.x-dev",
+        "dms/meetup-api-client": "2.0.x-dev",
+        "drahak/restful": "@dev"
+    },
+    "require-dev": {
+        "nette/tester": "~1.7",
+        "robmorgan/phinx": "^0.7",
+        "phpstan/phpstan": "^0.6",
+        "phpstan/phpstan-nette": "^0.6",
+        "symplify/easy-coding-standard": "2.0-RC2",
+        "symplify/coding-standard": "2.0-RC2",
+        "squizlabs/php_codesniffer": "3.0.0RC4 as 2.8.1",
+        "slevomat/coding-standard": "^2.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "app"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "PHP_CodeSniffer\\": "vendor/squizlabs/php_codesniffer/src"
+        }
+    },
+    "scripts": {
+        "cs": "@check-cs",
+        "fs": "@fix-cs",
+        "check-cs": "vendor/bin/easy-coding-standard check app",
+        "fix-cs": "vendor/bin/easy-coding-standard check app --fix",
+        "phpstan": "vendor/bin/phpstan analyse app --level=0 -c phpstan.neon"
+    }
 }

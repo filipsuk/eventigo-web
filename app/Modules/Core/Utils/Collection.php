@@ -2,34 +2,40 @@
 
 namespace App\Modules\Core\Utils;
 
-
-class Collection
+final class Collection
 {
-	/**
-	 * Get one level array of nested values
-	 */
-	public static function getNestedValues($array): array
-	{
-		$values = [];
-		foreach ($array as $value) {
-			if (is_array($value)) {
-				foreach ($value as $item) {
-					$values[] = $item;
-				}
-			} else {
-				$values[] = $value;
-			}
-		}
-		return $values;
-	}
+    /**
+     * Get one level array of nested values.
+     *
+     * @param mixed[] $array
+     * @return mixed[]
+     */
+    public static function getNestedValues(array $array): array
+    {
+        $values = [];
+        foreach ($array as $value) {
+            if (is_array($value)) {
+                foreach ($value as $item) {
+                    $values[] = $item;
+                }
+            } else {
+                $values[] = $value;
+            }
+        }
 
+        return $values;
+    }
 
-	public static function prefix(array $array, string $prefix): array
-	{
-		foreach ($array as &$item) {
-			$item = $prefix . $item;
-		}
+    /**
+     * @param mixed[] $array
+     * @return mixed[]
+     */
+    public static function prefix(array $array, string $prefix): array
+    {
+        foreach ($array as &$item) {
+            $item = $prefix . $item;
+        }
 
-		return $array;
-	}
+        return $array;
+    }
 }

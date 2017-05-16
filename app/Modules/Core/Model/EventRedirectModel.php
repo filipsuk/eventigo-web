@@ -2,8 +2,10 @@
 
 namespace App\Modules\Core\Model;
 
-
-class EventRedirectModel extends BaseModel
+final class EventRedirectModel extends AbstractBaseModel
 {
-	const TABLE_NAME = 'events_redirects';
+    /**
+     * @var string
+     */
+    protected const TABLE_NAME = 'events_redirects';
 }

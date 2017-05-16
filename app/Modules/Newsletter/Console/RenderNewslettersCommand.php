@@ -9,39 +9,46 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-
 final class RenderNewslettersCommand extends Command
 {
-	private $newsletterService;
-	private $userModel;
+    /**
+     * @var NewsletterService
+     */
+    private $newsletterService;
 
-	public function __construct(NewsletterService $newsletterService, UserModel $userModel)
-	{
-		parent::__construct();
-		$this->newsletterService = $newsletterService;
-		$this->userModel = $userModel;
-	}
+    /**
+     * @var UserModel
+     */
+    private $userModel;
 
-	protected function configure()
-	{
-		$this->setName('newsletters:render')
-			->setDescription('Render users newsletters prepared to send');
-	}
+    public function __construct(NewsletterService $newsletterService, UserModel $userModel)
+    {
+        parent::__construct();
+        $this->newsletterService = $newsletterService;
+        $this->userModel = $userModel;
+    }
 
-	protected function execute(InputInterface $input, OutputInterface $output): int
-	{
-		$users = $this->userModel->getAll()->where('newsletter', true)->fetchAll();
-		$createdCount = 0;
-		foreach($users as $user) {
-			try {
-				$this->newsletterService->createUserNewsletter($user->getPrimary());
-				$createdCount++;
-			} catch (NoEventsFoundException $e) {
-				$output->writeln($e->getMessage());
-			}
-		}
+    protected function configure(): void
+    {
+        $this->setName('newsletters:render')
+            ->setDescription('Render users newsletters prepared to send');
+    }
 
-		$output->writeln($createdCount . ' newsletters have been created');
-		return 0;
-	}
+    protected function execute(InputInterface $input, OutputInterface $output): int
+    {
+        $users = $this->userModel->getAll()->where('newsletter', true)->fetchAll();
+        $createdCount = 0;
+        foreach ($users as $user) {
+            try {
+                $this->newsletterService->createUserNewsletter($user->getPrimary());
+                ++$createdCount;
+            } catch (NoEventsFoundException $e) {
+                $output->writeln($e->getMessage());
+            }
+        }
+
+        $output->writeln($createdCount . ' newsletters have been created');
+
+        return 0;
+    }
 }

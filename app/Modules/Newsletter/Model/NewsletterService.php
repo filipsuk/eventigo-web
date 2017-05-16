@@ -2,12 +2,13 @@
 
 namespace App\Modules\Newsletter\Model;
 
-
 use App\Modules\Core\Model\EventModel;
 use App\Modules\Core\Model\EventTagModel;
 use App\Modules\Core\Model\UserModel;
 use App\Modules\Core\Model\UserTagModel;
+use App\Modules\Core\Utils\DateTime;
 use App\Modules\Newsletter\Model\Entity\Newsletter;
+use BadMethodCallException;
 use Kdyby\Translation\Translator;
 use Nette\Application\IPresenterFactory;
 use Nette\Application\LinkGenerator;
@@ -16,255 +17,296 @@ use Nette\Application\UI\Presenter;
 use Nette\Bridges\ApplicationLatte\Template;
 use Nette\Database\Table\IRow;
 use Nette\DI\Container;
-use Nette\Utils\DateTime;
+use Nette\Utils\DateTime as NetteDateTime;
 use Pelago\Emogrifier;
 use SendGrid;
 use SendGrid\Email;
+use Throwable;
 use Tracy\Debugger;
 
-class NewsletterService
+final class NewsletterService
 {
-	/** @var UserNewsletterModel @inject */
-	public $userNewsletterModel;
+    /**
+     * Path to css file used for css inline of newsletter texts html.
+     *
+     * @var string
+     */
+    private const CSS_FILE_PATH = __DIR__ . DIRECTORY_SEPARATOR . '..'
+        . DIRECTORY_SEPARATOR . 'Presenters' . DIRECTORY_SEPARATOR . 'templates'
+        . DIRECTORY_SEPARATOR . 'Newsletter' . DIRECTORY_SEPARATOR . 'build.css';
 
-	/** @var NewsletterModel @inject */
-	public $newsletterModel;
+    /**
+     * @var string[]
+     */
+    private const NEWSLETTER_UTM_PARAMETERS = [
+        'utm_source' => 'newsletter',
+        'utm_medium' => 'email'
+    ];
 
-	/** @var UserModel @inject */
-	public $userModel;
+    /**
+     * @var UserNewsletterModel @inject
+     */
+    public $userNewsletterModel;
 
-	/** @var UserTagModel @inject */
-	public $userTagModel;
+    /**
+     * @var NewsletterModel @inject
+     */
+    public $newsletterModel;
 
-	/** @var EventModel @inject */
-	public $eventModel;
+    /**
+     * @var UserModel @inject
+     */
+    public $userModel;
 
-	/** @var EventTagModel @inject */
-	public $eventTagModel;
+    /**
+     * @var UserTagModel @inject
+     */
+    public $userTagModel;
 
-	/** @var string */
-	private $apiKey;
+    /**
+     * @var EventModel @inject
+     */
+    public $eventModel;
 
-	/** @var IPresenterFactory @inject */
-	public $presenterFactory;
+    /**
+     * @var EventTagModel @inject
+     */
+    public $eventTagModel;
 
-	/** @var ITemplateFactory @inject */
-	public $templateFactory;
+    /**
+     * @var IPresenterFactory @inject
+     */
+    public $presenterFactory;
 
-	/** @var  Template */
-	protected $template;
+    /**
+     * @var ITemplateFactory @inject
+     */
+    public $templateFactory;
 
-	/** @var  Presenter */
-	protected $presenter;
+    /**
+     * @var  Container @inject
+     */
+    public $context;
 
-	/** @var  Container @inject */
-	public $context;
+    /**
+     * @var  Translator @inject
+     */
+    public $translator;
 
-	/** @var  Translator @inject */
-	public $translator;
+    /**
+     * @var  LinkGenerator @inject
+     */
+    public $linkGenerator;
 
-	/** @var  LinkGenerator @inject*/
-	public $linkGenerator;
+    /**
+     * @var SendGrid @inject
+     */
+    public $sendGrid;
 
-	/** Path to css file used for css inline of newsletter texts html */
-	const CSS_FILE_PATH = __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'Presenters' . DIRECTORY_SEPARATOR .
-	'templates' . DIRECTORY_SEPARATOR . 'Newsletter' . DIRECTORY_SEPARATOR . 'build.css';
+    /**
+     * @var  Template
+     */
+    protected $template;
 
-	const NEWSLETTER_UTM_PARAMETERS = ['utm_source'=>'newsletter', 'utm_medium' => 'email'];
+    /**
+     * @var  Presenter
+     */
+    protected $presenter;
 
-	public function setApiKey(string $apiKey): self
-	{
-		$this->apiKey = $apiKey;
-		return $this;
-	}
+    public function createDefaultNewsletter(): IRow
+    {
+        $parameters = $this->context->getParameters()['newsletter'];
+        // @todo: refactor to use immutability with static ctor or factory
+        $newsletter = new Newsletter;
+        $newsletter->setSubject($parameters['defaultSubject'] ?? '');
+        $newsletter->setFrom($parameters['defaultAuthor']['email'] ?? '');
+        $newsletter->setAuthor($parameters['defaultAuthor']['name'] ?? '');
+        $newsletter->setIntroText('');
+        $newsletter->setOutroText('');
 
-	public function createDefaultNewsletter(): IRow
-	{
-		$parameters = $this->context->getParameters()['newsletter'];
-		$newsletter = new Newsletter();
-		$newsletter->setSubject($parameters['defaultSubject'] ?? '');
-		$newsletter->setFrom($parameters['defaultAuthor']['email'] ?? '');
-		$newsletter->setAuthor($parameters['defaultAuthor']['name'] ?? '');
-		$newsletter->setIntroText('');
-		$newsletter->setOutroText('');
-		return $this->newsletterModel->createNewsletter($newsletter);
-	}
+        return $this->newsletterModel->createNewsletter($newsletter);
+    }
 
-	/**
-	 * Creates new newsletter with content for giver user
-	 *
-	 * @return bool|int|\Nette\Database\Table\IRow
-	 * @throws \App\Modules\Newsletter\Model\NoEventsFoundException
-	 */
-	public function createUserNewsletter(int $userId)
-	{
-		/**
-		 * 1 Build array for template
-		 *  1.1 Generate UserNewsletter hash
-		 *  1.2 Get texts from NewsletterModel
-		 *  1.3 Get events (grouped)
-		 * 2. Render user's newsletter
-		 * 3. Save user's newsletter with UserNewsletterModel
-		 */
-		
-		$newsletter = $this->buildArrayForTemplate($userId); // TODO handle exception
-		$content = $this->renderNewsletterContent($newsletter);
-		$subject = $newsletter['subject'];
-		$from = $newsletter['from'];
+    /**
+     * Creates new newsletter with content for giver user.
+     *
+     * @return bool|int|\Nette\Database\Table\IRow
+     * @throws \App\Modules\Newsletter\Model\NoEventsFoundException
+     */
+    public function createUserNewsletter(int $userId)
+    {
+        /**
+         * 1 Build array for template
+         * 1.1 Generate UserNewsletter hash
+         * 1.2 Get texts from NewsletterModel
+         * 1.3 Get events (grouped)
+         * 2. Render user's newsletter
+         * 3. Save user's newsletter with UserNewsletterModel.
+         */
+        $newsletter = $this->buildArrayForTemplate($userId); // TODO handle exception
+        $content = $this->renderNewsletterContent($newsletter);
+        $subject = $newsletter['subject'];
+        $from = $newsletter['from'];
 
-		return $this->userNewsletterModel->createNewsletter($userId, $from, $subject, $content, $newsletter['hash']);
-	}
+        return $this->userNewsletterModel->createNewsletter($userId, $from, $subject, $content, $newsletter['hash']);
+    }
 
-	/**
-	 * Build array with newsletter text and events for render in template
-	 *
-	 * @throws \App\Modules\Newsletter\Model\NoEventsFoundException
-	 */
-	public function buildArrayForTemplate(int $userId): array
-	{
-		$baseUrl = $this->context->parameters['baseUrl'];
-		$newsletterHash = $this->userNewsletterModel->generateUniqueHash();
-		$userToken = $this->userModel->getUserToken($userId);
-		
-		$newsletter = $this->newsletterModel->getLatest();
-		$newsletter['hash'] = $newsletterHash;
-		$newsletter['eventGroups'] = $this->getGroupedEvents($userId);
-		$newsletter['updatePreferencesUrl'] = $this->linkGenerator->link('Front:Profile:settings', array_merge(['token' => $userToken, 'utm_campaign' => 'newsletterButton'], self::NEWSLETTER_UTM_PARAMETERS));
-		$newsletter['feedUrl'] = $this->linkGenerator->link('Front:Homepage:default', array_merge(['token' => $userToken, 'utm_campaign' => 'newsletterButton'], self::NEWSLETTER_UTM_PARAMETERS));
-		$newsletter['unsubscribeUrl'] = $baseUrl . '/newsletter/unsubscribe/' . $newsletterHash;
+    /**
+     * Build array with newsletter text and events for render in template.
+     *
+     * @throws \App\Modules\Newsletter\Model\NoEventsFoundException
+     * @return mixed[]
+     */
+    public function buildArrayForTemplate(int $userId): array
+    {
+        $baseUrl = $this->context->parameters['baseUrl'];
+        $newsletterHash = $this->userNewsletterModel->generateUniqueHash();
+        $userToken = $this->userModel->getUserToken($userId);
 
-		return $newsletter;
-	}
+        $newsletter = $this->newsletterModel->getLatest();
+        $newsletter['hash'] = $newsletterHash;
+        $newsletter['eventGroups'] = $this->getGroupedEvents($userId);
+        $newsletter['updatePreferencesUrl'] = $this->linkGenerator->link(
+            'Front:Profile:settings',
+            array_merge([
+                'token' => $userToken, 'utm_campaign' => 'newsletterButton'], self::NEWSLETTER_UTM_PARAMETERS
+            )
+        );
+        $newsletter['feedUrl'] = $this->linkGenerator->link(
+            'Front:Homepage:default',
+            array_merge([
+                'token' => $userToken, 'utm_campaign' => 'newsletterButton'], self::NEWSLETTER_UTM_PARAMETERS
+            )
+        );
+        $newsletter['unsubscribeUrl'] = $baseUrl . '/newsletter/unsubscribe/' . $newsletterHash;
 
-	/**
-	 * @param int[] $usersNewslettersIds
-	 */
-	public function sendNewsletters(array $usersNewslettersIds)
-	{
-		$usersNewsletters = $this->userNewsletterModel->getAll()->wherePrimary($usersNewslettersIds)->fetchAll();
-		foreach ($usersNewsletters as $userNewsletter) {
-			$sendGrid = new SendGrid($this->apiKey);
-			$email = new Email;
+        return $newsletter;
+    }
 
-			$email->addTo($userNewsletter->user->email)
-				->setFrom($userNewsletter->from)
-				->setFromName('Eventigo.cz')
-				->setSubject($userNewsletter->subject)
-				->setCategory('newsletter')
-				->setHtml($userNewsletter->content);
-				//TODO: setText() - we should also send text format
+    /**
+     * @param int[] $usersNewslettersIds
+     */
+    public function sendNewsletters(array $usersNewslettersIds): void
+    {
+        $usersNewsletters = $this->userNewsletterModel->getAll()->wherePrimary($usersNewslettersIds)->fetchAll();
+        foreach ($usersNewsletters as $userNewsletter) {
+            $to = new Email(null, $userNewsletter->user->email);
+            $from = new Email('Eventigo.cz', $userNewsletter->from);
+            $subject = $userNewsletter->subject;
+            $content = new SendGrid\Content('text/html', $userNewsletter->content);
+            $mail = new SendGrid\Mail($from, $subject, $to, $content);
+            $mail->addCategory('newsletter');
 
-			try {
-				$sendGrid->send($email);
-				$this->userNewsletterModel->getAll()->wherePrimary($userNewsletter->id)->update([
-					'sent' => new DateTime,
-				]);
+            try {
+                $this->sendGrid->client->mail()->send()->post($mail);
+                $this->userNewsletterModel->getAll()->wherePrimary($userNewsletter->id)->update([
+                    'sent' => new NetteDateTime,
+                ]);
+            } catch (Throwable $throwable) {
+                // TODO log unsuccessful email send
+            }
+        }
+    }
 
-			} catch (SendGrid\Exception $e) {
-				// TODO log unsuccessful email send
-			}
-		}
-	}
+    /**
+     * Inline CSS styles of intro and outro text in newsletter
+     * TODO: Move this to admin when saving new newsletter.
+     *
+     * @param mixed[] $newsletter
+     * @return mixed
+     */
+    public static function inlineCss(array $newsletter)
+    {
+        $css = file_get_contents(self::CSS_FILE_PATH);
+        $emogrifier = new Emogrifier;
+        $emogrifier->setCss($css);
 
-	/**
-	 * Get events for user newsletter.
-	 * Events are in groups like 'Next week', 'You may like' etc.
-	 *
-	 * @throws \App\Modules\Newsletter\Model\NoEventsFoundException
-	 */
-	private function getGroupedEvents(int $userId): array
-	{
-		$from = new DateTime('next monday');
-		$to = $from->modifyClone('+ 1 week');
-		$userTags = $this->userTagModel->getUserTagIds($userId);
+        try {
+            // Inline CSS of intro text
+            if (! empty($newsletter['intro_text'])) {
+                $emogrifier->setHtml($newsletter['intro_text']);
+                $newsletter['intro_text'] = $emogrifier->emogrifyBodyContent();
+            }
 
-		$returnArray = [
-			[
-				'title' => $this->translator->trans('newsletter.email.events.nextWeek'),
-				'events' => []
-			],
-//			[
-//				'title' => 'Další nově přidané akce', //TODO posilat dalsi akce
-//				'events' => [
-//					[
-//						'name' => 'Skrz DEV cirkus',
-//						'date' => 'Pondělí 25. 4. 2016, 18:00',
-//						'hashtags' => '#programovani #php #nette',
-//						'url' => '#'
-//					],
-//				]
-//			]
-		];
+            // Inline CSS of outro text
+            if (! empty($newsletter['outro_text'])) {
+                $emogrifier->setHtml($newsletter['outro_text']);
+                $newsletter['outro_text'] = $emogrifier->emogrifyBodyContent();
+            }
+        } catch (BadMethodCallException $e) {
+            Debugger::log($e->getMessage());
+        }
 
-		$nextWeekEvents = $this->eventModel->getAllWithDates($userTags, $from, $to);
-		
-		if (!$this->context->parameters['newsletter']['sendNewsletterWithNoEvents'] && count($nextWeekEvents) === 0) {
-			throw new NoEventsFoundException("No events found for user $userId!");
-		}
+        return $newsletter;
+    }
 
-		foreach ($nextWeekEvents as $event) {
-			$hashtags = $this->eventTagModel->getEventTagsString($event->id);
+    /**
+     * Get events for user newsletter.
+     * Events are in groups like 'Next week', 'You may like' etc.
+     *
+     * @throws \App\Modules\Newsletter\Model\NoEventsFoundException
+     * @return mixed[][]
+     */
+    private function getGroupedEvents(int $userId): array
+    {
+        $from = new NetteDateTime('next monday');
+        $to = $from->modifyClone('+ 1 week');
+        $userTags = $this->userTagModel->getUserTagIds($userId);
 
-			$returnArray[0]['events'][] = [
-				'name' => $event->name,
-				'date' => $event->start,
-				'hashtags' => $hashtags,
-				'url' => $this->linkGenerator->link("Front:Redirect:", [$event->origin_url])
-			];
-		}
+        $returnArray = [
+            [
+                'title' => $this->translator->trans('newsletter.email.events.nextWeek'),
+                'events' => []
+            ],
+            //TODO posilat dalsi akce
+        ];
 
-		return $returnArray;
-	}
+        $nextWeekEvents = $this->eventModel->getAllWithDates($userTags, $from, $to);
 
-	/**
-	 * Render newsletter content from template (same thing as NewsletterPreseneter:dynamic)
-	 */
-	private function renderNewsletterContent(array $newsletter): string
-	{
-		$this->template = $this->templateFactory->createTemplate();
-		$this->template->addFilter('datetime', function (DateTime $a, DateTime $b = null) {
-			\App\Modules\Core\Utils\DateTime::setTranslator($this->translator);
-			return \App\Modules\Core\Utils\DateTime::eventsDatetimeFilter($a, $b);
-		});
-		
-		$this->template->newsletter = self::inlineCss($newsletter);
+        if (! $this->context->parameters['newsletter']['sendNewsletterWithNoEvents'] && count($nextWeekEvents) === 0) {
+            throw new NoEventsFoundException("No events found for user $userId!");
+        }
 
-		$templateFile = __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'Presenters' . DIRECTORY_SEPARATOR .
-			'templates' . DIRECTORY_SEPARATOR . 'Newsletter' . DIRECTORY_SEPARATOR . 'dynamic.latte';
-		$this->template->setFile($templateFile);
+        foreach ($nextWeekEvents as $event) {
+            $hashtags = $this->eventTagModel->getEventTagsString($event->id);
 
-		$this->template->getLatte()->addProvider('uiControl', $this->linkGenerator); // pro Latte 2.4
+            $returnArray[0]['events'][] = [
+                'name' => $event->name,
+                'date' => $event->start,
+                'hashtags' => $hashtags,
+                'url' => $this->linkGenerator->link('Front:Redirect:', [$event->origin_url])
+            ];
+        }
 
-		return $this->template->getLatte()->renderToString($this->template->getFile(), $this->template->getParameters());
-	}
+        return $returnArray;
+    }
 
-	/**
-	 * Inline CSS styles of intro and outro text in newsletter
-	 * TODO: Move this to admin when saving new newsletter
-	 * @return mixed
-	 */
-	public static function inlineCss(array $newsletter)
-	{
-		$css = file_get_contents(self::CSS_FILE_PATH);
-		$emogrifier = new Emogrifier();
-		$emogrifier->setCss($css);
+    /**
+     * Render newsletter content from template (same thing as NewsletterPreseneter:dynamic).
+     *
+     * @param mixed[] $newsletter
+     */
+    private function renderNewsletterContent(array $newsletter): string
+    {
+        $this->template = $this->templateFactory->createTemplate();
+        $this->template->addFilter('datetime', function (NetteDateTime $a, ?NetteDateTime $b = null) {
+            DateTime::setTranslator($this->translator);
 
-		try {
-			// Inline CSS of intro text
-			if (!empty($newsletter['intro_text'])) {
-				$emogrifier->setHtml($newsletter['intro_text']);
-				$newsletter['intro_text'] = $emogrifier->emogrifyBodyContent();
-			}
+            return DateTime::eventsDatetimeFilter($a, $b);
+        });
 
-			// Inline CSS of outro text
-			if (!empty($newsletter['outro_text'])) {
-				$emogrifier->setHtml($newsletter['outro_text']);
-				$newsletter['outro_text'] = $emogrifier->emogrifyBodyContent();
-			}
+        $this->template->newsletter = self::inlineCss($newsletter);
 
-		} catch (\BadMethodCallException $e) {
-			Debugger::log($e->getMessage());
-		}
-		return $newsletter;
-	}
+        $templateFile = __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'Presenters'
+            . DIRECTORY_SEPARATOR . 'templates' . DIRECTORY_SEPARATOR . 'Newsletter'
+            . DIRECTORY_SEPARATOR . 'dynamic.latte';
+        $this->template->setFile($templateFile);
+
+        $this->template->getLatte()->addProvider('uiControl', $this->linkGenerator); // pro Latte 2.4
+
+        // @todo: use latte directly
+        return $this->template->getLatte()->renderToString(
+            $this->template->getFile(), $this->template->getParameters()
+        );
+    }
 }

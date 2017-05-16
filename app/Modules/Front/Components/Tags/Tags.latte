@@ -14,7 +14,7 @@
 
         {* Tags groups *}
         {foreach $form[tags]->getComponents() as $tagGroupName => $tagsGroup}
-            {? if ($tagGroupName === 'top') continue;}
+            {php if ($tagGroupName === 'top') continue;}
 
             {if $iterator->getCounter() % $columnsPerRow === 1 && $iterator->getCounter() > 1}
             </div> {* // div.row *}

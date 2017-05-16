@@ -2,27 +2,29 @@
 
 namespace App\Modules\Front\Components\EventsList;
 
-use App\Modules\Core\Components\BaseControl;
+use App\Modules\Core\Components\AbstractBaseControl;
 use App\Modules\Front\Model\EventsIterator;
 use Kdyby\Translation\Translator;
 
-
-class EventsList extends BaseControl
+final class EventsList extends AbstractBaseControl
 {
-	/** @var array */
-	private $events;
+    /**
+     * @var mixed[]
+     */
+    private $events;
 
+    /**
+     * @param mixed[] $events
+     */
+    public function __construct(Translator $translator, array $events)
+    {
+        parent::__construct($translator);
+        $this->events = $events;
+    }
 
-	public function __construct(Translator $translator, array $events)
-	{
-		parent::__construct($translator);
-		$this->events = $events;
-	}
-
-
-	public function render()
-	{
-		$this->template->events = new EventsIterator($this->events);
-		$this->template->render();
-	}
+    public function render(): void
+    {
+        $this->template->events = new EventsIterator($this->events);
+        $this->template->render();
+    }
 }

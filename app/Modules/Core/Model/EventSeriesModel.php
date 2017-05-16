@@ -2,8 +2,10 @@
 
 namespace App\Modules\Core\Model;
 
-
-class EventSeriesModel extends BaseModel
+final class EventSeriesModel extends AbstractBaseModel
 {
-	const TABLE_NAME = 'events_series';
+    /**
+     * @var string
+     */
+    protected const TABLE_NAME = 'events_series';
 }

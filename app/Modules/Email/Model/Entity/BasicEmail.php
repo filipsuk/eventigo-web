@@ -2,77 +2,79 @@
 
 namespace App\Modules\Email\Model\Entity;
 
-
 use Nette\Http\Url;
 
 /**
- * Class BasicEmail extends Email for use in transactional emails with intro text, link button and footer text.
- * 
- * @package App\Modules\Email\Model\Entity
+ * Class BasicEmail extends Email for use in transactional emails with intro text,
+ * link button and footer text.
  */
-class BasicEmail extends Email
+final class BasicEmail extends Email
 {
-	/**
-	 * @var string
-	 */
-	private $introText;
+    /**
+     * @var string
+     */
+    private $introText;
 
-	/**
-	 * @var string
-	 */
-	private $buttonText;
+    /**
+     * @var string
+     */
+    private $buttonText;
 
-	/**
-	 * @var Url
-	 */
-	private $buttonUrl;
+    /**
+     * @var Url
+     */
+    private $buttonUrl;
 
-	/**
-	 * @var string
-	 */
-	private $footerText;
+    /**
+     * @var string
+     */
+    private $footerText;
 
-	public function getIntroText(): string
-	{
-		return $this->introText;
-	}
+    public function getIntroText(): string
+    {
+        return $this->introText;
+    }
 
-	public function setIntroText(string $introText): BasicEmail
-	{
-		$this->introText = $introText;
-		return $this;
-	}
+    public function setIntroText(string $introText): BasicEmail
+    {
+        $this->introText = $introText;
 
-	public function getButtonText(): string
-	{
-		return $this->buttonText;
-	}
+        return $this;
+    }
 
-	public function setButtonText(string $buttonText): self
-	{
-		$this->buttonText = $buttonText;
-		return $this;
-	}
+    public function getButtonText(): string
+    {
+        return $this->buttonText;
+    }
 
-	public function getButtonUrl(): Url
-	{
-		return $this->buttonUrl;
-	}
+    public function setButtonText(string $buttonText): self
+    {
+        $this->buttonText = $buttonText;
 
-	public function setButtonUrl(Url $buttonUrl): self
-	{
-		$this->buttonUrl = $buttonUrl;
-		return $this;
-	}
+        return $this;
+    }
 
-	public function getFooterText(): string
-	{
-		return $this->footerText;
-	}
+    public function getButtonUrl(): Url
+    {
+        return $this->buttonUrl;
+    }
 
-	public function setFooterText(string $footerText): BasicEmail
-	{
-		$this->footerText = $footerText;
-		return $this;
-	}
+    public function setButtonUrl(Url $buttonUrl): self
+    {
+        $this->buttonUrl = $buttonUrl;
+
+        return $this;
+    }
+
+    public function getFooterText(): string
+    {
+        return $this->footerText;
+    }
+
+    public function setFooterText(string $footerText): BasicEmail
+    {
+        $this->footerText = $footerText;
+
+        return $this;
+    }
 }

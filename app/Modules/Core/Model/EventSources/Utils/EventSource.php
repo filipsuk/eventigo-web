@@ -3,27 +3,29 @@
 namespace App\Modules\Core\Model\EventSources\Utils;
 
 use Nette\Http\Url;
+use Throwable;
 
-
-class EventSource
+final class EventSource
 {
-	const SOURCES = [
-		'facebook.com',
-		'www.facebook.com',
-		'srazy.info',
-		'meetup.com',
-		'www.meetup.com',
-	];
+    /**
+     * @var string[]
+     */
+    private const SOURCES = [
+        'facebook.com',
+        'www.facebook.com',
+        'srazy.info',
+        'meetup.com',
+        'www.meetup.com',
+    ];
 
+    public static function isCrawlable(string $url): bool
+    {
+        try {
+            $host = (new Url($url))->getHost();
 
-	public static function isCrawlable(string $url): bool
-	{
-		try {
-			$host = (new Url($url))->getHost();
-			return in_array($host, self::SOURCES, true);
-
-		} catch (\Exception $e) {
-			return false;
-		}
-	}
+            return in_array($host, self::SOURCES, true);
+        } catch (Throwable $throwable) {
+            return false;
+        }
+    }
 }

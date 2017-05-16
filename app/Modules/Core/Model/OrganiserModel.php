@@ -2,8 +2,10 @@
 
 namespace App\Modules\Core\Model;
 
-
-class OrganiserModel extends BaseModel
+final class OrganiserModel extends AbstractBaseModel
 {
-	const TABLE_NAME = 'organisers';
+    /**
+     * @var string
+     */
+    protected const TABLE_NAME = 'organisers';
 }

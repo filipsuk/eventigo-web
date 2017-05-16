@@ -3,15 +3,17 @@
 namespace App\Modules\Core\Components\Form;
 
 use Nette\Application\UI\Form as NativeForm;
+use Nette\Forms\Rendering\DefaultFormRenderer;
 
-class Form extends NativeForm
+final class Form extends NativeForm
 {
-	public function __construct(\Nette\ComponentModel\IContainer $parent = NULL, $name = NULL)
-	{
-		parent::__construct($parent, $name);
+    public function __construct()
+    {
+        parent::__construct();
 
-		$renderer = $this->getRenderer();
-		$renderer->wrappers['label']['container'] = 'th class="th-label"';
-		$renderer->wrappers['control']['container'] = 'td class="td-control"';
-	}
+        /** @var DefaultFormRenderer $renderer */
+        $renderer = $this->getRenderer();
+        $renderer->wrappers['label']['container'] = 'th class="th-label"';
+        $renderer->wrappers['control']['container'] = 'td class="td-control"';
+    }
 }

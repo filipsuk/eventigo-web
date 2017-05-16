@@ -2,8 +2,7 @@
 
 namespace App\Modules\Admin\Components\SourceForm;
 
-
-interface SourceFormFactory
+interface SourceFormFactoryInterface
 {
-	public function create(): SourceForm;
+    public function create(): SourceForm;
 }

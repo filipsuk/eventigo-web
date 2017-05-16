@@ -12,67 +12,62 @@ use Nette\Bridges\ApplicationLatte\Template;
 use Nette\Http\Url;
 use SendGrid;
 use SendGrid\Email;
+use Throwable;
 
-
-class EmailService
+final class EmailService
 {
-	/** @var Translator @inject */
-	public $translator;
+    /**
+     * @var Translator @inject
+     */
+    public $translator;
 
-	/** @var LinkGenerator @inject */
-	public $linkGenerator;
+    /**
+     * @var LinkGenerator @inject
+     */
+    public $linkGenerator;
 
-	/** @var ITemplateFactory @inject */
-	public $templateFactory;
+    /**
+     * @var ITemplateFactory @inject
+     */
+    public $templateFactory;
 
-	/** @var string */
-	private $apiKey;
+    /**
+     * @var SendGrid @inject
+     */
+    public $sendGrid;
 
+    public function sendLogin(string $emailTo, string $token): void
+    {
+        $to = new Email(null, $emailTo);
+        $from = new Email('Eventigo.cz', 'prihlaseni@eventigo.cz');
+        $subject = $this->translator->translate('email.login.subject');
+        $content = new SendGrid\Content('text/html', $this->renderLoginEmail($token));
 
-	public function setApiKey(string $apiKey): self
-	{
-		$this->apiKey = $apiKey;
-		return $this;
-	}
+        $mail = new SendGrid\Mail($from, $subject, $to, $content);
+        $mail->addCategory('emailLogin');
 
+        try {
+            $this->sendGrid->client->mail()->send()->post($mail);
+        } catch (Throwable $throwable) {
+            // TODO log unsuccessful email send
+        }
+    }
 
-	public function sendLogin(string $emailTo, string $token)
-	{
-		$sendGrid = new SendGrid($this->apiKey);
-		$email = new Email;
+    public function renderLoginEmail(string $token): string
+    {
+        $email = new BasicEmail;
+        $email->setIntroText($this->translator->translate('email.login.text'));
+        $email->setButtonText($this->translator->translate('email.login.loginButton'));
+        $email->setButtonUrl(new Url($this->linkGenerator->link('Front:Homepage:default', ['token' => $token])));
+        $email->setFooterText($this->translator->translate('email.login.footerText'));
 
-		$content = $this->renderLoginEmail($token);
+        /** @var Template $template */
+        $template = $this->templateFactory->createTemplate();
+        Filters::setTranslator($this->translator);
+        $template->addFilter(null, [Filters::class, 'loader']);
 
-		$email->addTo($emailTo)
-			->setFrom('prihlaseni@eventigo.cz')
-			->setFromName('Eventigo.cz')
-			->setSubject($this->translator->translate('email.login.subject'))
-			->setCategory('emailLogin')
-			->setHtml($content);
-
-		try {
-			$sendGrid->send($email);
-
-		} catch (SendGrid\Exception $e) {
-			// TODO log unsuccessful email send
-		}
-	}
-
-
-	public function renderLoginEmail(string $token): string
-	{
-		$email = new BasicEmail;
-		$email->setIntroText($this->translator->translate('email.login.text'));
-		$email->setButtonText($this->translator->translate('email.login.loginButton'));
-		$email->setButtonUrl(new Url($this->linkGenerator->link('Front:Homepage:default', ['token' => $token])));
-		$email->setFooterText($this->translator->translate('email.login.footerText'));
-
-		/** @var Template $template */
-		$template = $this->templateFactory->createTemplate();
-		Filters::setTranslator($this->translator);
-		$template->addFilter(null, [Filters::class, 'loader']);
-		return $template->getLatte()->renderToString(EmailPresenter::BASIC_EMAIL_TEMPLATE_FILE, [
-			'email' => $email,
-		]);
-	}
+        return $template->getLatte()->renderToString(EmailPresenter::BASIC_EMAIL_TEMPLATE_FILE, [
+            'email' => $email,
+        ]);
+    }
 }

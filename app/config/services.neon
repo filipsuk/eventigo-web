@@ -6,9 +6,8 @@ services:
 	- App\Modules\Core\Model\UserTagModel
 	-
 		class: App\Modules\Newsletter\Model\NewsletterService
-		setup:
-			- setApiKey(%SendGrid.ApiKey%)
 		inject: yes
+	- SendGrid(%SendGrid.ApiKey%)
 	- App\Modules\Newsletter\Model\UserNewsletterModel
 	- App\Modules\Newsletter\Model\NewsletterModel
 	- App\Modules\Core\Model\EventTagModel
@@ -28,8 +27,6 @@ services:
 		inject: yes
 	-
 		class: App\Modules\Email\Model\EmailService
-		setup:
-			- setApiKey(%SendGrid.ApiKey%)
 		inject: yes
 	- App\Modules\Core\Model\EventSources\Srazy\SrazyEventSource
 	-

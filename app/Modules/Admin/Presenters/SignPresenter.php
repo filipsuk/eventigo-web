@@ -2,54 +2,55 @@
 
 namespace App\Modules\Admin\Presenters;
 
-use App\Modules\Admin\Components\SignIn\SignInFormFactory;
+use App\Modules\Admin\Components\SignIn\SignInForm;
+use App\Modules\Admin\Components\SignIn\SignInFormFactoryInterface;
 use Nette\Application\UI\Presenter;
 
-
-class SignPresenter extends Presenter
+final class SignPresenter extends Presenter
 {
-	/** @var \Kdyby\Translation\Translator @inject */
-	public $translator;
+    /**
+     * @var \Kdyby\Translation\Translator @inject
+     */
+    public $translator;
 
-	/** @var SignInFormFactory @inject */
-	public $signInFormFactory;
+    /**
+     * @var SignInFormFactoryInterface @inject
+     */
+    public $signInFormFactory;
 
+    public function actionIn(): void
+    {
+        if ($this->user->isLoggedIn() && $this->user->isInRole('admin')) {
+            $this->redirect('Dashboard:');
+        }
+    }
 
-	public function actionIn()
-	{
-		if ($this->getUser()->isLoggedIn() && $this->getUser()->isInRole('admin')) {
-			$this->redirect('Dashboard:');
-		}
-	}
+    public function actionOut(): void
+    {
+        if (! $this->user->isLoggedIn()) {
+            $this->redirect('in');
+        }
 
+        if ($this->user->isInRole('admin')) {
+            $this->user->logout(true);
+        }
 
-	protected function createComponentSignInForm()
-	{
-		$control = $this->signInFormFactory->create();
+        $this->redirect('in');
+    }
 
-		$control->onLoggedIn[] = function() {
-			$this->redirect('Dashboard:');
-		};
+    protected function createComponentSignInForm(): SignInForm
+    {
+        $control = $this->signInFormFactory->create();
 
-		$control->onIncorrectLogIn[] = function() {
-			$this->flashMessage($this->translator->translate('admin.signInForm.incorrectLogIn'), 'danger');
-			$this->redirect('this');
-		};
+        $control->onLoggedIn[] = function () {
+            $this->redirect('Dashboard:');
+        };
 
-		return $control;
-	}
+        $control->onIncorrectLogIn[] = function () {
+            $this->flashMessage($this->translator->translate('admin.signInForm.incorrectLogIn'), 'danger');
+            $this->redirect('this');
+        };
 
-
-	public function actionOut()
-	{
-		if (!$this->getUser()->isLoggedIn()) {
-			$this->redirect('in');
-		}
-
-		if ($this->getUser()->isInRole('admin')) {
-			$this->getUser()->logout(true);
-		}
-
-		$this->redirect('in');
-	}
+        return $control;
+    }
 }

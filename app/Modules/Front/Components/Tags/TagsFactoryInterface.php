@@ -2,8 +2,7 @@
 
 namespace App\Modules\Front\Components\Tags;
 
-
-interface ITagsFactory
+interface TagsFactoryInterface
 {
-	public function create(): Tags;
+    public function create(): Tags;
 }

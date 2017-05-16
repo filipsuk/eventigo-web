@@ -2,8 +2,7 @@
 
 namespace App\Modules\Admin\Components\SignIn;
 
-
-interface SignInFormFactory
+interface SignInFormFactoryInterface
 {
-	public function create(): SignInForm;
+    public function create(): SignInForm;
 }

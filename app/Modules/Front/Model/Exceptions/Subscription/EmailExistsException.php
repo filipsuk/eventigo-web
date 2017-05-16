@@ -2,7 +2,8 @@
 
 namespace App\Modules\Front\Model\Exceptions\Subscription;
 
+use Exception;
 
-class EmailExistsException extends \Exception
+final class EmailExistsException extends Exception
 {
 }

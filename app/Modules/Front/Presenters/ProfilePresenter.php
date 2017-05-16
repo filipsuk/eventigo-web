@@ -6,81 +6,94 @@ use App\Modules\Core\Model\EventModel;
 use App\Modules\Core\Model\TagModel;
 use App\Modules\Core\Model\UserModel;
 use App\Modules\Core\Model\UserTagModel;
-use App\Modules\Front\Components\EventsList\EventsListFactory;
-use App\Modules\Front\Components\Settings\SettingsFactory;
-use App\Modules\Front\Components\Tags\ITagsFactory;
+use App\Modules\Core\Presenters\AbstractBasePresenter;
+use App\Modules\Front\Components\EventsList\EventsListFactoryInterface;
+use App\Modules\Front\Components\Settings\Settings;
+use App\Modules\Front\Components\Settings\SettingsFactoryInterface;
+use App\Modules\Front\Components\Tags\Tags;
+use App\Modules\Front\Components\Tags\TagsFactoryInterface;
 
-
-class ProfilePresenter extends \App\Modules\Core\Presenters\BasePresenter
+final class ProfilePresenter extends AbstractBasePresenter
 {
-	/** @var EventModel @inject */
-	public $eventModel;
+    /**
+     * @var EventModel @inject
+     */
+    public $eventModel;
 
-	/** @var TagModel @inject */
-	public $tagModel;
+    /**
+     * @var TagModel @inject
+     */
+    public $tagModel;
 
-	/** @var ITagsFactory @inject */
-	public $tags;
+    /**
+     * @var TagsFactoryInterface @inject
+     */
+    public $tagsFactory;
 
-	/** @var EventsListFactory @inject */
-	public $eventsListFactory;
+    /**
+     * @var EventsListFactoryInterface @inject
+     */
+    public $eventsListFactory;
 
-	/** @var SettingsFactory @inject */
-	public $settingsFactory;
+    /**
+     * @var SettingsFactoryInterface @inject
+     */
+    public $settingsFactory;
 
-	/** @var UserTagModel @inject */
-	public $userTagModel;
+    /**
+     * @var UserTagModel @inject
+     */
+    public $userTagModel;
 
-	/** @var UserModel @inject */
-	public $userModel;
+    /**
+     * @var UserModel @inject
+     */
+    public $userModel;
 
-	protected function startup()
-	{
-		parent::startup();
+    public function actionSettings(?string $token = null): void
+    {
+        // Try to log in the user with provided token
+        if ($token) {
+            $this->loginWithToken($token);
+        }
+    }
 
-		if (!$this->getUser()->isLoggedIn()) {
-			$this->flashMessage($this->translator->translate('front.profile.settings.notLoggedIn'));
-			$this->redirect('Homepage:default');
-		}
-	}
+    public function renderSettings(): void
+    {
+        $this->template->userData = $this->userModel->getAll()
+            ->wherePrimary($this->getUser()->getId())->fetch();
 
-	public function actionSettings($token = null)
-	{
-		// Try to log in the user with provided token
-		if ($token) {
-			$this->loginWithToken($token);
-		}
-	}
+        $userTags = $this->userTagModel->getUsersTags($this->user->getId());
+        $this['tags']['form']->setDefaults(['tags' => $userTags]);
 
+        $user = $this->userModel->getAll()->wherePrimary($this->getUser()->getId())->fetch();
+        $this['settings-form']->setDefaults(['newsletter' => $user->newsletter]);
+    }
 
-	public function renderSettings()
-	{
-		$this->template->userData = $this->userModel->getAll()
-			->wherePrimary($this->getUser()->getId())->fetch();
+    protected function startup(): void
+    {
+        parent::startup();
 
-		$userTags = $this->userTagModel->getUsersTags($this->user->getId());
-		$this['tags']['form']->setDefaults(['tags' => $userTags]);
+        if (! $this->getUser()->isLoggedIn()) {
+            $this->flashMessage($this->translator->translate('front.profile.settings.notLoggedIn'));
+            $this->redirect('Homepage:default');
+        }
+    }
 
-		$user = $this->userModel->getAll()->wherePrimary($this->getUser()->getId())->fetch();
-		$this['settings-form']->setDefaults(['newsletter' => $user->newsletter]);
-	}
+    protected function createComponentTags(): Tags
+    {
+        $control = $this->tagsFactory->create();
 
+        $control->onChange[] = function () {
+            $this['tags']->redrawControl();
+            $this->redrawControl('flash-messages');
+        };
 
-	protected function createComponentTags()
-	{
-		$control = $this->tags->create();
+        return $control;
+    }
 
-		$control->onChange[] = function () {
-			$this['tags']->redrawControl();
-			$this->redrawControl('flash-messages');
-		};
-
-		return $control;
-	}
-
-
-	protected function createComponentSettings()
-	{
-		return $this->settingsFactory->create();
-	}
+    protected function createComponentSettings(): Settings
+    {
+        return $this->settingsFactory->create();
+    }
 }

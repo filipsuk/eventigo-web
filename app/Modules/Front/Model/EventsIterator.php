@@ -2,62 +2,73 @@
 
 namespace App\Modules\Front\Model;
 
-use App\Modules\Core\Model\Iterator;
+use App\Modules\Core\Model\AbstractIterator;
+use Countable;
 
-
-class EventsIterator extends Iterator implements \Countable
+final class EventsIterator extends AbstractIterator implements Countable
 {
-	private $thisWeek = FALSE;
+    /**
+     * @var bool
+     */
+    private $thisWeek = FALSE;
 
-	private $thisMonth = FALSE;
+    /**
+     * @var bool
+     */
+    private $thisMonth = FALSE;
 
-	private $nextMonth = FALSE;
+    /**
+     * @var bool
+     */
+    private $nextMonth = FALSE;
 
-	private $upcoming = FALSE;
+    /**
+     * @var bool
+     */
+    private $upcoming = FALSE;
 
+    public function drawThisWeekTitle(): bool
+    {
+        if (! $this->thisWeek && $this->current()->thisWeek) {
+            return $this->thisWeek = TRUE;
+        }
 
-	public function drawThisWeekTitle(): bool
-	{
-		if (!$this->thisWeek && $this->current()->thisWeek) {
-			return $this->thisWeek = TRUE;
-		} else {
-			return FALSE;
-		}
-	}
+        return FALSE;
+    }
 
+    public function drawThisMonthTitle(): bool
+    {
+        if (! $this->thisMonth && $this->current()->thisMonth && ! $this->current()->thisWeek) {
+            return $this->thisMonth = TRUE;
+        }
 
-	public function drawThisMonthTitle(): bool
-	{
-		if (!$this->thisMonth && $this->current()->thisMonth && !$this->current()->thisWeek) {
-			return $this->thisMonth = TRUE;
-		} else {
-			return FALSE;
-		}
-	}
+        return FALSE;
+    }
 
+    public function drawNextMonthTitle(): bool
+    {
+        if (! $this->nextMonth && $this->current()->nextMonth
+            && ! $this->current()->thisWeek && ! $this->current()->thisMonth
+        ) {
+            return $this->nextMonth = TRUE;
+        }
 
-	public function drawNextMonthTitle(): bool
-	{
-		if (!$this->nextMonth && $this->current()->nextMonth && !$this->current()->thisWeek && !$this->current()->thisMonth) {
-			return $this->nextMonth = TRUE;
-		} else {
-			return FALSE;
-		}
-	}
+        return FALSE;
+    }
 
+    public function drawUpcomingTitle(): bool
+    {
+        if (! $this->upcoming && ! $this->current()->thisWeek
+            && ! $this->current()->thisMonth && ! $this->current()->nextMonth
+        ) {
+            return $this->upcoming = TRUE;
+        }
 
-	public function drawUpcomingTitle(): bool
-	{
-		if (!$this->upcoming && !$this->current()->thisWeek && !$this->current()->thisMonth && !$this->current()->nextMonth) {
-			return $this->upcoming = TRUE;
-		} else {
-			return FALSE;
-		}
-	}
+        return FALSE;
+    }
 
-
-	public function count(): int
-	{
-		return count($this->data);
-	}
+    public function count(): int
+    {
+        return count($this->data);
+    }
 }

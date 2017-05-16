@@ -8,19 +8,20 @@ use Drahak\Restful\IResource;
 
 final class EventsPresenter extends ResourcePresenter
 {
-	/** @var EventApiService */
-	private $eventApiService;
+    /**
+     * @var EventApiService
+     */
+    private $eventApiService;
 
-	public function __construct(EventApiService $eventApiService)
-	{
-		parent::__construct();
-		$this->eventApiService = $eventApiService;
-	}
+    public function __construct(EventApiService $eventApiService)
+    {
+        parent::__construct();
+        $this->eventApiService = $eventApiService;
+    }
 
-	public function actionRead()
-	{
-		$this->resource = $this->eventApiService->getEvents();
-		$this->sendResource(IResource::JSON);
-	}
-
+    public function actionRead(): void
+    {
+        $this->resource = $this->eventApiService->getEvents();
+        $this->sendResource(IResource::JSON);
+    }
 }

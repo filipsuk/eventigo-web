@@ -2,113 +2,119 @@
 
 namespace App\Modules\Admin\Presenters;
 
-use App\Modules\Admin\Components\EventForm\EventFormFactory;
-use App\Modules\Admin\Components\EventsTable\NotApprovedEventsTableFactory;
+use App\Modules\Admin\Components\EventForm\EventForm;
+use App\Modules\Admin\Components\EventForm\EventFormFactoryInterface;
+use App\Modules\Admin\Components\EventsTable\NotApprovedEventsTable;
+use App\Modules\Admin\Components\EventsTable\NotApprovedEventsTableFactoryInterface;
 use App\Modules\Admin\Model\SourceService;
 use App\Modules\Core\Model\EventModel;
+use App\Modules\Core\Utils\DateTime as EventigoDateTime;
 use Nette\Application\Request;
 use Nette\Utils\DateTime;
 
-
-class EventsPresenter extends BasePresenter
+final class EventsPresenter extends AbstractBasePresenter
 {
-	/** @var EventFormFactory @inject */
-	public $eventFormFactory;
+    /**
+     * @var EventFormFactoryInterface @inject
+     */
+    public $eventFormFactory;
 
-	/** @var EventModel @inject */
-	public $eventModel;
+    /**
+     * @var EventModel @inject
+     */
+    public $eventModel;
 
-	/** @var SourceService @inject */
-	public $sourceService;
+    /**
+     * @var SourceService @inject
+     */
+    public $sourceService;
 
-	/** @var NotApprovedEventsTableFactory @inject */
-	public $notApprovedEventsTableFactory;
+    /**
+     * @var NotApprovedEventsTableFactoryInterface @inject
+     */
+    public $notApprovedEventsTableFactory;
 
+    public function actionUpdate(int $id): void
+    {
+        $event = $this->eventModel->getAll()
+            ->wherePrimary($id)
+            ->fetch();
 
-	public function actionUpdate($id)
-	{
-		$event = $this->eventModel->getAll()->wherePrimary($id)->fetch();
+        $defaults = $event->toArray();
+        $defaults['start'] = DateTime::from($defaults['start'])->format(EventigoDateTime::DATETIME_FORMAT);
+        $defaults['end'] = $defaults['end']
+            ? DateTime::from($defaults['end'])->format(EventigoDateTime::DATETIME_FORMAT)
+            : null;
+        $defaults['tags'] = [];
+        foreach ($event->related('events_tags') as $eventTag) {
+            $defaults['tags'][] = [
+                'code' => $eventTag->tag->code,
+                'rate' => $eventTag->rate,
+            ];
+        }
 
-		$defaults = $event->toArray();
-		$defaults['start'] = DateTime::from($defaults['start'])->format(\App\Modules\Core\Utils\DateTime::DATETIME_FORMAT);
-		$defaults['end'] = $defaults['end']
-			? DateTime::from($defaults['end'])->format(\App\Modules\Core\Utils\DateTime::DATETIME_FORMAT)
-			: null;
-		$defaults['tags'] = [];
-		foreach ($event->related('events_tags') as $eventTag) {
-			$defaults['tags'][] = [
-				'code' => $eventTag->tag->code,
-				'rate' => $eventTag->rate,
-			];
-		}
+        if ($this->getRequest()->getMethod() === Request::FORWARD) {
+            $defaults['state'] = EventModel::STATE_APPROVED;
+        }
 
-		if ($this->getRequest()->getMethod() === Request::FORWARD) {
-			$defaults['state'] = EventModel::STATE_APPROVED;
-		}
+        // Set image from previous event in series if none
+        if (! $defaults['image'] && $event['event_series_id']) {
+            $previousEvent = $this->eventModel->findPreviousEvent($event['event_series_id']);
+            if ($previousEvent) {
+                $defaults['image'] = $previousEvent->image;
+            }
+        }
 
-		// Set image from previous event in series if none
-		if (!$defaults['image'] && $event['event_series_id']) {
-			$previousEvent = $this->eventModel->findPreviousEvent($event['event_series_id']);
-			if ($previousEvent) {
-				$defaults['image'] = $previousEvent->image;
-			}
-		}
+        $this['eventForm-form']->setDefaults($defaults);
+    }
 
-		$this['eventForm-form']->setDefaults($defaults);
-	}
+    public function renderUpdate(): void
+    {
+        $this->template->setFile(__DIR__ . '/templates/Events/create.latte');
+    }
 
+    public function handleCrawlSources(): void
+    {
+        $addedEvents = $this->sourceService->crawlSources();
 
-	public function renderUpdate()
-	{
-		$this->template->setFile(__DIR__ . '/templates/Events/create.latte');
-	}
-	
+        if ($addedEvents > 0) {
+            $this->flashMessage($this->translator->translate('admin.events.crawlSources.success',
+                $addedEvents, ['events' => $addedEvents]), 'success');
+        } else {
+            $this->flashMessage($this->translator->translate('admin.events.crawlSources.noEvents'));
+        }
 
-	protected function createComponentEventForm()
-	{
-		$control = $this->eventFormFactory->create();
+        $this->redirect('this');
+    }
 
-		$control->onCreate[] = function() {
-			$this->flashMessage($this->translator->translate('admin.eventForm.success'), 'success');
-			$this->redirect('Events:default');
-		};
+    public function actionApprove(int $id): void
+    {
+        $this->forward('update', $id);
+    }
 
-		$control->onUpdate[] = function() {
-			$this->flashMessage($this->translator->translate('admin.eventForm.success'), 'success');
-			$this->redirect('Events:default');
-		};
+    protected function createComponentEventForm(): EventForm
+    {
+        $control = $this->eventFormFactory->create();
 
-		return $control;
-	}
+        $control->onCreate[] = function () {
+            $this->flashMessage($this->translator->translate('admin.eventForm.success'), 'success');
+            $this->redirect('Events:default');
+        };
 
+        $control->onUpdate[] = function () {
+            $this->flashMessage($this->translator->translate('admin.eventForm.success'), 'success');
+            $this->redirect('Events:default');
+        };
 
-	public function handleCrawlSources()
-	{
-		$addedEvents = $this->sourceService->crawlSources();
+        return $control;
+    }
 
-		if ($addedEvents > 0) {
-			$this->flashMessage($this->translator->translate('admin.events.crawlSources.success',
-				$addedEvents, ['events' => $addedEvents]), 'success');
-		} else {
-			$this->flashMessage($this->translator->translate('admin.events.crawlSources.noEvents'));
-		}
-
-		$this->redirect('this');
-	}
-
-
-	public function actionApprove($id)
-	{
-		$this->forward('update', $id);
-	}
-
-
-	protected function createComponentNotApprovedEventsTable()
-	{
-		return $this->notApprovedEventsTableFactory->create(
-			$this->eventModel->getAll()
-				->where('state', EventModel::STATE_NOT_APPROVED)
-				->where('start > ?', new DateTime)
-		);
-	}
+    protected function createComponentNotApprovedEventsTable(): NotApprovedEventsTable
+    {
+        return $this->notApprovedEventsTableFactory->create(
+            $this->eventModel->getAll()
+                ->where('state', EventModel::STATE_NOT_APPROVED)
+                ->where('start > ?', new DateTime)
+        );
+    }
 }

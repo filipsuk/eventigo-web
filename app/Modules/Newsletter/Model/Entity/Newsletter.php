@@ -6,121 +6,98 @@ use Nette\Utils\DateTime;
 
 class Newsletter
 {
-	/** @var int */
-	private $id;
+    /**
+     * @var int
+     */
+    private $id;
 
-	/** @var string */
-	private $subject;
+    /**
+     * @var string
+     */
+    private $subject;
 
-	/** @var string */
-	private $from;
+    /**
+     * @var string
+     */
+    private $from;
 
-	/** @var string */
-	private $introText;
+    /**
+     * @var string
+     */
+    private $introText;
 
-	/** @var string */
-	private $outroText;
+    /**
+     * @var string
+     */
+    private $outroText;
 
-	/** @var string */
-	private $author;
+    /**
+     * @var string
+     */
+    private $author;
 
-	/** @var DateTime */
-	private $created;
+    /**
+     * @var DateTime
+     */
+    private $created;
 
-	/**
-	 * @return int
-	 */
-	public function getId()
-	{
-		return $this->id;
-	}
+    public function getId(): int
+    {
+        return $this->id;
+    }
 
-	/**
-	 * @return string
-	 */
-	public function getSubject()
-	{
-		return $this->subject;
-	}
+    public function getSubject(): string
+    {
+        return $this->subject;
+    }
 
-	/**
-	 * @return string
-	 */
-	public function getFrom()
-	{
-		return $this->from;
-	}
+    public function getFrom(): string
+    {
+        return $this->from;
+    }
 
-	/**
-	 * @return string
-	 */
-	public function getIntroText()
-	{
-		return $this->introText;
-	}
+    public function getIntroText(): string
+    {
+        return $this->introText;
+    }
 
-	/**
-	 * @return string
-	 */
-	public function getOutroText()
-	{
-		return $this->outroText;
-	}
+    public function getOutroText(): string
+    {
+        return $this->outroText;
+    }
 
-	/**
-	 * @return string
-	 */
-	public function getAuthor()
-	{
-		return $this->author;
-	}
+    public function getAuthor(): string
+    {
+        return $this->author;
+    }
 
-	/**
-	 * @return DateTime
-	 */
-	public function getCreated()
-	{
-		return $this->created;
-	}
+    public function getCreated(): DateTime
+    {
+        return $this->created;
+    }
 
-	/**
-	 * @param string $subject
-	 */
-	public function setSubject(string $subject)
-	{
-		$this->subject = $subject;
-	}
+    public function setSubject(string $subject): void
+    {
+        $this->subject = $subject;
+    }
 
-	/**
-	 * @param string $from
-	 */
-	public function setFrom(string $from)
-	{
-		$this->from = $from;
-	}
+    public function setFrom(string $from): void
+    {
+        $this->from = $from;
+    }
 
-	/**
-	 * @param string $introText
-	 */
-	public function setIntroText(string $introText)
-	{
-		$this->introText = $introText;
-	}
+    public function setIntroText(string $introText): void
+    {
+        $this->introText = $introText;
+    }
 
-	/**
-	 * @param string $outroText
-	 */
-	public function setOutroText(string $outroText)
-	{
-		$this->outroText = $outroText;
-	}
+    public function setOutroText(string $outroText): void
+    {
+        $this->outroText = $outroText;
+    }
 
-	/**
-	 * @param string $author
-	 */
-	public function setAuthor(string $author)
-	{
-		$this->author = $author;
-	}
-
+    public function setAuthor(string $author): void
+    {
+        $this->author = $author;
+    }
 }

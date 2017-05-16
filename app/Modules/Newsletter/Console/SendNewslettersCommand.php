@@ -8,34 +8,41 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-
 final class SendNewslettersCommand extends Command
 {
-	private $newsletterService;
-	private $userNewsletterModel;
+    /**
+     * @var NewsletterService
+     */
+    private $newsletterService;
 
-	public function __construct(NewsletterService $newsletterService, UserNewsletterModel $userNewsletterModel)
-	{
-		parent::__construct();
-		$this->newsletterService = $newsletterService;
-		$this->userNewsletterModel = $userNewsletterModel;
-	}
+    /**
+     * @var UserNewsletterModel
+     */
+    private $userNewsletterModel;
 
-	protected function configure()
-	{
-		$this->setName('newsletters:send')
-			->setDescription('Send newsletters');
-	}
+    public function __construct(NewsletterService $newsletterService, UserNewsletterModel $userNewsletterModel)
+    {
+        parent::__construct();
+        $this->newsletterService = $newsletterService;
+        $this->userNewsletterModel = $userNewsletterModel;
+    }
 
-	protected function execute(InputInterface $input, OutputInterface $output): int
-	{
-		$usersNewslettersIds = $this->userNewsletterModel->getAll()
-			->where('sent', null)
-			->fetchPairs(null, 'id');
+    protected function configure(): void
+    {
+        $this->setName('newsletters:send')
+            ->setDescription('Send newsletters');
+    }
 
-		$this->newsletterService->sendNewsletters($usersNewslettersIds);
+    protected function execute(InputInterface $input, OutputInterface $output): int
+    {
+        $usersNewslettersIds = $this->userNewsletterModel->getAll()
+            ->where('sent', null)
+            ->fetchPairs(null, 'id');
 
-		$output->writeln(count($usersNewslettersIds) . ' newsletters have been sent');
-		return 0;
-	}
+        $this->newsletterService->sendNewsletters($usersNewslettersIds);
+
+        $output->writeln(count($usersNewslettersIds) . ' newsletters have been sent');
+
+        return 0;
+    }
 }

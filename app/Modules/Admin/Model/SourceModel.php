@@ -2,21 +2,26 @@
 
 namespace App\Modules\Admin\Model;
 
-use App\Modules\Core\Model\BaseModel;
+use App\Modules\Core\Model\AbstractBaseModel;
 
-
-class SourceModel extends BaseModel
+final class SourceModel extends AbstractBaseModel
 {
-	const TABLE_NAME = 'sources';
+    /**
+     * @var int[]
+     */
+    public const FREQUENCY_TYPES = [
+        'daily' => 1,
+        'twiceAWeek' => 3,
+        'weekly' => 7,
+        'fortnightly' => 14,
+        'monthly' => 30,
+        'quarterly' => 90,
+        'half-yearly' => 183,
+        'yearly' => 365,
+    ];
 
-	const FREQUENCY_TYPES = [
-		'daily' => 1,
-		'twiceAWeek' => 3,
-		'weekly' => 7,
-		'fortnightly' => 14,
-		'monthly' => 30,
-		'quarterly' => 90,
-		'half-yearly' => 183,
-		'yearly' => 365,
-	];
+    /**
+     * @var string
+     */
+    protected const TABLE_NAME = 'sources';
 }
