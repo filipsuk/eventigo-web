@@ -194,13 +194,13 @@ final class NewsletterService
             $from = new Email('Eventigo.cz', $userNewsletter->from);
             $subject = $userNewsletter->subject;
             $content = new SendGrid\Content('text/html', $userNewsletter->content);
-            //	->setCategory('newsletter') // what is this for
             $mail = new SendGrid\Mail($from, $subject, $to, $content);
+            $mail->addCategory('newsletter');
 
             try {
                 $this->sendGrid->client->mail()->send()->post($mail);
                 $this->userNewsletterModel->getAll()->wherePrimary($userNewsletter->id)->update([
-                    'sent' => new DateTime,
+                    'sent' => new NetteDateTime,
                 ]);
             } catch (Throwable $throwable) {
                 // TODO log unsuccessful email send

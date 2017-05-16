@@ -41,11 +41,10 @@ final class EmailService
         $to = new Email(null, $emailTo);
         $from = new Email('Eventigo.cz', 'prihlaseni@eventigo.cz');
         $subject = $this->translator->translate('email.login.subject');
-        $content = new SendGrid\Content('text/plain', $this->renderLoginEmail($token));
+        $content = new SendGrid\Content('text/html', $this->renderLoginEmail($token));
 
         $mail = new SendGrid\Mail($from, $subject, $to, $content);
-
-        // ->setCategory('emailLogin') @todo, what is this for?
+        $mail->addCategory('emailLogin');
 
         try {
             $this->sendGrid->client->mail()->send()->post($mail);
