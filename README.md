@@ -46,8 +46,26 @@ $ php www/index.php newsletters:send
 
 ## API
 
-[Apiary docs:](http://docs.eventigo.apiary.io) 
+📚 [Apiary documentation](http://docs.eventigo.apiary.io) 
 
+## Code style check & fix
+
+✅ Check by running: 
+```bash
+composer check-cs
+# OR
+composer cs
+```
+
+✨ Auto-fix by running: 
+```bash
+composer fix-cs
+# OR
+composer fs
+```
+
+We use [Symplify/EasyCodingStandard](https://github.com/Symplify/EasyCodingStandard) (PHP_CodeSniffer and PHP-CS-Fixer). Thanks to @TomasVotruba!
+ 
 ## Exceptions
 
 Html exceptions lze číst jako admin na url `/admin/exception/[exception-file.html]`
