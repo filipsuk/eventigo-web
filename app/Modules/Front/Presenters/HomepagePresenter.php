@@ -188,7 +188,7 @@ final class HomepagePresenter extends AbstractBasePresenter
             // TODO refactor duplicate code
             // Redirect to settings if no tags
             $section = $this->getSession('subscriptionTags');
-            $chosenTags = Collection::getNestedValues($section->tags ?? []);
+            $chosenTags = Collection::getNestedValues((array)$section->tags ?? []);
             if (isset($chosenTags) && count($chosenTags) === 0) {
                 $this->flashMessage($this->translator->translate('front.profile.settings.afterLogin', 'info'));
                 $this->redirect('Profile:settings');
@@ -209,7 +209,7 @@ final class HomepagePresenter extends AbstractBasePresenter
     {
         if (! $this->user->getId() || $this->getAction() !== 'default') {
             $section = $this->getSession($this->getAction() === 'discover' ? 'discover' : 'subscriptionTags');
-            $tags = Collection::getNestedValues($section->tags ?? []);
+            $tags = Collection::getNestedValues((array)$section->tags ?? []);
 
             // TODO do this more general
             // Remove tags with no events
@@ -254,7 +254,7 @@ final class HomepagePresenter extends AbstractBasePresenter
 
                     // TODO move to user tag service
                     $section = $this->getSession('subscriptionTags');
-                    $chosenTags = Collection::getNestedValues($section->tags ?? []);
+                    $chosenTags = Collection::getNestedValues((array)$section->tags ?? []);
                     $tags = $this->tagModel->getAll()->where('code IN (?)', $chosenTags)->fetchAll();
                     foreach ($tags as $tag) {
                         $this->userTagModel->insert([

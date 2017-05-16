@@ -75,7 +75,7 @@ final class Tags extends AbstractBaseControl
         $values = $form->getValues();
 
         // Store user's selected tags
-        $chosenTags = Collection::getNestedValues($values->tags);
+        $chosenTags = Collection::getNestedValues((array)$values->tags);
         $tags = $this->tagModel->getAll()->where('code IN (?)', $chosenTags)->fetchAll();
 
         foreach ($tags as $tag) {
