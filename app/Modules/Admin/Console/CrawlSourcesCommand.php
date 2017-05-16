@@ -9,6 +9,17 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 final class CrawlSourcesCommand extends Command
 {
+    /**
+     * @var SourceService
+     */
+    private $sourceService;
+
+    public function __construct(SourceService $sourceService)
+    {
+        $this->sourceService = $sourceService;
+        parent::__construct();
+    }
+
     protected function configure(): void
     {
         $this->setName('admin:crawlSources')
@@ -17,15 +28,12 @@ final class CrawlSourcesCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        /** @var SourceService $sourceService */
-        $sourceService = $this->getHelper('container')->getByType(SourceService::class);
-
-        $addedEvents = $sourceService->crawlSources();
+        $addedEvents = $this->sourceService->crawlSources();
 
         if ($addedEvents) {
-            $output->writeLn($addedEvents . ' new events has been added to be approved');
+            $output->writeln($addedEvents . ' new events has been added to be approved');
         } else {
-            $output->writeLn('No new events has been added');
+            $output->writeln('No new events has been added');
         }
 
         return 0;

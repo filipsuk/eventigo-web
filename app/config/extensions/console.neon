@@ -1,28 +1,9 @@
 extensions:
-    console: Kdyby\Console\DI\ConsoleExtension
-
-console:
-	url: http://eventigo.cz
-	commands:
-		- App\Modules\Newsletter\Console\CreateNewsletterCommand
-		- App\Modules\Newsletter\Console\RenderNewslettersCommand
-		- App\Modules\Newsletter\Console\SendNewslettersCommand
-		- App\Modules\Admin\Console\GeneratePasswordCommand
-		- App\Modules\Admin\Console\CrawlSourcesCommand
+    - Contributte\Console\DI\ConsoleExtension
 
 services:
-	createNewsletterCommand:
-		class: App\Modules\Newsletter\Console\CreateNewsletterCommand
-		tags: [kdyby.console.command]
-	renderNewsletterCommand:
-		class: App\Modules\Newsletter\Console\RenderNewslettersCommand
-		tags: [kdyby.console.command]
-	sendNewsletterCommand:
-		class: App\Modules\Newsletter\Console\SendNewslettersCommand
-		tags: [kdyby.console.commandexit]
-	generatePasswordCommand:
-		class: App\Modules\Admin\Console\GeneratePasswordCommand
-		tags: [kdyby.console.command]
-	CrawlSourcesCommand:
-			class: App\Modules\Admin\Console\CrawlSourcesCommand
-			tags: [kdyby.console.command]
+	- App\Modules\Newsletter\Console\CreateNewsletterCommand
+	- App\Modules\Newsletter\Console\RenderNewslettersCommand
+	- App\Modules\Newsletter\Console\SendNewslettersCommand
+	- App\Modules\Admin\Console\GeneratePasswordCommand
+	- App\Modules\Admin\Console\CrawlSourcesCommand

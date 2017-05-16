@@ -17,14 +17,14 @@
         "latte/latte": "~2.4",
         "tracy/tracy": "~2.4",
         "kdyby/translation": "~2.2",
-        "kdyby/console": "^2.5",
         "sendgrid/sendgrid": "^5.4",
         "kdyby/facebook": "2.0.x-dev",
         "pelago/emogrifier": "@dev",
         "greeny/nette-slack-logger": "^1.2",
         "webuni/srazy-api-client": "1.0.x-dev",
         "dms/meetup-api-client": "2.0.x-dev",
-        "drahak/restful": "@dev"
+        "drahak/restful": "@dev",
+        "contributte/console": "^0.1.1"
     },
     "require-dev": {
         "nette/tester": "~1.7",
