@@ -1,5 +1,8 @@
 extensions:
-    - Contributte\Console\DI\ConsoleExtension
+    console: Contributte\Console\DI\ConsoleExtension
+
+console:
+    url: https://eventigo.cz
 
 services:
 	- App\Modules\Newsletter\Console\CreateNewsletterCommand
