@@ -2,7 +2,7 @@ extensions:
     console: Contributte\Console\DI\ConsoleExtension
 
 console:
-    url: https://eventigo.cz
+    url: %baseUrl%
 
 services:
 	- App\Modules\Newsletter\Console\CreateNewsletterCommand
