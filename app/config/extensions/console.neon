@@ -1,5 +1,8 @@
 extensions:
-    - Contributte\Console\DI\ConsoleExtension
+    console: Contributte\Console\DI\ConsoleExtension
+
+console:
+    url: %baseUrl%
 
 services:
 	- App\Modules\Newsletter\Console\CreateNewsletterCommand
