@@ -1,9 +1,7 @@
 language: php
 
-matrix:
-  include:
-    - php: 7.1
-      env: CHECK_CS=1 RUN_PHPSTAN=1
+php:
+  - 7.1
 
 install:
   # install composer dependencies
@@ -11,9 +9,9 @@ install:
 
 script:
   # check coding standard (defined in composer.json "scripts" section)
-  - if [[ $CHECK_CS = 1 ]]; then composer check-cs; fi
+  - composer check-cs
   # check with phpstan (defined in composer.json "scripts" section)
-  - if [[ $RUN_PHPSTAN = 1 ]]; then composer phpstan; fi
+  - composer phpstan
 
 # do not send success notifications, they have no value
 notifications:
