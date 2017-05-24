@@ -166,21 +166,32 @@ final class NewsletterService
         $newsletter = $this->newsletterModel->getLatest();
         $newsletter['hash'] = $newsletterHash;
         $newsletter['eventGroups'] = $this->getGroupedEvents($userId);
-        $newsletter['updatePreferencesUrl'] = $this->linkGenerator->link(
+        $newsletter = $this->prepareLinks($newsletter, $userToken, $baseUrl, $newsletterHash);
+        return $newsletter;
+    }
+
+    /**
+     * @param mixed[] $templateData
+     * @param mixed $userToken
+     * @return mixed[]
+     */
+    public function prepareLinks(array $templateData, $userToken, string $baseUrl, string $newsletterHash): array
+    {
+        $templateData['updatePreferencesUrl'] = $this->linkGenerator->link(
             'Front:Profile:settings',
             array_merge([
                 'token' => $userToken, 'utm_campaign' => 'newsletterButton'], self::NEWSLETTER_UTM_PARAMETERS
             )
         );
-        $newsletter['feedUrl'] = $this->linkGenerator->link(
+        $templateData['feedUrl'] = $this->linkGenerator->link(
             'Front:Homepage:default',
             array_merge([
                 'token' => $userToken, 'utm_campaign' => 'newsletterButton'], self::NEWSLETTER_UTM_PARAMETERS
             )
         );
-        $newsletter['unsubscribeUrl'] = $baseUrl . '/newsletter/unsubscribe/' . $newsletterHash;
-
-        return $newsletter;
+        $templateData['unsubscribeUrl'] = $baseUrl . '/newsletter/unsubscribe/' . $newsletterHash;
+       
+        return $templateData;
     }
 
     /**
