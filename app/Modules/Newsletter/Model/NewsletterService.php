@@ -167,6 +167,7 @@ final class NewsletterService
         $newsletter['hash'] = $newsletterHash;
         $newsletter['eventGroups'] = $this->getGroupedEvents($userId);
         $newsletter = $this->prepareLinks($newsletter, $userToken, $baseUrl, $newsletterHash);
+
         return $newsletter;
     }
 
@@ -190,7 +191,7 @@ final class NewsletterService
             )
         );
         $templateData['unsubscribeUrl'] = $baseUrl . '/newsletter/unsubscribe/' . $newsletterHash;
-       
+
         return $templateData;
     }
 
