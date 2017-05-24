@@ -43,6 +43,7 @@
     },
     "autoload-dev": {
         "psr-4": {
+            "App\\Tests\\": "tests",
             "PHP_CodeSniffer\\": "vendor/squizlabs/php_codesniffer/src"
         }
     },
