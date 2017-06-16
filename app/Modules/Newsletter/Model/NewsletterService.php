@@ -43,6 +43,16 @@ final class NewsletterService
     ];
 
     /**
+     * @var  Template
+     */
+    protected $template;
+
+    /**
+     * @var  Presenter
+     */
+    protected $presenter;
+
+    /**
      * @var UserNewsletterModel
      */
     private $userNewsletterModel;
@@ -96,16 +106,6 @@ final class NewsletterService
      * @var SendGrid
      */
     private $sendGrid;
-
-    /**
-     * @var  Template
-     */
-    protected $template;
-
-    /**
-     * @var  Presenter
-     */
-    protected $presenter;
 
     public function __construct(
         SendGrid $sendGrid,

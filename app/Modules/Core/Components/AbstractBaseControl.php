@@ -3,7 +3,6 @@
 namespace App\Modules\Core\Components;
 
 use App\Modules\Core\Utils\DateTime;
-use Kdyby\Translation\Translator;
 use Nette\Application\UI\Control;
 use Nette\Bridges\ApplicationLatte\Template;
 use Nette\Utils\DateTime as NetteDateTime;

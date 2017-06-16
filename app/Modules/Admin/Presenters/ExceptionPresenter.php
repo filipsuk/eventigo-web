@@ -2,7 +2,6 @@
 
 namespace App\Modules\Admin\Presenters;
 
-use App\Modules\Core\Model\EventModel;
 use Nette\Application\Responses\FileResponse;
 use Tracy\Debugger;
 
