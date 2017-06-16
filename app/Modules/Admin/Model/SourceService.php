@@ -13,29 +13,43 @@ use Nette\Http\Url;
 final class SourceService
 {
     /**
-     * @var SourceModel @inject
+     * @var SourceModel
      */
-    public $sourceModel;
+    private $sourceModel;
 
     /**
-     * @var FacebookEventSource @inject
+     * @var FacebookEventSource
      */
-    public $fbSource;
+    private $fbSource;
 
     /**
-     * @var SrazyEventSource @inject
+     * @var SrazyEventSource
      */
-    public $srazySource;
+    private $srazySource;
 
     /**
-     * @var MeetupEventSource @inject
+     * @var MeetupEventSource
      */
-    public $meetupSource;
+    private $meetupSource;
 
     /**
-     * @var EventModel @inject
+     * @var EventModel
      */
-    public $eventModel;
+    private $eventModel;
+
+    public function __construct(
+        EventModel $eventModel,
+        MeetupEventSource $meetupSource,
+        SrazyEventSource $srazySource,
+        FacebookEventSource $fbSource,
+        SourceModel $sourceModel
+    ) {
+        $this->eventModel = $eventModel;
+        $this->meetupSource = $meetupSource;
+        $this->srazySource = $srazySource;
+        $this->fbSource = $fbSource;
+        $this->sourceModel = $sourceModel;
+    }
 
     public function crawlSources(): int
     {

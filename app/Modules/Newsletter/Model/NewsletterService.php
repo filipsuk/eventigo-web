@@ -10,7 +10,6 @@ use App\Modules\Core\Utils\DateTime;
 use App\Modules\Newsletter\Model\Entity\Newsletter;
 use BadMethodCallException;
 use Kdyby\Translation\Translator;
-use Nette\Application\IPresenterFactory;
 use Nette\Application\LinkGenerator;
 use Nette\Application\UI\ITemplateFactory;
 use Nette\Application\UI\Presenter;
@@ -44,64 +43,59 @@ final class NewsletterService
     ];
 
     /**
-     * @var UserNewsletterModel @inject
+     * @var UserNewsletterModel
      */
-    public $userNewsletterModel;
+    private $userNewsletterModel;
 
     /**
-     * @var NewsletterModel @inject
+     * @var NewsletterModel
      */
-    public $newsletterModel;
+    private $newsletterModel;
 
     /**
-     * @var UserModel @inject
+     * @var UserModel
      */
-    public $userModel;
+    private $userModel;
 
     /**
-     * @var UserTagModel @inject
+     * @var UserTagModel
      */
-    public $userTagModel;
+    private $userTagModel;
 
     /**
-     * @var EventModel @inject
+     * @var EventModel
      */
-    public $eventModel;
+    private $eventModel;
 
     /**
-     * @var EventTagModel @inject
+     * @var EventTagModel
      */
-    public $eventTagModel;
+    private $eventTagModel;
 
     /**
-     * @var IPresenterFactory @inject
+     * @var ITemplateFactory
      */
-    public $presenterFactory;
+    private $templateFactory;
 
     /**
-     * @var ITemplateFactory @inject
+     * @var  Container
      */
-    public $templateFactory;
+    private $context;
 
     /**
-     * @var  Container @inject
+     * @var  Translator
      */
-    public $context;
+    private $translator;
 
     /**
-     * @var  Translator @inject
+     * @var  LinkGenerator
      */
-    public $translator;
+    private $linkGenerator;
 
     /**
-     * @var  LinkGenerator @inject
+     * @var SendGrid
      */
-    public $linkGenerator;
-
-    /**
-     * @var SendGrid @inject
-     */
-    public $sendGrid;
+    private $sendGrid;
 
     /**
      * @var  Template
@@ -112,6 +106,32 @@ final class NewsletterService
      * @var  Presenter
      */
     protected $presenter;
+
+    public function __construct(
+        SendGrid $sendGrid,
+        LinkGenerator $linkGenerator,
+        Translator $translator,
+        Container $context,
+        ITemplateFactory $templateFactory,
+        EventTagModel $eventTagModel,
+        EventModel $eventModel,
+        UserTagModel $userTagModel,
+        UserModel $userModel,
+        NewsletterModel $newsletterModel,
+        UserNewsletterModel $userNewsletterModel
+    ) {
+        $this->sendGrid = $sendGrid;
+        $this->linkGenerator = $linkGenerator;
+        $this->translator = $translator;
+        $this->context = $context;
+        $this->templateFactory = $templateFactory;
+        $this->eventTagModel = $eventTagModel;
+        $this->eventModel = $eventModel;
+        $this->userTagModel = $userTagModel;
+        $this->userModel = $userModel;
+        $this->newsletterModel = $newsletterModel;
+        $this->userNewsletterModel = $userNewsletterModel;
+    }
 
     public function createDefaultNewsletter(): IRow
     {

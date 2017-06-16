@@ -2,12 +2,9 @@
 
 namespace App\Modules\Front\Presenters;
 
-use App\Modules\Core\Model\EventModel;
-use App\Modules\Core\Model\TagModel;
 use App\Modules\Core\Model\UserModel;
 use App\Modules\Core\Model\UserTagModel;
 use App\Modules\Core\Presenters\AbstractBasePresenter;
-use App\Modules\Front\Components\EventsList\EventsListFactoryInterface;
 use App\Modules\Front\Components\Settings\Settings;
 use App\Modules\Front\Components\Settings\SettingsFactoryInterface;
 use App\Modules\Front\Components\Tags\Tags;
@@ -16,39 +13,36 @@ use App\Modules\Front\Components\Tags\TagsFactoryInterface;
 final class ProfilePresenter extends AbstractBasePresenter
 {
     /**
-     * @var EventModel @inject
+     * @var TagsFactoryInterface
      */
-    public $eventModel;
+    private $tagsFactory;
 
     /**
-     * @var TagModel @inject
+     * @var SettingsFactoryInterface
      */
-    public $tagModel;
+    private $settingsFactory;
 
     /**
-     * @var TagsFactoryInterface @inject
+     * @var UserTagModel
      */
-    public $tagsFactory;
+    private $userTagModel;
 
     /**
-     * @var EventsListFactoryInterface @inject
+     * @var UserModel
      */
-    public $eventsListFactory;
+    private $userModel;
 
-    /**
-     * @var SettingsFactoryInterface @inject
-     */
-    public $settingsFactory;
-
-    /**
-     * @var UserTagModel @inject
-     */
-    public $userTagModel;
-
-    /**
-     * @var UserModel @inject
-     */
-    public $userModel;
+    public function __construct(
+        UserModel $userModel,
+        UserTagModel $userTagModel,
+        SettingsFactoryInterface $settingsFactory,
+        TagsFactoryInterface $tagsFactory
+    ) {
+        $this->userModel = $userModel;
+        $this->userTagModel = $userTagModel;
+        $this->settingsFactory = $settingsFactory;
+        $this->tagsFactory = $tagsFactory;
+    }
 
     public function actionSettings(?string $token = null): void
     {

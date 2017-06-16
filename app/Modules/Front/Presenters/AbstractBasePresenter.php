@@ -12,17 +12,20 @@ use Nette\Utils\DateTime as NetteDateTime;
 abstract class AbstractBasePresenter extends CoreAbstractBasePresenter
 {
     /**
-     * @var UserModel @inject
+     * @var UserModel
+     * @inject
      */
     public $userModel;
 
     /**
-     * @var UserTagModel @inject
+     * @var UserTagModel
+     * @inject
      */
     public $userTagModel;
 
     /**
-     * @var TagModel @inject
+     * @var TagModel
+     * @inject
      */
     public $tagModel;
 

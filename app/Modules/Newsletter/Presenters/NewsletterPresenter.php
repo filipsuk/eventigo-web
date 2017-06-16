@@ -12,24 +12,34 @@ use Nette\Http\IResponse;
 final class NewsletterPresenter extends AbstractBasePresenter
 {
     /**
-     * @var UserNewsletterModel @inject
+     * @var UserNewsletterModel
      */
-    public $userNewsletterModel;
+    private $userNewsletterModel;
 
     /**
-     * @var UserModel @inject
+     * @var UserModel
      */
-    public $userModel;
+    private $userModel;
 
     /**
-     * @var NewsletterService @inject
+     * @var NewsletterService
      */
-    public $newsletterService;
+    private $newsletterService;
 
     /**
      * @var ActiveRow
      */
     private $userNewsletter;
+
+    public function __construct(
+        NewsletterService $newsletterService,
+        UserModel $userModel,
+        UserNewsletterModel $userNewsletterModel
+    ) {
+        $this->newsletterService = $newsletterService;
+        $this->userModel = $userModel;
+        $this->userNewsletterModel = $userNewsletterModel;
+    }
 
     public function actionDefault(string $hash): void
     {

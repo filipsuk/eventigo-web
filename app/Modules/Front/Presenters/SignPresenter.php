@@ -2,6 +2,7 @@
 
 namespace App\Modules\Front\Presenters;
 
+use Kdyby\Translation\Translator;
 use Nette\Application\UI\Presenter;
 
 final class SignPresenter extends Presenter
@@ -22,9 +23,14 @@ final class SignPresenter extends Presenter
     ];
 
     /**
-     * @var \Kdyby\Translation\Translator @inject
+     * @var Translator
      */
-    public $translator;
+    private $translator;
+
+    public function __construct(Translator $translator)
+    {
+        $this->translator = $translator;
+    }
 
     public function actionOut(): void
     {

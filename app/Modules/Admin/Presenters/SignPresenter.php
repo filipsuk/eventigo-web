@@ -4,19 +4,26 @@ namespace App\Modules\Admin\Presenters;
 
 use App\Modules\Admin\Components\SignIn\SignInForm;
 use App\Modules\Admin\Components\SignIn\SignInFormFactoryInterface;
+use Kdyby\Translation\Translator;
 use Nette\Application\UI\Presenter;
 
 final class SignPresenter extends Presenter
 {
     /**
-     * @var \Kdyby\Translation\Translator @inject
+     * @var Translator
      */
-    public $translator;
+    private $translator;
 
     /**
-     * @var SignInFormFactoryInterface @inject
+     * @var SignInFormFactoryInterface
      */
-    public $signInFormFactory;
+    private $signInFormFactory;
+
+    public function __construct(SignInFormFactoryInterface $signInFormFactory, Translator $translator)
+    {
+        $this->signInFormFactory = $signInFormFactory;
+        $this->translator = $translator;
+    }
 
     public function actionIn(): void
     {

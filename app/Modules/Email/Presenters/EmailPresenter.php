@@ -2,7 +2,6 @@
 
 namespace App\Modules\Email\Presenters;
 
-use App\Modules\Core\Model\UserModel;
 use App\Modules\Core\Presenters\AbstractBasePresenter;
 use App\Modules\Email\Model\EmailService;
 use Latte\Loaders\StringLoader;
@@ -23,14 +22,14 @@ final class EmailPresenter extends AbstractBasePresenter
     private const TEMPLATE_DIR = __DIR__ . DIRECTORY_SEPARATOR . 'templates' . DIRECTORY_SEPARATOR . 'Email';
 
     /**
-     * @var UserModel @inject
+     * @var EmailService
      */
-    public $userModel;
+    private $emailService;
 
-    /**
-     * @var EmailService @inject
-     */
-    public $emailService;
+    public function __construct(EmailService $emailService)
+    {
+        $this->emailService = $emailService;
+    }
 
     /**
      * Renders login email with provided user token.

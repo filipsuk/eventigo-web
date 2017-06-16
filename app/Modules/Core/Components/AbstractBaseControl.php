@@ -11,14 +11,10 @@ use Nette\Utils\DateTime as NetteDateTime;
 abstract class AbstractBaseControl extends Control
 {
     /**
+     * @inject
      * @var \Kdyby\Translation\Translator
      */
-    protected $translator;
-
-    public function __construct(Translator $translator)
-    {
-        $this->translator = $translator;
-    }
+    public $translator;
 
     public function render(): void
     {

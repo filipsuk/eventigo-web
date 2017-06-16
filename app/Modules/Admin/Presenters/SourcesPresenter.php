@@ -15,24 +15,36 @@ use Nette\Utils\DateTime as NetteDateTime;
 final class SourcesPresenter extends AbstractBasePresenter
 {
     /**
-     * @var SourceFormFactoryInterface @inject
+     * @var SourceFormFactoryInterface
      */
-    public $sourceFormFactory;
+    private $sourceFormFactory;
 
     /**
-     * @var SourcesTableFactoryInterface @inject
+     * @var SourcesTableFactoryInterface
      */
-    public $sourcesTableFactory;
+    private $sourcesTableFactory;
 
     /**
-     * @var SourceModel @inject
+     * @var SourceModel
      */
-    public $sourceModel;
+    private $sourceModel;
 
     /**
-     * @var SourceService @inject
+     * @var SourceService
      */
-    public $sourceService;
+    private $sourceService;
+
+    public function __construct(
+        SourceService $sourceService,
+        SourceModel $sourceModel,
+        SourcesTableFactoryInterface $sourcesTableFactory,
+        SourceFormFactoryInterface $sourceFormFactory
+    ) {
+        $this->sourceService = $sourceService;
+        $this->sourceModel = $sourceModel;
+        $this->sourcesTableFactory = $sourcesTableFactory;
+        $this->sourceFormFactory = $sourceFormFactory;
+    }
 
     public function actionCreate(): void
     {

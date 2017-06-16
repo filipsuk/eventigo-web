@@ -14,7 +14,8 @@ use Tracy\ILogger;
 abstract class AbstractBasePresenter extends Presenter
 {
     /**
-     * @var \Kdyby\Translation\Translator @inject
+     * @var \Kdyby\Translation\Translator
+     * @inject
      */
     public $translator;
 
