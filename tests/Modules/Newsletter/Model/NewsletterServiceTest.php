@@ -18,21 +18,34 @@ final class NewsletterServiceTest extends TestCase
      */
     private $linkGenerator;
 
+    /**
+     * @var string
+     */
+    private $baseUrl;
+
     protected function setUp()
     {
         $container = (new ContainerFactory)->create();
         $this->newsletterService = $container->getByType(NewsletterService::class);
         $this->linkGenerator = $container->getByType(LinkGenerator::class);
+
+        $this->baseUrl = $container->getParameters()['baseUrl'];
     }
 
     public function testRedirectLinks()
     {
-        $this->assertSame('https://eventigo.cz/redirect/?url=someUrl', $this->linkGenerator->link('Front:Redirect:', ['someUrl']));
+        $this->assertSame(
+            $this->baseUrl . '/redirect/?url=someUrl',
+            $this->linkGenerator->link('Front:Redirect:', ['someUrl'])
+        );
     }
 
     public function testPrepareLinks()
     {
-        $this->assertSame('https://eventigo.cz', $this->newsletterService->context->parameters['baseUrl']);
+        $this->assertSame(
+            $this->baseUrl,
+            $this->newsletterService->context->parameters['baseUrl']
+        );
 
         $templateData = [];
         $templateData = $this->newsletterService->prepareLinks(
@@ -40,8 +53,8 @@ final class NewsletterServiceTest extends TestCase
         );
 
         $this->assertSame([
-            'updatePreferencesUrl' => 'https://eventigo.cz/profile/settings/userToken?utm_campaign=newsletterButton&utm_source=newsletter&utm_medium=email',
-            'feedUrl' => 'https://eventigo.cz/?token=userToken&utm_campaign=newsletterButton&utm_source=newsletter&utm_medium=email',
+            'updatePreferencesUrl' => $this->baseUrl . '/profile/settings/userToken?utm_campaign=newsletterButton&utm_source=newsletter&utm_medium=email',
+            'feedUrl' => $this->baseUrl . '/?token=userToken&utm_campaign=newsletterButton&utm_source=newsletter&utm_medium=email',
             'unsubscribeUrl' => 'baseUrl/newsletter/unsubscribe/newsletterHash'
         ], $templateData);
     }
