@@ -67,7 +67,7 @@ final class UserModel extends AbstractBaseModel
             ->where('email', $email)
             ->fetch();
 
-        return $user ?? null;
+        return $user ?: null;
     }
 
     /**

@@ -69,7 +69,7 @@ class Subscription extends AbstractBaseControl
         try {
             $user = $this->userModel->subscribe($email);
 
-            if ($this->reflection->name === __CLASS__) {
+            if ($this->getReflection()->getName() === __CLASS__) {
                 $this->onSuccess($user->email);
             } else {
                 return $user;
