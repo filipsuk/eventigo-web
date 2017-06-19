@@ -53,7 +53,7 @@ final class SourceForm extends AbstractBaseControl
                 'next_check' => $values->nextCheck
                     ? NetteDateTime::createFromFormat(DateTime::DATE_FORMAT, $values->nextCheck)
                     : new NetteDateTime('+' . $checkFrequency . ' days'),
-                'event_series_id' => $values->createOrganiser
+                'event_series_id' => isset($organiser)
                     ? $organiser->related('events_series')->fetch()->id
                     : null,
             ]);
