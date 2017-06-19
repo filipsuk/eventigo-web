@@ -12,6 +12,7 @@ script:
   - composer check-cs
   # check with phpstan (defined in composer.json "scripts" section)
   - composer phpstan
+  - vendor/bin/phpunit
 
 # do not send success notifications, they have no value
 notifications:
