@@ -39,8 +39,7 @@ checkers:
     - PhpCsFixer\Fixer\CastNotation\CastSpacesFixer
     - PHP_CodeSniffer\Standards\Generic\Sniffs\Functions\FunctionCallArgumentSpacingSniff
     - PHP_CodeSniffer\Standards\PEAR\Sniffs\Functions\ValidDefaultValueSniff
-    PHP_CodeSniffer\Standards\Squiz\Sniffs\Functions\FunctionDeclarationSniff:
-        equalsSpacing: 1
+    - PHP_CodeSniffer\Standards\Squiz\Sniffs\Functions\FunctionDeclarationSniff
     # requires spaces probably
     # - PHP_CodeSniffer\Standards\Squiz\Sniffs\Functions\MultiLineFunctionDeclarationSniff
     - PHP_CodeSniffer\Standards\Squiz\Sniffs\Functions\LowercaseFunctionKeywordsSniff
