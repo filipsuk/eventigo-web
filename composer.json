@@ -24,16 +24,15 @@
         "webuni/srazy-api-client": "1.0.x-dev",
         "dms/meetup-api-client": "2.0.x-dev",
         "drahak/restful": "@dev",
-        "contributte/console": "^0.1.1"
+        "contributte/console": "^0.1"
     },
     "require-dev": {
         "phpunit/phpunit": "^6.1",
         "robmorgan/phinx": "^0.7",
         "phpstan/phpstan": "^0.6",
         "phpstan/phpstan-nette": "^0.6",
-        "symplify/easy-coding-standard": "2.0-RC2",
-        "symplify/coding-standard": "2.0-RC2",
-        "squizlabs/php_codesniffer": "3.0.0RC4 as 2.8.1",
+        "symplify/easy-coding-standard": "^2.0",
+        "symplify/coding-standard": "^2.0",
         "slevomat/coding-standard": "^2.1"
     },
     "autoload": {
@@ -52,6 +51,6 @@
         "fs": "@fix-cs",
         "check-cs": "vendor/bin/easy-coding-standard check app",
         "fix-cs": "vendor/bin/easy-coding-standard check app --fix",
-        "phpstan": "vendor/bin/phpstan analyse app --level=0 -c phpstan.neon"
+        "phpstan": "vendor/bin/phpstan analyse app --level=1 -c phpstan.neon"
     }
 }
