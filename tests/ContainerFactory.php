@@ -14,7 +14,11 @@ final class ContainerFactory
         $configurator->setTempDirectory(__DIR__ . '/../temp');
 
         $configurator->addConfig(__DIR__ . '/../app/config/config.neon');
-        $configurator->addConfig(__DIR__ . '/../app/config/config.local.neon');
+        $localConfig = __DIR__ . '/../app/config/config.local.neon';
+        if (file_exists($localConfig)) {
+            $configurator->addConfig($localConfig);
+        }
+        $configurator->addConfig(__DIR__ . '/config/config.test.neon');
 
         return $configurator->createContainer();
     }
