@@ -6,7 +6,6 @@ use App\Modules\Core\Components\AbstractBaseControl;
 use App\Modules\Core\Components\Form\Form;
 use App\Modules\Core\Model\UserModel;
 use App\Modules\Email\Model\EmailService;
-use Kdyby\Translation\Translator;
 use Nette\Utils\ArrayHash;
 
 final class SignIn extends AbstractBaseControl

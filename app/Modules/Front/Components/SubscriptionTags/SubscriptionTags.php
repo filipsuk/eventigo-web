@@ -10,7 +10,6 @@ use App\Modules\Core\Model\UserTagModel;
 use App\Modules\Core\Utils\Collection;
 use App\Modules\Front\Components\Subscription\Subscription;
 use App\Modules\Front\Model\Exceptions\Subscription\EmailExistsException;
-use Kdyby\Translation\Translator;
 use Nette\Database\Helpers;
 use Nette\Database\Table\Selection;
 
