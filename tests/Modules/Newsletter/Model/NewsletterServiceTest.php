@@ -42,11 +42,6 @@ final class NewsletterServiceTest extends TestCase
 
     public function testPrepareLinks()
     {
-        $this->assertSame(
-            $this->baseUrl,
-            $this->newsletterService->context->parameters['baseUrl']
-        );
-
         $templateData = [];
         $templateData = $this->newsletterService->prepareLinks(
             $templateData, 'userToken', 'baseUrl', 'newsletterHash'
