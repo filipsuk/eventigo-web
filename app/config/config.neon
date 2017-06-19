@@ -24,4 +24,3 @@ session:
 
 extensions:
 	slackLogger: greeny\NetteSlackLogger\DI\SlackLoggerExtension
-

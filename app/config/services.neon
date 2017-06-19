@@ -4,9 +4,7 @@ services:
 	- App\Modules\Core\Model\TagModel
 	- App\Modules\Core\Model\UserModel
 	- App\Modules\Core\Model\UserTagModel
-	-
-		class: App\Modules\Newsletter\Model\NewsletterService
-		inject: yes
+	- App\Modules\Newsletter\Model\NewsletterService
 	- SendGrid(%SendGrid.ApiKey%)
 	- App\Modules\Newsletter\Model\UserNewsletterModel
 	- App\Modules\Newsletter\Model\NewsletterModel
@@ -18,16 +16,10 @@ services:
 	- App\Modules\Core\Model\EventSources\Facebook\FacebookEventSource
 	- App\Modules\Core\Model\OrganiserModel
 	- App\Modules\Core\Model\EventSeriesModel
-	-
-		class: App\Modules\Admin\Model\OrganiserService
-		inject: yes
+	- App\Modules\Admin\Model\OrganiserService
 	- App\Modules\Admin\Model\SourceModel
-	-
-		class: App\Modules\Admin\Model\SourceService
-		inject: yes
-	-
-		class: App\Modules\Email\Model\EmailService
-		inject: yes
+	- App\Modules\Admin\Model\SourceService
+	- App\Modules\Email\Model\EmailService
 	- App\Modules\Core\Model\EventSources\Srazy\SrazyEventSource
 	-
 		class: App\Modules\Core\Model\EventSources\Meetup\MeetupEventSource
