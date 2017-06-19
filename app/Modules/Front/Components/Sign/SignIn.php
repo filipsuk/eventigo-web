@@ -31,9 +31,8 @@ final class SignIn extends AbstractBaseControl
      */
     private $emailService;
 
-    public function __construct(Translator $translator, UserModel $userModel, EmailService $emailService)
+    public function __construct(UserModel $userModel, EmailService $emailService)
     {
-        parent::__construct($translator);
         $this->userModel = $userModel;
         $this->emailService = $emailService;
     }

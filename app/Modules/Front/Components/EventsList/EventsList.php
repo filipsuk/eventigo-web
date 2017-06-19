@@ -4,7 +4,6 @@ namespace App\Modules\Front\Components\EventsList;
 
 use App\Modules\Core\Components\AbstractBaseControl;
 use App\Modules\Front\Model\EventsIterator;
-use Kdyby\Translation\Translator;
 
 final class EventsList extends AbstractBaseControl
 {
@@ -16,9 +15,8 @@ final class EventsList extends AbstractBaseControl
     /**
      * @param mixed[] $events
      */
-    public function __construct(Translator $translator, array $events)
+    public function __construct(array $events)
     {
-        parent::__construct($translator);
         $this->events = $events;
     }
 

@@ -1,7 +1,8 @@
 includes:
 	- database.neon
-	- services.neon
 	- factories.neon
+	- services.neon
+	- decorator.neon
 	- parameters.neon
 	- extensions/translation.neon
 	- extensions/console.neon

@@ -42,13 +42,12 @@ final class SubscriptionTags extends Subscription
     private $tagGroupModel;
 
     public function __construct(
-        Translator $translator,
         UserModel $userModel,
         TagModel $tagModel,
         UserTagModel $userTagModel,
         TagGroupModel $tagGroupModel
     ) {
-        parent::__construct($translator, $userModel);
+        parent::__construct($userModel);
         $this->tagModel = $tagModel;
         $this->userTagModel = $userTagModel;
         $this->tagGroupModel = $tagGroupModel;
