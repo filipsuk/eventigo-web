@@ -6,7 +6,6 @@ use App\Modules\Admin\Components\DataTable\AbstractDataTable;
 use App\Modules\Core\Model\EventModel;
 use App\Modules\Core\Model\EventSources\Facebook\FacebookEventSource;
 use App\Modules\Core\Utils\DateTime;
-use Kdyby\Translation\Translator;
 use Nette\Database\Table\IRow;
 use Nette\Database\Table\Selection;
 use Nette\Utils\DateTime as NetteDateTime;
@@ -19,9 +18,9 @@ final class NotApprovedEventsTable extends AbstractDataTable
      */
     private $eventModel;
 
-    public function __construct(Translator $translator, Selection $dataSource, EventModel $eventModel)
+    public function __construct(Selection $dataSource, EventModel $eventModel)
     {
-        parent::__construct($translator, $dataSource);
+        parent::__construct($dataSource);
         $this->eventModel = $eventModel;
     }
 
