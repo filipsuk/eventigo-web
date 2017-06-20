@@ -1,6 +1,8 @@
 includes:
-	- services.neon
+	- database.neon
 	- factories.neon
+	- services.neon
+	- decorator.neon
 	- parameters.neon
 	- extensions/translation.neon
 	- extensions/console.neon
@@ -24,4 +26,3 @@ session:
 
 extensions:
 	slackLogger: greeny\NetteSlackLogger\DI\SlackLoggerExtension
-

@@ -8,9 +8,14 @@ use Nette\Utils\DateTime;
 final class DashboardPresenter extends AbstractBasePresenter
 {
     /**
-     * @var EventModel @inject
+     * @var EventModel
      */
-    public $eventModel;
+    private $eventModel;
+
+    public function __construct(EventModel $eventModel)
+    {
+        $this->eventModel = $eventModel;
+    }
 
     public function actionDefault(): void
     {

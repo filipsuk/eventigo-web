@@ -17,24 +17,36 @@ use Throwable;
 final class EmailService
 {
     /**
-     * @var Translator @inject
+     * @var Translator
      */
-    public $translator;
+    private $translator;
 
     /**
-     * @var LinkGenerator @inject
+     * @var LinkGenerator
      */
-    public $linkGenerator;
+    private $linkGenerator;
 
     /**
-     * @var ITemplateFactory @inject
+     * @var ITemplateFactory
      */
-    public $templateFactory;
+    private $templateFactory;
 
     /**
-     * @var SendGrid @inject
+     * @var SendGrid
      */
-    public $sendGrid;
+    private $sendGrid;
+
+    public function __construct(
+        SendGrid $sendGrid,
+        ITemplateFactory $templateFactory,
+        LinkGenerator $linkGenerator,
+        Translator $translator
+    ) {
+        $this->sendGrid = $sendGrid;
+        $this->templateFactory = $templateFactory;
+        $this->linkGenerator = $linkGenerator;
+        $this->translator = $translator;
+    }
 
     public function sendLogin(string $emailTo, string $token): void
     {

@@ -8,7 +8,6 @@ use App\Modules\Core\Model\TagGroupModel;
 use App\Modules\Core\Model\TagModel;
 use App\Modules\Core\Model\UserTagModel;
 use App\Modules\Core\Utils\Collection;
-use Kdyby\Translation\Translator;
 use Nette\Database\Helpers;
 use Nette\Database\Table\Selection;
 use Nette\Database\UniqueConstraintViolationException;
@@ -46,13 +45,12 @@ final class Tags extends AbstractBaseControl
     private $user;
 
     public function __construct(
-        Translator $translator,
         TagModel $tagModel,
         UserTagModel $userTagModel,
         TagGroupModel $tagGroupModel,
         User $user
     ) {
-        parent::__construct($translator);
+        parent::__construct();
         $this->tagModel = $tagModel;
         $this->userTagModel = $userTagModel;
         $this->tagGroupModel = $tagGroupModel;

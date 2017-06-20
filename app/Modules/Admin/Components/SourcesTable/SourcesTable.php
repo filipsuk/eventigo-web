@@ -8,7 +8,6 @@ use App\Modules\Admin\Model\SourceService;
 use App\Modules\Core\Model\EventSources\Facebook\FacebookEventSource;
 use App\Modules\Core\Model\EventSources\Utils\EventSource;
 use App\Modules\Core\Utils\DateTime;
-use Kdyby\Translation\Translator;
 use Nette\Database\Table\Selection;
 use Nette\Utils\DateTime as NetteDateTime;
 use Nette\Utils\Html;
@@ -26,12 +25,11 @@ final class SourcesTable extends AbstractDataTable
     private $sourceService;
 
     public function __construct(
-        Translator $translator,
         Selection $dataSource,
         SourceModel $sourceModel,
         SourceService $sourceService
     ) {
-        parent::__construct($translator, $dataSource);
+        parent::__construct($dataSource);
         $this->sourceModel = $sourceModel;
         $this->sourceService = $sourceService;
     }

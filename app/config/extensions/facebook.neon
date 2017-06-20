@@ -3,6 +3,6 @@ extensions:
 
 facebook:
 	appId: ""
-	appSecret: ""
+	appSecret: "default_secret_to_confirm_format"
 	permissions: [public_profile, email]
 	graphVersion: v2.6

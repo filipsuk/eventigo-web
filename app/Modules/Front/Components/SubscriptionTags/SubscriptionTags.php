@@ -10,7 +10,6 @@ use App\Modules\Core\Model\UserTagModel;
 use App\Modules\Core\Utils\Collection;
 use App\Modules\Front\Components\Subscription\Subscription;
 use App\Modules\Front\Model\Exceptions\Subscription\EmailExistsException;
-use Kdyby\Translation\Translator;
 use Nette\Database\Helpers;
 use Nette\Database\Table\Selection;
 
@@ -42,13 +41,12 @@ final class SubscriptionTags extends Subscription
     private $tagGroupModel;
 
     public function __construct(
-        Translator $translator,
         UserModel $userModel,
         TagModel $tagModel,
         UserTagModel $userTagModel,
         TagGroupModel $tagGroupModel
     ) {
-        parent::__construct($translator, $userModel);
+        parent::__construct($userModel);
         $this->tagModel = $tagModel;
         $this->userTagModel = $userTagModel;
         $this->tagGroupModel = $tagGroupModel;

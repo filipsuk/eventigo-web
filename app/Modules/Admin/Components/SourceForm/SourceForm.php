@@ -23,14 +23,20 @@ final class SourceForm extends AbstractBaseControl
     public $onUpdate = [];
 
     /**
-     * @var SourceModel @inject
+     * @var SourceModel
      */
-    public $sourceModel;
+    private $sourceModel;
 
     /**
-     * @var OrganiserService @inject
+     * @var OrganiserService
      */
-    public $organiserService;
+    private $organiserService;
+
+    public function __construct(OrganiserService $organiserService, SourceModel $sourceModel)
+    {
+        $this->organiserService = $organiserService;
+        $this->sourceModel = $sourceModel;
+    }
 
     public function render(): void
     {

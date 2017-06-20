@@ -1,0 +1,3 @@
+decorator:
+    App\Modules\Core\Components\AbstractBaseControl:
+        inject: true

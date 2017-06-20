@@ -6,7 +6,6 @@ use App\Modules\Core\Components\AbstractBaseControl;
 use App\Modules\Core\Components\Form\Form;
 use App\Modules\Core\Model\UserModel;
 use App\Modules\Front\Model\Exceptions\Subscription\EmailExistsException;
-use Kdyby\Translation\Translator;
 use Nette\Database\Table\IRow;
 
 class Subscription extends AbstractBaseControl
@@ -26,9 +25,8 @@ class Subscription extends AbstractBaseControl
      */
     private $userModel;
 
-    public function __construct(Translator $translator, UserModel $userModel)
+    public function __construct(UserModel $userModel)
     {
-        parent::__construct($translator);
         $this->userModel = $userModel;
     }
 

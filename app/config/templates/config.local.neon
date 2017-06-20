@@ -20,12 +20,11 @@ parameters:
 	meetup:
 		apiKey: ''
 
-database:
-	dsn: 'mysql:host=127.0.0.1:8889;dbname=events'
-	user:
-	password:
-	options:
-		lazy: yes
+	database:
+		host:
+		name:
+		username:
+		password:
 
 slackLogger:
 	enabled: false

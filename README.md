@@ -14,7 +14,11 @@
 1. Vytvořit novou MySQL databázi a importovat `events.sql.zip`
 2. Zkopírovat `app/config/templates/config.local.neon` do adresáře `app/config` a upravit konfiguraci
 3. Zkopírovat `phinx.yml.template` jako nový soubor `phinx.yml` a nastavit přístupy do databáze (viz [Phinx docs](http://docs.phinx.org/en/latest/configuration.html))
-4. Nainstalovat závislosti `composer install` a `bower install`
+4. Nainstalovat závislosti
+    ```
+    composer install
+    bower install
+    ```
 5. Spustit databázové migrace `vendor/bin/phinx migrate`
 6. Vygenerovat heslo příkazem `php bin/console admin:generatePassword <heslo>`
 7. Vytvořit admin uživatele v tabulce `users` s vygenerovaným heslem nebo použít demo admin účet: demo@gmail.com, heslo: demo

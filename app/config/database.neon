@@ -1,0 +1,6 @@
+database:
+	dsn: 'mysql:host=%database.host%;dbname=%database.name%'
+	user: %database.username%
+	password: %database.password%
+	options:
+		lazy: yes

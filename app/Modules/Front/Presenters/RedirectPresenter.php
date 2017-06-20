@@ -10,14 +10,20 @@ use Nette\Http\Url;
 final class RedirectPresenter extends AbstractBasePresenter
 {
     /**
-     * @var EventModel @inject
+     * @var EventModel
      */
-    public $eventModel;
+    private $eventModel;
 
     /**
-     * @var EventRedirectModel @inject
+     * @var EventRedirectModel
      */
-    public $eventRedirectModel;
+    private $eventRedirectModel;
+
+    public function __construct(EventRedirectModel $eventRedirectModel, EventModel $eventModel)
+    {
+        $this->eventRedirectModel = $eventRedirectModel;
+        $this->eventModel = $eventModel;
+    }
 
     public function renderDefault(string $url): void
     {

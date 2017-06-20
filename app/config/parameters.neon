@@ -8,3 +8,8 @@ parameters:
 			name: Filip
 			email: filip@eventigo.cz
 
+	database:
+		host: 127.0.0.1:8889
+		name: events
+		username:
+		password:

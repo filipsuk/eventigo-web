@@ -3,7 +3,6 @@
 namespace App\Modules\Admin\Components\DataTable;
 
 use App\Modules\Core\Components\AbstractBaseControl;
-use Kdyby\Translation\Translator;
 use Nette\Application\Responses\JsonResponse;
 use Nette\Database\Table\Selection;
 
@@ -19,9 +18,9 @@ abstract class AbstractDataTable extends AbstractBaseControl
      */
     protected $dataSource;
 
-    public function __construct(Translator $translator, Selection $dataSource)
+    public function __construct(Selection $dataSource)
     {
-        parent::__construct($translator);
+        parent::__construct();
         $this->dataSource = $dataSource;
     }
 

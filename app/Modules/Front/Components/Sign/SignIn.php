@@ -6,7 +6,6 @@ use App\Modules\Core\Components\AbstractBaseControl;
 use App\Modules\Core\Components\Form\Form;
 use App\Modules\Core\Model\UserModel;
 use App\Modules\Email\Model\EmailService;
-use Kdyby\Translation\Translator;
 use Nette\Utils\ArrayHash;
 
 final class SignIn extends AbstractBaseControl
@@ -31,9 +30,8 @@ final class SignIn extends AbstractBaseControl
      */
     private $emailService;
 
-    public function __construct(Translator $translator, UserModel $userModel, EmailService $emailService)
+    public function __construct(UserModel $userModel, EmailService $emailService)
     {
-        parent::__construct($translator);
         $this->userModel = $userModel;
         $this->emailService = $emailService;
     }

@@ -9,7 +9,6 @@ use App\Modules\Core\Components\Form\Form;
 use App\Modules\Core\Model\EventModel;
 use App\Modules\Core\Model\TagModel;
 use Kdyby\Facebook\FacebookApiException;
-use Kdyby\Translation\Translator;
 use Nette\Database\UniqueConstraintViolationException;
 
 final class EventForm extends AbstractBaseControl
@@ -40,12 +39,11 @@ final class EventForm extends AbstractBaseControl
     private $organiserService;
 
     public function __construct(
-        Translator $translator,
         TagModel $tagModel,
         EventService $eventService,
         OrganiserService $organiserService
     ) {
-        parent::__construct($translator);
+        parent::__construct();
         $this->tagModel = $tagModel;
         $this->eventService = $eventService;
         $this->organiserService = $organiserService;

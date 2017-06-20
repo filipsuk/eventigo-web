@@ -15,24 +15,36 @@ use Nette\Utils\DateTime;
 final class EventsPresenter extends AbstractBasePresenter
 {
     /**
-     * @var EventFormFactoryInterface @inject
+     * @var EventFormFactoryInterface
      */
-    public $eventFormFactory;
+    private $eventFormFactory;
 
     /**
-     * @var EventModel @inject
+     * @var EventModel
      */
-    public $eventModel;
+    private $eventModel;
 
     /**
-     * @var SourceService @inject
+     * @var SourceService
      */
-    public $sourceService;
+    private $sourceService;
 
     /**
-     * @var NotApprovedEventsTableFactoryInterface @inject
+     * @var NotApprovedEventsTableFactoryInterface
      */
-    public $notApprovedEventsTableFactory;
+    private $notApprovedEventsTableFactory;
+
+    public function __construct(
+        NotApprovedEventsTableFactoryInterface $notApprovedEventsTableFactory,
+        SourceService $sourceService,
+        EventModel $eventModel,
+        EventFormFactoryInterface $eventFormFactory
+    ) {
+        $this->notApprovedEventsTableFactory = $notApprovedEventsTableFactory;
+        $this->sourceService = $sourceService;
+        $this->eventModel = $eventModel;
+        $this->eventFormFactory = $eventFormFactory;
+    }
 
     public function actionUpdate(int $id): void
     {

@@ -6,9 +6,7 @@ services:
 	- App\Modules\Admin\Components\SignIn\SignInFormFactoryInterface
 	- App\Modules\Front\Components\Tags\TagsFactoryInterface
 	- App\Modules\Front\Components\Settings\SettingsFactoryInterface
-	-
-		implement: App\Modules\Admin\Components\SourceForm\SourceFormFactoryInterface
-		inject: yes
+	- App\Modules\Admin\Components\SourceForm\SourceFormFactoryInterface
 	- App\Modules\Admin\Components\SourcesTable\SourcesTableFactoryInterface
 	- App\Modules\Admin\Components\EventsTable\NotApprovedEventsTableFactoryInterface
 	- App\Modules\Front\Components\Sign\SignInFactoryInterface

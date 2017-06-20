@@ -9,14 +9,20 @@ use Nette\Database\Table\IRow;
 final class OrganiserService
 {
     /**
-     * @var OrganiserModel @inject
+     * @var OrganiserModel
      */
-    public $organiserModel;
+    private $organiserModel;
 
     /**
-     * @var EventSeriesModel @inject
+     * @var EventSeriesModel
      */
-    public $eventSeriesModel;
+    private $eventSeriesModel;
+
+    public function __construct(EventSeriesModel $eventSeriesModel, OrganiserModel $organiserModel)
+    {
+        $this->eventSeriesModel = $eventSeriesModel;
+        $this->organiserModel = $organiserModel;
+    }
 
     /**
      * @return array|\Nette\Database\Table\IRow[]

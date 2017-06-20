@@ -5,7 +5,6 @@ namespace App\Modules\Front\Components\Settings;
 use App\Modules\Core\Components\AbstractBaseControl;
 use App\Modules\Core\Components\Form\Form;
 use App\Modules\Core\Model\UserModel;
-use Kdyby\Translation\Translator;
 use Nette\Security\User;
 
 final class Settings extends AbstractBaseControl
@@ -25,9 +24,9 @@ final class Settings extends AbstractBaseControl
      */
     private $userModel;
 
-    public function __construct(Translator $translator, UserModel $userModel, User $user)
+    public function __construct(UserModel $userModel, User $user)
     {
-        parent::__construct($translator);
+        parent::__construct();
         $this->user = $user;
         $this->userModel = $userModel;
     }

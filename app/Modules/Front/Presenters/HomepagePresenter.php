@@ -14,6 +14,7 @@ use App\Modules\Front\Components\Sign\SignInFactoryInterface;
 use App\Modules\Front\Components\SubscriptionTags\SubscriptionTags;
 use App\Modules\Front\Components\SubscriptionTags\SubscriptionTagsFactoryInterface;
 use Kdyby\Facebook\Dialog\LoginDialog;
+use Kdyby\Facebook\Facebook;
 use Kdyby\Facebook\FacebookApiException;
 use Nette\Security\Identity;
 use Nette\Utils\DateTime;
@@ -23,34 +24,50 @@ use Tracy\Debugger;
 final class HomepagePresenter extends AbstractBasePresenter
 {
     /**
-     * @var EventModel @inject
+     * @var EventModel
      */
-    public $eventModel;
+    private $eventModel;
 
     /**
-     * @var SubscriptionTagsFactoryInterface @inject
+     * @var SubscriptionTagsFactoryInterface
      */
-    public $subscriptionTags;
+    private $subscriptionTags;
 
     /**
-     * @var EventsListFactoryInterface @inject
+     * @var EventsListFactoryInterface
      */
-    public $eventsListFactory;
+    private $eventsListFactory;
 
     /**
-     * @var \Kdyby\Facebook\Facebook @inject
+     * @var Facebook
      */
-    public $facebook;
+    private $facebook;
 
     /**
-     * @var SignInFactoryInterface @inject
+     * @var SignInFactoryInterface
      */
-    public $signInFactory;
+    private $signInFactory;
 
     /**
-     * @var EmailService @inject
+     * @var EmailService
      */
-    public $emailService;
+    private $emailService;
+
+    public function __construct(
+        EmailService $emailService,
+        SignInFactoryInterface $signInFactory,
+        Facebook $facebook,
+        EventsListFactoryInterface $eventsListFactory,
+        SubscriptionTagsFactoryInterface $subscriptionTags,
+        EventModel $eventModel
+    ) {
+        $this->emailService = $emailService;
+        $this->signInFactory = $signInFactory;
+        $this->facebook = $facebook;
+        $this->eventsListFactory = $eventsListFactory;
+        $this->subscriptionTags = $subscriptionTags;
+        $this->eventModel = $eventModel;
+    }
 
     /**
      * @param string[] $tags
