@@ -55,16 +55,14 @@ $ php bin/console newsletters:send
 ## Code style check & fix
 
 ✅ Check by running: 
+
 ```bash
-composer check-cs
-# OR
 composer cs
 ```
 
 ✨ Auto-fix by running: 
+
 ```bash
-composer fix-cs
-# OR
 composer fs
 ```
 

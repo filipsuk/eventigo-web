@@ -9,7 +9,7 @@ install:
 
 script:
   # check coding standard (defined in composer.json "scripts" section)
-  - composer check-cs
+  - composer cs
   # check with phpstan (defined in composer.json "scripts" section)
   - composer phpstan
   # run tests
