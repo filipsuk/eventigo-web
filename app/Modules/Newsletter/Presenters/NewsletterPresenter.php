@@ -80,7 +80,7 @@ final class NewsletterPresenter extends AbstractBasePresenter
 
     public function renderDynamic(int $userId): void
     {
-        $newsletter = $this->newsletterService->buildArrayForTemplate((int) $userId);
+        $newsletter = $this->newsletterService->buildArrayForTemplate($userId);
         $this->template->newsletter = NewsletterService::inlineCss($newsletter);
     }
 }
