@@ -5,6 +5,8 @@ parameters:
         - "#Call to an undefined method SendGrid#"
         - "#AbstractEventSource::URL#"
         - "#IResource[)] does not accept#"
+        - "#count of method Kdyby#"
+        - "#\\DateTime|null givens#"
 
 includes:
     - vendor/phpstan/phpstan-nette/extension.neon
