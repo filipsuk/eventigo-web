@@ -4,6 +4,7 @@ parameters:
         - "#does not call parent constructor from Nette#"
         - "#Call to an undefined method SendGrid#"
         - "#AbstractEventSource::URL#"
+        - "#IResource[)] does not accept#"
 
 includes:
     - vendor/phpstan/phpstan-nette/extension.neon
