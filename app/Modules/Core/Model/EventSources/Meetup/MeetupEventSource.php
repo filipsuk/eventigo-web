@@ -5,6 +5,7 @@ namespace App\Modules\Core\Model\EventSources\Meetup;
 use App\Modules\Core\Model\Entity\Event;
 use App\Modules\Core\Model\EventSources\AbstractEventSource;
 use DMS\Service\Meetup\MeetupKeyAuthClient;
+use DMS\Service\Meetup\Response\MultiResultResponse;
 use Nette\Utils\DateTime;
 
 final class MeetupEventSource extends AbstractEventSource
@@ -33,6 +34,7 @@ final class MeetupEventSource extends AbstractEventSource
      */
     public function getEvents(string $group): array
     {
+        /** @var MultiResultResponse|MeetupKeyAuthClient $client */
         $client = MeetupKeyAuthClient::factory(['key' => $this->apiKey]);
         $groupEvents = $client->getGroupEvents(['urlname' => $group])->getData();
 

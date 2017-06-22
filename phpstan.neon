@@ -2,6 +2,8 @@ parameters:
     ignoreErrors:
         - "#Access to an undefined property#"
         - "#does not call parent constructor from Nette#"
+        - "#Call to an undefined method SendGrid#"
+        - "#AbstractEventSource::URL#"
 
 includes:
     - vendor/phpstan/phpstan-nette/extension.neon
