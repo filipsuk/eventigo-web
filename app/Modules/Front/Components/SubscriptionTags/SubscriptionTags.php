@@ -12,6 +12,7 @@ use App\Modules\Front\Components\Subscription\Subscription;
 use App\Modules\Front\Model\Exceptions\Subscription\EmailExistsException;
 use Nette\Database\Helpers;
 use Nette\Database\Table\Selection;
+use Nette\Security\User;
 
 final class SubscriptionTags extends Subscription
 {
@@ -44,13 +45,15 @@ final class SubscriptionTags extends Subscription
         UserModel $userModel,
         TagModel $tagModel,
         UserTagModel $userTagModel,
-        TagGroupModel $tagGroupModel
+        TagGroupModel $tagGroupModel,
+        User $user
     ) {
         parent::__construct($userModel);
         $this->tagModel = $tagModel;
         $this->userTagModel = $userTagModel;
         $this->tagGroupModel = $tagGroupModel;
-        $this->tags = $this->tagModel->getByMostEvents();
+        $showAbroad = $userModel->showAbroadEvents($user->getId());
+        $this->tags = $this->tagModel->getByMostEvents($showAbroad);
     }
 
     public function render(): void

@@ -282,7 +282,8 @@ final class NewsletterService
             //TODO posilat dalsi akce
         ];
 
-        $nextWeekEvents = $this->eventModel->getAllWithDates($userTags, $from, $to);
+        $showAbroad = $this->userModel->showAbroadEvents($userId);
+        $nextWeekEvents = $this->eventModel->getAllWithDates($userTags, $from, $to, null, $showAbroad);
 
         if (! $this->context->parameters['newsletter']['sendNewsletterWithNoEvents'] && count($nextWeekEvents) === 0) {
             throw new NoEventsFoundException("No events found for user $userId!");
@@ -295,7 +296,9 @@ final class NewsletterService
                 'name' => $event->name,
                 'date' => $event->start,
                 'hashtags' => $hashtags,
-                'url' => $this->linkGenerator->link('Front:Redirect:', [$event->origin_url])
+                'url' => $this->linkGenerator->link('Front:Redirect:', [$event->origin_url]),
+                'venue' => $event->venue,
+                'countryCode' => $event->country_id,
             ];
         }
 

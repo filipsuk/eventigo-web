@@ -6,6 +6,7 @@ use App\Modules\Core\Components\AbstractBaseControl;
 use App\Modules\Core\Components\Form\Form;
 use App\Modules\Core\Model\UserModel;
 use Nette\Security\User;
+use Nette\Utils\Html;
 
 final class Settings extends AbstractBaseControl
 {
@@ -42,6 +43,7 @@ final class Settings extends AbstractBaseControl
 
         $this->userModel->getAll()->wherePrimary($this->user->getId())->update([
             'newsletter' => (bool) $values->newsletter,
+            'abroad_events' => (bool) $values->abroadEvents,
         ]);
 
         $this->onChange();
@@ -53,7 +55,19 @@ final class Settings extends AbstractBaseControl
         $form->setTranslator($this->translator->domain('front.profile.settings.main'));
         $form->getElementPrototype()->addClass('ajax');
 
-        $form->addCheckbox('newsletter', 'newsletter');
+        // fa-envelope fa-envelope-o
+        $form->addCheckbox(
+            'newsletter',
+            Html::el('span class="label-icon-end"')
+                ->addText($this->translator->translate('front.profile.settings.main.newsletter'))
+                ->addHtml(Html::el('i class="fa fa-envelope"'))
+        );
+        // fa-globe
+        $form->addCheckbox('abroadEvents',
+            Html::el('span class="label-icon-end"')
+                ->addText($this->translator->translate('front.profile.settings.main.abroad'))
+                ->addHtml(Html::el('i class="fa fa-globe"'))
+        );
 
         $form->onSuccess[] = [$this, 'processForm'];
 

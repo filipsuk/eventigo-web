@@ -96,7 +96,8 @@ final class HomepagePresenter extends AbstractBasePresenter
         $tags = (array) $tags;
         // TODO do this more general
         // Remove tags with no events
-        $activeTags = $this->tagModel->getByMostEvents()->fetchPairs(null, 'code');
+        $showAbroad = $this->userModel->showAbroadEvents($this->getUser()->getId());
+        $activeTags = $this->tagModel->getByMostEvents($showAbroad)->fetchPairs(null, 'code');
         foreach ($tags as $tagsGroupName => &$tagsGroup) {
             foreach ($tagsGroup as $i => &$tag) {
                 if (! in_array($tag, $activeTags)) {
@@ -116,7 +117,8 @@ final class HomepagePresenter extends AbstractBasePresenter
 
         // TODO do this more general
         // Remove tags with no events
-        $activeTags = $this->tagModel->getByMostEvents()->fetchPairs(null, 'code');
+        $showAbroad = $this->userModel->showAbroadEvents($this->getUser()->getId());
+        $activeTags = $this->tagModel->getByMostEvents($showAbroad)->fetchPairs(null, 'code');
         foreach ($tags as $tagsGroupName => &$tagsGroup) {
             foreach ($tagsGroup as $i => &$tag) {
                 if (! in_array($tag, $activeTags)) {
@@ -146,7 +148,10 @@ final class HomepagePresenter extends AbstractBasePresenter
 
         // Refresh data
         $tagsIds = $this->tagModel->getAll()->where('code', $section->tags)->fetchPairs(null, 'id');
-        $this->events = $this->eventModel->getAllWithDates($tagsIds, new DateTime);
+
+        $showAbroad = $this->userModel->showAbroadEvents($this->getUser()->getId());
+        $this->events = $this->eventModel
+            ->getAllWithDates($tagsIds, new DateTime, null, null, $showAbroad);
         $this->followedTags = $section->tags;
 
         $this['eventsList']->redrawControl();
@@ -171,7 +176,8 @@ final class HomepagePresenter extends AbstractBasePresenter
 
         // Refresh data
         $tagsIds = $this->tagModel->getAll()->where('code', $section->tags)->fetchPairs(null, 'id');
-        $this->events = $this->eventModel->getAllWithDates($tagsIds, new DateTime);
+        $showAbroad = $this->userModel->showAbroadEvents($this->getUser()->getId());
+        $this->events = $this->eventModel->getAllWithDates($tagsIds, new DateTime, null, null, $showAbroad);
         $this->followedTags = $section->tags;
 
         $this['eventsList']->redrawControl();
@@ -226,13 +232,15 @@ final class HomepagePresenter extends AbstractBasePresenter
 
     protected function createComponentEventsList(): EventsList
     {
+        $showAbroad = $this->userModel->showAbroadEvents($this->getUser()->getId());
+
         if (! $this->user->getId() || $this->getAction() !== 'default') {
             $section = $this->getSession($this->getAction() === 'discover' ? 'discover' : 'subscriptionTags');
             $tags = Collection::getNestedValues((array) $section->tags ?? []);
 
             // TODO do this more general
             // Remove tags with no events
-            $activeTags = $this->tagModel->getByMostEvents()->fetchPairs(null, 'code');
+            $activeTags = $this->tagModel->getByMostEvents($showAbroad)->fetchPairs(null, 'code');
             foreach ($tags as $i => $tag) {
                 if (! in_array($tag, $activeTags)) {
                     unset($tags[$i]);
@@ -246,7 +254,7 @@ final class HomepagePresenter extends AbstractBasePresenter
                 ->fetchPairs(null, 'id');
         }
 
-        $events = $this->eventModel->getAllWithDates($tagsIds, new DateTime, null, $this->lastAccess);
+        $events = $this->eventModel->getAllWithDates($tagsIds, new DateTime, null, $this->lastAccess, $showAbroad);
 
         return $this->eventsListFactory->create($events);
     }

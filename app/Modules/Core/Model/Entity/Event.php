@@ -42,6 +42,16 @@ final class Event
     /**
      * @var string
      */
+    private $venue;
+
+    /**
+     * @var string
+     */
+    private $countryCode;
+
+    /**
+     * @var string
+     */
     private $image;
 
     /**
@@ -61,6 +71,8 @@ final class Event
         ?string $originUrl = null,
         DateTime $start,
         ?DateTime $end = null,
+        ?string $venue = null,
+        ?string $countryCode = null,
         ?string $image = null,
         ?int $rate = null,
         ?DateTime $created = null
@@ -72,6 +84,8 @@ final class Event
         $this->originUrl = $originUrl;
         $this->start = $start;
         $this->end = $end;
+        $this->venue = $venue;
+        $this->countryCode = $countryCode;
         $this->image = $image;
         $this->rate = $rate;
         $this->created = $created;
@@ -86,6 +100,8 @@ final class Event
             $eventRow['origin_url'],
             $eventRow['start'],
             $eventRow['end'],
+            $eventRow['venue'],
+            $eventRow['country_id'],
             $eventRow['image'],
             $eventRow['rate'],
             $eventRow['created']
@@ -154,6 +170,16 @@ final class Event
     public function setEnd(DateTime $end): void
     {
         $this->end = $end;
+    }
+
+    public function getVenue(): ?string
+    {
+        return $this->venue;
+    }
+
+    public function getCountryCode(): ?string
+    {
+        return $this->countryCode;
     }
 
     public function getImage(): ?string

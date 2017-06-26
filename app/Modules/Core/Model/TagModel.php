@@ -14,17 +14,23 @@ final class TagModel extends AbstractBaseModel
     /**
      * Get tags with the most upcoming events.
      */
-    public function getByMostEvents(): Selection
+    public function getByMostEvents(bool $showAbroad = true): Selection
     {
-        return $this->getAll()
+        $selection = $this->getAll()
             ->select('tags.code')
             ->select('tags.name')
             ->select('COUNT(:events_tags.event_id) AS eventsCount')
             ->select('tag_group_id')
             ->select('tag_group.name AS tagGroupName')
             ->select('tags.id')
-            ->where(':events_tags.event.start >= NOW()')
-            ->group('tag_group_id, tags.id')
+            ->where(':events_tags.event.start >= NOW()');
+
+        if (! $showAbroad) {
+            $selection
+                ->where([':events_tags.event.country_id = ? OR :events_tags.event.country_id IS NULL' => 'CZ']);
+        }
+
+        return $selection->group('tag_group_id, tags.id')
             ->order('tag_group_id')
             ->order('eventsCount DESC')
             ->order('tags.name');

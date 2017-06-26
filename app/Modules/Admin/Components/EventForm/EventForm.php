@@ -6,6 +6,7 @@ use App\Modules\Admin\Model\EventService;
 use App\Modules\Admin\Model\OrganiserService;
 use App\Modules\Core\Components\AbstractBaseControl;
 use App\Modules\Core\Components\Form\Form;
+use App\Modules\Core\Model\CountryModel;
 use App\Modules\Core\Model\EventModel;
 use App\Modules\Core\Model\TagModel;
 use Kdyby\Facebook\FacebookApiException;
@@ -38,15 +39,22 @@ final class EventForm extends AbstractBaseControl
      */
     private $organiserService;
 
+    /**
+     * @var CountryModel
+     */
+    private $countryModel;
+
     public function __construct(
         TagModel $tagModel,
         EventService $eventService,
-        OrganiserService $organiserService
+        OrganiserService $organiserService,
+        CountryModel $countryModel
     ) {
         parent::__construct();
         $this->tagModel = $tagModel;
         $this->eventService = $eventService;
         $this->organiserService = $organiserService;
+        $this->countryModel = $countryModel;
     }
 
     public function render(): void
@@ -77,6 +85,7 @@ final class EventForm extends AbstractBaseControl
             $values['description'] = $event->getDescription();
             $values['start'] = $event->getStart() ? $event->getStart()->format('d. m. Y H:i') : null;
             $values['end'] = $event->getEnd() ? $event->getEnd()->format('d. m. Y H:i') : null;
+            $values['venue'] = $event->getVenue();
             $values['image'] = $event->getImage();
             $values['rate'] = $event->getRate();
             $form->setValues($values, true);
@@ -119,6 +128,13 @@ final class EventForm extends AbstractBaseControl
             ->setAttribute('class', 'datetime');
         $form->addText('end', 'end')
             ->setAttribute('class', 'datetime');
+        $form->addText('venue', 'venue');
+
+        $countries = $this->countryModel->getAll()->fetchPairs('id', 'name');
+        $form->addSelect('country_id', $this->translator->translate('admin.eventForm.country'))
+            ->setPrompt($this->translator->translate('admin.eventForm.country.prompt'))
+            ->setItems($countries)
+            ->setTranslator(null);
         $form->addText('origin_url', 'originUrl')
             ->addCondition(Form::FILLED)
             ->addRule(Form::URL, 'originUrl.wrong');

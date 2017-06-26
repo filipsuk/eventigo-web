@@ -38,6 +38,8 @@ final class SrazyEventSource extends AbstractEventSource
                     $event->getUri(),
                     $start,
                     $event->getEnd() ? DateTime::from($event->getEnd()) : null,
+                    null,
+                    null,
                     null, // TODO $e->setImage() Get image from community page
                     Event::calculateRateByAttendeesCount(
                         count($event->getConfirmedAttendees()) + count($event->getUnconfirmedAttendees())

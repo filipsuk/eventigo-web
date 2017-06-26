@@ -61,7 +61,10 @@ final class ProfilePresenter extends AbstractBasePresenter
         $this['tags']['form']->setDefaults(['tags' => $userTags]);
 
         $user = $this->userModel->getAll()->wherePrimary($this->getUser()->getId())->fetch();
-        $this['settings-form']->setDefaults(['newsletter' => $user->newsletter]);
+        $this['settings-form']->setDefaults([
+            'newsletter' => $user->newsletter,
+            'abroadEvents' => $user->abroad_events,
+        ]);
     }
 
     protected function startup(): void

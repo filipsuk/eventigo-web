@@ -306,6 +306,10 @@ div#wrapper #profile {
   font-size: 0.8rem;
   color: #727272;
 }
+#events-list .event-box img.flag {
+  margin-left: .3rem;
+  margin-bottom: 0.2rem;
+}
 #events-list .event-box.label-event {
   position: relative;
 }
@@ -619,6 +623,18 @@ footer .social .fa:hover {
 input[type=checkbox] {
   margin-right: .3em;
 }
+.td-control input:hover,
+.td-control label:hover {
+  cursor: pointer;
+  color: #1976D2;
+}
+.label-icon-end i {
+  font-size: 1.5rem;
+  padding-left: 0.5rem;
+}
+:not(:checked):not(:hover) + .label-icon-end i {
+  color: #909090;
+}
 .navbar-toggle {
   padding: 4px 10px;
 }
@@ -642,17 +658,17 @@ input[type=checkbox] {
 }
 @media (max-width: 500px) {
   #events-list .event-box {
-    height: 19rem;
+    height: 18rem;
   }
 }
 @media (max-width: 450px) {
   #events-list .event-box {
-    height: 22rem;
+    height: 21rem;
   }
 }
 @media (max-width: 350px) {
   #events-list .event-box {
-    height: 23rem;
+    height: 22rem;
   }
 }
 @media (max-width: 300px) {

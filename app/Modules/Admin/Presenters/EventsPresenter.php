@@ -46,6 +46,13 @@ final class EventsPresenter extends AbstractBasePresenter
         $this->eventFormFactory = $eventFormFactory;
     }
 
+    public function actionCreate(): void
+    {
+        $this['eventForm-form']->setDefaults([
+            'country_id' => 'CZ',
+        ]);
+    }
+
     public function actionUpdate(int $id): void
     {
         $event = $this->eventModel->getAll()
@@ -76,6 +83,8 @@ final class EventsPresenter extends AbstractBasePresenter
                 $defaults['image'] = $previousEvent->image;
             }
         }
+
+        $defaults['country_id'] = $defaults['country_id'] ?: 'CZ';
 
         $this['eventForm-form']->setDefaults($defaults);
     }

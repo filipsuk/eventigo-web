@@ -22,7 +22,7 @@ final class FacebookEventSource extends AbstractEventSource
     /**
      * @var string
      */
-    private const EVENT_FIELDS = 'cover,end_time,start_time,name,description,interested_count,attending_count';
+    private const EVENT_FIELDS = 'cover,end_time,start_time,name,description,interested_count,attending_count,place';
 
     /**
      * @var \Kdyby\Facebook\Facebook
@@ -50,6 +50,8 @@ final class FacebookEventSource extends AbstractEventSource
                 'https://facebook.com/events/' . $id . '/',
                 isset($response->start_time) ? DateTime::createFromFormat(DATE_ISO8601, $response->start_time) : null,
                 isset($response->end_time) ? DateTime::createFromFormat(DATE_ISO8601, $response->end_time) : null,
+                $response->place->location->city ?? null,
+                null,
                 $response->cover->source ?? null,
                 Event::calculateRateByAttendeesCount($response->interested_count + $response->attending_count)
             );
@@ -84,6 +86,8 @@ final class FacebookEventSource extends AbstractEventSource
                         'https://facebook.com/events/' . $event->id . '/',
                         $start,
                         isset($event->end_time) ? DateTime::createFromFormat(DATE_ISO8601, $event->end_time) : null,
+                        $event->place->location->city ?? null,
+                        null,
                         $event->cover->source ?? null,
                         Event::calculateRateByAttendeesCount($event->interested_count + $event->attending_count)
                     );

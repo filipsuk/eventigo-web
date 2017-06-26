@@ -368,6 +368,11 @@ div#wrapper {
       }
     }
 
+    img.flag {
+      margin-left: .3rem;
+      margin-bottom: 0.2rem;
+    }
+
     &.label-event {
       position: relative;
       .label {
@@ -729,6 +734,25 @@ input[type=checkbox] {
   margin-right: .3em;
 }
 
+.td-control {
+  input:hover,
+  label:hover {
+    cursor: pointer;
+    color: @darkPrimaryColor;
+  }
+}
+.label-icon-end {
+  i {
+    font-size: 1.5rem;
+    padding-left: 0.5rem;
+  }
+  :not(:checked):not(:hover) + & {
+    i {
+      color: #909090;
+    }
+  }
+}
+
 .navbar-toggle {
   padding: 4px 10px;
   span {
@@ -739,7 +763,7 @@ input[type=checkbox] {
 @media (max-width: 992px) { #events-list .event-box { height: 16.5rem; } }
 @media (max-width: 768px) { #events-list .event-box { height: 17.5rem; } }
 @media (max-width: 600px) { #events-list .event-box { height: 16.5rem; } }
-@media (max-width: 500px) { #events-list .event-box { height: 19rem; } }
-@media (max-width: 450px) { #events-list .event-box { height: 22rem; } }
-@media (max-width: 350px) { #events-list .event-box { height: 23rem; } }
+@media (max-width: 500px) { #events-list .event-box { height: 18rem; } }
+@media (max-width: 450px) { #events-list .event-box { height: 21rem; } }
+@media (max-width: 350px) { #events-list .event-box { height: 22rem; } }
 @media (max-width: 300px) { #events-list .event-box { height: 25rem; } }

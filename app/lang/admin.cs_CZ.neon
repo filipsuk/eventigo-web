@@ -13,6 +13,9 @@ eventForm.loadFromFb: Načíst z Facebooku
 eventForm.start: Od
 eventForm.start.required: Zadej začátek akce
 eventForm.end: Do
+eventForm.venue: Město
+eventForm.country: Stát
+eventForm.country.prompt: Vyber stát
 eventForm.image: Obrázek
 eventForm.image.wrong: Zadej platný odkaz obrázku
 eventForm.image.notSecure: Obrázek není na HTTPS
