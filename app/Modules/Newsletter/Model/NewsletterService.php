@@ -12,7 +12,6 @@ use BadMethodCallException;
 use Kdyby\Translation\Translator;
 use Nette\Application\LinkGenerator;
 use Nette\Application\UI\ITemplateFactory;
-use Nette\Application\UI\Presenter;
 use Nette\Bridges\ApplicationLatte\Template;
 use Nette\Database\Table\IRow;
 use Nette\DI\Container;
@@ -41,16 +40,6 @@ final class NewsletterService
         'utm_source' => 'newsletter',
         'utm_medium' => 'email'
     ];
-
-    /**
-     * @var  Template
-     */
-    protected $template;
-
-    /**
-     * @var  Presenter
-     */
-    protected $presenter;
 
     /**
      * @var UserNewsletterModel
@@ -320,25 +309,26 @@ final class NewsletterService
      */
     private function renderNewsletterContent(array $newsletter): string
     {
-        $this->template = $this->templateFactory->createTemplate();
-        $this->template->addFilter('datetime', function (NetteDateTime $a, ?NetteDateTime $b = null) {
+        /** @var Template $template */
+        $template = $this->templateFactory->createTemplate();
+        $template->addFilter('datetime', function (NetteDateTime $a, ?NetteDateTime $b = null) {
             DateTime::setTranslator($this->translator);
 
             return DateTime::eventsDatetimeFilter($a, $b);
         });
 
-        $this->template->newsletter = self::inlineCss($newsletter);
+        $template->add('newsletter', self::inlineCss($newsletter));
 
         $templateFile = __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'Presenters'
             . DIRECTORY_SEPARATOR . 'templates' . DIRECTORY_SEPARATOR . 'Newsletter'
             . DIRECTORY_SEPARATOR . 'dynamic.latte';
-        $this->template->setFile($templateFile);
+        $template->setFile($templateFile);
 
-        $this->template->getLatte()->addProvider('uiControl', $this->linkGenerator); // pro Latte 2.4
+        $template->getLatte()->addProvider('uiControl', $this->linkGenerator); // pro Latte 2.4
 
         // @todo: use latte directly
-        return $this->template->getLatte()->renderToString(
-            $this->template->getFile(), $this->template->getParameters()
+        return $template->getLatte()->renderToString(
+            $template->getFile(), $template->getParameters()
         );
     }
 }

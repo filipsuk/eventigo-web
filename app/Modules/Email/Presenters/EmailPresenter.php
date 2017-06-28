@@ -5,6 +5,8 @@ namespace App\Modules\Email\Presenters;
 use App\Modules\Core\Presenters\AbstractBasePresenter;
 use App\Modules\Email\Model\EmailService;
 use Latte\Loaders\StringLoader;
+use Nette\Application\UI\ITemplate;
+use Nette\Bridges\ApplicationLatte\Template;
 
 /**
  * EmailPresenter is used for rendering different types of emails.
@@ -40,7 +42,9 @@ final class EmailPresenter extends AbstractBasePresenter
      */
     public function renderLogin(string $token): void
     {
-        $this->template->getLatte()->setLoader(new StringLoader); // @todo: what is this for?
-        $this->template->setFile($this->emailService->renderLoginEmail($token));
+        /** @var ITemplate|Template $template */
+        $template = $this->getTemplate();
+        $template->getLatte()->setLoader(new StringLoader); // @todo: what is this for?
+        $template->setFile($this->emailService->renderLoginEmail($token));
     }
 }

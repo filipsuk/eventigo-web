@@ -16,6 +16,8 @@ use App\Modules\Front\Components\SubscriptionTags\SubscriptionTagsFactoryInterfa
 use Kdyby\Facebook\Dialog\LoginDialog;
 use Kdyby\Facebook\Facebook;
 use Kdyby\Facebook\FacebookApiException;
+use Nette\Database\Table\ActiveRow;
+use Nette\Database\Table\IRow;
 use Nette\Security\Identity;
 use Nette\Utils\DateTime;
 use Nette\Utils\Html;
@@ -281,6 +283,7 @@ final class HomepagePresenter extends AbstractBasePresenter
                     }
                 }
 
+                /** @var IRow|ActiveRow $existing */
                 $existing = $this->userModel->updateFacebook($me, $fb->getAccessToken());
 
                 $this->getUser()->login(new Identity($existing->id, null, $existing->toArray()));
