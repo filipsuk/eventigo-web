@@ -134,4 +134,15 @@ final class UserModel extends AbstractBaseModel
     {
         return $this->getAll()->wherePrimary($userId)->fetchField('token');
     }
+
+    public function showAbroadEvents(?int $userId): bool
+    {
+        if ($userId) {
+            $user = $this->getAll()->wherePrimary($userId)->fetch();
+
+            return (bool) $user->abroad_events;
+        }
+
+        return true;
+    }
 }

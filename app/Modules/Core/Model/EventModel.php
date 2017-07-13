@@ -70,12 +70,14 @@ final class EventModel extends AbstractBaseModel
     /**
      * @param int[] $tagsIds
      * @return mixed[]
+     * @refactor Not SRP, too much parameters, hell
      */
     public function getAllWithDates(
         array $tagsIds,
         ?DateTime $from = NULL,
         ?DateTime $to = NULL,
-        ?DateTime $lastAccess = null
+        ?DateTime $lastAccess = null,
+        bool $showAbroad = true
     ): array {
         $calculateFrom = $from ?: new DateTime;
         $selection = $this->getAll()
@@ -113,6 +115,10 @@ final class EventModel extends AbstractBaseModel
         }
 
         $selection->where('state', self::STATE_APPROVED);
+
+        if (! $showAbroad) {
+            $selection->where(['country_id = ? OR country_id IS NULL' => 'CZ']);
+        }
 
         // Return selected events ordered by start time and size (bigger first)
         return $selection->order('start, rate DESC')

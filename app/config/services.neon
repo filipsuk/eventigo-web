@@ -26,5 +26,4 @@ services:
 		setup:
 			- setApiKey(%meetup.apiKey%)
 	- App\Modules\Api\V1\Model\EventApiService
-
-
+	- App\Modules\Core\Model\CountryModel

@@ -49,6 +49,8 @@ final class EventApiService
                 'url' => $this->linkGenerator->link('Front:Redirect:', [$event->getOriginUrl()]),
                 'start' => $event->getStart()->jsonSerialize(),
                 'end' => $event->getEnd() ? $event->getEnd()->jsonSerialize() : null,
+                'venue' => $event->getVenue(),
+                'country' => $event->getCountryCode(),
                 'image' => $event->getImage(),
                 'tags' => $eventTags
             ];

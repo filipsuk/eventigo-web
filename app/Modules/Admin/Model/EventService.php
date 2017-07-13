@@ -62,6 +62,8 @@ final class EventService
             'end' => $values->end
                 ? NetteDateTime::createFromFormat(DateTime::DATETIME_FORMAT, $values->end)
                 : null,
+            'venue' => $values->venue ?: null,
+            'country_id' => $values->country_id ?: null,
             'image' => $values->image ?: null,
             'rate' => $values->rate,
             'state' => $values->state,
@@ -85,6 +87,8 @@ final class EventService
             'end' => $values->end
                 ? NetteDateTime::createFromFormat(DateTime::DATETIME_FORMAT, $values->end)
                 : null,
+            'venue' => $values->venue ?: null,
+            'country_id' => $values->country_id ?: null,
             'image' => $values->image ?: null,
             'rate' => $values->rate,
             'state' => $values->state,

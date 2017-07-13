@@ -36,7 +36,7 @@
                             </div>
 
                             <div class="event-text">
-                                <div class="event-text-date">{$event->start, $event->end |datetime|noescape}</div>
+                                <div class="event-text-date">{$event->start, $event->end |datetime|noescape}{if $event->venue}, {$event->venue}{if $event->country_id && $event->country_id !== 'CZ'},&nbsp;{$event->country_id}&nbsp;<img class="flag flag-{$event->country_id|lower}" />{/if}{/if}</div>
                                 <div class="event-text-name">
                                     {$event->name}
                                 </div>

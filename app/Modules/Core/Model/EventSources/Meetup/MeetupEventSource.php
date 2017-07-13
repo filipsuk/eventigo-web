@@ -51,6 +51,8 @@ final class MeetupEventSource extends AbstractEventSource
                     $event['link'],
                     DateTime::from($event['time'] / 1000),
                     null,
+                    null,
+                    null,
                     $groupPhoto ?? null,
                     Event::calculateRateByAttendeesCount($event['yes_rsvp_count'] + $event['waitlist_count'])
                 );
