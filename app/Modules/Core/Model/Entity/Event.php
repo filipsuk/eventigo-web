@@ -64,6 +64,11 @@ final class Event
      */
     private $created;
 
+    /**
+     * @var DateTime
+     */
+    private $approved;
+
     public function __construct(
         ?int $id = null,
         string $name,
@@ -75,7 +80,8 @@ final class Event
         ?string $countryCode = null,
         ?string $image = null,
         ?int $rate = null,
-        ?DateTime $created = null
+        ?DateTime $created = null,
+        ?DateTime $approved = null
     )
     {
         $this->id = $id;
@@ -89,6 +95,7 @@ final class Event
         $this->image = $image;
         $this->rate = $rate;
         $this->created = $created;
+        $this->approved = $approved;
     }
 
     public static function createFromRow(IRow $eventRow): Event
@@ -104,7 +111,8 @@ final class Event
             $eventRow['country_id'],
             $eventRow['image'],
             $eventRow['rate'],
-            $eventRow['created']
+            $eventRow['created'],
+            $eventRow['approved']
         );
     }
 
@@ -200,6 +208,11 @@ final class Event
     public function getCreated(): ?DateTime
     {
         return $this->created;
+    }
+
+    public function getApproved(): ?DateTime
+    {
+        return $this->approved;
     }
 
     public function setRate(int $rate): void

@@ -154,4 +154,29 @@ final class EventModel extends AbstractBaseModel
             ->order('end DESC')
             ->fetch() ?: null;
     }
+
+    /**
+     * @return Event[]
+     */
+    public function getApprovedEventsByDate(
+        DateTime $from,
+        ?DateTime $to = NULL,
+        bool $orderByRate = false
+    ): array
+    {
+        $selection = $this->getAll()
+            ->where('approved >= ?', $from)
+            ->order($orderByRate ? 'rate DESC, start ASC' : 'start ASC');
+        if ($to) {
+            $selection->where('approved <= ?', $to);
+        }
+
+        /** @var Event[] $events */
+        $events = [];
+        foreach ($selection->fetchAll() as $event) {
+            $events[] = Event::createFromRow($event);
+        }
+
+        return $events;
+    }
 }
