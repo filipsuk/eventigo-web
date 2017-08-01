@@ -158,18 +158,11 @@ final class EventModel extends AbstractBaseModel
     /**
      * @return Event[]
      */
-    public function getApprovedEventsByDate(
-        DateTime $from,
-        ?DateTime $to = NULL,
-        bool $orderByRate = false
-    ): array
+    public function getApprovedEventsByDate(DateTime $from): array
     {
         $selection = $this->getAll()
             ->where('approved >= ?', $from)
-            ->order($orderByRate ? 'rate DESC, start ASC' : 'start ASC');
-        if ($to) {
-            $selection->where('approved <= ?', $to);
-        }
+            ->order('rate DESC, start ASC');
 
         /** @var Event[] $events */
         $events = [];

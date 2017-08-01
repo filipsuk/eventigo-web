@@ -140,7 +140,11 @@ final class NewsletterService
         $newsletter->setSubject($parameters['defaultSubject'] ?? '');
         $newsletter->setFrom($parameters['defaultAuthor']['email'] ?? '');
         $newsletter->setAuthor($parameters['defaultAuthor']['name'] ?? '');
-        $newsletter->setIntroText($this->renderRecentlyApprovedEvents($this->getApprovedEventsSinceLastNewsletter()));
+        $newsletter->setIntroText(
+            $this->renderRecentlyApprovedEvents(
+                $this->getApprovedEventsSinceLastNewsletter()
+            )
+        );
         $newsletter->setOutroText('');
 
         return $this->newsletterModel->createNewsletter($newsletter);
@@ -325,9 +329,7 @@ final class NewsletterService
         $lastNewsletterCreated = $this->newsletterModel->getLatest()['created'];
 
         return $this->eventModel->getApprovedEventsByDate(
-            $lastNewsletterCreated->add(new DateInterval('PT12H')),
-            null,
-            true
+            $lastNewsletterCreated->add(new DateInterval('PT12H'))
         );
     }
 
