@@ -2,6 +2,7 @@
 
 namespace App\Modules\Newsletter\Model;
 
+use App\Modules\Core\Model\Entity\Event;
 use App\Modules\Core\Model\EventModel;
 use App\Modules\Core\Model\EventTagModel;
 use App\Modules\Core\Model\UserModel;
@@ -9,9 +10,11 @@ use App\Modules\Core\Model\UserTagModel;
 use App\Modules\Core\Utils\DateTime;
 use App\Modules\Newsletter\Model\Entity\Newsletter;
 use BadMethodCallException;
+use DateInterval;
 use Kdyby\Translation\Translator;
 use Nette\Application\LinkGenerator;
 use Nette\Application\UI\ITemplateFactory;
+use Nette\Bridges\ApplicationLatte\ILatteFactory;
 use Nette\Bridges\ApplicationLatte\Template;
 use Nette\Database\Table\IRow;
 use Nette\DI\Container;
@@ -96,6 +99,11 @@ final class NewsletterService
      */
     private $sendGrid;
 
+    /**
+     * @var  ILatteFactory
+     */
+    private $latteFactory;
+
     public function __construct(
         SendGrid $sendGrid,
         LinkGenerator $linkGenerator,
@@ -107,7 +115,8 @@ final class NewsletterService
         UserTagModel $userTagModel,
         UserModel $userModel,
         NewsletterModel $newsletterModel,
-        UserNewsletterModel $userNewsletterModel
+        UserNewsletterModel $userNewsletterModel,
+        ILatteFactory $latteFactory
     ) {
         $this->sendGrid = $sendGrid;
         $this->linkGenerator = $linkGenerator;
@@ -120,6 +129,7 @@ final class NewsletterService
         $this->userModel = $userModel;
         $this->newsletterModel = $newsletterModel;
         $this->userNewsletterModel = $userNewsletterModel;
+        $this->latteFactory = $latteFactory;
     }
 
     public function createDefaultNewsletter(): IRow
@@ -130,7 +140,11 @@ final class NewsletterService
         $newsletter->setSubject($parameters['defaultSubject'] ?? '');
         $newsletter->setFrom($parameters['defaultAuthor']['email'] ?? '');
         $newsletter->setAuthor($parameters['defaultAuthor']['name'] ?? '');
-        $newsletter->setIntroText('');
+        $newsletter->setIntroText(
+            $this->renderRecentlyApprovedEvents(
+                $this->getApprovedEventsSinceLastNewsletter()
+            )
+        );
         $newsletter->setOutroText('');
 
         return $this->newsletterModel->createNewsletter($newsletter);
@@ -306,6 +320,20 @@ final class NewsletterService
     }
 
     /**
+     * Get events approved since 12 hours after last newsletter was created.
+     * @return Event[]
+     */
+    private function getApprovedEventsSinceLastNewsletter(): array
+    {
+        /** @var NetteDateTime $lastNewsletterCreated */
+        $lastNewsletterCreated = $this->newsletterModel->getLatest()['created'];
+
+        return $this->eventModel->getApprovedEventsByDate(
+            $lastNewsletterCreated->add(new DateInterval('PT12H'))
+        );
+    }
+
+    /**
      * Render newsletter content from template (same thing as NewsletterPreseneter:dynamic).
      *
      * @param mixed[] $newsletter
@@ -332,6 +360,35 @@ final class NewsletterService
         // @todo: use latte directly
         return $template->getLatte()->renderToString(
             $template->getFile(), $template->getParameters()
+        );
+    }
+
+    /**
+     * @param Event[] $events
+     */
+    private function renderRecentlyApprovedEvents(array $events): string
+    {
+        $templateFile = __DIR__ . '/../Presenters/templates/Newsletter/newEvents.latte';
+        $latte = $this->latteFactory->create();
+
+        return $latte->renderToString($templateFile, ['events' => $this->mapEventLinksToRedirect($events)]);
+    }
+
+    /**
+     * Map event urls to use Redirect presenter.
+     * @param Event[] $events
+     * @return Event[]
+     */
+    private function mapEventLinksToRedirect(array $events): array
+    {
+        return array_map(
+            function ($event) {
+                /** @var Event $event */
+                $event->setOriginUrl($this->linkGenerator->link('Front:Redirect:', [$event->getOriginUrl()]));
+
+                return $event;
+            },
+            $events
         );
     }
 }
