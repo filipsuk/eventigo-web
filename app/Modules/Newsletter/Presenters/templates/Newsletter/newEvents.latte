@@ -1,0 +1,4 @@
+<h4>{="newsletter.email.events.selectedNewEvents"|translate}</h4>
+<ul n:if="$events">
+    <li n:foreach="$events as $e"><a href="{$e->getOriginUrl()}">{$e->getName()}</a> ({str_replace(' ', '&nbsp;', $e->getStart()->format('j. n.'))|noescape} {$e->getVenue()})</li>
+</ul>
