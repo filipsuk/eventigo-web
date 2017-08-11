@@ -1,9 +1,10 @@
 includes:
+    - vendor/symplify/easy-coding-standard/config/psr2-checkers.neon
     - vendor/symplify/easy-coding-standard/config/php54-checkers.neon
     - vendor/symplify/easy-coding-standard/config/php70-checkers.neon
     - vendor/symplify/easy-coding-standard/config/php71-checkers.neon
-    - vendor/symplify/easy-coding-standard/config/psr2-checkers.neon
     - vendor/symplify/easy-coding-standard/config/common.neon
+    - vendor/symplify/easy-coding-standard/config/spaces.neon
 
 checkers:
     # Classes
@@ -94,7 +95,6 @@ checkers:
     - PhpCsFixer\Fixer\CastNotation\ModernizeTypesCastingFixer
     - PhpCsFixer\Fixer\ReturnNotation\SimplifiedNullReturnFixer
 
-    - PhpCsFixer\Fixer\Operator\NotOperatorWithSuccessorSpaceFixer
     - PhpCsFixer\Fixer\Alias\EregToPregFixer
     - PhpCsFixer\Fixer\Phpdoc\GeneralPhpdocAnnotationRemoveFixer
 
