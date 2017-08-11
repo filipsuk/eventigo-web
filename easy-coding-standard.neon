@@ -2,12 +2,11 @@ includes:
     - vendor/symplify/easy-coding-standard/config/php54-checkers.neon
     - vendor/symplify/easy-coding-standard/config/php70-checkers.neon
     - vendor/symplify/easy-coding-standard/config/php71-checkers.neon
+    - vendor/symplify/easy-coding-standard/config/psr2-checkers.neon
 
 checkers:
     # Classes
     - PHP_CodeSniffer\Standards\Generic\Sniffs\Classes\DuplicateClassNameSniff
-    - PHP_CodeSniffer\Standards\PSR2\Sniffs\Classes\PropertyDeclarationSniff
-    - PHP_CodeSniffer\Standards\Squiz\Sniffs\Classes\ValidClassNameSniff
     - PHP_CodeSniffer\Standards\Squiz\Sniffs\Classes\LowercaseClassKeywordsSniff
 
     # Code Analysis
@@ -16,20 +15,13 @@ checkers:
     - PHP_CodeSniffer\Standards\Generic\Sniffs\CodeAnalysis\UselessOverridingMethodSniff
 
     # Control Structures
-    - PHP_CodeSniffer\Standards\Generic\Sniffs\ControlStructures\InlineControlStructureSniff
     - PHP_CodeSniffer\Standards\PEAR\Sniffs\ControlStructures\MultiLineConditionSniff
-    - PHP_CodeSniffer\Standards\Squiz\Sniffs\ControlStructures\ControlSignatureSniff
-    - PHP_CodeSniffer\Standards\PSR2\Sniffs\ControlStructures\ElseIfDeclarationSniff
-    - PHP_CodeSniffer\Standards\Squiz\Sniffs\ControlStructures\ForEachLoopDeclarationSniff
-    - PHP_CodeSniffer\Standards\Squiz\Sniffs\ControlStructures\ForLoopDeclarationSniff
-    - PHP_CodeSniffer\Standards\Squiz\Sniffs\ControlStructures\LowercaseDeclarationSniff
     - Symplify\CodingStandard\Sniffs\ControlStructures\NewClassSniff
     - SlevomatCodingStandard\Sniffs\ControlStructures\DisallowEqualOperatorsSniff
     - SlevomatCodingStandard\Sniffs\ControlStructures\YodaComparisonSniff
     - SlevomatCodingStandard\Sniffs\Exceptions\DeadCatchSniff
 
     # Files
-    - PHP_CodeSniffer\Standards\Generic\Sniffs\Files\ByteOrderMarkSniff
     PHP_CodeSniffer\Standards\Generic\Sniffs\Files\LineLengthSniff:
         lineLimit: 120
         absoluteLineLimit: 120
@@ -41,32 +33,22 @@ checkers:
 
     # Formatting
     - PhpCsFixer\Fixer\CastNotation\CastSpacesFixer
-    - PHP_CodeSniffer\Standards\Generic\Sniffs\Functions\FunctionCallArgumentSpacingSniff
-    - PHP_CodeSniffer\Standards\PEAR\Sniffs\Functions\ValidDefaultValueSniff
-    - PHP_CodeSniffer\Standards\Squiz\Sniffs\Functions\FunctionDeclarationSniff
     # requires spaces probably
     # - PHP_CodeSniffer\Standards\Squiz\Sniffs\Functions\MultiLineFunctionDeclarationSniff
-    - PHP_CodeSniffer\Standards\Squiz\Sniffs\Functions\LowercaseFunctionKeywordsSniff
 
     # Metrics
     - PHP_CodeSniffer\Standards\Generic\Sniffs\Metrics\CyclomaticComplexitySniff
     PHP_CodeSniffer\Standards\Generic\Sniffs\Metrics\NestingLevelSniff:
-        nestingLevel: 3
         absoluteNestingLevel: 6
-    - PHP_CodeSniffer\Standards\PSR2\Sniffs\Methods\MethodDeclarationSniff
 
     # Naming Conventions
-    - PHP_CodeSniffer\Standards\Generic\Sniffs\NamingConventions\UpperCaseConstantNameSniff
     - PHP_CodeSniffer\Standards\Generic\Sniffs\NamingConventions\CamelCapsFunctionNameSniff
 
     # PHP
-    - PhpCsFixer\Fixer\PhpTag\FullOpeningTagFixer
     - PHP_CodeSniffer\Standards\Squiz\Sniffs\PHP\NonExecutableCodeSniff
 
     # WhiteSpace
-    - PHP_CodeSniffer\Standards\Generic\Sniffs\WhiteSpace\DisallowTabIndentSniff
     - PHP_CodeSniffer\Standards\Squiz\Sniffs\WhiteSpace\LanguageConstructSpacingSniff
-    - PHP_CodeSniffer\Standards\Squiz\Sniffs\WhiteSpace\ScopeKeywordSpacingSniff
     PHP_CodeSniffer\Standards\Squiz\Sniffs\WhiteSpace\SuperfluousWhitespaceSniff:
         ignoreBlankLines: false
 
@@ -80,7 +62,6 @@ checkers:
 
     # Namespaces
     - PhpCsFixer\Fixer\NamespaceNotation\SingleBlankLineBeforeNamespaceFixer
-    - PhpCsFixer\Fixer\NamespaceNotation\BlankLineAfterNamespaceFixer
 
     # Naming
     - Symplify\CodingStandard\Sniffs\Naming\AbstractClassNameSniff
@@ -114,7 +95,6 @@ checkers:
     - SlevomatCodingStandard\Sniffs\Namespaces\UseFromSameNamespaceSniff
 
     # spaces
-    - PhpCsFixer\Fixer\Whitespace\IndentationTypeFixer
     PhpCsFixer\Fixer\Operator\ConcatSpaceFixer:
         spacing: one
     PhpCsFixer\Fixer\ArrayNotation\ArraySyntaxFixer:
@@ -138,27 +118,11 @@ checkers:
     - PhpCsFixer\Fixer\PhpUnit\PhpUnitFqcnAnnotationFixer
     - Symplify\CodingStandard\Sniffs\PHPUnit\FinalTestCaseSniff
 
-    # PSR2 (official)
-    - PhpCsFixer\Fixer\ControlStructure\ElseifFixer
-    - PhpCsFixer\Fixer\FunctionNotation\FunctionDeclarationFixer
-
     # Fixes to spaces
     # - PhpCsFixer\Fixer\Whitespace\IndentationTypeFixer
-    - PhpCsFixer\Fixer\Whitespace\LineEndingFixer
-    - PhpCsFixer\Fixer\Casing\LowercaseKeywordsFixer
     - PhpCsFixer\Fixer\FunctionNotation\MethodArgumentSpaceFixer
-    - PhpCsFixer\Fixer\PhpTag\NoClosingTagFixer
-    - PhpCsFixer\Fixer\FunctionNotation\NoSpacesAfterFunctionNameFixer
-    - PhpCsFixer\Fixer\Whitespace\NoSpacesInsideParenthesisFixer
-    - PhpCsFixer\Fixer\Whitespace\NoTrailingWhitespaceFixer
-    - PhpCsFixer\Fixer\Comment\NoTrailingWhitespaceInCommentFixer
-    - PhpCsFixer\Fixer\Whitespace\SingleBlankLineAtEofFixer
     PhpCsFixer\Fixer\ClassNotation\SingleClassElementPerStatementFixer:
-        - property
-    - PhpCsFixer\Fixer\Import\SingleImportPerStatementFixer
-    - PhpCsFixer\Fixer\Import\SingleLineAfterImportsFixer
-    - PhpCsFixer\Fixer\ControlStructure\SwitchCaseSemicolonToColonFixer
-    - PhpCsFixer\Fixer\ControlStructure\SwitchCaseSpaceFixer
+        elements: [property]
 
     # Symfony (official)
     - PhpCsFixer\Fixer\ReturnNotation\BlankLineBeforeReturnFixer
