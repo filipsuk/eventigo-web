@@ -1,5 +1,5 @@
 includes:
-    - vendor/symplify/easy-coding-standard/config/psr2-checkers.neon
+    - vendor/symplify/easy-coding-standard/config/symfony-checkers.neon
     - vendor/symplify/easy-coding-standard/config/php54-checkers.neon
     - vendor/symplify/easy-coding-standard/config/php70-checkers.neon
     - vendor/symplify/easy-coding-standard/config/php71-checkers.neon
@@ -32,7 +32,6 @@ checkers:
     - PHP_CodeSniffer\Standards\Generic\Sniffs\Files\OneInterfacePerFileSniff
 
     # Formatting
-    - PhpCsFixer\Fixer\CastNotation\CastSpacesFixer
     # requires spaces probably
     # - PHP_CodeSniffer\Standards\Squiz\Sniffs\Functions\MultiLineFunctionDeclarationSniff
 
@@ -52,9 +51,6 @@ checkers:
     # Debug and dev
     - Symplify\CodingStandard\Sniffs\Debug\DebugFunctionCallSniff
     - Symplify\CodingStandard\Sniffs\Debug\CommentedOutCodeSniff
-
-    # Namespaces
-    - PhpCsFixer\Fixer\NamespaceNotation\SingleBlankLineBeforeNamespaceFixer
 
     # Naming
     - Symplify\CodingStandard\Sniffs\Naming\AbstractClassNameSniff
@@ -95,32 +91,17 @@ checkers:
     - PhpCsFixer\Fixer\CastNotation\ModernizeTypesCastingFixer
     - PhpCsFixer\Fixer\ReturnNotation\SimplifiedNullReturnFixer
 
-    - PhpCsFixer\Fixer\Alias\EregToPregFixer
-    - PhpCsFixer\Fixer\Phpdoc\GeneralPhpdocAnnotationRemoveFixer
-
     # PHPUnit
-    - PhpCsFixer\Fixer\PhpUnit\PhpUnitFqcnAnnotationFixer
     - Symplify\CodingStandard\Sniffs\PHPUnit\FinalTestCaseSniff
 
     # Fixes to spaces
-    # - PhpCsFixer\Fixer\Whitespace\IndentationTypeFixer
-    - PhpCsFixer\Fixer\FunctionNotation\MethodArgumentSpaceFixer
     PhpCsFixer\Fixer\ClassNotation\SingleClassElementPerStatementFixer:
         elements: [property]
 
-    # Symfony (official)
-    - PhpCsFixer\Fixer\ReturnNotation\BlankLineBeforeReturnFixer
-    # requires spaces
-    # PhpCsFixer\Fixer\Basic\BracesFixer:
-    #    allow_single_line_closure: true
+    PhpCsFixer\Fixer\Basic\BracesFixer:
+        allow_single_line_closure: true
     PhpCsFixer\Fixer\ClassNotation\ClassDefinitionFixer:
         singleLine: true
-    - PhpCsFixer\Fixer\LanguageConstruct\DeclareEqualNormalizeFixer
-    - PhpCsFixer\Fixer\FunctionNotation\FunctionTypehintSpaceFixer
-    - PhpCsFixer\Fixer\CastNotation\LowercaseCastFixer
-    - PhpCsFixer\Fixer\ClassNotation\MethodSeparationFixer
-    - PhpCsFixer\Fixer\ClassNotation\NoBlankLinesAfterClassOpeningFixer
-    - PhpCsFixer\Fixer\Phpdoc\NoBlankLinesAfterPhpdocFixer
     PhpCsFixer\Fixer\Whitespace\NoExtraConsecutiveBlankLinesFixer:
         - curly_brace_block
         - extra
@@ -128,17 +109,6 @@ checkers:
         - square_brace_block
         - throw
         - use
-    - PhpCsFixer\Fixer\Import\NoUnusedImportsFixer
-    - PhpCsFixer\Fixer\Phpdoc\PhpdocIndentFixer
-    - PhpCsFixer\Fixer\Phpdoc\PhpdocScalarFixer
-    - PhpCsFixer\Fixer\Phpdoc\PhpdocSingleLineVarSpacingFixer
-    - PhpCsFixer\Fixer\Phpdoc\PhpdocSummaryFixer
-    - PhpCsFixer\Fixer\Phpdoc\PhpdocTypesFixer
-    - PhpCsFixer\Fixer\Operator\PreIncrementFixer
-    - PhpCsFixer\Fixer\StringNotation\SingleQuoteFixer
-    - PhpCsFixer\Fixer\Operator\TernaryOperatorSpacesFixer
-    - PhpCsFixer\Fixer\ArrayNotation\TrimArraySpacesFixer
-    - PhpCsFixer\Fixer\ArrayNotation\WhitespaceAfterCommaInArrayFixer
 
     # PHP 7.1 and modern PHP
     PhpCsFixer\Fixer\ClassNotation\VisibilityRequiredFixer:
@@ -155,6 +125,9 @@ parameters:
     # this is broken :(
     exclude_checkers:
         - PHP_CodeSniffer\Standards\PEAR\Sniffs\Functions\FunctionCallSignatureSniff
+        - PhpCsFixer\Fixer\Operator\UnaryOperatorSpacesFixer
+        - PhpCsFixer\Fixer\Phpdoc\PhpdocAlignFixer
+        - PhpCsFixer\Fixer\PhpTag\BlankLineAfterOpeningTagFixer
     # temp hotfix
     skip:
         PHP_CodeSniffer\Standards\PEAR\Sniffs\Functions\FunctionCallSignatureSniff:
