@@ -19,26 +19,16 @@ checkers:
     # Control Structures
     - PHP_CodeSniffer\Standards\PEAR\Sniffs\ControlStructures\MultiLineConditionSniff
     - Symplify\CodingStandard\Sniffs\ControlStructures\NewClassSniff
-    - SlevomatCodingStandard\Sniffs\ControlStructures\DisallowEqualOperatorsSniff
-    - SlevomatCodingStandard\Sniffs\Exceptions\DeadCatchSniff
 
     # Files
     PHP_CodeSniffer\Standards\Generic\Sniffs\Files\LineLengthSniff:
         lineLimit: 120
         absoluteLineLimit: 120
 
-    # PSR-4
-    - PHP_CodeSniffer\Standards\Generic\Sniffs\Files\OneClassPerFileSniff
-    - PHP_CodeSniffer\Standards\Generic\Sniffs\Files\OneInterfacePerFileSniff
-
-    # Formatting
-    # requires spaces probably
-    # - PHP_CodeSniffer\Standards\Squiz\Sniffs\Functions\MultiLineFunctionDeclarationSniff
-
     # Metrics
     - PHP_CodeSniffer\Standards\Generic\Sniffs\Metrics\CyclomaticComplexitySniff
     PHP_CodeSniffer\Standards\Generic\Sniffs\Metrics\NestingLevelSniff:
-        absoluteNestingLevel: 6
+        absoluteNestingLevel: 4
 
     # WhiteSpace
     PHP_CodeSniffer\Standards\Squiz\Sniffs\WhiteSpace\SuperfluousWhitespaceSniff:
@@ -122,13 +112,11 @@ checkers:
     - Symplify\CodingStandard\Sniffs\Classes\FinalInterfaceSniff
 
 parameters:
-    # this is broken :(
     exclude_checkers:
-        - PHP_CodeSniffer\Standards\PEAR\Sniffs\Functions\FunctionCallSignatureSniff
         - PhpCsFixer\Fixer\Operator\UnaryOperatorSpacesFixer
         - PhpCsFixer\Fixer\Phpdoc\PhpdocAlignFixer
         - PhpCsFixer\Fixer\PhpTag\BlankLineAfterOpeningTagFixer
-    # temp hotfix
+        - PhpCsFixer\Fixer\Operator\NewWithBracesFixer
     skip:
         PHP_CodeSniffer\Standards\PEAR\Sniffs\Functions\FunctionCallSignatureSniff:
             - *
