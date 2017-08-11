@@ -55,6 +55,16 @@ final class HomepagePresenter extends AbstractBasePresenter
      */
     private $emailService;
 
+    /**
+     * @var IRow[]
+     */
+    private $events;
+
+    /**
+     * @var IRow[]
+     */
+    private $followedTags;
+
     public function __construct(
         EmailService $emailService,
         SignInFactoryInterface $signInFactory,

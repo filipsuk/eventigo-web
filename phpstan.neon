@@ -2,10 +2,12 @@ parameters:
     ignoreErrors:
         - '#::__construct\(\) does not call parent constructor from Nette\\Application\\UI\\Presenter#'
         - '#::__construct\(\) does not call parent constructor from Nette\\ComponentModel\\Component#'
-        - '#Parameter \#2 \$count of method Kdyby\\Translation\\Translator::translate\(\) expects int\|null, mixed\[\] given#'
-        - '#Parameter \#2 \$count of method Kdyby\\Translation\\Translator::translate\(\) expects int\|null, Nette\\Utils\\Html\[\] given#'
+        - '#Parameter \#2 \$count of method Kdyby\\Translation\\Translator::translate\(\) expects int\|null, Nette\\Utils\\Html|mixed|string|string\[\] given#'
         - '#Call to an undefined method SendGrid\\Client::mail\(\)#'
-
+        - '#Access to undefined constant App\\Modules\\Core\\Model\\EventSources\\AbstractEventSource::URLS#'
+        - '#Parameter \#1 \$eventTagRow of static method App\\Modules\\Core\\Model\\Entity\\EventTag::createFromRow\(\) expects Nette\\Database\\Table\\ActiveRow, Nette\\Database\\Table\\IRow given#'
+        - '#Property Drahak\\Restful\\Application\\UI\\ResourcePresenter::\$resource \(Drahak\\Restful\\IResource\) does not accept App\\Modules\\Core\\Model\\Entity\\Event\[\]#'
+        - '#Access to an undefined property Nette\\Database\\Table\\Selection::\$id#'
 
 includes:
     - vendor/phpstan/phpstan-nette/extension.neon
