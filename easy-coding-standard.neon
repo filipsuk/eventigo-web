@@ -159,3 +159,8 @@ parameters:
     skip:
         PHP_CodeSniffer\Standards\PEAR\Sniffs\Functions\FunctionCallSignatureSniff:
             - *
+        PHP_CodeSniffer\Standards\Generic\Sniffs\CodeAnalysis\EmptyStatementSniff:
+            # "todo" notes
+            - app/Modules/Front/Components/Tags/Tags.php
+            - app/Modules/Email/Model/EmailService.php
+            - app/Modules/Newsletter/Model/NewsletterService.php
