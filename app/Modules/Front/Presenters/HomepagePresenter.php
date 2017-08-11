@@ -60,11 +60,6 @@ final class HomepagePresenter extends AbstractBasePresenter
      */
     private $events;
 
-    /**
-     * @var IRow[]
-     */
-    private $followedTags;
-
     public function __construct(
         EmailService $emailService,
         SignInFactoryInterface $signInFactory,
@@ -160,9 +155,11 @@ final class HomepagePresenter extends AbstractBasePresenter
         $tagsIds = $this->tagModel->getAll()->where('code', $section->tags)->fetchPairs(null, 'id');
 
         $showAbroad = $this->userModel->showAbroadEvents($this->getUser()->getId());
+
         $this->events = $this->eventModel
             ->getAllWithDates($tagsIds, new DateTime, null, null, $showAbroad);
-        $this->followedTags = $section->tags;
+        // what is this for?
+        $followedTags = $section->tags;
 
         $this['eventsList']->redrawControl();
     }
@@ -188,7 +185,8 @@ final class HomepagePresenter extends AbstractBasePresenter
         $tagsIds = $this->tagModel->getAll()->where('code', $section->tags)->fetchPairs(null, 'id');
         $showAbroad = $this->userModel->showAbroadEvents($this->getUser()->getId());
         $this->events = $this->eventModel->getAllWithDates($tagsIds, new DateTime, null, null, $showAbroad);
-        $this->followedTags = $section->tags;
+        // what is this for?
+        $followedTags = $section->tags;
 
         $this['eventsList']->redrawControl();
     }
@@ -264,9 +262,15 @@ final class HomepagePresenter extends AbstractBasePresenter
                 ->fetchPairs(null, 'id');
         }
 
-        $events = $this->eventModel->getAllWithDates($tagsIds, new DateTime, null, $this->lastAccess, $showAbroad);
+        $this->events = $this->eventModel->getAllWithDates(
+            $tagsIds,
+            new DateTime,
+            null,
+            $this->lastAccess,
+            $showAbroad
+        );
 
-        return $this->eventsListFactory->create($events);
+        return $this->eventsListFactory->create($this->events);
     }
 
     protected function createComponentFbLogin(): LoginDialog
