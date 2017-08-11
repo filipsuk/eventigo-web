@@ -15,7 +15,7 @@ abstract class AbstractIterator implements PhpIterator
     /**
      * @var IRow[]
      */
-    protected $data;
+    protected $data = [];
 
     /**
      * @param IRow[] $data

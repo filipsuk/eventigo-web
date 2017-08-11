@@ -58,7 +58,7 @@ final class HomepagePresenter extends AbstractBasePresenter
     /**
      * @var IRow[]
      */
-    private $events;
+    private $events = [];
 
     public function __construct(
         EmailService $emailService,

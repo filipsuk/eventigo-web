@@ -10,7 +10,7 @@ final class EventsList extends AbstractBaseControl
     /**
      * @var mixed[]
      */
-    private $events;
+    private $events = [];
 
     /**
      * @param mixed[] $events

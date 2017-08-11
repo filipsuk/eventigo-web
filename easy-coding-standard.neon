@@ -1,8 +1,10 @@
 includes:
     - vendor/symplify/easy-coding-standard/config/symfony-checkers.neon
+    - vendor/symplify/easy-coding-standard/config/symfony-risky-checkers.neon
     - vendor/symplify/easy-coding-standard/config/php54-checkers.neon
     - vendor/symplify/easy-coding-standard/config/php70-checkers.neon
     - vendor/symplify/easy-coding-standard/config/php71-checkers.neon
+    - vendor/symplify/easy-coding-standard/config/symplify-checkers.neon
     - vendor/symplify/easy-coding-standard/config/common.neon
     - vendor/symplify/easy-coding-standard/config/spaces.neon
 
@@ -16,35 +18,13 @@ checkers:
     - PHP_CodeSniffer\Standards\Generic\Sniffs\CodeAnalysis\UnconditionalIfStatementSniff
     - PHP_CodeSniffer\Standards\Generic\Sniffs\CodeAnalysis\UselessOverridingMethodSniff
 
-    # Control Structures
-    - PHP_CodeSniffer\Standards\PEAR\Sniffs\ControlStructures\MultiLineConditionSniff
-    - Symplify\CodingStandard\Sniffs\ControlStructures\NewClassSniff
-
-    # Files
+    # Metrics
     PHP_CodeSniffer\Standards\Generic\Sniffs\Files\LineLengthSniff:
         absoluteLineLimit: 120
-
-    # Metrics
     PHP_CodeSniffer\Standards\Generic\Sniffs\Metrics\CyclomaticComplexitySniff:
-
+        absoluteComplexity: 7
     PHP_CodeSniffer\Standards\Generic\Sniffs\Metrics\NestingLevelSniff:
         absoluteNestingLevel: 4
-
-    # WhiteSpace
-    PHP_CodeSniffer\Standards\Squiz\Sniffs\WhiteSpace\SuperfluousWhitespaceSniff:
-        ignoreBlankLines: false
-
-    # Commenting
-    - Symplify\CodingStandard\Sniffs\Commenting\BlockPropertyCommentSniff
-    - Symplify\CodingStandard\Sniffs\Commenting\VarConstantCommentSniff
-
-    # Debug and dev
-    - Symplify\CodingStandard\Sniffs\Debug\DebugFunctionCallSniff
-    - Symplify\CodingStandard\Sniffs\Debug\CommentedOutCodeSniff
-
-    # Naming
-    - Symplify\CodingStandard\Sniffs\Naming\AbstractClassNameSniff
-    - Symplify\CodingStandard\Sniffs\Naming\InterfaceNameSniff
 #
     # Slevomat
     SlevomatCodingStandard\Sniffs\Commenting\ForbiddenAnnotationsSniff:
@@ -75,41 +55,7 @@ checkers:
     # spaces
     PhpCsFixer\Fixer\Operator\ConcatSpaceFixer:
         spacing: one
-    PhpCsFixer\Fixer\ArrayNotation\ArraySyntaxFixer:
-        syntax: short
-    - PhpCsFixer\Fixer\LanguageConstruct\DirConstantFixer
-    - PhpCsFixer\Fixer\CastNotation\ModernizeTypesCastingFixer
     - PhpCsFixer\Fixer\ReturnNotation\SimplifiedNullReturnFixer
-
-    # PHPUnit
-    - Symplify\CodingStandard\Sniffs\PHPUnit\FinalTestCaseSniff
-
-    # Fixes to spaces
-    PhpCsFixer\Fixer\ClassNotation\SingleClassElementPerStatementFixer:
-        elements: [property]
-
-    PhpCsFixer\Fixer\Basic\BracesFixer:
-        allow_single_line_closure: true
-    PhpCsFixer\Fixer\ClassNotation\ClassDefinitionFixer:
-        singleLine: true
-    PhpCsFixer\Fixer\Whitespace\NoExtraConsecutiveBlankLinesFixer:
-        - curly_brace_block
-        - extra
-        - parenthesis_brace_block
-        - square_brace_block
-        - throw
-        - use
-
-    # PHP 7.1 and modern PHP
-    PhpCsFixer\Fixer\ClassNotation\VisibilityRequiredFixer:
-        - const
-        - property
-        - method
-
-
-    # Architecture
-    - Symplify\CodingStandard\Sniffs\Classes\EqualInterfaceImplementationSniff
-    - Symplify\CodingStandard\Sniffs\Classes\FinalInterfaceSniff
 
 parameters:
     exclude_checkers:
@@ -124,4 +70,10 @@ parameters:
             # "todo" notes
             - app/Modules/Front/Components/Tags/Tags.php
             - app/Modules/Email/Model/EmailService.php
+            - app/Modules/Newsletter/Model/NewsletterService.php
+        Symplify\CodingStandard\Fixer\Php\ClassStringToClassConstantFixer:
+            # datetime string false positives
+            - app/Modules/Admin/Components/EventForm/EventForm.php
+            - app/Modules/Core/Components/AbstractBaseControl.php
+            - app/Modules/Core/Presenters/ErrorPresenter.php
             - app/Modules/Newsletter/Model/NewsletterService.php
