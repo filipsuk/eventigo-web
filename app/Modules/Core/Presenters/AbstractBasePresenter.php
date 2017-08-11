@@ -2,6 +2,7 @@
 
 namespace App\Modules\Core\Presenters;
 
+use App\Modules\Core\Model\UserModel;
 use App\Modules\Core\Utils\Filters;
 use Nette;
 use Nette\Application\BadRequestException;
@@ -18,6 +19,12 @@ abstract class AbstractBasePresenter extends Presenter
      * @inject
      */
     public $translator;
+
+    /**
+     * @var UserModel
+     * @inject
+     */
+    public $userModel;
 
     protected function createTemplate(): Template
     {

@@ -22,11 +22,11 @@ checkers:
 
     # Files
     PHP_CodeSniffer\Standards\Generic\Sniffs\Files\LineLengthSniff:
-        lineLimit: 120
         absoluteLineLimit: 120
 
     # Metrics
-    - PHP_CodeSniffer\Standards\Generic\Sniffs\Metrics\CyclomaticComplexitySniff
+    PHP_CodeSniffer\Standards\Generic\Sniffs\Metrics\CyclomaticComplexitySniff:
+
     PHP_CodeSniffer\Standards\Generic\Sniffs\Metrics\NestingLevelSniff:
         absoluteNestingLevel: 4
 

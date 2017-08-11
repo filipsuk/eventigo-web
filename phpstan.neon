@@ -1,12 +1,11 @@
 parameters:
     ignoreErrors:
-        - "#Access to an undefined property#"
-        - "#does not call parent constructor from Nette#"
-        - "#Call to an undefined method SendGrid#"
-        - "#AbstractEventSource::URL#"
-        - "#IResource[)] does not accept#"
-        - "#count of method Kdyby#"
-        - "#\\DateTime|null givens#"
+        - '#::__construct\(\) does not call parent constructor from Nette\\Application\\UI\\Presenter#'
+        - '#::__construct\(\) does not call parent constructor from Nette\\ComponentModel\\Component#'
+        - '#Parameter \#2 \$count of method Kdyby\\Translation\\Translator::translate\(\) expects int\|null, mixed\[\] given#'
+        - '#Parameter \#2 \$count of method Kdyby\\Translation\\Translator::translate\(\) expects int\|null, Nette\\Utils\\Html\[\] given#'
+        - '#Call to an undefined method SendGrid\\Client::mail\(\)#'
+
 
 includes:
     - vendor/phpstan/phpstan-nette/extension.neon
