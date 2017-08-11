@@ -168,3 +168,12 @@ checkers:
     # Architecture
     - Symplify\CodingStandard\Sniffs\Classes\EqualInterfaceImplementationSniff
     - Symplify\CodingStandard\Sniffs\Classes\FinalInterfaceSniff
+
+parameters:
+    # this is broken :(
+    exclude_checkers:
+        - PHP_CodeSniffer\Standards\PEAR\Sniffs\Functions\FunctionCallSignatureSniff
+    # temp hotfix
+    skip:
+        PHP_CodeSniffer\Standards\PEAR\Sniffs\Functions\FunctionCallSignatureSniff:
+            - *

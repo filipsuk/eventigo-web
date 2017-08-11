@@ -45,7 +45,7 @@ class Subscription extends AbstractBaseControl
         $form = new Form;
         $form->setTranslator($this->translator->domain('front.subscription.form'));
 
-        $form->addText('email', NULL, NULL, 254)
+        $form->addText('email', null, null, 254)
             ->setAttribute('placeholder', 'email.placeholder')
             ->setAttribute('type', 'email')
             ->addCondition(Form::FILLED)

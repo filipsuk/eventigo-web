@@ -32,7 +32,7 @@ final class ErrorPresenter implements IPresenter
 
         $this->logger->log($e, ILogger::EXCEPTION);
 
-        return new Nette\Application\Responses\CallbackResponse(function () {
+        return new Nette\Application\Responses\CallbackResponse(function (): void {
             require __DIR__ . '/templates/Error/500.phtml';
         });
     }

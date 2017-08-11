@@ -82,8 +82,7 @@ final class Event
         ?int $rate = null,
         ?DateTime $created = null,
         ?DateTime $approved = null
-    )
-    {
+    ) {
         $this->id = $id;
         $this->name = $name;
         $this->description = $description;

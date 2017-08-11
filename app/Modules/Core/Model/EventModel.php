@@ -74,8 +74,8 @@ final class EventModel extends AbstractBaseModel
      */
     public function getAllWithDates(
         array $tagsIds,
-        ?DateTime $from = NULL,
-        ?DateTime $to = NULL,
+        ?DateTime $from = null,
+        ?DateTime $to = null,
         ?DateTime $lastAccess = null,
         bool $showAbroad = true
     ): array {
@@ -94,9 +94,11 @@ final class EventModel extends AbstractBaseModel
             $selection->where('(end IS NOT NULL AND end >= ?) OR (end IS NULL AND DATE(start) >= ?)',
                 $from, $from->setTime(0, 0));
         }
+
         if ($from && $to) {
             $selection->where('start <= ?', $to);
         }
+
         if ($lastAccess) {
             $selection->select('approved > ? AS newEvent', $lastAccess);
         } else {

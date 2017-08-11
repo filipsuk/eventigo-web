@@ -117,6 +117,7 @@ final class EventService
         if ($platform === self::PLATFORM_FACEBOOK) {
             return $this->facebookEventSource->getEventById($id);
         }
+
         throw new InvalidArgumentException('Invalid platform');
     }
 

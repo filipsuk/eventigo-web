@@ -46,6 +46,6 @@ abstract class AbstractBaseControl extends Control
         $refl = $this->getReflection();
         $file = dirname($refl->getFileName()) . '/' . $refl->getShortName() . '.latte';
 
-        return file_exists($file) ? $file : NULL;
+        return file_exists($file) ? $file : null;
     }
 }

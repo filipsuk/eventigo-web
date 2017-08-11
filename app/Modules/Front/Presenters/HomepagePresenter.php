@@ -169,7 +169,7 @@ final class HomepagePresenter extends AbstractBasePresenter
                 'tag_id' => $tag->id,
             ]);
         } else {
-            if (($index = array_search($tagCode, $section->tags)) !== FALSE) {
+            if (($index = array_search($tagCode, $section->tags)) !== false) {
                 unset($section->tags[$index]);
             }
         }
@@ -187,7 +187,7 @@ final class HomepagePresenter extends AbstractBasePresenter
     {
         $control = $this->subscriptionTags->create();
 
-        $control->onEmailExists[] = function ($email) {
+        $control->onEmailExists[] = function ($email): void {
             // Send email with login
             $user = $this->userModel->getUserByEmail($email);
             $this->emailService->sendLogin($email, $user->token);
@@ -201,7 +201,7 @@ final class HomepagePresenter extends AbstractBasePresenter
             $this->redrawControl('flash-messages');
         };
 
-        $control->onSuccess[] = function ($email) {
+        $control->onSuccess[] = function ($email): void {
             $this->getUser()->login(UserModel::SUBSCRIPTION_LOGIN, $email);
 
             $this->flashMessage(
@@ -222,7 +222,7 @@ final class HomepagePresenter extends AbstractBasePresenter
             $this->redirect('Homepage:');
         };
 
-        $control->onChange[] = function () {
+        $control->onChange[] = function (): void {
             $this['eventsList']->redrawControl();
             $this->redrawControl('flash-messages');
         };
@@ -264,7 +264,7 @@ final class HomepagePresenter extends AbstractBasePresenter
         /** @var \Kdyby\Facebook\Dialog\LoginDialog $dialog */
         $dialog = $this->facebook->createDialog('login');
 
-        $dialog->onResponse[] = function (LoginDialog $dialog) {
+        $dialog->onResponse[] = function (LoginDialog $dialog): void {
             $fb = $dialog->getFacebook();
 
             if (! $fb->getUser()) {
@@ -318,7 +318,7 @@ final class HomepagePresenter extends AbstractBasePresenter
     {
         $control = $this->signInFactory->create();
 
-        $control->onSuccess[] = function (string $email) {
+        $control->onSuccess[] = function (string $email): void {
             $this->flashMessage(
                 '<i class="fa fa-envelope"></i> ' .
                 $this->translator->translate('front.signIn.form.success', ['email' => $email])

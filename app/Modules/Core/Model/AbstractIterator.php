@@ -27,7 +27,7 @@ abstract class AbstractIterator implements PhpIterator
 
     public function current(): ?IRow
     {
-        return $this->valid() ? $this->data[$this->index] : NULL;
+        return $this->valid() ? $this->data[$this->index] : null;
     }
 
     public function next(): ?IRow

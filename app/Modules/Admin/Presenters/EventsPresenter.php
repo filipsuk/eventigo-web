@@ -117,12 +117,12 @@ final class EventsPresenter extends AbstractBasePresenter
     {
         $control = $this->eventFormFactory->create();
 
-        $control->onCreate[] = function () {
+        $control->onCreate[] = function (): void {
             $this->flashMessage($this->translator->translate('admin.eventForm.success'), 'success');
             $this->redirect('Events:default');
         };
 
-        $control->onUpdate[] = function () {
+        $control->onUpdate[] = function (): void {
             $this->flashMessage($this->translator->translate('admin.eventForm.success'), 'success');
             $this->redirect('Events:default');
         };

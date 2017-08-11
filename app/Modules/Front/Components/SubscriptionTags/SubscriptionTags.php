@@ -108,8 +108,9 @@ final class SubscriptionTags extends Subscription
         foreach ($tagsGroups as $tagGroupName => $tagsGroup) {
             $tagsContainer->addCheckboxList($tagGroupName)
                 ->setItems(Helpers::toPairs($tagsGroups[$tagGroupName], 'code', 'name'))
-                ->setTranslator(NULL);
+                ->setTranslator(null);
         }
+
         $form->addHidden('real_subscribe'); // For stupid Firefox not submitting "subscribe" input in POST
 
         return $form;

@@ -114,7 +114,7 @@ final class Tags extends AbstractBaseControl
         foreach ($tagsGroups as $tagGroupName => $tagsGroup) {
             $tagsContainer->addCheckboxList($tagGroupName)
                 ->setItems(Helpers::toPairs($tagsGroups[$tagGroupName], 'code', 'name'))
-                ->setTranslator(NULL);
+                ->setTranslator(null);
         }
 
         $form->onSuccess[] = [$this, 'processForm'];

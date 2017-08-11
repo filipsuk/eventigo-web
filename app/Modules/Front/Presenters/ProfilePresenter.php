@@ -81,7 +81,7 @@ final class ProfilePresenter extends AbstractBasePresenter
     {
         $control = $this->tagsFactory->create();
 
-        $control->onChange[] = function () {
+        $control->onChange[] = function (): void {
             $this['tags']->redrawControl();
             $this->redrawControl('flash-messages');
         };
