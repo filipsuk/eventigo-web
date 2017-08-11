@@ -9,15 +9,6 @@ includes:
     - vendor/symplify/easy-coding-standard/config/spaces.neon
 
 checkers:
-    # Classes
-    - PHP_CodeSniffer\Standards\Generic\Sniffs\Classes\DuplicateClassNameSniff
-    - PHP_CodeSniffer\Standards\Squiz\Sniffs\Classes\LowercaseClassKeywordsSniff
-
-    # Code Analysis
-    - PHP_CodeSniffer\Standards\Generic\Sniffs\CodeAnalysis\JumbledIncrementerSniff
-    - PHP_CodeSniffer\Standards\Generic\Sniffs\CodeAnalysis\UnconditionalIfStatementSniff
-    - PHP_CodeSniffer\Standards\Generic\Sniffs\CodeAnalysis\UselessOverridingMethodSniff
-
     # Metrics
     PHP_CodeSniffer\Standards\Generic\Sniffs\Files\LineLengthSniff:
         absoluteLineLimit: 120
@@ -26,35 +17,19 @@ checkers:
     PHP_CodeSniffer\Standards\Generic\Sniffs\Metrics\NestingLevelSniff:
         absoluteNestingLevel: 4
 #
-    # Slevomat
-    SlevomatCodingStandard\Sniffs\Commenting\ForbiddenAnnotationsSniff:
-        forbiddenAnnotations:
-            - @author
-            - @created
-            - @copyright
-            - @license
-            - @package
-            - @version
-
     # Type Hints
-    - SlevomatCodingStandard\Sniffs\TypeHints\LongTypeHintsSniff
     SlevomatCodingStandard\Sniffs\TypeHints\TypeHintDeclarationSniff:
         usefulAnnotations:
             - @todo
             - @dataProvider
-            - @expectedException
             - @throws
         enableEachParameterAndReturnInspection: true
-    - SlevomatCodingStandard\Sniffs\Namespaces\AlphabeticallySortedUsesSniff
-    - SlevomatCodingStandard\Sniffs\Namespaces\DisallowGroupUseSniff
-    - SlevomatCodingStandard\Sniffs\Namespaces\MultipleUsesPerLineSniff
-    - SlevomatCodingStandard\Sniffs\Namespaces\ReferenceUsedNamesOnlySniff
-    - SlevomatCodingStandard\Sniffs\Namespaces\UseDoesNotStartWithBackslashSniff
-    - SlevomatCodingStandard\Sniffs\Namespaces\UseFromSameNamespaceSniff
+
+    # Namespaces
+    SlevomatCodingStandard\Sniffs\Namespaces\ReferenceUsedNamesOnlySniff:
+        allowPartialUses: false
 
     # spaces
-    PhpCsFixer\Fixer\Operator\ConcatSpaceFixer:
-        spacing: one
     - PhpCsFixer\Fixer\ReturnNotation\SimplifiedNullReturnFixer
 
 parameters:
@@ -77,3 +52,6 @@ parameters:
             - app/Modules/Core/Components/AbstractBaseControl.php
             - app/Modules/Core/Presenters/ErrorPresenter.php
             - app/Modules/Newsletter/Model/NewsletterService.php
+
+        SlevomatCodingStandard\Sniffs\Namespaces\ReferenceUsedNamesOnlySniff:
+            - app/bootstrap.php

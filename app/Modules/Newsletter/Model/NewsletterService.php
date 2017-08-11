@@ -21,7 +21,9 @@ use Nette\DI\Container;
 use Nette\Utils\DateTime as NetteDateTime;
 use Pelago\Emogrifier;
 use SendGrid;
+use SendGrid\Content;
 use SendGrid\Email;
+use SendGrid\Mail;
 use Throwable;
 use Tracy\Debugger;
 
@@ -228,8 +230,8 @@ final class NewsletterService
             $to = new Email(null, $userNewsletter->user->email);
             $from = new Email('Eventigo.cz', $userNewsletter->from);
             $subject = $userNewsletter->subject;
-            $content = new SendGrid\Content('text/html', $userNewsletter->content);
-            $mail = new SendGrid\Mail($from, $subject, $to, $content);
+            $content = new Content('text/html', $userNewsletter->content);
+            $mail = new Mail($from, $subject, $to, $content);
             $mail->addCategory('newsletter');
 
             try {
