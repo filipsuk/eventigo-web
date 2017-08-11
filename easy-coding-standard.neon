@@ -3,6 +3,7 @@ includes:
     - vendor/symplify/easy-coding-standard/config/php70-checkers.neon
     - vendor/symplify/easy-coding-standard/config/php71-checkers.neon
     - vendor/symplify/easy-coding-standard/config/psr2-checkers.neon
+    - vendor/symplify/easy-coding-standard/config/common.neon
 
 checkers:
     # Classes
@@ -18,7 +19,6 @@ checkers:
     - PHP_CodeSniffer\Standards\PEAR\Sniffs\ControlStructures\MultiLineConditionSniff
     - Symplify\CodingStandard\Sniffs\ControlStructures\NewClassSniff
     - SlevomatCodingStandard\Sniffs\ControlStructures\DisallowEqualOperatorsSniff
-    - SlevomatCodingStandard\Sniffs\ControlStructures\YodaComparisonSniff
     - SlevomatCodingStandard\Sniffs\Exceptions\DeadCatchSniff
 
     # Files
@@ -27,7 +27,6 @@ checkers:
         absoluteLineLimit: 120
 
     # PSR-4
-    - PhpCsFixer\Fixer\Basic\Psr4Fixer
     - PHP_CodeSniffer\Standards\Generic\Sniffs\Files\OneClassPerFileSniff
     - PHP_CodeSniffer\Standards\Generic\Sniffs\Files\OneInterfacePerFileSniff
 
@@ -41,14 +40,7 @@ checkers:
     PHP_CodeSniffer\Standards\Generic\Sniffs\Metrics\NestingLevelSniff:
         absoluteNestingLevel: 6
 
-    # Naming Conventions
-    - PHP_CodeSniffer\Standards\Generic\Sniffs\NamingConventions\CamelCapsFunctionNameSniff
-
-    # PHP
-    - PHP_CodeSniffer\Standards\Squiz\Sniffs\PHP\NonExecutableCodeSniff
-
     # WhiteSpace
-    - PHP_CodeSniffer\Standards\Squiz\Sniffs\WhiteSpace\LanguageConstructSpacingSniff
     PHP_CodeSniffer\Standards\Squiz\Sniffs\WhiteSpace\SuperfluousWhitespaceSniff:
         ignoreBlankLines: false
 
@@ -68,7 +60,6 @@ checkers:
     - Symplify\CodingStandard\Sniffs\Naming\InterfaceNameSniff
 #
     # Slevomat
-    - SlevomatCodingStandard\Sniffs\Classes\UnusedPrivateElementsSniff
     SlevomatCodingStandard\Sniffs\Commenting\ForbiddenAnnotationsSniff:
         forbiddenAnnotations:
             - @author
@@ -99,22 +90,15 @@ checkers:
         spacing: one
     PhpCsFixer\Fixer\ArrayNotation\ArraySyntaxFixer:
         syntax: short
-    - PhpCsFixer\Fixer\ClassNotation\OrderedClassElementsFixer
     - PhpCsFixer\Fixer\LanguageConstruct\DirConstantFixer
     - PhpCsFixer\Fixer\CastNotation\ModernizeTypesCastingFixer
-    - PhpCsFixer\Fixer\Semicolon\SemicolonAfterInstructionFixer
     - PhpCsFixer\Fixer\ReturnNotation\SimplifiedNullReturnFixer
+
     - PhpCsFixer\Fixer\Operator\NotOperatorWithSuccessorSpaceFixer
-    - PhpCsFixer\Fixer\ControlStructure\NoUselessElseFixer
-    - PhpCsFixer\Fixer\ReturnNotation\NoUselessReturnFixer
-    - PhpCsFixer\Fixer\Import\OrderedImportsFixer
-    - PhpCsFixer\Fixer\LanguageConstruct\CombineConsecutiveUnsetsFixer
-    - PhpCsFixer\Fixer\Strict\StrictComparisonFixer
     - PhpCsFixer\Fixer\Alias\EregToPregFixer
     - PhpCsFixer\Fixer\Phpdoc\GeneralPhpdocAnnotationRemoveFixer
 
     # PHPUnit
-    - PhpCsFixer\Fixer\PhpUnit\PhpUnitStrictFixer
     - PhpCsFixer\Fixer\PhpUnit\PhpUnitFqcnAnnotationFixer
     - Symplify\CodingStandard\Sniffs\PHPUnit\FinalTestCaseSniff
 
@@ -162,8 +146,6 @@ checkers:
         - property
         - method
 
-    # new since PhpCsFixer 2.1/2.2
-    - PhpCsFixer\Fixer\Basic\NonPrintableCharacterFixer
 
     # Architecture
     - Symplify\CodingStandard\Sniffs\Classes\EqualInterfaceImplementationSniff
