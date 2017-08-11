@@ -41,7 +41,7 @@ final class NewsletterService
      */
     private const NEWSLETTER_UTM_PARAMETERS = [
         'utm_source' => 'newsletter',
-        'utm_medium' => 'email'
+        'utm_medium' => 'email',
     ];
 
     /**
@@ -204,13 +204,13 @@ final class NewsletterService
         $templateData['updatePreferencesUrl'] = $this->linkGenerator->link(
             'Front:Profile:settings',
             array_merge([
-                'token' => $userToken, 'utm_campaign' => 'newsletterButton'], self::NEWSLETTER_UTM_PARAMETERS
+                'token' => $userToken, 'utm_campaign' => 'newsletterButton', ], self::NEWSLETTER_UTM_PARAMETERS
             )
         );
         $templateData['feedUrl'] = $this->linkGenerator->link(
             'Front:Homepage:default',
             array_merge([
-                'token' => $userToken, 'utm_campaign' => 'newsletterButton'], self::NEWSLETTER_UTM_PARAMETERS
+                'token' => $userToken, 'utm_campaign' => 'newsletterButton', ], self::NEWSLETTER_UTM_PARAMETERS
             )
         );
         $templateData['unsubscribeUrl'] = $baseUrl . '/newsletter/unsubscribe/' . $newsletterHash;
@@ -291,7 +291,7 @@ final class NewsletterService
         $returnArray = [
             [
                 'title' => $this->translator->trans('newsletter.email.events.nextWeek'),
-                'events' => []
+                'events' => [],
             ],
             //TODO posilat dalsi akce
         ];
@@ -383,7 +383,7 @@ final class NewsletterService
     {
         return array_map(
             function ($event) {
-                /** @var Event $event */
+                // @var Event $event
                 $event->setOriginUrl($this->linkGenerator->link('Front:Redirect:', [$event->getOriginUrl()]));
 
                 return $event;

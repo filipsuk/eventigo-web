@@ -39,9 +39,10 @@ final class EventApiService
                 $eventTags[] = [
                     'code' => $eventTag->getTag()->getCode(),
                     'name' => $eventTag->getTag()->getName(),
-                    'rate' => $eventTag->getRate()
+                    'rate' => $eventTag->getRate(),
                 ];
-            };
+            }
+
             $events[] = [
                 'id' => $event->getHash(),
                 'name' => $event->getName(),
@@ -52,7 +53,7 @@ final class EventApiService
                 'venue' => $event->getVenue(),
                 'country' => $event->getCountryCode(),
                 'image' => $event->getImage(),
-                'tags' => $eventTags
+                'tags' => $eventTags,
             ];
         }
 

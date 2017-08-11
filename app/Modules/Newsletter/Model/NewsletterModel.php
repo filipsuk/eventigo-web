@@ -41,7 +41,7 @@ final class NewsletterModel extends AbstractBaseModel
             'from' => $newsletter->getFrom(),
             'intro_text' => $newsletter->getIntroText(),
             'outro_text' => $newsletter->getOutroText(),
-            'author' => $newsletter->getAuthor()
+            'author' => $newsletter->getAuthor(),
         ]);
     }
 }

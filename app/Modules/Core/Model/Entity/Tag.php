@@ -30,7 +30,7 @@ final class Tag
 
     public static function createFromRow(IRow $tagRow): Tag
     {
-        return new Tag($tagRow['id'], $tagRow['name'], $tagRow['code']);
+        return new self($tagRow['id'], $tagRow['name'], $tagRow['code']);
     }
 
     public function getId(): int

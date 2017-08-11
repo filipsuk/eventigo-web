@@ -99,7 +99,7 @@ final class Event
 
     public static function createFromRow(IRow $eventRow): Event
     {
-        return new Event(
+        return new self(
             $eventRow['id'],
             $eventRow['name'],
             $eventRow['description'],

@@ -30,7 +30,7 @@ final class EventTag
 
     public static function createFromRow(ActiveRow $eventTagRow): EventTag
     {
-        return new EventTag(
+        return new self(
             Event::createFromRow($eventTagRow->ref('events', 'event_id')),
             Tag::createFromRow($eventTagRow->ref('tags', 'tag_id')),
             $eventTagRow['rate']

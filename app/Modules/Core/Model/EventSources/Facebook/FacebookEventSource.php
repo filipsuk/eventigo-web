@@ -69,7 +69,7 @@ final class FacebookEventSource extends AbstractEventSource
     {
         $response = $this->facebook->api(
             '/' . $pageId, 'GET', [
-                'fields' => 'events{' . self::EVENT_FIELDS . '}'
+                'fields' => 'events{' . self::EVENT_FIELDS . '}',
             ]
         );
 
