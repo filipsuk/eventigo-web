@@ -206,14 +206,16 @@ final class NewsletterService
         $templateData['updatePreferencesUrl'] = $this->linkGenerator->link(
             'Front:Profile:settings',
             array_merge([
-                'token' => $userToken, 'utm_campaign' => 'newsletterButton', ], self::NEWSLETTER_UTM_PARAMETERS
-            )
+                'token' => $userToken,
+                'utm_campaign' => 'newsletterButton',
+            ], self::NEWSLETTER_UTM_PARAMETERS)
         );
         $templateData['feedUrl'] = $this->linkGenerator->link(
             'Front:Homepage:default',
             array_merge([
-                'token' => $userToken, 'utm_campaign' => 'newsletterButton', ], self::NEWSLETTER_UTM_PARAMETERS
-            )
+                'token' => $userToken,
+                'utm_campaign' => 'newsletterButton',
+            ], self::NEWSLETTER_UTM_PARAMETERS)
         );
         $templateData['unsubscribeUrl'] = $baseUrl . '/newsletter/unsubscribe/' . $newsletterHash;
 
