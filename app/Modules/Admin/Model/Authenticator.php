@@ -28,7 +28,7 @@ final class Authenticator implements IAuthenticator
      */
     public function authenticate(array $credentials): Identity
     {
-        @list($type, $email, $password) = $credentials; // Password is optional, suppress the notice
+        @[$type, $email, $password] = $credentials; // Password is optional, suppress the notice
 
         // Get user with same email
         $user = $this->userModel->getAll()->where([

@@ -33,7 +33,7 @@ final class RouterFactory
         // Api
         $router[] = new CrudRoute('api/v1/events', [
             'module' => 'Api:V1',
-            'presenter' => 'Events'
+            'presenter' => 'Events',
         ]);
 
         // Front
@@ -42,7 +42,7 @@ final class RouterFactory
         $router[] = new Route('<presenter>/<action>[/<id>]', [
             'module' => 'Front',
             'presenter' => 'Homepage',
-            'action' => 'default'
+            'action' => 'default',
         ]);
 
         return $router;

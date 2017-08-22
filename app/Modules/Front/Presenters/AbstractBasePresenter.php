@@ -77,7 +77,9 @@ abstract class AbstractBasePresenter extends CoreAbstractBasePresenter
     }
 
     private function shouldSyncToDb(
-        ?NetteDateTime $sessionLastInDb = null, ?NetteDateTime $lastInDb = null, string $syncToDb
+        ?NetteDateTime $sessionLastInDb = null,
+        ?NetteDateTime $lastInDb = null,
+        string $syncToDb
     ): bool {
         return ! $sessionLastInDb
         || ($lastInDb && $lastInDb > $sessionLastInDb)

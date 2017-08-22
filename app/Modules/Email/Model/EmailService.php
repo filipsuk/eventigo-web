@@ -11,7 +11,9 @@ use Nette\Application\UI\ITemplateFactory;
 use Nette\Bridges\ApplicationLatte\Template;
 use Nette\Http\Url;
 use SendGrid;
+use SendGrid\Content;
 use SendGrid\Email;
+use SendGrid\Mail;
 use Throwable;
 
 final class EmailService
@@ -53,9 +55,9 @@ final class EmailService
         $to = new Email(null, $emailTo);
         $from = new Email('Eventigo.cz', 'prihlaseni@eventigo.cz');
         $subject = $this->translator->translate('email.login.subject');
-        $content = new SendGrid\Content('text/html', $this->renderLoginEmail($token));
+        $content = new Content('text/html', $this->renderLoginEmail($token));
 
-        $mail = new SendGrid\Mail($from, $subject, $to, $content);
+        $mail = new Mail($from, $subject, $to, $content);
         $mail->addCategory('emailLogin');
 
         try {

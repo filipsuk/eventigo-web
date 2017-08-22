@@ -2,7 +2,6 @@
 
 namespace App\Modules\Front\Presenters;
 
-use App\Modules\Core\Model\UserModel;
 use App\Modules\Core\Model\UserTagModel;
 use App\Modules\Core\Presenters\AbstractBasePresenter;
 use App\Modules\Front\Components\Settings\Settings;
@@ -27,18 +26,11 @@ final class ProfilePresenter extends AbstractBasePresenter
      */
     private $userTagModel;
 
-    /**
-     * @var UserModel
-     */
-    private $userModel;
-
     public function __construct(
-        UserModel $userModel,
         UserTagModel $userTagModel,
         SettingsFactoryInterface $settingsFactory,
         TagsFactoryInterface $tagsFactory
     ) {
-        $this->userModel = $userModel;
         $this->userTagModel = $userTagModel;
         $this->settingsFactory = $settingsFactory;
         $this->tagsFactory = $tagsFactory;
@@ -81,7 +73,7 @@ final class ProfilePresenter extends AbstractBasePresenter
     {
         $control = $this->tagsFactory->create();
 
-        $control->onChange[] = function () {
+        $control->onChange[] = function (): void {
             $this['tags']->redrawControl();
             $this->redrawControl('flash-messages');
         };

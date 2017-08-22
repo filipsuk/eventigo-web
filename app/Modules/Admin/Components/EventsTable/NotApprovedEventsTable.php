@@ -66,6 +66,7 @@ final class NotApprovedEventsTable extends AbstractDataTable
             if (FacebookEventSource::isSource($item['origin_url'])) {
                 $name = Html::el('i', ['class' => 'fa fa-facebook-square']) . '&nbsp;' . $name;
             }
+
             $item['name'] = (string) Html::el('a', [
                 'href' => $this->getPresenter()->link('Events:approve', $item['id']),
                 'data-toggle' => 'tooltip',
@@ -98,6 +99,7 @@ final class NotApprovedEventsTable extends AbstractDataTable
             ])->setHtml('<i class="fa fa-times"></i>');
             $item['actions'] = $actions;
         }
+
         $json['aaData'] = array_values($json['aaData']);
 
         return $json;

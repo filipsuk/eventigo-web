@@ -87,6 +87,7 @@ final class SourcesTable extends AbstractDataTable
                 : '<i class="fa fa-check"></i>');
             $item['actions'] = $actions;
         }
+
         $json['aaData'] = array_values($json['aaData']);
 
         return $json;

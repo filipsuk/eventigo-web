@@ -2,11 +2,12 @@
 
 namespace App\Modules\Core\Presenters;
 
+use App\Modules\Core\Model\UserModel;
 use App\Modules\Core\Utils\Filters;
-use Nette;
 use Nette\Application\BadRequestException;
 use Nette\Application\UI\Presenter;
 use Nette\Bridges\ApplicationLatte\Template;
+use Nette\Security\AuthenticationException;
 use Nette\Security\Identity;
 use Tracy\Debugger;
 use Tracy\ILogger;
@@ -18,6 +19,12 @@ abstract class AbstractBasePresenter extends Presenter
      * @inject
      */
     public $translator;
+
+    /**
+     * @var UserModel
+     * @inject
+     */
+    public $userModel;
 
     protected function createTemplate(): Template
     {
@@ -56,7 +63,7 @@ abstract class AbstractBasePresenter extends Presenter
 
             try {
                 $this->getUser()->login(new Identity($user->id, null, $user->toArray()));
-            } catch (Nette\Security\AuthenticationException $e) {
+            } catch (AuthenticationException $e) {
                 Debugger::log($e->getMessage(), ILogger::EXCEPTION);
             }
         }

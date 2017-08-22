@@ -49,11 +49,11 @@ final class SignPresenter extends Presenter
     {
         $control = $this->signInFormFactory->create();
 
-        $control->onLoggedIn[] = function () {
+        $control->onLoggedIn[] = function (): void {
             $this->redirect('Dashboard:');
         };
 
-        $control->onIncorrectLogIn[] = function () {
+        $control->onIncorrectLogIn[] = function (): void {
             $this->flashMessage($this->translator->translate('admin.signInForm.incorrectLogIn'), 'danger');
             $this->redirect('this');
         };

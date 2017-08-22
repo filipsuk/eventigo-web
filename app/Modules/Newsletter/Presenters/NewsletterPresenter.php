@@ -2,7 +2,6 @@
 
 namespace App\Modules\Newsletter\Presenters;
 
-use App\Modules\Core\Model\UserModel;
 use App\Modules\Core\Presenters\AbstractBasePresenter;
 use App\Modules\Newsletter\Model\NewsletterService;
 use App\Modules\Newsletter\Model\UserNewsletterModel;
@@ -17,11 +16,6 @@ final class NewsletterPresenter extends AbstractBasePresenter
     private $userNewsletterModel;
 
     /**
-     * @var UserModel
-     */
-    private $userModel;
-
-    /**
      * @var NewsletterService
      */
     private $newsletterService;
@@ -31,13 +25,9 @@ final class NewsletterPresenter extends AbstractBasePresenter
      */
     private $userNewsletter;
 
-    public function __construct(
-        NewsletterService $newsletterService,
-        UserModel $userModel,
-        UserNewsletterModel $userNewsletterModel
-    ) {
+    public function __construct(NewsletterService $newsletterService, UserNewsletterModel $userNewsletterModel)
+    {
         $this->newsletterService = $newsletterService;
-        $this->userModel = $userModel;
         $this->userNewsletterModel = $userNewsletterModel;
     }
 

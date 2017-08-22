@@ -10,39 +10,39 @@ final class EventsIterator extends AbstractIterator implements Countable
     /**
      * @var bool
      */
-    private $thisWeek = FALSE;
+    private $thisWeek = false;
 
     /**
      * @var bool
      */
-    private $thisMonth = FALSE;
+    private $thisMonth = false;
 
     /**
      * @var bool
      */
-    private $nextMonth = FALSE;
+    private $nextMonth = false;
 
     /**
      * @var bool
      */
-    private $upcoming = FALSE;
+    private $upcoming = false;
 
     public function drawThisWeekTitle(): bool
     {
         if (! $this->thisWeek && $this->current()->thisWeek) {
-            return $this->thisWeek = TRUE;
+            return $this->thisWeek = true;
         }
 
-        return FALSE;
+        return false;
     }
 
     public function drawThisMonthTitle(): bool
     {
         if (! $this->thisMonth && $this->current()->thisMonth && ! $this->current()->thisWeek) {
-            return $this->thisMonth = TRUE;
+            return $this->thisMonth = true;
         }
 
-        return FALSE;
+        return false;
     }
 
     public function drawNextMonthTitle(): bool
@@ -50,10 +50,10 @@ final class EventsIterator extends AbstractIterator implements Countable
         if (! $this->nextMonth && $this->current()->nextMonth
             && ! $this->current()->thisWeek && ! $this->current()->thisMonth
         ) {
-            return $this->nextMonth = TRUE;
+            return $this->nextMonth = true;
         }
 
-        return FALSE;
+        return false;
     }
 
     public function drawUpcomingTitle(): bool
@@ -61,10 +61,10 @@ final class EventsIterator extends AbstractIterator implements Countable
         if (! $this->upcoming && ! $this->current()->thisWeek
             && ! $this->current()->thisMonth && ! $this->current()->nextMonth
         ) {
-            return $this->upcoming = TRUE;
+            return $this->upcoming = true;
         }
 
-        return FALSE;
+        return false;
     }
 
     public function count(): int

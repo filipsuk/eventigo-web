@@ -82,8 +82,7 @@ final class Event
         ?int $rate = null,
         ?DateTime $created = null,
         ?DateTime $approved = null
-    )
-    {
+    ) {
         $this->id = $id;
         $this->name = $name;
         $this->description = $description;
@@ -100,7 +99,7 @@ final class Event
 
     public static function createFromRow(IRow $eventRow): Event
     {
-        return new Event(
+        return new self(
             $eventRow['id'],
             $eventRow['name'],
             $eventRow['description'],
