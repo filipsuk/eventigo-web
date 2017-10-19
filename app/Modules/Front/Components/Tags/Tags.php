@@ -19,6 +19,7 @@ final class Tags extends AbstractBaseControl
      * @var callable[]
      */
     public $onChange = [];
+
     /**
      * @var TagModel
      */

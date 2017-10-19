@@ -57,6 +57,7 @@ final class FacebookEventSource extends AbstractEventSource
             );
         } catch (FacebookApiException $e) {
             Debugger::log($e, Debugger::EXCEPTION);
+
             throw $e;
         }
     }
