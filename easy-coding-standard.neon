@@ -19,10 +19,6 @@ checkers:
 
     # Type Hints
     SlevomatCodingStandard\Sniffs\TypeHints\TypeHintDeclarationSniff:
-        usefulAnnotations:
-            - @todo
-            - @dataProvider
-            - @throws
         enableEachParameterAndReturnInspection: true
 
     # Namespaces
@@ -36,6 +32,11 @@ parameters:
         - PhpCsFixer\Fixer\Phpdoc\PhpdocAlignFixer
         - PhpCsFixer\Fixer\PhpTag\BlankLineAfterOpeningTagFixer
         - PhpCsFixer\Fixer\Operator\NewWithBracesFixer
+        # mutually excluded
+        - SlevomatCodingStandard\Sniffs\ControlStructures\DisallowYodaComparisonSniff
+        # strict rule on this code
+        - Symplify\CodingStandard\Fixer\Naming\PropertyNameMatchingTypeFixer
+
     skip:
         PHP_CodeSniffer\Standards\Generic\Sniffs\CodeAnalysis\EmptyStatementSniff:
             # "todo" notes
@@ -44,3 +45,7 @@ parameters:
             - app/Modules/Newsletter/Model/NewsletterService.php
         SlevomatCodingStandard\Sniffs\Namespaces\ReferenceUsedNamesOnlySniff:
             - app/bootstrap.php
+        # bug: https://github.com/Symplify/Symplify/issues/395
+        Symplify\CodingStandard\Fixer\Naming\PropertyNameMatchingTypeFixer:
+            - app/Modules/Admin/Components/EventsTable/NotApprovedEventsTableFactoryInterface.php
+            - app/Modules/Admin/Components/SourcesTable/SourcesTableFactoryInterface.php
