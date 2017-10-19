@@ -32,8 +32,6 @@ parameters:
         - PhpCsFixer\Fixer\Phpdoc\PhpdocAlignFixer
         - PhpCsFixer\Fixer\PhpTag\BlankLineAfterOpeningTagFixer
         - PhpCsFixer\Fixer\Operator\NewWithBracesFixer
-        # mutually excluded
-        - SlevomatCodingStandard\Sniffs\ControlStructures\DisallowYodaComparisonSniff
         # strict rule on this code
         - Symplify\CodingStandard\Fixer\Naming\PropertyNameMatchingTypeFixer
 
