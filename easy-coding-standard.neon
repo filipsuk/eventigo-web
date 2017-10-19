@@ -34,16 +34,15 @@ parameters:
         - PhpCsFixer\Fixer\Operator\NewWithBracesFixer
         # strict rule on this code
         - Symplify\CodingStandard\Fixer\Naming\PropertyNameMatchingTypeFixer
+        - Symplify\CodingStandard\Sniffs\DependencyInjection\NoClassInstantiationSniff
 
     skip:
-        PHP_CodeSniffer\Standards\Generic\Sniffs\CodeAnalysis\EmptyStatementSniff:
-            # "todo" notes
-            - app/Modules/Front/Components/Tags/Tags.php
-            - app/Modules/Email/Model/EmailService.php
-            - app/Modules/Newsletter/Model/NewsletterService.php
         SlevomatCodingStandard\Sniffs\Namespaces\ReferenceUsedNamesOnlySniff:
             - app/bootstrap.php
         # bug: https://github.com/Symplify/Symplify/issues/395
         Symplify\CodingStandard\Fixer\Naming\PropertyNameMatchingTypeFixer:
             - app/Modules/Admin/Components/EventsTable/NotApprovedEventsTableFactoryInterface.php
             - app/Modules/Admin/Components/SourcesTable/SourcesTableFactoryInterface.php
+
+    skip_codes:
+        - SlevomatCodingStandard\Sniffs\TypeHints\TypeHintDeclarationSniff.UselessDocComment

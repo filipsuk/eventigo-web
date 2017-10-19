@@ -24,6 +24,7 @@ final class UserModel extends AbstractBaseModel
      * @var string
      */
     public const ADMIN_LOGIN = 'admin';
+
     /**
      * @var string
      */
