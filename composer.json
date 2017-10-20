@@ -27,11 +27,11 @@
         "contributte/console": "^0.1"
     },
     "require-dev": {
-        "phpunit/phpunit": "^6.1",
+        "phpunit/phpunit": "^6.4",
         "robmorgan/phinx": "^0.7",
         "phpstan/phpstan": "^0.8",
         "phpstan/phpstan-nette": "^0.8",
-        "symplify/easy-coding-standard": "^2.2"
+        "symplify/easy-coding-standard": "^2.5.5"
     },
     "autoload": {
         "psr-4": {

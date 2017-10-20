@@ -32,6 +32,7 @@ final class EventModel extends AbstractBaseModel
         self::STATE_NOT_APPROVED,
         self::STATE_SKIP,
     ];
+
     /**
      * @var string
      */

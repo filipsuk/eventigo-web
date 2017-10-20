@@ -19,10 +19,6 @@ checkers:
 
     # Type Hints
     SlevomatCodingStandard\Sniffs\TypeHints\TypeHintDeclarationSniff:
-        usefulAnnotations:
-            - @todo
-            - @dataProvider
-            - @throws
         enableEachParameterAndReturnInspection: true
 
     # Namespaces
@@ -36,11 +32,16 @@ parameters:
         - PhpCsFixer\Fixer\Phpdoc\PhpdocAlignFixer
         - PhpCsFixer\Fixer\PhpTag\BlankLineAfterOpeningTagFixer
         - PhpCsFixer\Fixer\Operator\NewWithBracesFixer
+        # strict rule on this code
+        - Symplify\CodingStandard\Fixer\Naming\PropertyNameMatchingTypeFixer
+        - Symplify\CodingStandard\Sniffs\DependencyInjection\NoClassInstantiationSniff
+        - Symplify\CodingStandard\Sniffs\Property\DynamicPropertySniff
+
     skip:
-        PHP_CodeSniffer\Standards\Generic\Sniffs\CodeAnalysis\EmptyStatementSniff:
-            # "todo" notes
-            - app/Modules/Front/Components/Tags/Tags.php
-            - app/Modules/Email/Model/EmailService.php
-            - app/Modules/Newsletter/Model/NewsletterService.php
         SlevomatCodingStandard\Sniffs\Namespaces\ReferenceUsedNamesOnlySniff:
             - app/bootstrap.php
+
+    skip_codes:
+        - SlevomatCodingStandard\Sniffs\TypeHints\TypeHintDeclarationSniff.UselessDocComment
+        # many todos
+        - PHP_CodeSniffer\Standards\Generic\Sniffs\CodeAnalysis\EmptyStatementSniff.DetectedCATCH

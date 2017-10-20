@@ -58,6 +58,7 @@ abstract class AbstractBasePresenter extends Presenter
                     'Invalid user token "%s". Can not login.',
                     $token
                 ));
+
                 throw new BadRequestException;
             }
 
